@@ -9,15 +9,17 @@ from __future__ import annotations
 import json
 from pathlib import Path
 
-from sqlalchemy import func, select
+from sqlalchemy import func, select, text
 from sqlalchemy.ext.asyncio import AsyncSession
 
+from app.config import settings
 from app.engine.embeddings import embed_texts
 from app.models import DiagnosisEpisode
 from app.observability.logging import get_logger
 
 log = get_logger("medisense.seed")
 DATA_DIR = Path(__file__).resolve().parent.parent.parent / "data"
+_SEED_LOCK_KEY = 727274  # arbitrary constant for the pg advisory lock
 
 
 async def episode_count(session: AsyncSession) -> int:
@@ -26,7 +28,14 @@ async def episode_count(session: AsyncSession) -> int:
 
 
 async def seed_episodes(session: AsyncSession) -> int:
-    """Load data/episodes.json if the KB is empty. Returns episodes loaded."""
+    """Load data/episodes.json if the KB is empty. Returns episodes loaded.
+
+    Concurrency-safe: with multiple Gunicorn workers booting at once, a Postgres
+    transaction-level advisory lock serializes them so the seed runs exactly once
+    (the losers see a non-empty KB and skip). SQLite dev is single-process."""
+    if not settings.is_sqlite:
+        # Held until this transaction commits — serializes concurrent workers.
+        await session.execute(text("SELECT pg_advisory_xact_lock(:k)").bindparams(k=_SEED_LOCK_KEY))
     if await episode_count(session) > 0:
         return 0
 

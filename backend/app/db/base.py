@@ -75,8 +75,10 @@ class Embedding(TypeDecorator):
         if value is None:
             return None
         if isinstance(value, str):
-            return json.loads(value)
-        return list(value)
+            value = json.loads(value)
+        # Coerce to native Python floats (pgvector returns numpy float32, which
+        # is not JSON-serializable and would break response payloads downstream).
+        return [float(x) for x in value]
 
 
 # Convenience column factories (kept consistent across every model).

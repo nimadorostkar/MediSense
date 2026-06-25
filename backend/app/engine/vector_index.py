@@ -51,12 +51,14 @@ async def retrieve(
 
     if await _pgvector_supported(session):
         try:
-            # Cosine distance ordering; convert distance → similarity (1 - dist).
+            # pgvector wants a literal like '[0.1,0.2,...]'; cast to ::vector so
+            # the cosine-distance operator resolves. similarity = 1 - distance.
+            qlit = "[" + ",".join(repr(float(x)) for x in query_vec) + "]"
             stmt = text(
-                "SELECT id, 1 - (embedding <=> :q) AS sim "
+                "SELECT id, 1 - (embedding <=> (:q)::vector) AS sim "
                 "FROM diagnosis_episodes WHERE embedding IS NOT NULL "
-                "ORDER BY embedding <=> :q LIMIT :k"
-            ).bindparams(q=str(query_vec), k=k)
+                "ORDER BY embedding <=> (:q)::vector LIMIT :k"
+            ).bindparams(q=qlit, k=k)
             rows = (await session.execute(stmt)).all()
             ids = [r[0] for r in rows]
             sims = {r[0]: float(r[1]) for r in rows}
