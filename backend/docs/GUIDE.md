@@ -101,4 +101,4 @@ make dev      # uvicorn with --reload
 ### Enable real AI (optional)
 Set in `.env`: `ZHIPU_API_KEY=...` and `LLM_REASONING=true` for real Zhipu
 embeddings + grounded GLM reasoning. Without a key it runs fully offline on a
-deterministic hashing embedder. See `README.md` / `BUILD_REPORT.md` for all env.
+deterministic hashing embedder. **Full steps: see `AI_SETUP.md`.**
