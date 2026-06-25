@@ -1,18 +1,23 @@
-import { Globe } from "lucide-react";
+import { Globe, LogOut } from "lucide-react";
 import type { Strings } from "../lib/i18n";
+import type { AuthUser } from "../lib/api";
 import Logo from "./Logo";
 
 const NAV_KEYS = ["platform", "solutions", "evidence", "integrations", "pricing"] as const;
 
 export default function Header({
   t,
+  user,
   onToggleLang,
   onSignIn,
+  onSignOut,
   onHome,
 }: {
   t: Strings;
+  user: AuthUser | null;
   onToggleLang: () => void;
   onSignIn: () => void;
+  onSignOut: () => void;
   onHome: () => void;
 }) {
   return (
@@ -52,13 +57,32 @@ export default function Header({
           <Globe size={15} strokeWidth={1.7} />
           {t.langBtn}
         </button>
-        <button
-          type="button"
-          onClick={onSignIn}
-          className="rounded-[18px] bg-[#0B0B0C] px-[18px] py-[7px] text-[13px] font-medium text-white transition-[filter] hover:brightness-125"
-        >
-          {t.signIn}
-        </button>
+        {user ? (
+          <div className="flex items-center gap-2">
+            <div className="hidden flex-col items-end leading-tight sm:flex">
+              <span className="text-[13px] font-semibold text-ink-800">{user.name}</span>
+              <span className="text-[11px] capitalize text-ink-400">{user.role}</span>
+            </div>
+            <button
+              type="button"
+              onClick={onSignOut}
+              title={t.signOut}
+              aria-label={t.signOut}
+              className="flex items-center gap-[5px] rounded-[18px] border border-line-input bg-white px-[13px] py-[7px] text-[13px] font-semibold text-ink-700 transition-colors hover:bg-[#f0f1f3]"
+            >
+              <LogOut size={15} strokeWidth={1.7} />
+              {t.signOut}
+            </button>
+          </div>
+        ) : (
+          <button
+            type="button"
+            onClick={onSignIn}
+            className="rounded-[18px] bg-[#0B0B0C] px-[18px] py-[7px] text-[13px] font-medium text-white transition-[filter] hover:brightness-125"
+          >
+            {t.signIn}
+          </button>
+        )}
       </div>
     </header>
   );

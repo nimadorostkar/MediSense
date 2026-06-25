@@ -1,12 +1,22 @@
 import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import type { Strings } from "../lib/i18n";
+import { login, type AuthUser } from "../lib/api";
 
-export default function LoginModal({ t, onClose }: { t: Strings; onClose: () => void }) {
+export default function LoginModal({
+  t,
+  onClose,
+  onAuthed,
+}: {
+  t: Strings;
+  onClose: () => void;
+  onAuthed: (user: AuthUser) => void;
+}) {
   const [mode, setMode] = useState<"signin" | "signup">("signin");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
+  const [busy, setBusy] = useState(false);
 
   const isUp = mode === "signup";
 
@@ -19,7 +29,8 @@ export default function LoginModal({ t, onClose }: { t: Strings; onClose: () => 
     return () => window.removeEventListener("keydown", onKey);
   }, [onClose]);
 
-  function submit() {
+  async function submit() {
+    if (busy) return;
     const validEmail = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.trim());
     if (!validEmail) {
       setError(t.errEmail);
@@ -30,7 +41,17 @@ export default function LoginModal({ t, onClose }: { t: Strings; onClose: () => 
       return;
     }
     setError("");
-    onClose();
+    setBusy(true);
+    try {
+      // Authenticates against the backend (/api/auth/login) and stores the token.
+      const user = await login(email.trim(), password);
+      onAuthed(user);
+      onClose();
+    } catch (e) {
+      setError(e instanceof Error ? e.message : t.errAuth);
+    } finally {
+      setBusy(false);
+    }
   }
 
   const inputCls =
@@ -124,9 +145,10 @@ export default function LoginModal({ t, onClose }: { t: Strings; onClose: () => 
         <button
           type="button"
           onClick={submit}
-          className="mt-[6px] w-full rounded-[10px] bg-accent p-3 text-[14px] font-semibold text-white transition-[filter] hover:brightness-110"
+          disabled={busy}
+          className="mt-[6px] w-full rounded-[10px] bg-accent p-3 text-[14px] font-semibold text-white transition-[filter] hover:brightness-110 disabled:opacity-60"
         >
-          {isUp ? t.ctaUp : t.ctaIn}
+          {busy ? t.signingIn : isUp ? t.ctaUp : t.ctaIn}
         </button>
 
         <div className="mt-4 text-center text-[12.5px] text-ink-400">

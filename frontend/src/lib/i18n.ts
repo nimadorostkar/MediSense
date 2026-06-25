@@ -8,6 +8,9 @@ export interface Strings {
   integrations: string;
   pricing: string;
   signIn: string;
+  signOut: string;
+  signingIn: string;
+  errAuth: string;
   langBtn: string;
   langTitle: string;
   // sidebar
@@ -81,6 +84,9 @@ export const STRINGS: Record<Lang, Strings> = {
     integrations: "Integrations",
     pricing: "Pricing",
     signIn: "Sign in",
+    signOut: "Sign out",
+    signingIn: "Signing in…",
+    errAuth: "Sign-in failed. Check your credentials and that the backend is running.",
     langBtn: "中文",
     langTitle: "Switch language",
     newChat: "New chat",
@@ -146,6 +152,9 @@ export const STRINGS: Record<Lang, Strings> = {
     integrations: "集成",
     pricing: "定价",
     signIn: "登录",
+    signOut: "退出",
+    signingIn: "正在登录…",
+    errAuth: "登录失败。请检查凭据并确认后端正在运行。",
     langBtn: "EN",
     langTitle: "切换语言",
     newChat: "新对话",

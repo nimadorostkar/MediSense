@@ -14,6 +14,69 @@ import type { Diagnosis, Message, Lang, Band } from "../types";
  * is still demoable without a key.
  */
 const API_URL = import.meta.env.VITE_API_URL ?? "/api/clinical";
+// Auth/v2 endpoints live alongside the chat route (e.g. /api/auth, /v2/...).
+const API_BASE = API_URL.replace(/\/clinical$/, "");
+
+// ── Session (bearer token issued by the backend /api/auth/login) ─────────────
+const TOKEN_KEY = "medisense.token";
+const USER_KEY = "medisense.user";
+
+export interface AuthUser {
+  email: string;
+  name: string;
+  role: string;
+}
+
+export function getToken(): string | null {
+  return localStorage.getItem(TOKEN_KEY);
+}
+
+export function getUser(): AuthUser | null {
+  try {
+    const s = localStorage.getItem(USER_KEY);
+    return s ? (JSON.parse(s) as AuthUser) : null;
+  } catch {
+    return null;
+  }
+}
+
+function setSession(token: string, user: AuthUser) {
+  localStorage.setItem(TOKEN_KEY, token);
+  localStorage.setItem(USER_KEY, JSON.stringify(user));
+}
+
+export function clearSession() {
+  localStorage.removeItem(TOKEN_KEY);
+  localStorage.removeItem(USER_KEY);
+}
+
+/** Authenticate against the backend; stores the bearer token + user on success. */
+export async function login(email: string, password: string): Promise<AuthUser> {
+  const res = await fetch(`${API_BASE}/auth/login`, {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ email, password }),
+  });
+  if (!res.ok) {
+    let msg = `Login failed (${res.status})`;
+    try {
+      const e = await res.json();
+      msg = e?.error?.message || e?.detail?.[0]?.msg || e?.detail || msg;
+    } catch {
+      /* ignore */
+    }
+    throw new Error(msg);
+  }
+  const data = await res.json();
+  setSession(data.token, data.user);
+  return data.user as AuthUser;
+}
+
+/** Authorization header for backend calls when a session token is present. */
+export function authHeaders(): Record<string, string> {
+  const token = getToken();
+  return token ? { Authorization: `Bearer ${token}` } : {};
+}
 
 export function buildPrompt(history: Message[], lang: Lang): string {
   const convo = history
@@ -88,7 +151,7 @@ export async function clinicalComplete(history: Message[], lang: Lang): Promise<
   try {
     const res = await fetch(API_URL, {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
+      headers: { "Content-Type": "application/json", ...authHeaders() },
       body: JSON.stringify({ messages, prompt, lang }),
     });
     if (!res.ok) throw new Error("bad status " + res.status);

@@ -2,7 +2,7 @@ import { useMemo, useState } from "react";
 import { PanelLeft, Activity, ShieldCheck, Clock, MessageCircle } from "lucide-react";
 import type { Lang, Message } from "./types";
 import { STRINGS } from "./lib/i18n";
-import { clinicalComplete, parseReply } from "./lib/api";
+import { clinicalComplete, parseReply, getUser, clearSession, type AuthUser } from "./lib/api";
 import { useChats } from "./hooks/useChats";
 import { useSpeech } from "./hooks/useSpeech";
 import Header from "./components/Header";
@@ -31,6 +31,7 @@ export default function App() {
   const [started, setStarted] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [user, setUser] = useState<AuthUser | null>(() => getUser());
 
   const { chats, activeId, setActiveId, upsert, updateMessages, remove } = useChats();
   const { recording, supported: micSupported, toggle } = useSpeech(lang, (v) => setDraft(v));
@@ -95,8 +96,13 @@ export default function App() {
       <div className="mx-auto flex min-h-[calc(100vh-32px)] max-w-[1280px] flex-col overflow-hidden rounded-card border border-[#EBECEE] bg-gradient-to-b from-[#FCFCFD] to-[#F5F6F7] shadow-card">
         <Header
           t={t}
+          user={user}
           onToggleLang={() => setLang(lang === "en" ? "zh" : "en")}
           onSignIn={() => setShowLogin(true)}
+          onSignOut={() => {
+            clearSession();
+            setUser(null);
+          }}
           onHome={newChat}
         />
 
@@ -165,7 +171,9 @@ export default function App() {
         </div>
       </div>
 
-      {showLogin && <LoginModal t={t} onClose={() => setShowLogin(false)} />}
+      {showLogin && (
+        <LoginModal t={t} onClose={() => setShowLogin(false)} onAuthed={setUser} />
+      )}
     </div>
   );
 }

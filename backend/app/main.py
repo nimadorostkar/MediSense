@@ -25,7 +25,16 @@ from app.db.session import SessionLocal, engine, ensure_pgvector
 from app.errors import MediSenseError
 from app.observability.logging import configure_logging, correlation_id, get_logger
 from app.observability.metrics import REQUEST_LATENCY
-from app.routers import audit, clinical, encounters, episodes, outcomes, prescriptions, triage
+from app.routers import (
+    audit,
+    auth,
+    clinical,
+    encounters,
+    episodes,
+    outcomes,
+    prescriptions,
+    triage,
+)
 
 log = get_logger("medisense.main")
 
@@ -133,6 +142,7 @@ async def metrics() -> Response:
 
 
 # Routers
+app.include_router(auth.router)
 app.include_router(clinical.router)
 app.include_router(encounters.router)
 app.include_router(prescriptions.router)
