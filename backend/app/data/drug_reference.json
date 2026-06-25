@@ -1,0 +1,33 @@
+{
+  "_note": "Illustrative pilot drug reference (spec §7.4). Replace with a licensed interaction database in production; versioned and updatable out-of-band.",
+  "interactions": [
+    {"a": "warfarin", "b": "aspirin", "severity": "Major", "message": "Warfarin + aspirin markedly increases bleeding risk — avoid or monitor INR closely with gastroprotection."},
+    {"a": "warfarin", "b": "ciprofloxacin", "severity": "Major", "message": "Ciprofloxacin potentiates warfarin — INR can rise sharply; monitor and consider alternative antibiotic."},
+    {"a": "warfarin", "b": "nitrofurantoin", "severity": "Moderate", "message": "Possible enhanced anticoagulant effect — monitor INR."},
+    {"a": "warfarin", "b": "trimethoprim", "severity": "Major", "message": "Trimethoprim raises bleeding risk with warfarin — avoid or monitor INR."},
+    {"a": "warfarin", "b": "ibuprofen", "severity": "Major", "message": "NSAID + warfarin — significant GI bleeding risk; avoid."},
+    {"a": "sumatriptan", "b": "ssri", "severity": "Moderate", "message": "Triptan + SSRI/SNRI — small risk of serotonin syndrome; counsel and monitor."},
+    {"a": "ciprofloxacin", "b": "tizanidine", "severity": "Contraindicated", "message": "Ciprofloxacin sharply raises tizanidine levels — contraindicated."},
+    {"a": "prednisolone", "b": "ibuprofen", "severity": "Moderate", "message": "Corticosteroid + NSAID increases GI ulcer/bleed risk — consider gastroprotection."},
+    {"a": "omeprazole", "b": "clopidogrel", "severity": "Moderate", "message": "Omeprazole may reduce clopidogrel activation — prefer pantoprazole."},
+    {"a": "metformin", "b": "ciprofloxacin", "severity": "Minor", "message": "Rare dysglycemia reported — monitor glucose."}
+  ],
+  "allergy_classes": {
+    "penicillin": ["penicillin", "amoxicillin", "ampicillin", "co-amoxiclav", "flucloxacillin", "piperacillin"],
+    "sulfa": ["sulfa", "sulfamethoxazole", "co-trimoxazole", "trimethoprim"],
+    "nsaid": ["ibuprofen", "naproxen", "diclofenac", "aspirin"],
+    "aspirin": ["aspirin"],
+    "codeine": ["codeine", "dihydrocodeine"]
+  },
+  "dosing": {
+    "amoxicillin": {"adult": "500 mg PO three times daily", "note": "Reduce frequency if eGFR < 30."},
+    "ciprofloxacin": {"adult": "500 mg PO twice daily", "note": "Avoid with tizanidine; caution with QT-prolonging drugs."},
+    "nitrofurantoin": {"adult": "100 mg PO twice daily (MR)", "note": "Avoid if eGFR < 45."},
+    "trimethoprim": {"adult": "200 mg PO twice daily", "note": "Caution in renal impairment and with warfarin."},
+    "prednisolone": {"adult": "40 mg PO once daily", "note": "Short course; consider gastroprotection."},
+    "sumatriptan": {"adult": "50 mg PO at onset", "note": "Contraindicated in ischemic heart disease."},
+    "omeprazole": {"adult": "20 mg PO once daily", "note": "Review need at 4-8 weeks."},
+    "oseltamivir": {"adult": "75 mg PO twice daily", "note": "Start within 48h of symptoms; adjust for renal function."},
+    "enoxaparin": {"adult": "1 mg/kg SC twice daily", "note": "Adjust for renal function and weight."}
+  }
+}

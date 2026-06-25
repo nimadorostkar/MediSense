@@ -31,6 +31,19 @@ export interface Strings {
   nextBest: string;
   advisory: string;
   footer: string;
+  // treatment card
+  txTitle: string;
+  txBest: string;
+  txPlan: string;
+  txMeds: string;
+  txSafety: string;
+  txMonitor: string;
+  txClear: string;
+  txConfirm: string;
+  sevContra: string;
+  sevMajor: string;
+  sevModerate: string;
+  sevMinor: string;
   // composer
   attach: string;
   micRec: string;
@@ -89,6 +102,18 @@ export const STRINGS: Record<Lang, Strings> = {
     advisory: "Advisory only — the physician confirms the final decision.",
     footer:
       "© 2026 MediSense · Decision support — the physician confirms every diagnosis and prescription.",
+    txTitle: "Recommended plan",
+    txBest: "Best-fit diagnosis",
+    txPlan: "Plan",
+    txMeds: "Medications",
+    txSafety: "Drug-safety screen",
+    txMonitor: "Monitoring",
+    txClear: "No interactions or allergy conflicts found.",
+    txConfirm: "Suggested plan — the physician confirms and signs before anything is prescribed.",
+    sevContra: "Contraindicated",
+    sevMajor: "Major",
+    sevModerate: "Moderate",
+    sevMinor: "Minor",
     attach: "Attach file",
     micRec: "Record voice",
     micStop: "Stop recording",
@@ -141,6 +166,18 @@ export const STRINGS: Record<Lang, Strings> = {
     nextBest: "建议下一步检查 —",
     advisory: "仅供参考——最终诊断由医生确认。",
     footer: "© 2026 MediSense · 临床决策支持——每项诊断与处方均由医生确认。",
+    txTitle: "推荐方案",
+    txBest: "最符合的诊断",
+    txPlan: "处理方案",
+    txMeds: "用药",
+    txSafety: "用药安全筛查",
+    txMonitor: "随访监测",
+    txClear: "未发现药物相互作用或过敏冲突。",
+    txConfirm: "建议方案——开具处方前须由医生确认并签署。",
+    sevContra: "禁忌",
+    sevMajor: "严重",
+    sevModerate: "中度",
+    sevMinor: "轻度",
     attach: "添加附件",
     micRec: "语音输入",
     micStop: "停止录音",

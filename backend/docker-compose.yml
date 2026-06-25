@@ -1,0 +1,23 @@
+# Production-target datastores for MediSense (spec §15.3).
+# For the pilot the app runs on SQLite out-of-the-box; bring these up to switch
+# to the real stack: set DATABASE_URL=postgresql+asyncpg://medisense:medisense@localhost:5432/medisense
+services:
+  postgres:
+    image: pgvector/pgvector:pg16   # PostgreSQL 16 with the pgvector extension
+    environment:
+      POSTGRES_USER: medisense
+      POSTGRES_PASSWORD: medisense
+      POSTGRES_DB: medisense
+    ports:
+      - "5432:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    ports:
+      - "6379:6379"
+
+volumes:
+  pgdata:

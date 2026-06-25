@@ -4,6 +4,7 @@ import type { Strings } from "../lib/i18n";
 import { bandLabel } from "../lib/i18n";
 import { normBand } from "../lib/api";
 import { bandPalette } from "../lib/bands";
+import TreatmentCard from "./TreatmentCard";
 
 /**
  * AI message card: optional red-flag banner, summary, ranked differential rows
@@ -94,6 +95,8 @@ export default function DifferentialCard({ msg, t }: { msg: Message; t: Strings 
       ) : null}
 
       {items.length > 0 && <p className="mt-3 text-[11.5px] text-ink-300">{t.advisory}</p>}
+
+      {dx?.treatment ? <TreatmentCard tx={dx.treatment} t={t} /> : null}
     </div>
   );
 }

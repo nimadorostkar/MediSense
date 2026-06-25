@@ -77,12 +77,19 @@ export function normBand(b: unknown): Band {
 }
 
 export async function clinicalComplete(history: Message[], lang: Lang): Promise<string> {
+  // Send the conversation to the MediSense engine. The backend runs retrieval +
+  // classifier + rules/safety and returns the structured DiagnosisReply. We also
+  // pass `prompt` for backward-compatibility with the legacy proxy server.
+  const messages = history.map((m) => ({
+    role: m.role === "doctor" ? "doctor" : "ai",
+    text: m.role === "doctor" ? m.text ?? "" : m.dx?.summary ?? m.text ?? "",
+  }));
   const prompt = buildPrompt(history, lang);
   try {
     const res = await fetch(API_URL, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ prompt, lang }),
+      body: JSON.stringify({ messages, prompt, lang }),
     });
     if (!res.ok) throw new Error("bad status " + res.status);
     const data = await res.json();

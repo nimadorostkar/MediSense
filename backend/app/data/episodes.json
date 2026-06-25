@@ -1,0 +1,201 @@
+[
+  {
+    "symptom_text": "62 year old woman, 3 days of fever, productive cough with green sputum and right-sided pleuritic chest pain. Respiratory rate 22, SpO2 94%, focal crackles right base.",
+    "department": "General Medicine", "diagnosis": "Community-acquired pneumonia", "icd": "J18.9",
+    "outcome": 0.93, "next_best_test": "Chest X-ray",
+    "treatment": {"plan": ["Confirm with chest X-ray", "Assess CURB-65 severity", "Oral antibiotics if low risk, review at 48h"],
+      "medications": [{"drug": "Amoxicillin", "dose": "500 mg", "route": "PO", "frequency": "three times daily", "duration": "5 days"},
+                       {"drug": "Paracetamol", "dose": "1 g", "route": "PO", "frequency": "every 6h as needed", "duration": ""}],
+      "monitoring": "Re-assess in 48h; return if SpO2 falls or breathlessness worsens."}
+  },
+  {
+    "symptom_text": "55 year old man, fever and cough for four days, yellow sputum, mild dyspnea on exertion, crackles at left lung base, SpO2 95%.",
+    "department": "General Medicine", "diagnosis": "Community-acquired pneumonia", "icd": "J18.9",
+    "outcome": 0.9, "next_best_test": "Chest X-ray",
+    "treatment": {"plan": ["Chest X-ray to confirm consolidation", "Start empiric antibiotics", "Hydration and rest"],
+      "medications": [{"drug": "Amoxicillin", "dose": "500 mg", "route": "PO", "frequency": "three times daily", "duration": "5 days"}],
+      "monitoring": "Follow-up in 2-3 days; escalate if hypoxic."}
+  },
+  {
+    "symptom_text": "40 year old, dry then productive cough for one week, no fever, chest clear, no dyspnea, recent cold. Vitals normal.",
+    "department": "General Medicine", "diagnosis": "Acute bronchitis", "icd": "J20.9",
+    "outcome": 0.95, "next_best_test": "None — clinical diagnosis",
+    "treatment": {"plan": ["Reassure; usually viral and self-limiting", "Symptomatic care", "Avoid routine antibiotics"],
+      "medications": [{"drug": "Paracetamol", "dose": "1 g", "route": "PO", "frequency": "every 6h as needed", "duration": ""}],
+      "monitoring": "Return if fever develops or cough persists beyond 3 weeks."}
+  },
+  {
+    "symptom_text": "33 year old, persistent cough with clear sputum for 10 days after a viral illness, no fever, lungs clear, normal saturations.",
+    "department": "General Medicine", "diagnosis": "Acute bronchitis", "icd": "J20.9",
+    "outcome": 0.94, "next_best_test": "None — clinical diagnosis",
+    "treatment": {"plan": ["Symptomatic treatment", "Fluids and rest", "Antibiotics not indicated"],
+      "medications": [{"drug": "Honey and warm fluids", "dose": "", "route": "PO", "frequency": "as needed", "duration": ""}],
+      "monitoring": "Safety-net for worsening or new fever."}
+  },
+  {
+    "symptom_text": "67 year old man, central crushing chest pain radiating to the left arm and jaw, diaphoretic, nausea. HR 110, BP 100/60. Pain at rest for 40 minutes.",
+    "department": "Cardiology", "diagnosis": "Acute myocardial infarction", "icd": "I21.9",
+    "outcome": 0.82, "next_best_test": "12-lead ECG and troponin",
+    "treatment": {"plan": ["Immediate ECG and serial troponin", "Aspirin loading and antiplatelet", "Urgent cardiology / PCI referral"],
+      "medications": [{"drug": "Aspirin", "dose": "300 mg", "route": "PO", "frequency": "once (loading)", "duration": ""},
+                       {"drug": "Glyceryl trinitrate", "dose": "0.4 mg", "route": "SL", "frequency": "as needed for pain", "duration": ""}],
+      "monitoring": "Continuous cardiac monitoring; admit."}
+  },
+  {
+    "symptom_text": "58 year old woman, sudden severe chest pressure radiating to arm, sweating and shortness of breath, HR 118, BP 95/58, looks unwell.",
+    "department": "Cardiology", "diagnosis": "Acute myocardial infarction", "icd": "I21.9",
+    "outcome": 0.8, "next_best_test": "12-lead ECG and troponin",
+    "treatment": {"plan": ["Emergent ECG and troponin", "Dual antiplatelet per protocol", "Activate cath lab if STEMI"],
+      "medications": [{"drug": "Aspirin", "dose": "300 mg", "route": "PO", "frequency": "once (loading)", "duration": ""}],
+      "monitoring": "Resuscitation area; cardiac monitor."}
+  },
+  {
+    "symptom_text": "60 year old, chest tightness on exertion relieved by rest over several weeks, no pain at rest, normal vitals, known hypertension.",
+    "department": "Cardiology", "diagnosis": "Stable angina", "icd": "I20.9",
+    "outcome": 0.9, "next_best_test": "Exercise stress test or CT coronary angiography",
+    "treatment": {"plan": ["Risk-factor modification", "Anti-anginal therapy", "Outpatient cardiology workup"],
+      "medications": [{"drug": "Glyceryl trinitrate", "dose": "0.4 mg", "route": "SL", "frequency": "as needed", "duration": ""},
+                       {"drug": "Bisoprolol", "dose": "2.5 mg", "route": "PO", "frequency": "once daily", "duration": ""}],
+      "monitoring": "Review symptoms; seek help if pain at rest."}
+  },
+  {
+    "symptom_text": "29 year old woman, throbbing unilateral headache with photophobia and nausea, lasting hours, no fever, no neck stiffness, recurrent over years.",
+    "department": "Neurology", "diagnosis": "Migraine", "icd": "G43.9",
+    "outcome": 0.92, "next_best_test": "None — clinical diagnosis",
+    "treatment": {"plan": ["Rest in dark quiet room", "Acute abortive therapy", "Identify and avoid triggers"],
+      "medications": [{"drug": "Sumatriptan", "dose": "50 mg", "route": "PO", "frequency": "at onset, may repeat after 2h", "duration": ""},
+                       {"drug": "Ibuprofen", "dose": "400 mg", "route": "PO", "frequency": "every 8h as needed", "duration": ""}],
+      "monitoring": "Headache diary; review if frequency increases."}
+  },
+  {
+    "symptom_text": "35 year old, recurrent pulsating headache on one side with light sensitivity and nausea, no neurological deficit, normal exam.",
+    "department": "Neurology", "diagnosis": "Migraine", "icd": "G43.9",
+    "outcome": 0.9, "next_best_test": "None — clinical diagnosis",
+    "treatment": {"plan": ["Abortive therapy at onset", "Trigger avoidance", "Consider prophylaxis if frequent"],
+      "medications": [{"drug": "Sumatriptan", "dose": "50 mg", "route": "PO", "frequency": "at onset", "duration": ""}],
+      "monitoring": "Review for prophylaxis if >4 attacks/month."}
+  },
+  {
+    "symptom_text": "45 year old, bilateral band-like pressure headache, mild, no nausea, no photophobia, stress at work, normal exam.",
+    "department": "Neurology", "diagnosis": "Tension-type headache", "icd": "G44.2",
+    "outcome": 0.95, "next_best_test": "None — clinical diagnosis",
+    "treatment": {"plan": ["Reassurance", "Simple analgesia", "Stress management and sleep hygiene"],
+      "medications": [{"drug": "Paracetamol", "dose": "1 g", "route": "PO", "frequency": "every 6h as needed", "duration": ""}],
+      "monitoring": "Avoid analgesic overuse; review if pattern changes."}
+  },
+  {
+    "symptom_text": "26 year old woman, dysuria, urinary frequency and urgency, suprapubic discomfort, no fever, no flank pain, no vaginal discharge.",
+    "department": "General Medicine", "diagnosis": "Urinary tract infection (cystitis)", "icd": "N39.0",
+    "outcome": 0.95, "next_best_test": "Urine dipstick / culture",
+    "treatment": {"plan": ["Urine dipstick to confirm", "Short-course antibiotics", "Increase fluid intake"],
+      "medications": [{"drug": "Nitrofurantoin", "dose": "100 mg", "route": "PO", "frequency": "twice daily", "duration": "3 days"}],
+      "monitoring": "Return if fever or flank pain develops."}
+  },
+  {
+    "symptom_text": "31 year old woman, burning on urination and frequency for two days, mild lower abdominal discomfort, afebrile.",
+    "department": "General Medicine", "diagnosis": "Urinary tract infection (cystitis)", "icd": "N39.0",
+    "outcome": 0.94, "next_best_test": "Urine dipstick",
+    "treatment": {"plan": ["Confirm with dipstick", "Empiric short-course antibiotic", "Hydration"],
+      "medications": [{"drug": "Trimethoprim", "dose": "200 mg", "route": "PO", "frequency": "twice daily", "duration": "3 days"}],
+      "monitoring": "Safety-net for upper tract symptoms."}
+  },
+  {
+    "symptom_text": "40 year old woman, high fever with rigors, flank pain, dysuria, nausea and vomiting, costovertebral angle tenderness.",
+    "department": "General Medicine", "diagnosis": "Acute pyelonephritis", "icd": "N10",
+    "outcome": 0.88, "next_best_test": "Urine culture and bloods",
+    "treatment": {"plan": ["Urine and blood cultures", "Broad-spectrum antibiotics", "Consider admission for IV therapy"],
+      "medications": [{"drug": "Ciprofloxacin", "dose": "500 mg", "route": "PO", "frequency": "twice daily", "duration": "7 days"}],
+      "monitoring": "Review in 24-48h; admit if septic."}
+  },
+  {
+    "symptom_text": "19 year old, periumbilical pain migrating to the right lower quadrant, anorexia, low-grade fever, nausea, tenderness and guarding at McBurney's point.",
+    "department": "Surgery", "diagnosis": "Acute appendicitis", "icd": "K35.80",
+    "outcome": 0.9, "next_best_test": "Abdominal ultrasound or CT",
+    "treatment": {"plan": ["Nil by mouth", "IV fluids and analgesia", "Urgent surgical referral for appendicectomy"],
+      "medications": [{"drug": "IV fluids", "dose": "", "route": "IV", "frequency": "maintenance", "duration": ""}],
+      "monitoring": "Serial abdominal exams; surgery review."}
+  },
+  {
+    "symptom_text": "23 year old, right lower abdominal pain starting near the navel, loss of appetite, mild fever, rebound tenderness.",
+    "department": "Surgery", "diagnosis": "Acute appendicitis", "icd": "K35.80",
+    "outcome": 0.89, "next_best_test": "CT abdomen",
+    "treatment": {"plan": ["Keep nil by mouth", "Analgesia and fluids", "Surgical assessment"],
+      "medications": [{"drug": "Morphine", "dose": "titrated", "route": "IV", "frequency": "as needed", "duration": ""}],
+      "monitoring": "Admit; reassess pain and white cell count."}
+  },
+  {
+    "symptom_text": "28 year old, acute watery diarrhea and vomiting for one day after a takeaway meal, diffuse mild crampy abdominal pain, no blood, low-grade fever.",
+    "department": "General Medicine", "diagnosis": "Acute gastroenteritis", "icd": "A09",
+    "outcome": 0.96, "next_best_test": "None unless red flags / dehydration",
+    "treatment": {"plan": ["Oral rehydration", "Symptomatic care", "Antibiotics not routinely needed"],
+      "medications": [{"drug": "Oral rehydration salts", "dose": "", "route": "PO", "frequency": "after each loose stool", "duration": ""}],
+      "monitoring": "Return if signs of dehydration or bloody stools."}
+  },
+  {
+    "symptom_text": "50 year old, vomiting and frequent loose stools since yesterday, generalized abdominal cramps, others at home affected, no blood in stool.",
+    "department": "General Medicine", "diagnosis": "Acute gastroenteritis", "icd": "A09",
+    "outcome": 0.95, "next_best_test": "Stool culture if persistent",
+    "treatment": {"plan": ["Fluid replacement", "Rest and bland diet", "Hand hygiene advice"],
+      "medications": [{"drug": "Oral rehydration salts", "dose": "", "route": "PO", "frequency": "regularly", "duration": ""}],
+      "monitoring": "Safety-net for dehydration."}
+  },
+  {
+    "symptom_text": "24 year old known asthmatic, increasing wheeze, breathlessness and cough over a day, using inhaler frequently, RR 24, audible wheeze, SpO2 93%.",
+    "department": "Respiratory", "diagnosis": "Acute asthma exacerbation", "icd": "J45.901",
+    "outcome": 0.9, "next_best_test": "Peak expiratory flow and SpO2",
+    "treatment": {"plan": ["Measure peak flow and saturations", "Bronchodilators and steroids", "Reassess response"],
+      "medications": [{"drug": "Salbutamol", "dose": "5 mg", "route": "Nebulized", "frequency": "repeat as needed", "duration": ""},
+                       {"drug": "Prednisolone", "dose": "40 mg", "route": "PO", "frequency": "once daily", "duration": "5 days"}],
+      "monitoring": "Admit if poor response or falling saturations."}
+  },
+  {
+    "symptom_text": "30 year old asthmatic, wheezy and short of breath after a chest infection, tight chest, peak flow reduced, talking in short sentences.",
+    "department": "Respiratory", "diagnosis": "Acute asthma exacerbation", "icd": "J45.901",
+    "outcome": 0.88, "next_best_test": "Peak expiratory flow",
+    "treatment": {"plan": ["Nebulized bronchodilator", "Oral corticosteroid", "Review inhaler technique"],
+      "medications": [{"drug": "Salbutamol", "dose": "5 mg", "route": "Nebulized", "frequency": "as needed", "duration": ""},
+                       {"drug": "Prednisolone", "dose": "40 mg", "route": "PO", "frequency": "once daily", "duration": "5 days"}],
+      "monitoring": "Escalate if no improvement."}
+  },
+  {
+    "symptom_text": "48 year old, burning retrosternal discomfort after meals and when lying down, acid taste, worse at night, no exertional component, normal vitals.",
+    "department": "Gastroenterology", "diagnosis": "Gastro-esophageal reflux disease", "icd": "K21.9",
+    "outcome": 0.92, "next_best_test": "Trial of PPI; endoscopy if alarm features",
+    "treatment": {"plan": ["Lifestyle and dietary advice", "Acid suppression", "Review for alarm features"],
+      "medications": [{"drug": "Omeprazole", "dose": "20 mg", "route": "PO", "frequency": "once daily", "duration": "4 weeks"}],
+      "monitoring": "Refer for endoscopy if dysphagia, weight loss or bleeding."}
+  },
+  {
+    "symptom_text": "52 year old, heartburn and acid regurgitation for weeks, worse after large meals, relieved by antacids, no red flags.",
+    "department": "Gastroenterology", "diagnosis": "Gastro-esophageal reflux disease", "icd": "K21.9",
+    "outcome": 0.91, "next_best_test": "PPI trial",
+    "treatment": {"plan": ["Weight loss and avoid late meals", "Proton pump inhibitor", "Reassess in 4 weeks"],
+      "medications": [{"drug": "Omeprazole", "dose": "20 mg", "route": "PO", "frequency": "once daily", "duration": "4 weeks"}],
+      "monitoring": "Endoscopy if alarm symptoms."}
+  },
+  {
+    "symptom_text": "61 year old, sudden onset breathlessness and right-sided pleuritic chest pain, recent long-haul flight, calf swelling, HR 112, SpO2 92%.",
+    "department": "Respiratory", "diagnosis": "Pulmonary embolism", "icd": "I26.99",
+    "outcome": 0.83, "next_best_test": "CT pulmonary angiogram; Wells score and D-dimer",
+    "treatment": {"plan": ["Assess Wells score", "Anticoagulation if confirmed or high probability", "CTPA to confirm"],
+      "medications": [{"drug": "Enoxaparin", "dose": "1 mg/kg", "route": "SC", "frequency": "twice daily", "duration": "until reviewed"}],
+      "monitoring": "Admit; monitor oxygenation and hemodynamics."}
+  },
+  {
+    "symptom_text": "70 year old, acute shortness of breath and chest pain worse on inspiration, immobile after surgery, tachycardic, low oxygen saturation.",
+    "department": "Respiratory", "diagnosis": "Pulmonary embolism", "icd": "I26.99",
+    "outcome": 0.8, "next_best_test": "CT pulmonary angiogram",
+    "treatment": {"plan": ["Risk-stratify with Wells score", "Start anticoagulation", "Confirm with CTPA"],
+      "medications": [{"drug": "Enoxaparin", "dose": "1 mg/kg", "route": "SC", "frequency": "twice daily", "duration": "until reviewed"}],
+      "monitoring": "Continuous monitoring; admit."}
+  },
+  {
+    "symptom_text": "38 year old, abrupt high fever, muscle aches, headache, dry cough and fatigue during flu season, no focal chest signs.",
+    "department": "General Medicine", "diagnosis": "Influenza", "icd": "J11.1",
+    "outcome": 0.93, "next_best_test": "Clinical; PCR if confirmation needed",
+    "treatment": {"plan": ["Supportive care and rest", "Antivirals if early and high risk", "Fluids and antipyretics"],
+      "medications": [{"drug": "Oseltamivir", "dose": "75 mg", "route": "PO", "frequency": "twice daily", "duration": "5 days"},
+                       {"drug": "Paracetamol", "dose": "1 g", "route": "PO", "frequency": "every 6h as needed", "duration": ""}],
+      "monitoring": "Return if breathless or not improving in a week."}
+  }
+]
