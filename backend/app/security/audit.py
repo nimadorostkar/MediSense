@@ -63,10 +63,12 @@ async def record_event(
     detail = detail or {}
     prev = await _last_event(session)
     prev_hash = prev.hash if prev else GENESIS
+    seq = (prev.seq + 1) if prev else 1
     ts_dt = datetime.now(timezone.utc).replace(microsecond=0)
     ts_str = _iso(ts_dt)
     h = compute_hash(prev_hash, actor, action, target, detail, ts_str)
     event = AuditEvent(
+        seq=seq,
         actor=actor,
         role=role,
         action=action,

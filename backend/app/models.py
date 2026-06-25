@@ -188,7 +188,8 @@ class AuditEvent(Base):
     __tablename__ = "audit_events"
 
     id: Mapped[str] = pk_column()
-    seq: Mapped[int] = mapped_column(Integer, autoincrement=True, unique=True, index=True)
+    # Monotonic sequence assigned in record_event (portable across SQLite/PG).
+    seq: Mapped[int] = mapped_column(Integer, unique=True, index=True)
     actor: Mapped[str] = mapped_column(String(128))
     role: Mapped[str | None] = mapped_column(String(32), nullable=True)
     action: Mapped[str] = mapped_column(String(64))
