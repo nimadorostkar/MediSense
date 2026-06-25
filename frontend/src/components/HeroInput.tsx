@@ -1,4 +1,4 @@
-import { Activity, ShieldCheck, Clock, MessageCircle, type LucideIcon } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import type { Strings } from "../lib/i18n";
 import Logo from "./Logo";
 import Composer from "./Composer";
@@ -68,5 +68,3 @@ export default function HeroInput({
     </div>
   );
 }
-
-export const CHIP_ICONS = { Activity, ShieldCheck, Clock, MessageCircle };

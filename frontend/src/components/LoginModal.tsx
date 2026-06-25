@@ -74,6 +74,7 @@ export default function LoginModal({ t, onClose }: { t: Strings; onClose: () => 
             id="ms-email"
             type="email"
             autoComplete="email"
+            autoFocus
             value={email}
             onChange={(e) => {
               setEmail(e.target.value);

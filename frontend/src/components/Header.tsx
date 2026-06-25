@@ -8,23 +8,32 @@ export default function Header({
   t,
   onToggleLang,
   onSignIn,
+  onHome,
 }: {
   t: Strings;
   onToggleLang: () => void;
   onSignIn: () => void;
+  onHome: () => void;
 }) {
   return (
     <header className="flex flex-none items-center px-[30px] py-5">
-      <div className="flex items-center gap-[9px]">
+      <button
+        type="button"
+        onClick={onHome}
+        title={t.heroTitle}
+        aria-label={t.heroTitle}
+        className="flex items-center gap-[9px] rounded-lg transition-opacity hover:opacity-80 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent/40"
+      >
         <Logo size={44} />
         <span className="text-[15px] font-bold tracking-[-0.2px] text-ink-800">MediSense</span>
-      </div>
+      </button>
 
       <nav className="mx-auto hidden items-center gap-[30px] md:flex">
         {NAV_KEYS.map((key) => (
           <a
             key={key}
             href="#"
+            onClick={(e) => e.preventDefault()}
             className="text-[13px] font-medium text-ink-600 transition-colors hover:text-ink-900"
           >
             {t[key]}

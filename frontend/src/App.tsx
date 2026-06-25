@@ -1,5 +1,5 @@
 import { useMemo, useState } from "react";
-import { PanelLeft } from "lucide-react";
+import { PanelLeft, Activity, ShieldCheck, Clock, MessageCircle } from "lucide-react";
 import type { Lang, Message } from "./types";
 import { STRINGS } from "./lib/i18n";
 import { clinicalComplete, parseReply } from "./lib/api";
@@ -10,7 +10,7 @@ import Sidebar from "./components/Sidebar";
 import Composer from "./components/Composer";
 import MessageList from "./components/MessageList";
 import LoginModal from "./components/LoginModal";
-import HeroInput, { CHIP_ICONS, type Chip } from "./components/HeroInput";
+import HeroInput, { type Chip } from "./components/HeroInput";
 
 const SAMPLES = {
   dx: "62F, 3 days of fever, productive cough and right-sided pleuritic chest pain. RR 22, SpO2 94%. Give me a ranked differential.",
@@ -82,10 +82,10 @@ export default function App() {
 
   const chips = useMemo<Chip[]>(
     () => [
-      { label: t.cDifferential, sample: SAMPLES.dx, icon: CHIP_ICONS.Activity },
-      { label: t.cDrugSafety, sample: SAMPLES.rx, icon: CHIP_ICONS.ShieldCheck },
-      { label: t.cTriage, sample: SAMPLES.triage, icon: CHIP_ICONS.Clock },
-      { label: t.cExplain, sample: SAMPLES.explain, icon: CHIP_ICONS.MessageCircle },
+      { label: t.cDifferential, sample: SAMPLES.dx, icon: Activity },
+      { label: t.cDrugSafety, sample: SAMPLES.rx, icon: ShieldCheck },
+      { label: t.cTriage, sample: SAMPLES.triage, icon: Clock },
+      { label: t.cExplain, sample: SAMPLES.explain, icon: MessageCircle },
     ],
     [t]
   );
@@ -97,6 +97,7 @@ export default function App() {
           t={t}
           onToggleLang={() => setLang(lang === "en" ? "zh" : "en")}
           onSignIn={() => setShowLogin(true)}
+          onHome={newChat}
         />
 
         <div className="flex min-h-0 flex-1">
