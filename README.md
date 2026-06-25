@@ -191,6 +191,7 @@ audit trail.
 |---|---|
 | [`backend/docs/README.md`](./backend/docs/README.md) | Backend overview — run, env, architecture, what's real vs. seam. |
 | [`backend/docs/GUIDE.md`](./backend/docs/GUIDE.md) | Short guide: how it works · how to add KB data · how to run. |
+| [`backend/docs/PRODUCTION_SETUP.md`](./backend/docs/PRODUCTION_SETUP.md) | **Add AI · add symptom/diagnosis data · run as production** — end-to-end. |
 | [`backend/docs/AI_SETUP.md`](./backend/docs/AI_SETUP.md) | Turning on the Zhipu GLM AI layer (embeddings + reasoning). |
 | [`backend/docs/BUILD_REPORT.md`](./backend/docs/BUILD_REPORT.md) | Verification results · what's real vs. seam-stubbed. |
 | [`docs/API_AND_INTEGRATION.md`](./docs/API_AND_INTEGRATION.md) | Full API contract + frontend integration reference. |
