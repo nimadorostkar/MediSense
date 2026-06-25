@@ -46,7 +46,7 @@ export default function Header({
         ))}
       </nav>
 
-      <div className="ml-auto flex items-center gap-2 md:ml-0">
+      <div className="ml-auto flex items-start gap-2 md:ml-0">
         <button
           type="button"
           onClick={onToggleLang}
@@ -58,11 +58,7 @@ export default function Header({
           {t.langBtn}
         </button>
         {user ? (
-          <div className="flex items-center gap-2">
-            <div className="hidden flex-col items-end leading-tight sm:flex">
-              <span className="text-[13px] font-semibold text-ink-800">{user.name}</span>
-              <span className="text-[11px] capitalize text-ink-400">{user.role}</span>
-            </div>
+          <div className="flex flex-col items-end gap-[7px]">
             <button
               type="button"
               onClick={onSignOut}
@@ -73,6 +69,12 @@ export default function Header({
               <LogOut size={15} strokeWidth={1.7} />
               {t.signOut}
             </button>
+            <span
+              className="max-w-[180px] truncate text-right text-[11px] font-bold leading-tight text-ink-600"
+              title={`${user.name} · ${user.role}`}
+            >
+              {user.name}
+            </span>
           </div>
         ) : (
           <button

@@ -139,6 +139,16 @@ export function normBand(b: unknown): Band {
   return "Moderate";
 }
 
+// Demo stub is DISABLED by default. It only ever activates in a non-production
+// build where VITE_ALLOW_OFFLINE_STUB=true is explicitly set — so a real
+// deployment can never silently show fabricated clinical data (a patient-safety
+// requirement). In production, a failed engine call throws and the UI shows an
+// explicit error instead of a guess.
+const ALLOW_OFFLINE_STUB =
+  import.meta.env.DEV && import.meta.env.VITE_ALLOW_OFFLINE_STUB === "true";
+
+export class EngineError extends Error {}
+
 export async function clinicalComplete(history: Message[], lang: Lang): Promise<string> {
   // Send the conversation to the MediSense engine. The backend runs retrieval +
   // classifier + rules/safety and returns the structured DiagnosisReply. We also
@@ -154,26 +164,30 @@ export async function clinicalComplete(history: Message[], lang: Lang): Promise<
       headers: { "Content-Type": "application/json", ...authHeaders() },
       body: JSON.stringify({ messages, prompt, lang }),
     });
-    if (!res.ok) throw new Error("bad status " + res.status);
+    if (!res.ok) throw new EngineError(`Engine returned HTTP ${res.status}`);
     const data = await res.json();
     const text = data.text ?? data.completion ?? "";
-    if (!text) throw new Error("empty");
+    if (!text) throw new EngineError("Engine returned an empty response");
     return text;
-  } catch {
-    return offlineStub(lang);
+  } catch (err) {
+    if (ALLOW_OFFLINE_STUB) return offlineStub(lang);
+    // Production: never fabricate clinical content — surface the failure.
+    throw err instanceof EngineError
+      ? err
+      : new EngineError("Could not reach the MediSense engine");
   }
 }
 
-/** Demo fallback so the UI works without a backend / API key. */
+/** DEV-ONLY demo fallback (gated by VITE_ALLOW_OFFLINE_STUB in a dev build). */
 function offlineStub(lang: Lang): string {
   const zh = lang === "zh";
   const dx: Diagnosis = {
     redFlag: zh
       ? "（演示）请优先排除危及生命的急症并立即评估生命体征。"
-      : "(Demo) Rule out life-threatening causes first and assess vitals immediately.",
+      : "(DEV DEMO) Rule out life-threatening causes first and assess vitals immediately.",
     summary: zh
-      ? "这是离线演示回复。连接后端并设置 ANTHROPIC_API_KEY 后即可获得真实的临床推理。"
-      : "This is an offline demo reply. Connect the server with an ANTHROPIC_API_KEY to get real clinical reasoning.",
+      ? "这是开发演示回复（后端未连接）。请启动 MediSense 后端（http://localhost:8787）以获得真实临床推理。"
+      : "This is a DEV demo reply (backend not reached). Start the MediSense backend (http://localhost:8787) for real clinical reasoning.",
     differential: [
       {
         condition: zh ? "示例诊断 A" : "Example condition A",
