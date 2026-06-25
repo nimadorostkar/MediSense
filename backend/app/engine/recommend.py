@@ -33,12 +33,16 @@ class RecommendResult:
 
 async def recommend_treatment(session: AsyncSession, condition: str) -> RecommendResult:
     rows = (
-        await session.execute(
-            select(DiagnosisEpisode)
-            .where(DiagnosisEpisode.diagnosis == condition)
-            .order_by(DiagnosisEpisode.outcome.desc())
+        (
+            await session.execute(
+                select(DiagnosisEpisode)
+                .where(DiagnosisEpisode.diagnosis == condition)
+                .order_by(DiagnosisEpisode.outcome.desc())
+            )
         )
-    ).scalars().all()
+        .scalars()
+        .all()
+    )
 
     icd = (rows[0].icd if rows and rows[0].icd else icd_for(condition)) or ""
     if not rows:

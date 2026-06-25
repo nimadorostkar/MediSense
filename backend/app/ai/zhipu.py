@@ -52,9 +52,7 @@ class ZhipuProvider:
         last: Exception | None = None
         for attempt in range(_MAX_RETRIES + 1):
             try:
-                return await asyncio.wait_for(
-                    coro_factory(), timeout=settings.llm_timeout_seconds
-                )
+                return await asyncio.wait_for(coro_factory(), timeout=settings.llm_timeout_seconds)
             except Exception as exc:  # noqa: BLE001 - resilience boundary
                 last = exc
                 if attempt < _MAX_RETRIES:
@@ -65,9 +63,7 @@ class ZhipuProvider:
 
     async def embed(self, texts: list[str]) -> list[list[float]]:
         async def _call():
-            return await self._client.embeddings.create(
-                model=settings.embedding_model, input=texts
-            )
+            return await self._client.embeddings.create(model=settings.embedding_model, input=texts)
 
         resp = await self._with_retries(_call, "embeddings")
         return [d.embedding for d in resp.data]

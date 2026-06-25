@@ -71,4 +71,10 @@ def compute_acuity(patient: dict) -> dict:
     else:
         band = ROUTINE
 
-    return {"band": band, "score": score, "factors": factors, "trend": "stable", "redFlag": red_flag}
+    return {
+        "band": band,
+        "score": score,
+        "factors": factors,
+        "trend": "stable",
+        "redFlag": red_flag,
+    }

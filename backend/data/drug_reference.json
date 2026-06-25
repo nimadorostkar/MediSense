@@ -37,8 +37,7 @@
   "allergy_cross_reactivity": {
     "penicillin": [
       {"target_class": "penicillin", "severity": "Contraindicated"},
-      {"target_class": "beta-lactam", "severity": "Contraindicated"},
-      {"target_class": "cephalosporin", "severity": "Major", "note": "penicillin → cephalosporin cross-reactivity caution"}
+      {"target_class": "cephalosporin", "severity": "Major", "note": "penicillin → cephalosporin cross-reactivity caution (~1-3%)"}
     ],
     "sulfa": [{"target_class": "sulfonamide", "severity": "Contraindicated"}],
     "aspirin": [{"target_class": "nsaid", "severity": "Major", "note": "NSAID cross-sensitivity"}],
@@ -68,7 +67,7 @@
   ],
   "dosing_bounds": {
     "amoxicillin": {"adult_max_single_mg": 1000, "geriatric_note": "reduce in significant renal impairment"},
-    "paracetamol": {"adult_max_daily_mg": 4000, "geriatric_max_daily_mg": 3000, "hepatic_note": "reduce in hepatic impairment / low body weight"},
+    "paracetamol": {"adult_max_daily_mg": 4000, "geriatric_max_daily_mg": 3000, "geriatric_note": "max 3 g/day in frail or low-body-weight elderly", "hepatic_note": "reduce in hepatic impairment / low body weight"},
     "ibuprofen": {"adult_max_daily_mg": 2400, "geriatric_note": "avoid if eGFR low; GI risk"},
     "ciprofloxacin": {"adult_max_single_mg": 750, "renal_note": "reduce dose if eGFR < 30"},
     "aspirin": {"pediatric_note": "Avoid under 16 — Reye's syndrome risk"}

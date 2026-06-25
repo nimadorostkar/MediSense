@@ -25,10 +25,11 @@ from app.engine.classify import Candidate, classify
 from app.engine.embeddings import embed_text
 from app.engine.labels import condition_label, drug_label, icd_for, test_label
 from app.engine.ood import detect_ood
-from app.engine.recommend import recommend_treatment
 from app.engine.reasoner import llm_reason
+from app.engine.recommend import recommend_treatment
 from app.engine.rules import apply_rules
 from app.engine.vector_index import Neighbor, retrieve
+from app.schemas import Band
 
 _PRESCRIBE_RE = re.compile(
     r"\b(prescrib|treat|treatment|medicat|drug|rx|manage|management|therapy|give|antibiotic)\w*",
@@ -55,7 +56,7 @@ def is_prescriptive(text: str) -> bool:
     return bool(_PRESCRIBE_RE.search(text)) or any(z in text for z in _PRESCRIBE_ZH)
 
 
-def band_for(probability: float, pinned_watch: bool) -> str:
+def band_for(probability: float, pinned_watch: bool) -> Band:
     if pinned_watch:
         return "Watch"
     if probability >= 0.70:
@@ -176,13 +177,19 @@ def _summary_text(outcome: DifferentialOutcome, lang: str) -> str:
             else " This patient is unusual — low confidence, consider escalation."
         )
     if "classifier" in outcome.degraded_components:
-        base += " (degraded mode — classifier offline)" if lang != "zh" else "（降级模式——分类器离线）"
+        base += (
+            " (degraded mode — classifier offline)" if lang != "zh" else "（降级模式——分类器离线）"
+        )
     return base
 
 
 def _because(c: Candidate, lang: str) -> str:
     if c.pinned_watch and c.similar_cases == 0:
-        return "不可漏诊——尽管概率低仍予提示。" if lang == "zh" else "do-not-miss — surfaced despite low probability"
+        return (
+            "不可漏诊——尽管概率低仍予提示。"
+            if lang == "zh"
+            else "do-not-miss — surfaced despite low probability"
+        )
     improved = c.typical_outcomes.get("improved")
     if lang == "zh":
         s = f"{c.similar_cases} 个相似病例"
@@ -228,10 +235,13 @@ async def build_treatment(
     ]
     safety = [{"severity": f.severity, "message": f.message} for f in screen.sorted_flags()]
     if screen.reduced_coverage:
-        safety.append({
-            "severity": "Minor",
-            "message": "Reduced coverage — external drug reference offline; local interaction set applied.",
-        })
+        safety.append(
+            {
+                "severity": "Minor",
+                "message": "Reduced coverage — external drug reference offline; "
+                "local interaction set applied.",
+            }
+        )
 
     return {
         "bestDiagnosis": condition_label(condition, lang),
@@ -247,21 +257,21 @@ async def build_treatment(
     }
 
 
-def to_v1_reply(
-    outcome: DifferentialOutcome, lang: str, treatment: dict | None
-) -> dict:
+def to_v1_reply(outcome: DifferentialOutcome, lang: str, treatment: dict | None) -> dict:
     """Assemble the exact v1 chat contract (probability 0–100)."""
     summary = outcome.refined_summary or _summary_text(outcome, lang)
     items = []
     for c in outcome.candidates[:4]:
         band = band_for(c.probability, c.pinned_watch)
-        items.append({
-            "condition": condition_label(c.condition, lang),
-            "icd": c.icd or "",
-            "probability": round(c.probability * 100, 1),
-            "confidence": band,
-            "because": _because(c, lang),
-        })
+        items.append(
+            {
+                "condition": condition_label(c.condition, lang),
+                "icd": c.icd or "",
+                "probability": round(c.probability * 100, 1),
+                "confidence": band,
+                "because": _because(c, lang),
+            }
+        )
     lead_test = outcome.candidates[0].next_best_test if outcome.candidates else ""
     reply = {
         "redFlag": outcome.banner,

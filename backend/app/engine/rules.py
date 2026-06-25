@@ -36,23 +36,40 @@ class RedFlagRule:
 # tokenized free text (so "radiating" matches "radiat" prefix via `startswith`).
 RED_FLAG_RULES: list[RedFlagRule] = [
     RedFlagRule(
-        "acs", "Acute coronary syndrome",
-        [["chest"], ["pain", "pressure", "tightness", "discomfort"],
-         ["arm", "jaw", "diaphoretic", "diaphoresis", "sweating", "sweaty", "radiat", "exertion"]],
+        "acs",
+        "Acute coronary syndrome",
+        [
+            ["chest"],
+            ["pain", "pressure", "tightness", "discomfort"],
+            [
+                "arm",
+                "jaw",
+                "diaphoretic",
+                "diaphoresis",
+                "sweating",
+                "sweaty",
+                "radiat",
+                "exertion",
+            ],
+        ],
         100,
         "RED FLAG: features of acute coronary syndrome — assess now (ECG + troponin).",
         "红旗警示：符合急性冠脉综合征特征——立即评估（心电图+肌钙蛋白）。",
     ),
     RedFlagRule(
-        "stroke", "Acute ischaemic stroke",
-        [["weakness", "droop", "slurred", "speech", "numbness", "facial"],
-         ["sudden", "acute", "onset", "left", "right"]],
+        "stroke",
+        "Acute ischaemic stroke",
+        [
+            ["weakness", "droop", "slurred", "speech", "numbness", "facial"],
+            ["sudden", "acute", "onset", "left", "right"],
+        ],
         95,
         "RED FLAG: possible stroke — activate stroke pathway, urgent CT head.",
         "红旗警示：疑似脑卒中——启动卒中流程，急查头颅CT。",
     ),
     RedFlagRule(
-        "sepsis", "Sepsis",
+        "sepsis",
+        "Sepsis",
         [["fever", "rigors", "feverish", "hot"]],
         92,
         "RED FLAG: possible sepsis (abnormal vitals) — blood cultures + lactate, sepsis bundle.",
@@ -60,30 +77,38 @@ RED_FLAG_RULES: list[RedFlagRule] = [
         vitals={"any": [("bp_sys", "<", 100), ("hr", ">", 120), ("rr", ">", 24)]},
     ),
     RedFlagRule(
-        "pe", "Pulmonary embolism",
-        [["pleuritic", "chest", "breathless", "dyspnea", "dyspnoea"],
-         ["flight", "immobile", "immobility", "calf", "leg", "tachycardia", "swelling", "clot"]],
+        "pe",
+        "Pulmonary embolism",
+        [
+            ["pleuritic", "chest", "breathless", "dyspnea", "dyspnoea"],
+            ["flight", "immobile", "immobility", "calf", "leg", "tachycardia", "swelling", "clot"],
+        ],
         88,
         "RED FLAG: consider pulmonary embolism — Wells score / CTPA.",
         "红旗警示：考虑肺栓塞——Wells评分/CT肺动脉造影。",
     ),
     RedFlagRule(
-        "dissection", "Aortic dissection",
+        "dissection",
+        "Aortic dissection",
         [["tearing", "ripping", "tear"], ["back", "chest"]],
         90,
         "RED FLAG: tearing pain — exclude aortic dissection (CT angiogram).",
         "红旗警示：撕裂样疼痛——排除主动脉夹层（CT血管造影）。",
     ),
     RedFlagRule(
-        "dka", "Diabetic ketoacidosis",
-        [["polyuria", "polydipsia", "thirst", "ketotic", "fruity", "kussmaul", "glucose"],
-         ["breathing", "breath", "vomiting", "abdominal", "weight", "diabetic", "diabetes"]],
+        "dka",
+        "Diabetic ketoacidosis",
+        [
+            ["polyuria", "polydipsia", "thirst", "ketotic", "fruity", "kussmaul", "glucose"],
+            ["breathing", "breath", "vomiting", "abdominal", "weight", "diabetic", "diabetes"],
+        ],
         85,
         "RED FLAG: possible DKA — check ketones/glucose/venous gas.",
         "红旗警示：疑似糖尿病酮症酸中毒——查酮体/血糖/静脉血气。",
     ),
     RedFlagRule(
-        "ectopic", "Ectopic pregnancy",
+        "ectopic",
+        "Ectopic pregnancy",
         [["abdominal", "pelvic", "lower"], ["missed", "amenorrhea", "pregnan", "spotting"]],
         86,
         "RED FLAG: rule out ectopic pregnancy — beta-hCG + transvaginal ultrasound.",
@@ -91,17 +116,21 @@ RED_FLAG_RULES: list[RedFlagRule] = [
         sex="F",
     ),
     RedFlagRule(
-        "appendicitis", "Acute appendicitis",
+        "appendicitis",
+        "Acute appendicitis",
         # Require a genuinely abdominal anchor (not bare "right"/"fever") so a
         # right-sided *chest* pain does not false-fire (precision over recall).
-        [["abdominal", "rlq", "iliac", "periumbilical", "mcburney"],
-         ["rebound", "guarding", "mcburney", "anorexia", "migrat", "quadrant"]],
+        [
+            ["abdominal", "rlq", "iliac", "periumbilical", "mcburney"],
+            ["rebound", "guarding", "mcburney", "anorexia", "migrat", "quadrant"],
+        ],
         80,
         "Possible appendicitis — surgical assessment, imaging.",
         "疑似阑尾炎——外科评估及影像学检查。",
     ),
     RedFlagRule(
-        "meningitis", "Meningitis",
+        "meningitis",
+        "Meningitis",
         [["headache", "head"], ["neck", "stiff", "stiffness", "photophobia", "rash"]],
         91,
         "RED FLAG: features of meningitis — do not delay antibiotics; urgent assessment.",
@@ -150,9 +179,7 @@ def _rule_matches(rule: RedFlagRule, tokens: set[str], vitals: dict, sex: str | 
         return False
     if not all(_group_match(tokens, g) for g in rule.any_groups):
         return False
-    if rule.vitals and not _vitals_match(rule.vitals, vitals):
-        return False
-    return True
+    return not (rule.vitals and not _vitals_match(rule.vitals, vitals))
 
 
 def _abnormal_vitals_banner(vitals: dict, lang: str) -> str | None:

@@ -9,7 +9,7 @@ from __future__ import annotations
 
 import json
 import uuid
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import DateTime, String, TypeDecorator
 from sqlalchemy.orm import DeclarativeBase, mapped_column
@@ -19,7 +19,7 @@ EMBEDDING_DIM = 256
 
 
 def utcnow() -> datetime:
-    return datetime.now(timezone.utc)
+    return datetime.now(UTC)
 
 
 def new_uuid() -> str:
@@ -89,6 +89,4 @@ def created_column():
 
 
 def updated_column():
-    return mapped_column(
-        DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False
-    )
+    return mapped_column(DateTime(timezone=True), default=utcnow, onupdate=utcnow, nullable=False)

@@ -33,15 +33,12 @@ log = get_logger("medisense.main")
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     configure_logging()
-    # SQLite/dev convenience: create tables. On Postgres, Alembic owns schema,
-    # but we still create_all if migrations haven't run so the pilot boots.
-    async with engine.begin() as conn:
-        if not settings.is_sqlite:
-            try:
-                await conn.exec_driver_sql("CREATE EXTENSION IF NOT EXISTS vector")
-            except Exception:  # pragma: no cover
-                pass
-        await conn.run_sync(Base.metadata.create_all)
+    # SQLite/dev convenience only: materialize the schema directly. On Postgres,
+    # Alembic owns the schema (no create_all in prod — spec §2); the compose
+    # entrypoint runs `alembic upgrade head` before the app starts.
+    if settings.is_sqlite:
+        async with engine.begin() as conn:
+            await conn.run_sync(Base.metadata.create_all)
 
     async with SessionLocal() as session:
         await ensure_pgvector(session)

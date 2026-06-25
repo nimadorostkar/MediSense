@@ -11,7 +11,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 
 from sqlalchemy import select
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -23,7 +23,7 @@ GENESIS = "0" * 64
 
 def _iso(dt: datetime) -> str:
     if dt.tzinfo is not None:
-        dt = dt.astimezone(timezone.utc).replace(tzinfo=None)
+        dt = dt.astimezone(UTC).replace(tzinfo=None)
     return dt.replace(microsecond=0).isoformat() + "Z"
 
 
@@ -64,7 +64,7 @@ async def record_event(
     prev = await _last_event(session)
     prev_hash = prev.hash if prev else GENESIS
     seq = (prev.seq + 1) if prev else 1
-    ts_dt = datetime.now(timezone.utc).replace(microsecond=0)
+    ts_dt = datetime.now(UTC).replace(microsecond=0)
     ts_str = _iso(ts_dt)
     h = compute_hash(prev_hash, actor, action, target, detail, ts_str)
     event = AuditEvent(
@@ -86,8 +86,8 @@ async def record_event(
 async def verify_chain(session: AsyncSession) -> tuple[bool, int | None]:
     """Recompute the whole chain; returns (ok, first_broken_seq)."""
     events = (
-        await session.execute(select(AuditEvent).order_by(AuditEvent.seq.asc()))
-    ).scalars().all()
+        (await session.execute(select(AuditEvent).order_by(AuditEvent.seq.asc()))).scalars().all()
+    )
     prev_hash = GENESIS
     for e in events:
         expected = compute_hash(prev_hash, e.actor, e.action, e.target, e.detail, _iso(e.ts))

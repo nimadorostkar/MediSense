@@ -71,9 +71,14 @@ def classify(patient: dict, neighbors: list[Neighbor]) -> list[Candidate]:
         support_pool: set[str] = set()
         for n in ns:
             support_pool.update(s.lower() for s in (n.episode.supporting or []))
-        supporting = sorted(
-            s for s in support_pool if any(tok in s or s in patient_tokens for tok in patient_tokens)
-        )[:6] or sorted(support_pool)[:4]
+        supporting = (
+            sorted(
+                s
+                for s in support_pool
+                if any(tok in s or s in patient_tokens for tok in patient_tokens)
+            )[:6]
+            or sorted(support_pool)[:4]
+        )
         contradicting = sorted(s for s in support_pool if s in negatives)[:4]
 
         outcomes = [n.episode.outcome for n in ns]

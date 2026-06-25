@@ -30,7 +30,9 @@ _NEGATION = re.compile(
     r"\b(?:no|denies|without|negative for|absent)\s+([a-z][a-z\- ]{2,30}?)(?:[.,;\n]|\band\b|$)",
     re.I | re.M,
 )
-_MED_CONTEXT = re.compile(r"\b(?:on|taking|takes|current meds?|medications?)\s*[:]?\s*([a-z0-9][a-z0-9\-, and]+)", re.I)
+_MED_CONTEXT = re.compile(
+    r"\b(?:on|taking|takes|current meds?|medications?)\s*[:]?\s*([a-z0-9][a-z0-9\-, and]+)", re.I
+)
 
 
 def parse_vitals(text: str) -> dict:

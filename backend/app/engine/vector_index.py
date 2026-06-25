@@ -38,15 +38,15 @@ async def _pgvector_supported(session: AsyncSession) -> bool:
     if settings.is_sqlite:
         return False
     try:
-        res = await session.execute(
-            text("SELECT 1 FROM pg_extension WHERE extname = 'vector'")
-        )
+        res = await session.execute(text("SELECT 1 FROM pg_extension WHERE extname = 'vector'"))
         return res.first() is not None
     except Exception:  # pragma: no cover
         return False
 
 
-async def retrieve(session: AsyncSession, query_vec: list[float], k: int | None = None) -> list[Neighbor]:
+async def retrieve(
+    session: AsyncSession, query_vec: list[float], k: int | None = None
+) -> list[Neighbor]:
     k = k or settings.retrieval_k
 
     if await _pgvector_supported(session):
@@ -61,10 +61,14 @@ async def retrieve(session: AsyncSession, query_vec: list[float], k: int | None 
             ids = [r[0] for r in rows]
             sims = {r[0]: float(r[1]) for r in rows}
             eps = (
-                await session.execute(
-                    select(DiagnosisEpisode).where(DiagnosisEpisode.id.in_(ids))
+                (
+                    await session.execute(
+                        select(DiagnosisEpisode).where(DiagnosisEpisode.id.in_(ids))
+                    )
                 )
-            ).scalars().all()
+                .scalars()
+                .all()
+            )
             by_id = {e.id: e for e in eps}
             return [Neighbor(by_id[i], sims[i]) for i in ids if i in by_id]
         except Exception:  # pragma: no cover - fall back to in-process
@@ -72,10 +76,6 @@ async def retrieve(session: AsyncSession, query_vec: list[float], k: int | None 
 
     # In-process cosine over all episodes (pilot scale).
     eps = (await session.execute(select(DiagnosisEpisode))).scalars().all()
-    scored = [
-        Neighbor(e, cosine(query_vec, e.embedding))
-        for e in eps
-        if e.embedding
-    ]
+    scored = [Neighbor(e, cosine(query_vec, e.embedding)) for e in eps if e.embedding]
     scored.sort(key=lambda n: n.similarity, reverse=True)
     return scored[:k]

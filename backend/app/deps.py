@@ -59,9 +59,7 @@ def require(permission: Permission):
 
     async def _guard(user: Annotated[User, Depends(current_user)]) -> User:
         if not has_permission(user.role, permission):
-            raise ForbiddenError(
-                f"Role '{user.role}' lacks permission '{permission}'"
-            )
+            raise ForbiddenError(f"Role '{user.role}' lacks permission '{permission}'")
         return user
 
     return _guard

@@ -16,9 +16,7 @@ async def replay(session: AsyncSession, key: str | None, endpoint: str) -> dict 
     if not key:
         return None
     res = await session.execute(
-        select(IdempotencyKey).where(
-            IdempotencyKey.key == key, IdempotencyKey.endpoint == endpoint
-        )
+        select(IdempotencyKey).where(IdempotencyKey.key == key, IdempotencyKey.endpoint == endpoint)
     )
     row = res.scalars().first()
     return row.response if row else None

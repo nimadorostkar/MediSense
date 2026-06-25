@@ -89,9 +89,8 @@ def _allergy_flags(drug: str, allergies: list[str]) -> list[Flag]:
         for entry in xref.get(a, []):
             if entry["target_class"] in classes:
                 note = entry.get("note", "")
-                msg = (
-                    f"{drug} ({entry['target_class']}) vs documented {raw} allergy"
-                    + (f" — {note}." if note else ".")
+                msg = f"{drug} ({entry['target_class']}) vs documented {raw} allergy" + (
+                    f" — {note}." if note else "."
                 )
                 flags.append(Flag(entry["severity"], msg))
     return flags
@@ -108,7 +107,9 @@ def _alternative_for(drug: str, allergies: list[str]) -> str | None:
     return None
 
 
-def _interaction_flags(agents_a: set[str], agents_b: set[str], label_a: str, label_b: str) -> list[Flag]:
+def _interaction_flags(
+    agents_a: set[str], agents_b: set[str], label_a: str, label_b: str
+) -> list[Flag]:
     flags: list[Flag] = []
     for rule in _ref()["interactions"]:
         a, b = rule["a"], rule["b"]
@@ -127,15 +128,20 @@ def _dosing_flags(drug: str, dose: str | None, age: int | None, vitals: dict) ->
     if age is not None:
         if e.get("pediatric_contra") and age < e.get("pediatric_min_age", 16):
             flags.append(
-                Flag("Contraindicated", f"{drug} is contraindicated under "
-                     f"{e.get('pediatric_min_age', 16)} ({bounds.get('pediatric_note', 'paediatric risk')}).")
+                Flag(
+                    "Contraindicated",
+                    f"{drug} is contraindicated under {e.get('pediatric_min_age', 16)} "
+                    f"({bounds.get('pediatric_note', 'paediatric risk')}).",
+                )
             )
         elif e.get("pediatric_min_age") and age < e["pediatric_min_age"]:
             flags.append(
                 Flag("Major", f"{drug} not recommended under {e['pediatric_min_age']} years.")
             )
         if age >= 65 and bounds.get("geriatric_note"):
-            flags.append(Flag("Moderate", f"{drug} — geriatric caution: {bounds['geriatric_note']}."))
+            flags.append(
+                Flag("Moderate", f"{drug} — geriatric caution: {bounds['geriatric_note']}.")
+            )
 
     if egfr is not None:
         rc = e.get("renal_contra_egfr")
@@ -144,13 +150,18 @@ def _dosing_flags(drug: str, dose: str | None, age: int | None, vitals: dict) ->
                 Flag("Contraindicated", f"{drug} contraindicated when eGFR < {rc} (eGFR {egfr}).")
             )
         elif e.get("renal_adjust") and egfr < 30:
-            flags.append(Flag("Moderate", f"{drug} — reduce dose in renal impairment (eGFR {egfr})."))
+            flags.append(
+                Flag("Moderate", f"{drug} — reduce dose in renal impairment (eGFR {egfr}).")
+            )
 
     mg = _parse_mg(dose)
     max_single = bounds.get("adult_max_single_mg")
     if mg and max_single and mg > max_single:
         flags.append(
-            Flag("Major", f"{drug} dose {mg:g} mg exceeds the usual max single dose ({max_single} mg).")
+            Flag(
+                "Major",
+                f"{drug} dose {mg:g} mg exceeds the usual max single dose ({max_single} mg).",
+            )
         )
     return flags
 
@@ -189,7 +200,9 @@ def screen(
         for other in medications:
             if other is med or other.get("drug") == drug:
                 continue
-            med_flags += _interaction_flags(_classes(drug), _classes(other.get("drug", "")), drug, other.get("drug", ""))
+            med_flags += _interaction_flags(
+                _classes(drug), _classes(other.get("drug", "")), drug, other.get("drug", "")
+            )
         med_flags += _dosing_flags(drug, med.get("dose"), age, vitals)
 
         hard = any(f.severity == "Contraindicated" for f in med_flags)
@@ -202,17 +215,28 @@ def screen(
                 # Withhold the unsafe drug; offer a screened safer alternative.
                 block_msg = next(f.message for f in med_flags if f.severity == "Contraindicated")
                 flags.append(
-                    Flag("Contraindicated", f"{block_msg} Blocked — safer alternative offered: {alt}.")
+                    Flag(
+                        "Contraindicated",
+                        f"{block_msg} Blocked — safer alternative offered: {alt}.",
+                    )
                 )
-                final_meds.append({
-                    "drug": alt, "dose": "", "route": med.get("route", ""),
-                    "frequency": "", "duration": "",
-                    "note": f"Safer alternative to {drug} (screened clear).",
-                })
+                final_meds.append(
+                    {
+                        "drug": alt,
+                        "dose": "",
+                        "route": med.get("route", ""),
+                        "frequency": "",
+                        "duration": "",
+                        "note": f"Safer alternative to {drug} (screened clear).",
+                    }
+                )
             else:
                 flags.append(
-                    Flag("Contraindicated", next(f.message for f in med_flags
-                         if f.severity == "Contraindicated") + " Blocked — choose an alternative.")
+                    Flag(
+                        "Contraindicated",
+                        next(f.message for f in med_flags if f.severity == "Contraindicated")
+                        + " Blocked — choose an alternative.",
+                    )
                 )
             # Do NOT add the contraindicated drug to the final plan.
             continue

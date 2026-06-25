@@ -11,7 +11,7 @@ from typing import Annotated
 
 from fastapi import APIRouter, Depends, Header, Query
 
-from app.deps import SessionDep, current_user, require
+from app.deps import SessionDep, require
 from app.engine import orchestrator
 from app.engine.enrich import enrich
 from app.errors import NotFoundError
@@ -143,7 +143,10 @@ async def get_differential(
     # Route OOD / low-confidence cases to active learning (spec §13.3).
     if outcome.ood:
         await enqueue_review(
-            session, reason="ood", encounter_id=encounter_id, priority=0.9,
+            session,
+            reason="ood",
+            encounter_id=encounter_id,
+            priority=0.9,
             detail={"reason": outcome.ood_reason},
         )
     await session.commit()
@@ -202,11 +205,19 @@ async def confirm_diagnosis(
     # Physician override = highest-value training signal (spec §13.3).
     if body.overridden:
         await enqueue_review(
-            session, reason="override", encounter_id=encounter_id, priority=1.0,
+            session,
+            reason="override",
+            encounter_id=encounter_id,
+            priority=1.0,
             detail={"condition": body.condition, "reason": body.override_reason},
         )
 
-    result = {"encounterId": encounter_id, "confirmed": True, "logged": True, "decisionId": decision.id}
+    result = {
+        "encounterId": encounter_id,
+        "confirmed": True,
+        "logged": True,
+        "decisionId": decision.id,
+    }
     await remember(session, idempotency_key, endpoint, result)
     await session.commit()
     return result

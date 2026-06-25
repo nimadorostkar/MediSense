@@ -40,7 +40,7 @@ def validate_episode(episode: dict) -> QualityResult:
     symptom = (episode.get("symptom_text") or episode.get("symptomText") or "").strip()
     diagnosis = (episode.get("diagnosis") or "").strip()
     icd = (episode.get("icd") or "").strip()
-    outcome = episode.get("outcome", None)
+    outcome = episode.get("outcome")
 
     if len(symptom) < 8:
         issues.append("symptom_text too short")

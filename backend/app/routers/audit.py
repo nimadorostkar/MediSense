@@ -24,8 +24,10 @@ async def audit_events(
     limit: int = Query(50, ge=1, le=500),
 ) -> dict:
     rows = (
-        await session.execute(select(AuditEvent).order_by(AuditEvent.seq.desc()).limit(limit))
-    ).scalars().all()
+        (await session.execute(select(AuditEvent).order_by(AuditEvent.seq.desc()).limit(limit)))
+        .scalars()
+        .all()
+    )
     ok, broken = await verify_chain(session)
     events = [
         {

@@ -30,13 +30,17 @@ async def triage_queue(
     scorer: str = Query("online"),
 ) -> dict:
     rows = (
-        await session.execute(
-            select(Encounter)
-            .where(Encounter.deleted == False, Encounter.status.in_(["open", "diagnosed"]))  # noqa: E712
-            .order_by(Encounter.created_at.desc())
-            .limit(limit)
+        (
+            await session.execute(
+                select(Encounter)
+                .where(Encounter.deleted == False, Encounter.status.in_(["open", "diagnosed"]))  # noqa: E712
+                .order_by(Encounter.created_at.desc())
+                .limit(limit)
+            )
         )
-    ).scalars().all()
+        .scalars()
+        .all()
+    )
 
     degraded = scorer == "offline"
     queue = []
@@ -45,25 +49,32 @@ async def triage_queue(
             "encounterId": enc.id,
             "age": enc.age,
             "sex": enc.sex,
-            "chiefComplaint": enc.chief_complaint or (enc.symptom_text[:60] if enc.symptom_text else ""),
+            "chiefComplaint": enc.chief_complaint
+            or (enc.symptom_text[:60] if enc.symptom_text else ""),
             "vitals": enc.vitals,
         }
         if degraded:
             item.update({"band": "UNSCORED", "score": None, "factors": {}})
         else:
-            patient = enrich(enc.symptom_text, {"vitals": enc.vitals, "age": enc.age, "sex": enc.sex})
+            patient = enrich(
+                enc.symptom_text, {"vitals": enc.vitals, "age": enc.age, "sex": enc.sex}
+            )
             item.update(compute_acuity(patient))
         queue.append(item)
 
+    def _sort_key(q: dict) -> tuple[int, float]:
+        score = q.get("score")
+        score_f = float(score) if isinstance(score, int | float) else 0.0
+        return (_BAND_ORDER.get(str(q["band"]), 9), -score_f)
+
     if not degraded:
-        queue.sort(key=lambda q: (_BAND_ORDER.get(q["band"], 9), -(q.get("score") or 0)))
+        queue.sort(key=_sort_key)
 
     return {
         "queue": queue,
         "degradedMode": degraded,
         "banner": "Triage scorer offline — manual ordering" if degraded else "",
         "counts": {
-            b: sum(1 for q in queue if q.get("band") == b)
-            for b in ("CRITICAL", "URGENT", ROUTINE)
+            b: sum(1 for q in queue if q.get("band") == b) for b in ("CRITICAL", "URGENT", ROUTINE)
         },
     }

@@ -42,9 +42,9 @@ async def snapshot_hash(session: AsyncSession) -> str:
     """Deterministic hash identifying the current KB snapshot (spec §13.5)."""
     rows = (
         await session.execute(
-            select(DiagnosisEpisode.id, DiagnosisEpisode.diagnosis, DiagnosisEpisode.outcome).order_by(
-                DiagnosisEpisode.id
-            )
+            select(
+                DiagnosisEpisode.id, DiagnosisEpisode.diagnosis, DiagnosisEpisode.outcome
+            ).order_by(DiagnosisEpisode.id)
         )
     ).all()
     payload = json.dumps([[r[0], r[1], round(r[2], 4)] for r in rows], sort_keys=True)
@@ -71,7 +71,9 @@ async def run_eval_gates(session: AsyncSession) -> EvalReport:
     snap = await snapshot_hash(session)
     gates = [
         GateResult("kb_nonempty", n_episodes > 0, f"{n_episodes} episodes"),
-        GateResult("rules_loaded", len(RED_FLAG_RULES) > 0, f"{len(RED_FLAG_RULES)} red-flag rules"),
+        GateResult(
+            "rules_loaded", len(RED_FLAG_RULES) > 0, f"{len(RED_FLAG_RULES)} red-flag rules"
+        ),
         GateResult("versions_stamped", all(current_versions().values()), "all versions present"),
     ]
     return EvalReport(model_version=settings.model_version, snapshot_id=snap, gates=gates)

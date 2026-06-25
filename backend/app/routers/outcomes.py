@@ -45,10 +45,16 @@ async def capture_outcome(
     # If the encounter has a confirmed diagnosis, close the learning loop.
     indexed = False
     decision = (
-        await session.execute(
-            select(Decision).where(Decision.encounter_id == encounter_id).order_by(Decision.created_at.desc())
+        (
+            await session.execute(
+                select(Decision)
+                .where(Decision.encounter_id == encounter_id)
+                .order_by(Decision.created_at.desc())
+            )
         )
-    ).scalars().first()
+        .scalars()
+        .first()
+    )
     if decision and enc.symptom_text:
         vec = await embed_text(enc.symptom_text)
         session.add(

@@ -49,7 +49,11 @@ async def health(session: SessionDep) -> HealthResponse:
 
 def _doctor_turns(req: ClinicalRequest) -> list[str]:
     if req.messages:
-        return [m.text or "" for m in req.messages if (m.role or "").lower() == "doctor" and (m.text or "").strip()]
+        return [
+            m.text or ""
+            for m in req.messages
+            if (m.role or "").lower() == "doctor" and (m.text or "").strip()
+        ]
     if req.prompt:
         lines = _DOCTOR_LINE.findall(req.prompt)
         return [ln for ln in lines if ln.strip()] or [req.prompt.strip()]
@@ -73,7 +77,9 @@ def _case_text_and_intent(req: ClinicalRequest) -> tuple[str, str, str]:
 
 
 @router.post("/api/clinical", response_model=ClinicalResponse)
-async def clinical(req: ClinicalRequest, session: SessionDep, user: OptionalUser) -> ClinicalResponse:
+async def clinical(
+    req: ClinicalRequest, session: SessionDep, user: OptionalUser
+) -> ClinicalResponse:
     case_text, full_text, last_turn = _case_text_and_intent(req)
     lang = req.lang or "en"
     # Parse allergies/meds from ALL turns so the safety screen is complete, but
