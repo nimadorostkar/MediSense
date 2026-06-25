@@ -1,0 +1,62 @@
+{
+  "_meta": {
+    "note": "Code-system map: SNOMED CT / ICD-10 + Chinese clinical modification, with EN/ZH labels. Site-configurable (spec §5, §15.2). Illustrative subset.",
+    "version": "codemap-2026.06.1"
+  },
+  "conditions": {
+    "Acute coronary syndrome": {"icd": "I21.9", "zh": "急性冠脉综合征", "redFlag": true},
+    "Community-acquired pneumonia": {"icd": "J18.9", "zh": "社区获得性肺炎"},
+    "Acute asthma exacerbation": {"icd": "J45.901", "zh": "急性哮喘发作"},
+    "Acute bronchitis": {"icd": "J20.9", "zh": "急性支气管炎"},
+    "Influenza": {"icd": "J11.1", "zh": "流行性感冒"},
+    "Acute appendicitis": {"icd": "K35.80", "zh": "急性阑尾炎", "redFlag": true},
+    "Acute ischaemic stroke": {"icd": "I63.9", "zh": "急性缺血性脑卒中", "redFlag": true},
+    "Sepsis": {"icd": "A41.9", "zh": "脓毒症", "redFlag": true},
+    "Pulmonary embolism": {"icd": "I26.99", "zh": "肺栓塞", "redFlag": true},
+    "Urinary tract infection": {"icd": "N39.0", "zh": "尿路感染"},
+    "Pyelonephritis": {"icd": "N10", "zh": "肾盂肾炎"},
+    "Gastro-oesophageal reflux disease": {"icd": "K21.9", "zh": "胃食管反流病"},
+    "Acute gastroenteritis": {"icd": "A09", "zh": "急性胃肠炎"},
+    "Migraine": {"icd": "G43.909", "zh": "偏头痛"},
+    "COPD exacerbation": {"icd": "J44.1", "zh": "慢性阻塞性肺疾病急性加重"},
+    "Acute tonsillitis": {"icd": "J03.90", "zh": "急性扁桃体炎"},
+    "Cellulitis": {"icd": "L03.115", "zh": "蜂窝织炎"},
+    "Ectopic pregnancy": {"icd": "O00.90", "zh": "异位妊娠", "redFlag": true},
+    "Diabetic ketoacidosis": {"icd": "E10.10", "zh": "糖尿病酮症酸中毒", "redFlag": true},
+    "Acute cholecystitis": {"icd": "K81.0", "zh": "急性胆囊炎"},
+    "Aortic dissection": {"icd": "I71.00", "zh": "主动脉夹层", "redFlag": true}
+  },
+  "drugs": {
+    "Amoxicillin": "阿莫西林",
+    "Co-amoxiclav": "阿莫西林克拉维酸",
+    "Azithromycin": "阿奇霉素",
+    "Doxycycline": "多西环素",
+    "Ciprofloxacin": "环丙沙星",
+    "Nitrofurantoin": "呋喃妥因",
+    "Metronidazole": "甲硝唑",
+    "Ceftriaxone": "头孢曲松",
+    "Warfarin": "华法林",
+    "Apixaban": "阿哌沙班",
+    "Aspirin": "阿司匹林",
+    "Ibuprofen": "布洛芬",
+    "Clopidogrel": "氯吡格雷",
+    "Prednisolone": "泼尼松龙",
+    "Salbutamol": "沙丁胺醇",
+    "Atorvastatin": "阿托伐他汀",
+    "Omeprazole": "奥美拉唑",
+    "Sumatriptan": "舒马普坦",
+    "Oseltamivir": "奥司他韦",
+    "Paracetamol": "对乙酰氨基酚",
+    "Prednisolone (oral)": "泼尼松龙"
+  },
+  "next_best_test_zh": {
+    "12-lead ECG and troponin": "12导联心电图和肌钙蛋白",
+    "Chest X-ray": "胸部X线检查",
+    "Peak expiratory flow": "呼气峰流速",
+    "Abdominal ultrasound or CT": "腹部超声或CT",
+    "Urgent non-contrast CT head": "急诊头颅平扫CT",
+    "Blood cultures and lactate": "血培养和乳酸",
+    "CT pulmonary angiogram": "CT肺动脉造影",
+    "Urine dipstick and culture": "尿试纸和尿培养"
+  }
+}

@@ -1,0 +1,31 @@
+# MediSense backend — pinned production dependencies
+# Web / ASGI
+fastapi==0.115.6
+uvicorn[standard]==0.34.0
+gunicorn==23.0.0
+# Validation / settings
+pydantic==2.10.4
+pydantic-settings==2.7.1
+# DB / ORM / migrations
+SQLAlchemy==2.0.36
+asyncpg==0.30.0
+aiosqlite==0.20.0
+alembic==1.14.0
+pgvector==0.3.6
+greenlet==3.1.1
+# Cache / events
+redis==5.2.1
+# AI provider (Zhipu via OpenAI-compatible API) + HTTP
+openai==1.59.6
+httpx==0.28.1
+# Auth / crypto
+PyJWT==2.10.1
+cryptography==44.0.0
+# Observability
+prometheus-client==0.21.1
+python-json-logger==3.2.1
+# Test / quality (kept here so the single image can run the suite)
+pytest==8.3.4
+pytest-asyncio==0.25.2
+ruff==0.8.6
+mypy==1.14.1

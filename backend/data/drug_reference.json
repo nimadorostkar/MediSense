@@ -1,0 +1,76 @@
+{
+  "_meta": {
+    "version": "drugref-2026.06.1",
+    "note": "ILLUSTRATIVE drug-safety reference. Replace with a licensed China formulary + interaction DB in production. Matching is class-aware; severity graded Contraindicated > Major > Moderate > Minor.",
+    "severity_order": ["Contraindicated", "Major", "Moderate", "Minor"]
+  },
+  "drugs": {
+    "amoxicillin": {"classes": ["penicillin", "beta-lactam", "antibiotic"], "renal_adjust": true, "max_daily_mg": 3000},
+    "co-amoxiclav": {"classes": ["penicillin", "beta-lactam", "antibiotic"], "renal_adjust": true, "max_daily_mg": 3600},
+    "phenoxymethylpenicillin": {"classes": ["penicillin", "beta-lactam", "antibiotic"], "renal_adjust": true, "max_daily_mg": 3000},
+    "flucloxacillin": {"classes": ["penicillin", "beta-lactam", "antibiotic"], "renal_adjust": false, "max_daily_mg": 4000},
+    "piperacillin-tazobactam": {"classes": ["penicillin", "beta-lactam", "antibiotic"], "renal_adjust": true},
+    "ceftriaxone": {"classes": ["cephalosporin", "beta-lactam", "antibiotic"], "renal_adjust": false},
+    "azithromycin": {"classes": ["macrolide", "antibiotic"], "qt_prolonging": true, "max_daily_mg": 500},
+    "clarithromycin": {"classes": ["macrolide", "antibiotic"], "qt_prolonging": true, "cyp3a4_inhibitor": true},
+    "doxycycline": {"classes": ["tetracycline", "antibiotic"], "pregnancy_contra": true, "pediatric_min_age": 12},
+    "ciprofloxacin": {"classes": ["fluoroquinolone", "antibiotic"], "qt_prolonging": true, "renal_adjust": true, "pediatric_caution": true},
+    "nitrofurantoin": {"classes": ["antibiotic"], "renal_contra_egfr": 45},
+    "metronidazole": {"classes": ["antibiotic"], "alcohol_interaction": true},
+    "warfarin": {"classes": ["anticoagulant", "vitamin-k-antagonist"], "narrow_therapeutic": true},
+    "apixaban": {"classes": ["anticoagulant", "doac"], "renal_adjust": true},
+    "aspirin": {"classes": ["nsaid", "antiplatelet", "salicylate"], "pediatric_contra": true, "pediatric_min_age": 16},
+    "ibuprofen": {"classes": ["nsaid"], "renal_adjust": true, "gi_risk": true},
+    "clopidogrel": {"classes": ["antiplatelet"]},
+    "prednisolone": {"classes": ["corticosteroid"], "gi_risk": true},
+    "salbutamol": {"classes": ["beta-agonist", "bronchodilator"]},
+    "atorvastatin": {"classes": ["statin"], "cyp3a4_substrate": true},
+    "omeprazole": {"classes": ["ppi"], "cyp2c19_inhibitor": true},
+    "sumatriptan": {"classes": ["triptan", "serotonergic"]},
+    "oseltamivir": {"classes": ["antiviral"], "renal_adjust": true},
+    "paracetamol": {"classes": ["analgesic"], "max_daily_mg": 4000, "hepatic_caution": true},
+    "labetalol": {"classes": ["beta-blocker"]},
+    "insulin (soluble)": {"classes": ["insulin"]},
+    "alteplase": {"classes": ["thrombolytic"], "bleeding_risk": true},
+    "ceftriaxone-sodium": {"classes": ["cephalosporin", "beta-lactam", "antibiotic"]}
+  },
+  "allergy_cross_reactivity": {
+    "penicillin": [
+      {"target_class": "penicillin", "severity": "Contraindicated"},
+      {"target_class": "beta-lactam", "severity": "Contraindicated"},
+      {"target_class": "cephalosporin", "severity": "Major", "note": "penicillin → cephalosporin cross-reactivity caution"}
+    ],
+    "sulfa": [{"target_class": "sulfonamide", "severity": "Contraindicated"}],
+    "aspirin": [{"target_class": "nsaid", "severity": "Major", "note": "NSAID cross-sensitivity"}],
+    "nsaid": [{"target_class": "nsaid", "severity": "Contraindicated"}],
+    "macrolide": [{"target_class": "macrolide", "severity": "Contraindicated"}]
+  },
+  "alternatives": {
+    "penicillin": ["azithromycin", "doxycycline", "ciprofloxacin"],
+    "beta-lactam": ["azithromycin", "doxycycline"],
+    "cephalosporin": ["azithromycin"],
+    "macrolide": ["doxycycline"],
+    "nsaid": ["paracetamol"]
+  },
+  "interactions": [
+    {"a": "anticoagulant", "b": "nsaid", "severity": "Major", "message": "Anticoagulant + NSAID markedly increases bleeding risk; avoid or monitor closely."},
+    {"a": "anticoagulant", "b": "antiplatelet", "severity": "Major", "message": "Anticoagulant + antiplatelet increases major bleeding risk; combine only with clear indication."},
+    {"a": "warfarin", "b": "macrolide", "severity": "Major", "message": "Macrolides potentiate warfarin (raised INR); monitor INR and consider alternative."},
+    {"a": "warfarin", "b": "metronidazole", "severity": "Major", "message": "Metronidazole potentiates warfarin effect; raised bleeding risk, monitor INR."},
+    {"a": "warfarin", "b": "ciprofloxacin", "severity": "Moderate", "message": "Fluoroquinolone may raise INR; monitor."},
+    {"a": "nsaid", "b": "corticosteroid", "severity": "Moderate", "message": "NSAID + corticosteroid increases GI ulcer/bleeding risk; consider gastroprotection."},
+    {"a": "nsaid", "b": "nsaid", "severity": "Moderate", "message": "Duplicate NSAID therapy increases GI and renal risk."},
+    {"a": "qt_prolonging", "b": "qt_prolonging", "severity": "Major", "message": "Two QT-prolonging drugs together raise torsades risk; avoid or monitor ECG."},
+    {"a": "macrolide", "b": "statin", "severity": "Major", "message": "Macrolide (CYP3A4 inhibitor) raises statin levels; risk of myopathy/rhabdomyolysis."},
+    {"a": "triptan", "b": "serotonergic", "severity": "Moderate", "message": "Serotonergic combination — monitor for serotonin syndrome."},
+    {"a": "ppi", "b": "clopidogrel", "severity": "Moderate", "message": "Some PPIs reduce clopidogrel activation; prefer pantoprazole."},
+    {"a": "metronidazole", "b": "alcohol", "severity": "Moderate", "message": "Disulfiram-like reaction with alcohol; advise abstinence."}
+  ],
+  "dosing_bounds": {
+    "amoxicillin": {"adult_max_single_mg": 1000, "geriatric_note": "reduce in significant renal impairment"},
+    "paracetamol": {"adult_max_daily_mg": 4000, "geriatric_max_daily_mg": 3000, "hepatic_note": "reduce in hepatic impairment / low body weight"},
+    "ibuprofen": {"adult_max_daily_mg": 2400, "geriatric_note": "avoid if eGFR low; GI risk"},
+    "ciprofloxacin": {"adult_max_single_mg": 750, "renal_note": "reduce dose if eGFR < 30"},
+    "aspirin": {"pediatric_note": "Avoid under 16 — Reye's syndrome risk"}
+  }
+}
