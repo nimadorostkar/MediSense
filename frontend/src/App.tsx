@@ -49,16 +49,19 @@ export default function App() {
     const id = upsert(history, text);
 
     let reply = "";
+    let engineError = "";
     try {
       reply = await clinicalComplete(history, lang);
-    } catch {
-      reply = "";
+    } catch (e) {
+      engineError = e instanceof Error ? e.message : String(e);
     }
     const parsed = parseReply(reply);
+    // Never fabricate a clinical result: if parsing fails, show an explicit error.
     const fallback = parsed
       ? ""
-      : reply.trim() ||
-        "I couldn't reach the reasoning engine just now. Please try again in a moment.";
+      : engineError
+        ? `⚠ ${t.engineError} (${engineError})`
+        : reply.trim() || `⚠ ${t.engineError}`;
     const finalMsgs: Message[] = [...history, { role: "ai", dx: parsed, text: fallback }];
     setMessages(finalMsgs);
     setThinking(false);
