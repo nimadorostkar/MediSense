@@ -16,6 +16,8 @@ export interface Strings {
   langTitle: string;
   demoBadge: string;
   demoBadgeTitle: string;
+  aiBadge: string;
+  aiBadgeTitle: string;
   // sidebar
   newChat: string;
   recent: string;
