@@ -1,4 +1,4 @@
-import { Globe, LogOut } from "lucide-react";
+import { Globe, LogOut, FlaskConical } from "lucide-react";
 import type { Strings } from "../lib/i18n";
 import type { AuthUser } from "../lib/api";
 import Logo from "./Logo";
@@ -8,6 +8,7 @@ const NAV_KEYS = ["platform", "solutions", "evidence", "integrations", "pricing"
 export default function Header({
   t,
   user,
+  demoMode = false,
   onToggleLang,
   onSignIn,
   onSignOut,
@@ -15,6 +16,7 @@ export default function Header({
 }: {
   t: Strings;
   user: AuthUser | null;
+  demoMode?: boolean;
   onToggleLang: () => void;
   onSignIn: () => void;
   onSignOut: () => void;
@@ -47,6 +49,15 @@ export default function Header({
       </nav>
 
       <div className="ml-auto flex items-start gap-2 md:ml-0">
+        {demoMode && (
+          <span
+            title={t.demoBadgeTitle}
+            className="flex items-center gap-[5px] rounded-[18px] border border-amber-300 bg-amber-50 px-[11px] py-[7px] text-[12px] font-semibold text-amber-700"
+          >
+            <FlaskConical size={14} strokeWidth={1.8} />
+            {t.demoBadge}
+          </span>
+        )}
         <button
           type="button"
           onClick={onToggleLang}

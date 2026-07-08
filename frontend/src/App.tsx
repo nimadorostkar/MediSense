@@ -1,8 +1,15 @@
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { PanelLeft, Activity, ShieldCheck, Clock, MessageCircle } from "lucide-react";
 import type { Lang, Message } from "./types";
 import { STRINGS } from "./lib/i18n";
-import { clinicalComplete, parseReply, getUser, clearSession, type AuthUser } from "./lib/api";
+import {
+  clinicalComplete,
+  parseReply,
+  getUser,
+  clearSession,
+  getHealth,
+  type AuthUser,
+} from "./lib/api";
 import { useChats } from "./hooks/useChats";
 import { useSpeech } from "./hooks/useSpeech";
 import Header from "./components/Header";
@@ -32,6 +39,12 @@ export default function App() {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(() => getUser());
+  const [demoMode, setDemoMode] = useState(false);
+
+  // Reflect the engine's demo-mode status (offline dermatology KB) in the header.
+  useEffect(() => {
+    getHealth().then((h) => setDemoMode(!!h?.demoMode));
+  }, []);
 
   const { chats, activeId, setActiveId, upsert, updateMessages, remove } = useChats();
   const { recording, supported: micSupported, toggle } = useSpeech(lang, (v) => setDraft(v));
@@ -100,6 +113,7 @@ export default function App() {
         <Header
           t={t}
           user={user}
+          demoMode={demoMode}
           onToggleLang={() => setLang(lang === "en" ? "zh" : "en")}
           onSignIn={() => setShowLogin(true)}
           onSignOut={() => {

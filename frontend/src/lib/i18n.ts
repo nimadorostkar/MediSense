@@ -14,6 +14,8 @@ export interface Strings {
   engineError: string;
   langBtn: string;
   langTitle: string;
+  demoBadge: string;
+  demoBadgeTitle: string;
   // sidebar
   newChat: string;
   recent: string;
@@ -92,6 +94,9 @@ export const STRINGS: Record<Lang, Strings> = {
       "Couldn't reach the MediSense engine. No result is shown — please check the connection and try again.",
     langBtn: "中文",
     langTitle: "Switch language",
+    demoBadge: "Demo mode",
+    demoBadgeTitle:
+      "Offline dermatology demo: diagnoses are matched against the built-in dermatology knowledge base (AI reasoning not connected).",
     newChat: "New chat",
     recent: "Recent",
     noChats: "No conversations yet.",
@@ -161,6 +166,8 @@ export const STRINGS: Record<Lang, Strings> = {
     engineError: "无法连接 MediSense 引擎。未显示任何结果——请检查连接后重试。",
     langBtn: "EN",
     langTitle: "切换语言",
+    demoBadge: "演示模式",
+    demoBadgeTitle: "离线皮肤科演示：诊断基于内置皮肤科知识库进行特征匹配（AI 推理未连接）。",
     newChat: "新对话",
     recent: "最近",
     noChats: "暂无对话。",

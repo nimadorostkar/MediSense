@@ -122,16 +122,17 @@ async def clinical(
         SUGGESTIONS.labels(kind="differential", degraded=str(outcome.degraded_mode)).inc()
 
     # Persist the suggestion + audit the view (best-effort; never breaks the reply).
+    degraded = bool(reply.get("degradedMode")) if outcome is None else outcome.degraded_mode
     try:
         actor = user.name if user else "anonymous"
         role = user.role if user else None
         suggestion = Suggestion(
             kind="treatment" if treatment else "differential",
             payload=reply,
-            model_version=settings.model_version,
+            model_version=reply.get("modelVersion", settings.model_version),
             ruleset_version=settings.ruleset_version,
             drugref_version=settings.drugref_version if treatment else None,
-            degraded=outcome.degraded_mode,
+            degraded=degraded,
         )
         session.add(suggestion)
         await session.flush()
@@ -142,10 +143,11 @@ async def clinical(
             action="suggestion.view",
             target=f"suggestion:{suggestion.id}",
             detail={
-                "redFlag": bool(outcome.banner),
+                "redFlag": bool(reply.get("redFlag")),
                 "leading": reply["differential"][0]["condition"] if reply["differential"] else None,
-                "degraded": outcome.degraded_mode,
-                "ood": outcome.ood,
+                "demo": outcome is None,
+                "degraded": degraded,
+                "ood": reply.get("ood", False) if outcome is None else outcome.ood,
             },
         )
         await session.commit()

@@ -78,6 +78,25 @@ export function authHeaders(): Record<string, string> {
   return token ? { Authorization: `Bearer ${token}` } : {};
 }
 
+export interface Health {
+  ok: boolean;
+  episodes: number;
+  llmReasoning: boolean;
+  demoMode: boolean;
+  datastore: string;
+}
+
+/** Fetch engine status (best-effort; returns null if the backend is unreachable). */
+export async function getHealth(): Promise<Health | null> {
+  try {
+    const res = await fetch(`${API_BASE}/health`, { headers: { ...authHeaders() } });
+    if (!res.ok) return null;
+    return (await res.json()) as Health;
+  } catch {
+    return null;
+  }
+}
+
 export function buildPrompt(history: Message[], lang: Lang): string {
   const convo = history
     .map((m) =>
