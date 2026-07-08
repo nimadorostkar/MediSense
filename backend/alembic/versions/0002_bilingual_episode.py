@@ -25,28 +25,28 @@ depends_on: str | Sequence[str] | None = None
 
 
 def upgrade() -> None:
-    op.add_column(
-        "diagnosis_episodes", sa.Column("symptom_text_zh", sa.Text(), nullable=True)
-    )
-    op.add_column(
-        "diagnosis_episodes", sa.Column("diagnosis_zh", sa.String(length=256), nullable=True)
-    )
-    op.add_column(
-        "diagnosis_episodes", sa.Column("category", sa.String(length=64), nullable=True)
-    )
-    op.add_column(
-        "diagnosis_episodes", sa.Column("treatment_zh", sa.JSON(), nullable=True)
-    )
-    op.add_column(
-        "diagnosis_episodes",
+    # Idempotent: 0001 materializes the schema with `create_all`, which reflects
+    # the current model (already including these bilingual columns). So on a fresh
+    # database the columns exist before this migration runs — only add what's
+    # missing (dialect-agnostic, safe on both Postgres and any pre-existing DB).
+    bind = op.get_bind()
+    existing = {c["name"] for c in sa.inspect(bind).get_columns("diagnosis_episodes")}
+    columns = [
+        sa.Column("symptom_text_zh", sa.Text(), nullable=True),
+        sa.Column("diagnosis_zh", sa.String(length=256), nullable=True),
+        sa.Column("category", sa.String(length=64), nullable=True),
+        sa.Column("treatment_zh", sa.JSON(), nullable=True),
         sa.Column("next_best_test_zh", sa.String(length=128), nullable=True),
-    )
-    op.add_column(
-        "diagnosis_episodes", sa.Column("supporting_zh", sa.JSON(), nullable=True)
-    )
+        sa.Column("supporting_zh", sa.JSON(), nullable=True),
+    ]
+    for col in columns:
+        if col.name not in existing:
+            op.add_column("diagnosis_episodes", col)
 
 
 def downgrade() -> None:
+    bind = op.get_bind()
+    existing = {c["name"] for c in sa.inspect(bind).get_columns("diagnosis_episodes")}
     for col in (
         "supporting_zh",
         "next_best_test_zh",
@@ -55,4 +55,5 @@ def downgrade() -> None:
         "diagnosis_zh",
         "symptom_text_zh",
     ):
-        op.drop_column("diagnosis_episodes", col)
+        if col in existing:
+            op.drop_column("diagnosis_episodes", col)
