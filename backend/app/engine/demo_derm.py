@@ -65,8 +65,18 @@ _STOP = {
     "site", "no", "not", "mild", "moderate", "severe", "acute", "chronic",
     "positive", "negative", "sign", "essential", "specific", "course", "other",
     "one", "half", "unlike", "skin", "area", "areas", "surface", "surfaces",
-    "growing", "growth", "appearance", "size", "shape", "raised", "active",
+    "growing", "growth", "appearance", "size", "shape", "raised", "active", "rash",
 }
+
+# Canonical morphology tokens — a lesion actually described (vs. only colour or
+# symptom). At least one is required to *name* a diagnosis; input with only
+# "red"/"itchy" and no morphology is answered by asking for more detail.
+_MORPH_TOKENS = frozenset({
+    "scale", "plaque", "patch", "papule", "pustule", "vesicle", "bulla", "macule",
+    "nodule", "ulcer", "wheal", "crust", "comedone", "annular", "silver", "pearly",
+    "telangiectasia", "erosion", "mole", "pigment", "honey", "lichenification",
+    "blister", "bump",
+})
 
 # Curated anchor lexicon (in addition to every key-finding token, which is
 # inherently dermatologic). Ultra-generic words (red, skin) are omitted.
@@ -652,10 +662,10 @@ def diagnose(text: str, lang: str = "en") -> dict | None:
         else "· Demo mode: feature match over the dermatology KB (AI reasoning offline); physician confirms."
     )
 
-    # Only name a diagnosis on real diagnostic signal: a distinctive (rare) term
-    # or ≥2 covered findings. Matching only generic words ("red", "itchy") is too
-    # little → ask for the morphology instead of guessing (especially a cancer).
-    insufficient = not top["distinctive_hits"] and len(top["covered_findings"]) < 2
+    # Only name a diagnosis when the input actually describes lesion morphology
+    # (scale/plaque/papule/…) and the leading condition matches a real finding.
+    # Colour + symptom alone ("itchy red rash") → ask, don't guess (esp. a cancer).
+    insufficient = not (qtokens & _MORPH_TOKENS) or len(top["covered_findings"]) == 0
     if insufficient:
         ask = (
             "描述尚不足以做出皮肤科诊断。请补充皮损形态（斑疹/丘疹/斑块/水疱/脓疱/鳞屑/痂）、"
