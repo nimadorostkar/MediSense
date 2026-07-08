@@ -30,6 +30,61 @@ log = get_logger("medisense.clinical")
 
 _DOCTOR_LINE = re.compile(r"^DOCTOR:\s*(.*)$", re.I | re.M)
 
+# A latest turn that reads as a question / clarification about the prior answer
+# (rather than a fresh lesion description) is answered conversationally.
+_FOLLOWUP_RE = re.compile(
+    r"\b(why|how|what|which|when|who|is|are|was|were|can|could|should|would|will|do|"
+    r"does|did|explain|tell|clarify|instead|versus|vs|safe|safety|dose|dosage|"
+    r"pregnan|breastfeed|side\s*effect|alternative|contraindic|interact|monitor|"
+    r"thanks|thank|hello|hi|hey|ok|okay)\b",
+    re.I,
+)
+
+# Morphology cues that signal a *new lesion being described* (not a condition
+# name — "why psoriasis vs eczema" names conditions but describes no new lesion).
+_MORPHOLOGY = {
+    "scale", "scales", "scaly", "plaque", "plaques", "papule", "papules", "pustule",
+    "pustules", "vesicle", "vesicles", "bulla", "bullae", "macule", "patch", "patches",
+    "nodule", "nodules", "ulcer", "ulcers", "wheal", "wheals", "crust", "crusts",
+    "comedone", "comedones", "annular", "silvery", "pearly", "telangiectasia",
+    "blister", "blisters", "erosion", "erosions", "lesion", "lesions", "mole",
+    "nevus", "pigmented", "honey", "hyperkeratotic", "vesicular", "crusted",
+}
+_WORD_RE = re.compile(r"[a-z]+")
+
+
+def _is_followup(last_turn: str) -> bool:
+    """True when the latest turn is a follow-up question, not a new case.
+
+    A fresh lesion description carries morphology cues (≥2 of scale/plaque/…);
+    a comparison or clarification question ("why psoriasis over eczema?") names
+    conditions but describes no new lesion, so it is answered conversationally.
+    """
+    t = (last_turn or "").strip()
+    if not t:
+        return False
+    morphology = sum(1 for w in _WORD_RE.findall(t.lower()) if w in _MORPHOLOGY)
+    if morphology >= 2:
+        return False
+    return t.endswith("?") or bool(_FOLLOWUP_RE.search(t))
+
+
+def _chat_only_reply(text: str, base: dict) -> dict:
+    """A pure conversational reply (renders as a chat bubble, no diagnosis card)."""
+    return {
+        "redFlag": "",
+        "summary": text,
+        "differential": [],
+        "nextBestTest": "",
+        "treatment": None,
+        "modelVersion": base.get("modelVersion", settings.model_version),
+        "ruleSetVersion": base.get("ruleSetVersion", settings.ruleset_version),
+        "requiresPhysicianConfirmation": True,
+        "degradedMode": False,
+        "ood": False,
+        "aiChat": True,
+    }
+
 
 @router.get("/api/health", response_model=HealthResponse)
 async def health(session: SessionDep) -> HealthResponse:
@@ -134,8 +189,16 @@ async def clinical(
             for m in (req.messages or [])
             if (m.text or "").strip()
         ] or [{"role": "doctor", "text": case_text}]
+        # A follow-up question answers conversationally (the freshly-computed
+        # grounded reply is passed only as context, so doses/safety are accurate)
+        # and renders as a chat bubble rather than re-showing the differential.
+        followup = len(history_msgs) > 1 and _is_followup(last_turn)
         try:
-            if reply.get("differential"):
+            if followup:
+                chatted = await conversation.chat_reply(history_msgs, reply, lang)
+                if chatted:
+                    reply = _chat_only_reply(chatted, reply)
+            elif reply.get("differential"):
                 narrated = await conversation.narrate(reply, lang)
                 if narrated:
                     reply["summary"] = narrated

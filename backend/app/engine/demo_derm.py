@@ -194,6 +194,12 @@ def _index() -> tuple[list[dict], dict[str, float], frozenset[str]]:
     return conditions, idf, frozenset(anchors)
 
 
+def anchor_count(text: str) -> int:
+    """Number of distinct dermatology anchor terms in `text` (for intent routing)."""
+    _, _, anchors = _index()
+    return len(set(_tokenize(text)) & anchors)
+
+
 def _is_red_flag(cond: dict) -> bool:
     return cond["category"] in _RED_FLAG_CATEGORIES or cond["slug"] in _RED_FLAG_SLUGS
 

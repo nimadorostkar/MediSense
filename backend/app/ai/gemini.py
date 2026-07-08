@@ -64,12 +64,22 @@ class GeminiProvider:
         log.warning("gemini_call_failed", extra={"component": component, "error": str(last)})
         raise GeminiError(str(last))
 
+    def _gen_config(self, temperature: float, max_tokens: int) -> dict:
+        cfg: dict = {"temperature": temperature, "maxOutputTokens": max_tokens}
+        # 2.5+/3.x models "think" by default; a low output budget can be consumed
+        # by hidden reasoning and yield empty text. GEMINI_THINKING_BUDGET=0 turns
+        # thinking off for fast, predictable prose. Unset → API default (older
+        # non-thinking models like 2.0-flash reject the field, so we omit it).
+        if settings.gemini_thinking_budget is not None:
+            cfg["thinkingConfig"] = {"thinkingBudget": settings.gemini_thinking_budget}
+        return cfg
+
     async def reason(self, system: str, user: str, *, max_tokens: int) -> str:
         """Single-shot grounded call (LLMProvider protocol)."""
         payload = {
             "systemInstruction": {"parts": [{"text": system}]},
             "contents": [{"role": "user", "parts": [{"text": user}]}],
-            "generationConfig": {"temperature": 0.2, "maxOutputTokens": max_tokens},
+            "generationConfig": self._gen_config(0.2, max_tokens),
         }
         return await self._generate(payload, "reasoner")
 
@@ -94,7 +104,7 @@ class GeminiProvider:
         payload = {
             "systemInstruction": {"parts": [{"text": system}]},
             "contents": contents,
-            "generationConfig": {"temperature": temperature, "maxOutputTokens": max_tokens},
+            "generationConfig": self._gen_config(temperature, max_tokens),
         }
         return await self._generate(payload, "conversation")
 

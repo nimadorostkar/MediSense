@@ -11,6 +11,12 @@ os.environ["DATABASE_URL"] = "sqlite+aiosqlite:///./test_medisense.db"
 os.environ["DEV_AUTH"] = "true"
 os.environ["LLM_REASONING"] = "false"
 os.environ["RATE_LIMIT_PER_MINUTE"] = "100000"
+# Keep tests hermetic: force the conversational LLM layer OFF regardless of any
+# local .env, so the suite never makes a network call. Tests that exercise it
+# monkeypatch the provider explicitly.
+os.environ["GEMINI_API_KEY"] = ""
+os.environ["ZHIPU_API_KEY"] = ""
+os.environ["CONVERSATIONAL_AI"] = "false"
 
 import pytest  # noqa: E402
 import pytest_asyncio  # noqa: E402

@@ -42,6 +42,9 @@ class Settings(BaseSettings):
     gemini_api_key: str | None = Field(default=None)
     gemini_base_url: str = Field(default="https://generativelanguage.googleapis.com/v1beta")
     gemini_model: str = Field(default="gemini-2.0-flash")
+    # Thinking budget for 2.5+/3.x models (0 = off, fast prose). None = omit the
+    # field (required for non-thinking models like 2.0-flash, which reject it).
+    gemini_thinking_budget: int | None = Field(default=None)
     llm_provider: str = Field(default="auto")
     # Conversational narration + follow-up chat over the grounded output. On by
     # default; only actually engages when a chat provider key is present.
