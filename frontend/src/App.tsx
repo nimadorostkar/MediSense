@@ -40,10 +40,16 @@ export default function App() {
   const [showLogin, setShowLogin] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(() => getUser());
   const [demoMode, setDemoMode] = useState(false);
+  const [aiChat, setAiChat] = useState(false);
+  const [aiProvider, setAiProvider] = useState<string | null>(null);
 
-  // Reflect the engine's demo-mode status (offline dermatology KB) in the header.
+  // Reflect engine status (offline demo KB + AI chat provider) in the header.
   useEffect(() => {
-    getHealth().then((h) => setDemoMode(!!h?.demoMode));
+    getHealth().then((h) => {
+      setDemoMode(!!h?.demoMode);
+      setAiChat(!!h?.aiChat);
+      setAiProvider(h?.aiProvider ?? null);
+    });
   }, []);
 
   const { chats, activeId, setActiveId, upsert, updateMessages, remove } = useChats();
@@ -114,6 +120,8 @@ export default function App() {
           t={t}
           user={user}
           demoMode={demoMode}
+          aiChat={aiChat}
+          aiProvider={aiProvider}
           onToggleLang={() => setLang(lang === "en" ? "zh" : "en")}
           onSignIn={() => setShowLogin(true)}
           onSignOut={() => {

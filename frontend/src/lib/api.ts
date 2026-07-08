@@ -84,6 +84,8 @@ export interface Health {
   llmReasoning: boolean;
   demoMode: boolean;
   datastore: string;
+  aiChat?: boolean;
+  aiProvider?: string | null;
 }
 
 /** Fetch engine status (best-effort; returns null if the backend is unreachable). */
