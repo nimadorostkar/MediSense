@@ -173,6 +173,9 @@ export const STRINGS: Record<Lang, Strings> = {
     langTitle: "切换语言",
     demoBadge: "演示模式",
     demoBadgeTitle: "离线皮肤科演示：诊断基于内置皮肤科知识库进行特征匹配（AI 推理未连接）。",
+    aiBadge: "{provider} AI",
+    aiBadgeTitle:
+      "对话回复由 {provider} 生成。诊断、剂量与安全审查仍基于知识库——AI 仅负责措辞。",
     newChat: "新对话",
     recent: "最近",
     noChats: "暂无对话。",
