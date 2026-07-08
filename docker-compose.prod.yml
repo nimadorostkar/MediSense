@@ -1,0 +1,65 @@
+# MediSense production stack — isolated project "medisense".
+# Fully self-contained: does NOT depend on any other web server on the host.
+# Postgres + Redis internal only. API on localhost. Web published on 8080 (HTTP)
+# and 8443 (HTTPS) so a CDN/Cloudflare can front the domain on its own port.
+name: medisense
+
+services:
+  postgres:
+    image: pgvector/pgvector:pg16
+    environment:
+      POSTGRES_USER: medisense
+      POSTGRES_PASSWORD: medisense
+      POSTGRES_DB: medisense
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U medisense -d medisense"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  redis:
+    image: redis:7-alpine
+    command: ["redis-server", "--save", "", "--appendonly", "no"]
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+    restart: unless-stopped
+
+  api:
+    build: ./backend
+    env_file:
+      - ./backend/.env
+    environment:
+      DATABASE_URL: postgresql+asyncpg://medisense:medisense@postgres:5432/medisense
+      REDIS_URL: redis://redis:6379/0
+      WEB_CONCURRENCY: "2"
+    depends_on:
+      postgres:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:8787:8787"
+    restart: unless-stopped
+
+  web:
+    image: nginx:alpine
+    depends_on:
+      - api
+    volumes:
+      - ./frontend/dist:/usr/share/nginx/html:ro
+      - ./deploy/nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - ./deploy/acme:/var/www/acme:ro
+      - ./deploy/ssl:/etc/nginx/ssl:ro
+    ports:
+      - "8080:80"
+      - "8443:443"
+    restart: unless-stopped
+
+volumes:
+  pgdata:
