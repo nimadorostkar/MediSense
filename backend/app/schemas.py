@@ -108,6 +108,8 @@ class HealthResponse(BaseModel):
     llmReasoning: bool
     datastore: str
     demoMode: bool = False
+    aiChat: bool = False
+    aiProvider: str | None = None
 
 
 # ─────────────────────────────────────────────────────────────────────────────

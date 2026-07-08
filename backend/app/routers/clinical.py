@@ -13,10 +13,11 @@ import time
 
 from fastapi import APIRouter
 
+from app.ai import chat_provider_name
 from app.config import settings
 from app.db.seed import episode_count
 from app.deps import OptionalUser, SessionDep
-from app.engine import demo_derm, orchestrator
+from app.engine import conversation, demo_derm, orchestrator
 from app.engine.enrich import enrich, parse_allergies, parse_medications
 from app.models import Suggestion
 from app.observability.logging import get_logger
@@ -45,6 +46,8 @@ async def health(session: SessionDep) -> HealthResponse:
         llmReasoning=settings.llm_configured,
         datastore=settings.datastore_label,
         demoMode=settings.demo_mode and not settings.llm_configured,
+        aiChat=settings.chat_configured,
+        aiProvider=chat_provider_name(),
     )
 
 
@@ -120,6 +123,30 @@ async def clinical(
 
         reply = orchestrator.to_v1_reply(outcome, lang, treatment)
         SUGGESTIONS.labels(kind="differential", degraded=str(outcome.degraded_mode)).inc()
+
+    # Conversational language layer (optional). The grounded differential,
+    # treatment, and safety flags are NEVER changed here — only the natural-
+    # language narrative is upgraded, and genuine follow-up turns get a real
+    # chat answer. Falls back silently to the templated text when no key is set.
+    if settings.chat_configured:
+        history_msgs = [
+            {"role": m.role, "text": m.text or ""}
+            for m in (req.messages or [])
+            if (m.text or "").strip()
+        ] or [{"role": "doctor", "text": case_text}]
+        try:
+            if reply.get("differential"):
+                narrated = await conversation.narrate(reply, lang)
+                if narrated:
+                    reply["summary"] = narrated
+                    reply["aiChat"] = True
+            else:
+                chatted = await conversation.chat_reply(history_msgs, reply, lang)
+                if chatted:
+                    reply["summary"] = chatted
+                    reply["aiChat"] = True
+        except Exception as exc:  # noqa: BLE001 - conversation is best-effort
+            log.warning("conversation_failed", extra={"error": str(exc)})
 
     # Persist the suggestion + audit the view (best-effort; never breaks the reply).
     degraded = bool(reply.get("degradedMode")) if outcome is None else outcome.degraded_mode

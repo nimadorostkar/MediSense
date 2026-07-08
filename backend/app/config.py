@@ -36,6 +36,17 @@ class Settings(BaseSettings):
     llm_max_tokens: int = Field(default=1024)
     llm_timeout_seconds: float = Field(default=12.0)
 
+    # ── Google Gemini (free-tier conversational layer) ───────────────────────
+    # A Gemini key (Google AI Studio) powers the natural-language chat layer on
+    # top of the grounded engine. `llm_provider`: auto | gemini | zhipu | none.
+    gemini_api_key: str | None = Field(default=None)
+    gemini_base_url: str = Field(default="https://generativelanguage.googleapis.com/v1beta")
+    gemini_model: str = Field(default="gemini-2.0-flash")
+    llm_provider: str = Field(default="auto")
+    # Conversational narration + follow-up chat over the grounded output. On by
+    # default; only actually engages when a chat provider key is present.
+    conversational_ai: bool = Field(default=True)
+
     # ── Auth ─────────────────────────────────────────────────────────────────
     dev_auth: bool = Field(default=True)
     dev_auth_secret: str = Field(default="dev-only-change-me")
@@ -89,6 +100,14 @@ class Settings(BaseSettings):
     def llm_configured(self) -> bool:
         """The GLM reasoning layer is only live when flagged on AND a key exists."""
         return bool(self.llm_reasoning and self.zhipu_api_key)
+
+    @property
+    def chat_configured(self) -> bool:
+        """A conversational chat provider (Gemini or Zhipu) is available."""
+        choice = (self.llm_provider or "auto").lower()
+        has_gemini = choice in ("auto", "gemini") and bool(self.gemini_api_key)
+        has_zhipu = choice in ("auto", "zhipu") and bool(self.zhipu_api_key)
+        return bool(self.conversational_ai and (has_gemini or has_zhipu))
 
 
 @lru_cache
