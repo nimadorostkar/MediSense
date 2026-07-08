@@ -74,16 +74,13 @@ _STOP = {
     "one", "half", "unlike", "skin", "area", "areas", "surface", "surfaces",
     "growing", "growth", "appearance", "size", "shape", "raised", "active", "rash",
 }
-
-# Canonical morphology tokens — a lesion actually described (vs. only colour or
-# symptom). At least one is required to *name* a diagnosis; input with only
-# "red"/"itchy" and no morphology is answered by asking for more detail.
-_MORPH_TOKENS = frozenset({
-    "scale", "plaque", "patch", "papule", "pustule", "vesicle", "bulla", "macule",
-    "nodule", "ulcer", "wheal", "crust", "comedone", "annular", "silver", "pearly",
-    "telangiectasia", "erosion", "mole", "pigment", "honey", "lichenification",
-    "blister", "bump",
-})
+# Generic / grammatical Chinese characters that carry no diagnostic signal —
+# per-character CJK tokenization otherwise lets 性/皮/肤/和 ("-ness/skin/and")
+# spuriously match findings (e.g. inflating a bullous/cancer look-alike).
+_STOP |= set(
+    "的了是在有上下与及或而这那其为以于之也都很会且着过被把让给对从到向并还又可"
+    "能要你我他她它们请来去做用后前时患者性皮肤部位处样状型现见呈伴约较等脸身"
+)
 
 # Curated anchor lexicon (in addition to every key-finding token, which is
 # inherently dermatologic). Ultra-generic words (red, skin) are omitted.
@@ -183,7 +180,9 @@ _CANON: dict[str, str] = {
     "enlarging": "evolution", "changing": "evolution", "evolving": "evolution",
 }
 
-# Multi-word cues → canonical tokens (applied before word canonicalisation).
+# Multi-word / lay phrase cues → canonical tokens (applied before word canon).
+# Chinese entries map everyday slang to the KB's clinical characters, since CJK
+# is tokenized per-character (e.g. 黑头/白头 "blackhead/whitehead" → 粉刺 comedone).
 _PHRASE_SYN: list[tuple[str, set[str]]] = [
     ("ring shaped", {"annular"}), ("ring-shaped", {"annular"}), ("ring like", {"annular"}),
     ("blood vessels", {"telangiectasia"}), ("broken vessels", {"telangiectasia"}),
@@ -194,6 +193,15 @@ _PHRASE_SYN: list[tuple[str, set[str]]] = [
     ("wont heal", {"ulcer"}), ("won't heal", {"ulcer"}), ("not healing", {"ulcer"}),
     ("non healing", {"ulcer"}), ("non-healing", {"ulcer"}),
     ("sun damaged", {"sun", "exposed"}), ("sun exposed", {"sun", "exposed"}),
+    # ── Chinese lay → clinical characters ────────────────────────────────────
+    ("黑头", {"粉", "刺"}), ("白头", {"粉", "刺"}), ("闭口", {"粉", "刺"}),
+    # 痘/青春痘 → comedone+papule chars (NOT 痤疮, which also names Rosacea 玫瑰痤疮).
+    ("痘痘", {"粉", "刺", "丘", "疹"}), ("青春痘", {"粉", "刺", "丘", "疹"}),
+    ("痘", {"丘", "疹"}),
+    ("脱皮", {"鳞", "屑"}), ("起皮", {"鳞", "屑"}), ("脱屑", {"鳞", "屑"}), ("皮屑", {"鳞", "屑"}),
+    ("水泡", {"水", "疱"}), ("红疙瘩", {"丘", "疹"}), ("疙瘩", {"结", "节"}),
+    ("癣", {"癣"}), ("环形", {"环", "形"}), ("银屑", {"银", "白", "鳞", "屑"}),
+    ("溃烂", {"溃", "疡"}), ("结痂", {"痂"}), ("脓包", {"脓", "疱"}),
 ]
 
 
