@@ -47,6 +47,13 @@ _PRUNE_RATIO = 0.22  # drop candidates scoring under this fraction of the leader
 _MAX_DIFF = 4
 _CONFIDENT_COVERAGE = 0.34  # top must explain this share of its findings to be "confident"
 _DISTINCTIVE_DF = 3  # a term in ≤3 conditions is treated as diagnostic
+_MEANINGFUL_IDF = 1.8  # below this a token is too common to name a dx on (e.g. "red")
+# Colour/symptom tokens that never, on their own, justify naming a diagnosis
+# (a lesion morphology must also be present). English canonical + common CJK.
+_NONSPECIFIC = frozenset({
+    "erythema", "itch", "flush", "pain", "painful", "tender", "burning", "sore",
+    "红", "痒", "痛",
+})
 _PATHOGNOMONIC_DF = 2  # a term in ≤2 conditions is near-unique (justifies a red-flag pin)
 
 # Group weights (multiplied by each term's IDF at score time).
@@ -134,9 +141,9 @@ _CANON: dict[str, str] = {
     "bullae": "bulla",
     # nodule / lump
     "nodules": "nodule", "lump": "nodule", "lumps": "nodule",
-    # ulcer / sore
-    "ulcers": "ulcer", "ulcerated": "ulcer", "ulceration": "ulcer", "sore": "ulcer",
-    "sores": "ulcer",
+    # ulcer (deep) vs. sore (colloquial → superficial erosion, not a deep ulcer)
+    "ulcers": "ulcer", "ulcerated": "ulcer", "ulceration": "ulcer",
+    "sore": "erosion", "sores": "erosion",
     # crust / scab
     "crusts": "crust", "crusty": "crust", "crusted": "crust", "scab": "crust",
     "scabs": "crust",
@@ -170,6 +177,10 @@ _CANON: dict[str, str] = {
     "golden": "honey", "honeycolored": "honey", "honeycoloured": "honey",
     # flushing
     "flushed": "flush", "flushing": "flush", "blushing": "flush",
+    # melanoma ABCDE lay terms + British spelling
+    "colours": "colors", "coloured": "colors", "colour": "colors",
+    "uneven": "irregular", "edges": "border", "edge": "border", "asymmetric": "asymmetry",
+    "enlarging": "evolution", "changing": "evolution", "evolving": "evolution",
 }
 
 # Multi-word cues → canonical tokens (applied before word canonicalisation).
@@ -190,16 +201,32 @@ def _canon(t: str) -> str:
     return _CANON.get(t, t)
 
 
+_NEG_IN_FINDING = {"no", "non", "without", "spares", "spare", "absent", "negative", "minus"}
+
+
 def _tok(text: str | None) -> list[str]:
-    """Tokenize a feature phrase → canonical tokens (variants/synonyms collapsed)."""
+    """Tokenize a feature phrase → canonical tokens (variants/synonyms collapsed).
+
+    Negation-aware: a KB finding like ``papules_pustules_no_comedones`` or
+    ``spares_face`` must not index the negated term as a positive feature, else
+    "no comedones" would falsely match a comedone presentation.
+    """
     if not text:
         return []
     cleaned = re.sub(r"[_/{}()]", " ", text)
-    return [
-        _canon(t)
-        for t in _tokenize(cleaned)
-        if t not in _STOP and not t.isdigit()
-    ]
+    out: list[str] = []
+    negate = False
+    for t in _tokenize(cleaned):
+        if t in _NEG_IN_FINDING:
+            negate = True
+            continue
+        if negate:  # drop the single term the negation applies to
+            negate = False
+            continue
+        if t in _STOP or t.isdigit():
+            continue
+        out.append(_canon(t))
+    return out
 
 
 def _expand_tokens(text: str) -> set[str]:
@@ -350,7 +377,9 @@ def _score(cond: dict, qtokens: set[str], negated: set[str], idf: dict[str, floa
         key=lambda t: idf.get(t, 1.0),
         reverse=True,
     )
-    score = raw * (0.5 + 0.5 * coverage) + 0.6 * len(distinctive_hits)
+    # Pathognomonic (rare) matches are decisive — weight the bonus by their IDF so
+    # a near-unique term like "comedone"/"honey"/"silver" dominates look-alikes.
+    score = raw * (0.5 + 0.5 * coverage) + 0.8 * sum(idf.get(t, 1.0) for t in distinctive_hits)
     return {
         "cond": cond,
         "score": round(score, 4),
@@ -662,10 +691,14 @@ def diagnose(text: str, lang: str = "en") -> dict | None:
         else "· Demo mode: feature match over the dermatology KB (AI reasoning offline); physician confirms."
     )
 
-    # Only name a diagnosis when the input actually describes lesion morphology
-    # (scale/plaque/papule/…) and the leading condition matches a real finding.
-    # Colour + symptom alone ("itchy red rash") → ask, don't guess (esp. a cancer).
-    insufficient = not (qtokens & _MORPH_TOKENS) or len(top["covered_findings"]) == 0
+    # Only name a diagnosis on real diagnostic signal: the leading condition must
+    # match at least one finding via a *meaningful* (not ultra-common) token.
+    # Colour + symptom alone ("itchy red rash", idf of "red"/"itch" is low) → ask,
+    # don't guess (especially a cancer). Language-agnostic via IDF.
+    meaningful = any(
+        idf.get(t, 1.0) >= _MEANINGFUL_IDF and t not in _NONSPECIFIC for t in top["matched"]
+    )
+    insufficient = len(top["covered_findings"]) == 0 or not meaningful
     if insufficient:
         ask = (
             "描述尚不足以做出皮肤科诊断。请补充皮损形态（斑疹/丘疹/斑块/水疱/脓疱/鳞屑/痂）、"

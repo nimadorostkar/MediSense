@@ -100,6 +100,41 @@ def test_bilingual_chinese_presentation():
     assert reply["treatment"]["medications"][0]["drug"]  # Chinese drug name present
 
 
+# Everyday / lay-language presentations must resolve to the right condition —
+# real users don't type the KB's exact clinical vocabulary.
+LAY = [
+    ("flaky silver scaly thick red patches on the elbows and knees", "Psoriasis"),
+    ("blackheads whiteheads and pus pimples on a teenager's oily face", "Acne"),
+    ("ring shaped itchy rash with a clear middle and scaly edge", "Tinea"),
+    ("kid with golden crusty sores around the mouth that are spreading", "Impetigo"),
+    ("shiny pearly bump on the nose with tiny blood vessels that won't heal", "Basal Cell"),
+    ("a changing dark mole with uneven edges and two colours, getting bigger", "Melanoma"),
+    ("itchy hives and welts that come and go within hours", "Urticaria"),
+]
+
+
+@pytest.mark.parametrize("text,expected", LAY)
+def test_lay_language_detection(text, expected):
+    reply = demo_derm.diagnose(text, "en")
+    assert reply is not None and reply["differential"], f"no answer for: {text}"
+    assert expected.lower() in reply["differential"][0]["condition"].lower(), (
+        f"top was {reply['differential'][0]['condition']!r} for {text!r}"
+    )
+
+
+def test_negated_kb_feature_not_a_false_positive():
+    # Rosacea's KB finding is "papules/pustules NO comedones" — a comedonal
+    # presentation must not match it via the negated term; acne should lead.
+    reply = demo_derm.diagnose("comedones with inflammatory papules and pustules", "en")
+    assert "acne" in reply["differential"][0]["condition"].lower()
+
+
+def test_color_and_symptom_only_asks():
+    # "itchy red rash" has no lesion morphology → ask, don't name a condition.
+    reply = demo_derm.diagnose("an itchy red rash on the arm", "en")
+    assert reply["differential"] == []
+
+
 def test_severity_selects_stronger_tier():
     mild = demo_derm.diagnose(
         "a few comedones and papules on the face", "en"
