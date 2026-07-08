@@ -1,4 +1,4 @@
-import { Globe, LogOut, FlaskConical } from "lucide-react";
+import { Globe, LogOut, FlaskConical, Sparkles } from "lucide-react";
 import type { Strings } from "../lib/i18n";
 import type { AuthUser } from "../lib/api";
 import Logo from "./Logo";
@@ -9,6 +9,8 @@ export default function Header({
   t,
   user,
   demoMode = false,
+  aiChat = false,
+  aiProvider = null,
   onToggleLang,
   onSignIn,
   onSignOut,
@@ -17,11 +19,16 @@ export default function Header({
   t: Strings;
   user: AuthUser | null;
   demoMode?: boolean;
+  aiChat?: boolean;
+  aiProvider?: string | null;
   onToggleLang: () => void;
   onSignIn: () => void;
   onSignOut: () => void;
   onHome: () => void;
 }) {
+  const providerLabel = aiProvider
+    ? aiProvider.charAt(0).toUpperCase() + aiProvider.slice(1)
+    : "AI";
   return (
     <header className="flex flex-none items-center px-[30px] py-5">
       <button
