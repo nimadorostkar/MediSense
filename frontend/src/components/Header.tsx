@@ -56,6 +56,15 @@ export default function Header({
       </nav>
 
       <div className="ml-auto flex items-start gap-2 md:ml-0">
+        {aiChat && (
+          <span
+            title={t.aiBadgeTitle.replace("{provider}", providerLabel)}
+            className="flex items-center gap-[5px] rounded-[18px] border border-emerald-300 bg-emerald-50 px-[11px] py-[7px] text-[12px] font-semibold text-emerald-700"
+          >
+            <Sparkles size={14} strokeWidth={1.8} />
+            {t.aiBadge.replace("{provider}", providerLabel)}
+          </span>
+        )}
         {demoMode && (
           <span
             title={t.demoBadgeTitle}
