@@ -97,12 +97,109 @@ _SEVERE_WORDS = {
 _MODERATE_WORDS = {"moderate", "multiple", "many", "numerous", "spreading", "worsening"}
 
 
+# ── Canonical term normalisation ─────────────────────────────────────────────
+# Morphological variants (scale/scales/scaly) and lay synonyms (silver→silvery,
+# blackhead→comedone, ring→annular) are collapsed to ONE canonical token,
+# applied to BOTH the KB (at index build) and the query, so real-world phrasing
+# reaches the right findings while matching stays deterministic and grounded.
+_CANON: dict[str, str] = {
+    # scale family
+    "scales": "scale", "scaly": "scale", "scaling": "scale", "flaky": "scale",
+    "flaking": "scale", "flakes": "scale", "flake": "scale", "dandruff": "scale",
+    "desquamation": "scale", "peeling": "scale",
+    # plaque / patch
+    "plaques": "plaque", "patches": "patch",
+    # papule / pimple
+    "papules": "papule", "pimple": "papule", "pimples": "papule", "zit": "papule",
+    "zits": "papule", "bump": "papule", "bumps": "papule",
+    # pustule
+    "pustules": "pustule", "pus": "pustule",
+    # comedone
+    "comedones": "comedone", "blackhead": "comedone", "blackheads": "comedone",
+    "whitehead": "comedone", "whiteheads": "comedone", "comedo": "comedone",
+    # vesicle / blister
+    "vesicles": "vesicle", "vesicular": "vesicle", "blister": "vesicle",
+    "blisters": "vesicle", "blistering": "vesicle", "bleb": "vesicle",
+    # bulla
+    "bullae": "bulla",
+    # nodule / lump
+    "nodules": "nodule", "lump": "nodule", "lumps": "nodule",
+    # ulcer / sore
+    "ulcers": "ulcer", "ulcerated": "ulcer", "ulceration": "ulcer", "sore": "ulcer",
+    "sores": "ulcer",
+    # crust / scab
+    "crusts": "crust", "crusty": "crust", "crusted": "crust", "scab": "crust",
+    "scabs": "crust",
+    # erosion
+    "erosions": "erosion", "raw": "erosion",
+    # silvery
+    "silvery": "silver", "silverish": "silver", "silverwhite": "silver",
+    # itch / pruritus
+    "pruritic": "itch", "pruritus": "itch", "itchy": "itch", "itching": "itch",
+    "itches": "itch", "itchiness": "itch",
+    # erythema / red
+    "erythematous": "erythema", "red": "erythema", "redness": "erythema",
+    "reddened": "erythema",
+    # annular / ring
+    "ring": "annular", "ringshaped": "annular", "ringlike": "annular",
+    "ringworm": "annular", "circular": "annular", "circinate": "annular",
+    # pearly / shiny
+    "shiny": "pearly", "waxy": "pearly", "translucent": "pearly", "glistening": "pearly",
+    # telangiectasia
+    "telangiectasias": "telangiectasia",
+    # wheal / hive
+    "wheals": "wheal", "hives": "wheal", "hive": "wheal", "welts": "wheal", "welt": "wheal",
+    # mole / nevus
+    "moles": "mole", "nevus": "mole", "nevi": "mole", "naevus": "mole", "naevi": "mole",
+    # pigment
+    "pigmented": "pigment", "dark": "pigment", "darkened": "pigment",
+    "brownish": "pigment", "discolored": "pigment", "discoloured": "pigment",
+    # demarcated / defined
+    "demarcated": "demarcate", "defined": "demarcate", "bordered": "demarcate",
+    # honey / golden
+    "golden": "honey", "honeycolored": "honey", "honeycoloured": "honey",
+    # flushing
+    "flushed": "flush", "flushing": "flush", "blushing": "flush",
+}
+
+# Multi-word cues → canonical tokens (applied before word canonicalisation).
+_PHRASE_SYN: list[tuple[str, set[str]]] = [
+    ("ring shaped", {"annular"}), ("ring-shaped", {"annular"}), ("ring like", {"annular"}),
+    ("blood vessels", {"telangiectasia"}), ("broken vessels", {"telangiectasia"}),
+    ("spider veins", {"telangiectasia"}), ("spider vein", {"telangiectasia"}),
+    ("honey colored", {"honey"}), ("honey coloured", {"honey"}), ("honey-colored", {"honey"}),
+    ("clear middle", {"central", "clearing"}), ("clear centre", {"central", "clearing"}),
+    ("clear center", {"central", "clearing"}),
+    ("wont heal", {"ulcer"}), ("won't heal", {"ulcer"}), ("not healing", {"ulcer"}),
+    ("non healing", {"ulcer"}), ("non-healing", {"ulcer"}),
+    ("sun damaged", {"sun", "exposed"}), ("sun exposed", {"sun", "exposed"}),
+]
+
+
+def _canon(t: str) -> str:
+    return _CANON.get(t, t)
+
+
 def _tok(text: str | None) -> list[str]:
-    """Tokenize a feature phrase (underscores/slashes → spaces, then normalise)."""
+    """Tokenize a feature phrase → canonical tokens (variants/synonyms collapsed)."""
     if not text:
         return []
     cleaned = re.sub(r"[_/{}()]", " ", text)
-    return [t for t in _tokenize(cleaned) if t not in _STOP and not t.isdigit()]
+    return [
+        _canon(t)
+        for t in _tokenize(cleaned)
+        if t not in _STOP and not t.isdigit()
+    ]
+
+
+def _expand_tokens(text: str) -> set[str]:
+    """Query → canonical token set (word + multi-word synonyms applied)."""
+    low = text.lower()
+    tokens = {_canon(t) for t in _tokenize(text) if t not in _STOP}
+    for phrase, adds in _PHRASE_SYN:
+        if phrase in low:
+            tokens |= {_canon(a) for a in adds}
+    return tokens
 
 
 @lru_cache
@@ -114,7 +211,7 @@ def _index() -> tuple[list[dict], dict[str, float], frozenset[str]]:
         cn = json.load(f)
 
     cn_list = list(cn["conditions"].values())
-    anchors: set[str] = set(_CURATED_ANCHORS)
+    anchors: set[str] = {_canon(a) for a in _CURATED_ANCHORS}
     conditions: list[dict] = []
 
     for (slug, e), c in zip(en["conditions"].items(), cn_list, strict=False):
@@ -197,7 +294,7 @@ def _index() -> tuple[list[dict], dict[str, float], frozenset[str]]:
 def anchor_count(text: str) -> int:
     """Number of distinct dermatology anchor terms in `text` (for intent routing)."""
     _, _, anchors = _index()
-    return len(set(_tokenize(text)) & anchors)
+    return len(_expand_tokens(text) & anchors)
 
 
 def _is_red_flag(cond: dict) -> bool:
@@ -435,9 +532,10 @@ def diagnose(text: str, lang: str = "en") -> dict | None:
     general retrieval/classifier engine."""
     if not settings.demo_mode:
         return None
-    qtokens = set(_tokenize(text))
-    if len(qtokens) < _MIN_TOKENS:
+    if len(_tokenize(text)) < _MIN_TOKENS:
         return None
+    # Expand lay/synonym terms to the KB's clinical vocabulary before matching.
+    qtokens = _expand_tokens(text)
 
     conditions, idf, anchors = _index()
     if len(qtokens & anchors) < _MIN_ANCHORS:
@@ -554,10 +652,10 @@ def diagnose(text: str, lang: str = "en") -> dict | None:
         else "· Demo mode: feature match over the dermatology KB (AI reasoning offline); physician confirms."
     )
 
-    # Only name a diagnosis when at least one *defining key finding* is present.
-    # Matching only generic chief-complaint words ("red", "itchy") is too little
-    # signal → ask for the morphology instead of guessing (especially a cancer).
-    insufficient = len(top["covered_findings"]) == 0
+    # Only name a diagnosis on real diagnostic signal: a distinctive (rare) term
+    # or ≥2 covered findings. Matching only generic words ("red", "itchy") is too
+    # little → ask for the morphology instead of guessing (especially a cancer).
+    insufficient = not top["distinctive_hits"] and len(top["covered_findings"]) < 2
     if insufficient:
         ask = (
             "描述尚不足以做出皮肤科诊断。请补充皮损形态（斑疹/丘疹/斑块/水疱/脓疱/鳞屑/痂）、"
