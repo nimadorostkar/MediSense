@@ -16,7 +16,7 @@ from fastapi import APIRouter
 from app.config import settings
 from app.db.seed import episode_count
 from app.deps import OptionalUser, SessionDep
-from app.engine import orchestrator
+from app.engine import demo_derm, orchestrator
 from app.engine.enrich import enrich, parse_allergies, parse_medications
 from app.models import Suggestion
 from app.observability.logging import get_logger
@@ -44,6 +44,7 @@ async def health(session: SessionDep) -> HealthResponse:
         drugRefVersion=settings.drugref_version,
         llmReasoning=settings.llm_configured,
         datastore=settings.datastore_label,
+        demoMode=settings.demo_mode and not settings.llm_configured,
     )
 
 
@@ -94,17 +95,31 @@ async def clinical(
     )
 
     start = time.perf_counter()
-    outcome = await orchestrator.diagnose(session, patient)
-    DIFFERENTIAL_LATENCY.observe(time.perf_counter() - start)
 
-    treatment = None
-    if outcome.candidates and orchestrator.is_prescriptive(last_turn):
-        best = orchestrator.select_best_diagnosis(outcome)
-        if best is not None:
-            treatment = await orchestrator.build_treatment(session, best.condition, patient)
+    # Demo mode: when the LLM reasoner is offline, a clearly-dermatological case
+    # is answered by the deterministic KB matcher (differential + first-line Rx).
+    # Non-skin cases return None here and fall through to the general engine.
+    reply = None
+    if settings.demo_mode and not settings.llm_configured:
+        reply = demo_derm.diagnose(case_text, lang)
 
-    reply = orchestrator.to_v1_reply(outcome, lang, treatment)
-    SUGGESTIONS.labels(kind="differential", degraded=str(outcome.degraded_mode)).inc()
+    if reply is not None:
+        DIFFERENTIAL_LATENCY.observe(time.perf_counter() - start)
+        treatment = reply.get("treatment")
+        outcome = None
+        SUGGESTIONS.labels(kind="demo", degraded="False").inc()
+    else:
+        outcome = await orchestrator.diagnose(session, patient)
+        DIFFERENTIAL_LATENCY.observe(time.perf_counter() - start)
+
+        treatment = None
+        if outcome.candidates and orchestrator.is_prescriptive(last_turn):
+            best = orchestrator.select_best_diagnosis(outcome)
+            if best is not None:
+                treatment = await orchestrator.build_treatment(session, best.condition, patient)
+
+        reply = orchestrator.to_v1_reply(outcome, lang, treatment)
+        SUGGESTIONS.labels(kind="differential", degraded=str(outcome.degraded_mode)).inc()
 
     # Persist the suggestion + audit the view (best-effort; never breaks the reply).
     try:

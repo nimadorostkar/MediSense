@@ -107,6 +107,7 @@ class HealthResponse(BaseModel):
     drugRefVersion: str
     llmReasoning: bool
     datastore: str
+    demoMode: bool = False
 
 
 # ─────────────────────────────────────────────────────────────────────────────

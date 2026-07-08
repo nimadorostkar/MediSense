@@ -62,6 +62,12 @@ class Settings(BaseSettings):
     retrieval_k: int = Field(default=8)
     ood_similarity_floor: float = Field(default=0.28)
 
+    # ── Demo mode ────────────────────────────────────────────────────────────
+    # Deterministic offline dermatology diagnoser used when the LLM is off. It
+    # answers only clearly-dermatological cases; everything else falls through
+    # to the general retrieval/classifier engine.
+    demo_mode: bool = Field(default=True)
+
     @field_validator("environment")
     @classmethod
     def _normalize_env(cls, v: str) -> str:
