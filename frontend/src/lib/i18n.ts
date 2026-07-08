@@ -99,6 +99,9 @@ export const STRINGS: Record<Lang, Strings> = {
     demoBadge: "Demo mode",
     demoBadgeTitle:
       "Offline dermatology demo: diagnoses are matched against the built-in dermatology knowledge base (AI reasoning not connected).",
+    aiBadge: "{provider} AI",
+    aiBadgeTitle:
+      "Conversational replies are written by {provider}. The diagnosis, dosing, and safety checks stay grounded in the knowledge base — the AI only phrases the answer.",
     newChat: "New chat",
     recent: "Recent",
     noChats: "No conversations yet.",
