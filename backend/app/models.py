@@ -78,18 +78,31 @@ class SymptomSet(Base):
 
 
 class DiagnosisEpisode(Base):
-    """Outcome-labelled knowledge-base unit — what the engine learns from."""
+    """Outcome-labelled knowledge-base unit — what the engine learns from.
+
+    Bilingual by construction (spec §15.2): the primary columns hold the English
+    canonical text and are the retrieval/grouping key, while the parallel ``*_zh``
+    columns hold the Chinese rendering of the same episode. A single episode thus
+    carries both languages, and a request's ``lang`` selects which surface is
+    returned. Either language may be empty for legacy (English-only) rows.
+    """
 
     __tablename__ = "diagnosis_episodes"
 
     id: Mapped[str] = pk_column()
     symptom_text: Mapped[str] = mapped_column(Text, default="")
+    symptom_text_zh: Mapped[str | None] = mapped_column(Text, nullable=True)
     diagnosis: Mapped[str] = mapped_column(String(256))
+    diagnosis_zh: Mapped[str | None] = mapped_column(String(256), nullable=True)
     icd: Mapped[str | None] = mapped_column(String(32), nullable=True)
+    category: Mapped[str | None] = mapped_column(String(64), nullable=True)
     treatment: Mapped[dict] = mapped_column(default=dict)
+    treatment_zh: Mapped[dict] = mapped_column(default=dict)
     outcome: Mapped[float] = mapped_column(Float, default=0.0)  # 0..1 recovery signal
     next_best_test: Mapped[str | None] = mapped_column(String(128), nullable=True)
+    next_best_test_zh: Mapped[str | None] = mapped_column(String(128), nullable=True)
     supporting: Mapped[list] = mapped_column(default=list)
+    supporting_zh: Mapped[list] = mapped_column(default=list)
     embedding: Mapped[list | None] = mapped_column(Embedding(), nullable=True)
     source: Mapped[str] = mapped_column(String(32), default="seed")
     deidentified: Mapped[bool] = mapped_column(Boolean, default=True)

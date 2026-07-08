@@ -84,9 +84,11 @@ def _retrieval_only_candidates(neighbors: list[Neighbor]) -> list[Candidate]:
                 probability=round(share, 4),
                 raw_share=round(share, 4),
                 similar_cases=len(ns),
+                condition_zh=best.episode.diagnosis_zh or "",
                 supporting=[s.lower() for s in (best.episode.supporting or [])][:5],
                 typical_outcomes={"improved": round(sum(outcomes) / len(outcomes), 2)},
                 next_best_test=best.episode.next_best_test or "",
+                next_best_test_zh=best.episode.next_best_test_zh or "",
                 neighbors=ns,
                 mean_outcome=sum(outcomes) / len(outcomes),
             )
@@ -162,7 +164,7 @@ def _summary_text(outcome: DifferentialOutcome, lang: str) -> str:
     # (do-not-miss items are surfaced via the banner, not as the "leading" line).
     backed = [c for c in outcome.candidates if c.similar_cases > 0]
     lead = max(backed or outcome.candidates, key=lambda c: c.probability)
-    label = condition_label(lead.condition, lang)
+    label = condition_label(lead.condition, lang, lead.condition_zh)
     pct = round(lead.probability * 100, 1)
     base = (
         f"基于 {lead.similar_cases} 个相似既往病例，首要考虑为 {label}（约{pct}%）。"
@@ -217,22 +219,50 @@ async def build_treatment(
     *,
     reference_online: bool = True,
 ) -> dict:
-    """Recommend a plan + screen it. Returns a v1/v2 treatment block dict."""
+    """Recommend a plan + screen it. Returns a v1/v2 treatment block dict.
+
+    Safety is always screened against the English (canonical) medication names —
+    the interaction/allergy reference is English-keyed, so screening the Chinese
+    names would detect nothing. For a Chinese request the screened result is then
+    mapped back to the parallel Chinese medications stored on the episode."""
     lang = patient.get("lang", "en")
+    use_zh = lang == "zh"
     rec = await recommend_treatment(session, condition)
     screen = drug_safety.screen(rec.medications, patient, reference_online=reference_online)
 
-    meds = [
-        {
-            "drug": drug_label(m.get("drug", ""), lang),
-            "dose": m.get("dose", ""),
-            "route": m.get("route", ""),
-            "frequency": m.get("frequency", ""),
-            "duration": m.get("duration", ""),
-            "note": m.get("note", ""),
-        }
-        for m in screen.medications
-    ]
+    # EN drug name → the parallel ZH medication captured from the same episode.
+    zh_by_drug = {
+        (en_m.get("drug") or ""): zh_m
+        for en_m, zh_m in zip(rec.medications, rec.medications_zh)
+        if en_m.get("drug")
+    }
+
+    meds = []
+    for m in screen.medications:
+        en_drug = m.get("drug", "")
+        zh_m = zh_by_drug.get(en_drug) if use_zh else None
+        if zh_m:  # bilingual episode — render the stored Chinese medication
+            meds.append(
+                {
+                    "drug": zh_m.get("drug") or en_drug,
+                    "dose": zh_m.get("dose") or m.get("dose", ""),
+                    "route": m.get("route", ""),
+                    "frequency": m.get("frequency", ""),
+                    "duration": zh_m.get("duration") or m.get("duration", ""),
+                    "note": zh_m.get("note") or m.get("note", ""),
+                }
+            )
+        else:  # English, or a safety-substituted alternative → code-map the name
+            meds.append(
+                {
+                    "drug": drug_label(en_drug, lang),
+                    "dose": m.get("dose", ""),
+                    "route": m.get("route", ""),
+                    "frequency": m.get("frequency", ""),
+                    "duration": m.get("duration", ""),
+                    "note": m.get("note", ""),
+                }
+            )
     safety = [{"severity": f.severity, "message": f.message} for f in screen.sorted_flags()]
     if screen.reduced_coverage:
         safety.append(
@@ -243,14 +273,26 @@ async def build_treatment(
             }
         )
 
+    plan = rec.plan_zh if (use_zh and rec.plan_zh) else rec.plan
+    rationale = rec.rationale
+    monitoring = rec.monitoring
+    if use_zh:
+        rationale = (
+            f"来自 {rec.n_cases} 个「{condition_label(condition, lang, rec.condition_zh)}」"
+            f"既往病例；已通过药物安全筛查。"
+            if rec.n_cases
+            else "无匹配既往病例——治疗须由医师决定。"
+        )
+        monitoring = "48小时内复评；若症状加重或出现新的危险信号请立即返诊。"
+
     return {
-        "bestDiagnosis": condition_label(condition, lang),
+        "bestDiagnosis": condition_label(condition, lang, rec.condition_zh),
         "icd": rec.icd,
-        "rationale": rec.rationale,
-        "plan": rec.plan,
+        "rationale": rationale,
+        "plan": plan,
         "medications": meds,
         "safety": safety,
-        "monitoring": rec.monitoring,
+        "monitoring": monitoring,
         "requiresPhysicianConfirmation": True,
         "_has_hard_block": screen.has_hard_block,
         "_drugref_version": screen.drugref_version,
@@ -265,19 +307,21 @@ def to_v1_reply(outcome: DifferentialOutcome, lang: str, treatment: dict | None)
         band = band_for(c.probability, c.pinned_watch)
         items.append(
             {
-                "condition": condition_label(c.condition, lang),
+                "condition": condition_label(c.condition, lang, c.condition_zh),
                 "icd": c.icd or "",
                 "probability": round(c.probability * 100, 1),
                 "confidence": band,
                 "because": _because(c, lang),
             }
         )
-    lead_test = outcome.candidates[0].next_best_test if outcome.candidates else ""
+    lead = outcome.candidates[0] if outcome.candidates else None
+    lead_test = lead.next_best_test if lead else ""
+    lead_test_zh = lead.next_best_test_zh if lead else ""
     reply = {
         "redFlag": outcome.banner,
         "summary": summary,
         "differential": items,
-        "nextBestTest": test_label(lead_test, lang),
+        "nextBestTest": test_label(lead_test, lang, lead_test_zh),
         "treatment": _strip_internal(treatment) if treatment else None,
         "modelVersion": settings.model_version,
         "ruleSetVersion": settings.ruleset_version,

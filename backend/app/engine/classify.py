@@ -22,10 +22,12 @@ class Candidate:
     probability: float  # 0–1, calibrated
     raw_share: float
     similar_cases: int
+    condition_zh: str = ""  # Chinese label from the episode (DB is source of truth)
     supporting: list[str] = field(default_factory=list)
     contradicting: list[str] = field(default_factory=list)
     typical_outcomes: dict[str, float] = field(default_factory=dict)
     next_best_test: str = ""
+    next_best_test_zh: str = ""
     neighbors: list[Neighbor] = field(default_factory=list)
     mean_outcome: float = 0.0
     # Set by the rules/safety layer (evaluated last):
@@ -97,10 +99,12 @@ def classify(patient: dict, neighbors: list[Neighbor]) -> list[Candidate]:
                 probability=round(calibrated, 4),
                 raw_share=round(raw_share, 4),
                 similar_cases=len(ns),
+                condition_zh=best.episode.diagnosis_zh or "",
                 supporting=supporting,
                 contradicting=contradicting,
                 typical_outcomes=typical,
                 next_best_test=best.episode.next_best_test or "",
+                next_best_test_zh=best.episode.next_best_test_zh or "",
                 neighbors=ns,
                 mean_outcome=mean_outcome,
             )

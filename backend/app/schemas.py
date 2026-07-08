@@ -193,6 +193,14 @@ class EpisodeIn(CamelModel):
     outcome: float = 0.0
     next_best_test: str = Field(default="", alias="nextBestTest")
     supporting: list[str] = Field(default_factory=list)
+    # Optional Chinese surface — an episode may be captured bilingually so the
+    # same record renders in either language (spec §15.2).
+    category: str | None = None
+    symptom_text_zh: str | None = Field(default=None, alias="symptomTextZh")
+    diagnosis_zh: str | None = Field(default=None, alias="diagnosisZh")
+    treatment_zh: dict[str, Any] = Field(default_factory=dict, alias="treatmentZh")
+    next_best_test_zh: str = Field(default="", alias="nextBestTestZh")
+    supporting_zh: list[str] = Field(default_factory=list, alias="supportingZh")
 
 
 class OutcomeIn(CamelModel):

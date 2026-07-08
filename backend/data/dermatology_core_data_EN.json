@@ -1,0 +1,2660 @@
+{
+  "metadata": {
+    "version": "1.0.0",
+    "language": "English",
+    "region": "China HIS Compatible",
+    "last_updated": "2026-07-06",
+    "description": "Dermatology diagnostic and prescription core database for China HIS-compatible clinical decision support system",
+    "total_conditions": 25
+  },
+  "global_settings": {
+    "safety_alert_levels": {
+      "RED": {
+        "action": "BLOCK",
+        "requires_override": true,
+        "description": "Absolute contraindication - life threatening"
+      },
+      "YELLOW": {
+        "action": "REQUIRE_PHARMACIST_APPROVAL",
+        "requires_override": false,
+        "description": "Severe interaction - pharmacist must approve"
+      },
+      "GREEN": {
+        "action": "WARNING_PASS",
+        "requires_override": false,
+        "description": "Caution - pass with notice"
+      }
+    },
+    "icd10_search_mode": "fuzzy_chinese_english",
+    "soap_template_enabled": true,
+    "auto_ddx_suggestion": true,
+    "drug_insurance_tags": [
+      "Class_A_医保甲类",
+      "Class_B_医保乙类",
+      "Self_Pay_自费"
+    ],
+    "default_follow_up_intervals": [
+      "1_week",
+      "2_weeks",
+      "1_month",
+      "3_months",
+      "6_months",
+      "1_year"
+    ]
+  },
+  "morphology_builder": {
+    "primary_lesions": [
+      {
+        "id": "macule",
+        "name": "Macule",
+        "name_cn": "斑疹",
+        "description": "Flat, non-palpable, <1cm discoloration"
+      },
+      {
+        "id": "patch",
+        "name": "Patch",
+        "name_cn": "斑片",
+        "description": "Flat, non-palpable, >1cm discoloration"
+      },
+      {
+        "id": "papule",
+        "name": "Papule",
+        "name_cn": "丘疹",
+        "description": "Elevated, solid, <1cm"
+      },
+      {
+        "id": "plaque",
+        "name": "Plaque",
+        "name_cn": "斑块",
+        "description": "Elevated, flat-topped, >1cm"
+      },
+      {
+        "id": "vesicle",
+        "name": "Vesicle",
+        "name_cn": "水疱",
+        "description": "Fluid-filled, <1cm"
+      },
+      {
+        "id": "bulla",
+        "name": "Bulla",
+        "name_cn": "大疱",
+        "description": "Fluid-filled, >1cm"
+      },
+      {
+        "id": "pustule",
+        "name": "Pustule",
+        "name_cn": "脓疱",
+        "description": "Pus-filled, variable size"
+      },
+      {
+        "id": "nodule",
+        "name": "Nodule",
+        "name_cn": "结节",
+        "description": "Solid, deep, >1cm, palpable"
+      },
+      {
+        "id": "ulcer",
+        "name": "Ulcer",
+        "name_cn": "溃疡",
+        "description": "Full-thickness epidermal loss"
+      },
+      {
+        "id": "wheal",
+        "name": "Wheal",
+        "name_cn": "风团",
+        "description": "Transient edematous plaque"
+      }
+    ],
+    "secondary_lesions": [
+      {
+        "id": "scale",
+        "name": "Scale",
+        "name_cn": "鳞屑",
+        "description": "Accumulated flakes of stratum corneum"
+      },
+      {
+        "id": "crust",
+        "name": "Crust",
+        "name_cn": "痂",
+        "description": "Dried exudate"
+      },
+      {
+        "id": "lichenification",
+        "name": "Lichenification",
+        "name_cn": "苔藓样变",
+        "description": "Thickened skin with accentuated markings"
+      }
+    ],
+    "colors": [
+      "red",
+      "brown",
+      "black",
+      "white",
+      "blue",
+      "purple",
+      "yellow",
+      "skin_colored"
+    ],
+    "distributions": [
+      "symmetric",
+      "asymmetric",
+      "unilateral",
+      "bilateral",
+      "acral",
+      "central",
+      "peripheral",
+      "flexural",
+      "extensor",
+      "photo_distributed",
+      "dermatomal",
+      "random"
+    ],
+    "arrangements": [
+      "clustered",
+      "linear",
+      "annular",
+      "arciform",
+      "grouped",
+      "scattered",
+      "confluent",
+      "reticulated"
+    ]
+  },
+  "conditions": {
+    "psoriasis": {
+      "category": "inflammatory",
+      "name": "Psoriasis",
+      "name_cn": "银屑病",
+      "icd10": "L40.9",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "{location} erythematous plaques with silvery scales for {duration}",
+      "key_physical_findings": [
+        "well_demarcated_erythematous_plaques",
+        "silvery_white_scales",
+        "auspitz_sign_positive",
+        "film_phenomenon_positive"
+      ],
+      "distribution": [
+        "extensor_surfaces",
+        "scalp",
+        "sacral",
+        "nails",
+        "inverse_areas"
+      ],
+      "nail_findings": [
+        "pitting",
+        "onycholysis",
+        "subungual_hyperkeratosis",
+        "oil_drop_sign"
+      ],
+      "scoring": {
+        "PASI": "0-72",
+        "BSA": "<3% mild, 3-10% moderate, >10% severe",
+        "DLQI": "0-30"
+      },
+      "differential_diagnosis": [
+        {
+          "disease": "seborrheic_dermatitis",
+          "differentiator": "greasy yellow scales, flexural, less defined"
+        },
+        {
+          "disease": "pityriasis_rosea",
+          "differentiator": "herald patch, Christmas tree, self-limiting"
+        },
+        {
+          "disease": "lichen_planus",
+          "differentiator": "violaceous, Wickham striae, mucosal"
+        },
+        {
+          "disease": "secondary_syphilis",
+          "differentiator": "palms/soles, systemic, serology+"
+        },
+        {
+          "disease": "chronic_eczema",
+          "differentiator": "ill-defined, less scale, atopic history"
+        }
+      ],
+      "labs_baseline": [
+        "CBC",
+        "LFT",
+        "RFT",
+        "lipids"
+      ],
+      "labs_before_systemic": [
+        "HBsAg",
+        "anti_HBc",
+        "HCV_Ab",
+        "HIV",
+        "TB_screening",
+        "pregnancy_test"
+      ],
+      "prescriptions": {
+        "topical_mild": [
+          {
+            "drug": "Calcipotriol ointment",
+            "drug_cn": "卡泊三醇软膏",
+            "dose": "Apply BID",
+            "duration": "4-8 weeks",
+            "insurance": "Class_B",
+            "max": "100g/week"
+          },
+          {
+            "drug": "Betamethasone dipropionate",
+            "drug_cn": "丙酸倍他米松软膏",
+            "dose": "Apply QD",
+            "duration": "2 weeks then taper",
+            "insurance": "Class_B",
+            "alert": "GREEN"
+          },
+          {
+            "drug": "Calcipotriol/Betamethasone gel",
+            "drug_cn": "卡泊三醇倍他米松凝胶",
+            "dose": "Apply QD",
+            "duration": "4 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Tazarotene 0.1%",
+            "drug_cn": "他扎罗汀乳膏",
+            "dose": "Apply QN",
+            "duration": "8-12 weeks",
+            "insurance": "Class_B",
+            "alert": "YELLOW",
+            "contra": [
+              "pregnancy"
+            ]
+          }
+        ],
+        "systemic_moderate": [
+          {
+            "drug": "Acitretin capsules",
+            "drug_cn": "阿维A胶囊",
+            "dose": "25mg QD with fatty meal",
+            "duration": "16-24 weeks",
+            "insurance": "Class_B",
+            "alert": "RED",
+            "monitor": "LFT, lipids q4w",
+            "special": "Contraception 2 years post-discontinuation. Sign consent."
+          },
+          {
+            "drug": "Methotrexate",
+            "drug_cn": "甲氨蝶呤片",
+            "dose": "10-15mg once WEEKLY",
+            "duration": "Long-term",
+            "insurance": "Class_A",
+            "alert": "RED",
+            "monitor": "CBC, LFT q2w",
+            "special": "Folic acid 5mg weekly. NEVER daily dosing."
+          },
+          {
+            "drug": "Cyclosporine",
+            "drug_cn": "环孢素软胶囊",
+            "dose": "3-5mg/kg/day BID",
+            "duration": "Max 1-2 years",
+            "insurance": "Class_B",
+            "alert": "YELLOW",
+            "monitor": "BP, RFT, electrolytes"
+          }
+        ],
+        "biologics_severe": [
+          {
+            "drug": "Secukinumab",
+            "drug_cn": "司库奇尤单抗",
+            "dose": "300mg SC weeks 0,1,2,3,4 then q4w",
+            "insurance": "Class_B (approval)",
+            "alert": "RED",
+            "pre_tx": "TB, HBsAg, HIV",
+            "special": "Exclude active TB/HBV. No live vaccines."
+          },
+          {
+            "drug": "Adalimumab",
+            "drug_cn": "阿达木单抗",
+            "dose": "80mg wk0 then 40mg q2w",
+            "insurance": "Class_B (approval)",
+            "alert": "RED"
+          },
+          {
+            "drug": "Ustekinumab",
+            "drug_cn": "乌司奴单抗",
+            "dose": "45mg wk0,4 then q12w (<100kg)",
+            "insurance": "Class_B (approval)",
+            "alert": "RED"
+          }
+        ]
+      },
+      "follow_up": {
+        "mild": "2-3 months",
+        "moderate": "4-6 weeks",
+        "severe": "Every 3 months"
+      },
+      "education": [
+        "Daily moisturization",
+        "Avoid smoking/alcohol/stress",
+        "Weight management",
+        "Sunscreen SPF50+",
+        "Monitor metabolic syndrome"
+      ]
+    },
+    "atopic_dermatitis": {
+      "category": "inflammatory",
+      "name": "Atopic Dermatitis",
+      "name_cn": "特应性皮炎",
+      "icd10": "L20.9",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "{age_group} with {location} itchy erythematous patches, recurrent for {duration}",
+      "key_physical_findings": [
+        "pruritus_essential",
+        "eczematous_morphology",
+        "age_specific_distribution",
+        "chronic_relapsing_course"
+      ],
+      "age_distribution": {
+        "infantile": [
+          "cheeks",
+          "forehead",
+          "scalp",
+          "extensor"
+        ],
+        "childhood": [
+          "flexural",
+          "neck",
+          "wrists",
+          "ankles"
+        ],
+        "adult": [
+          "flexural",
+          "hands",
+          "feet",
+          "face",
+          "neck"
+        ]
+      },
+      "minor_features": [
+        "xerosis",
+        "Dennie_Morgan",
+        "keratosis_pilaris",
+        "palmar_hyperlinearity",
+        "white_dermographism"
+      ],
+      "scoring": {
+        "EASI": "0-72",
+        "SCORAD": "0-103",
+        "POEM": "0-28"
+      },
+      "differential_diagnosis": [
+        {
+          "disease": "seborrheic_dermatitis",
+          "differentiator": "greasy scales, scalp/face, less pruritus"
+        },
+        {
+          "disease": "contact_dermatitis",
+          "differentiator": "clear exposure, patch test+"
+        },
+        {
+          "disease": "psoriasis",
+          "differentiator": "well-defined plaques, silvery scale, extensor"
+        },
+        {
+          "disease": "scabies",
+          "differentiator": "burrows, nocturnal, contacts affected"
+        }
+      ],
+      "labs": [
+        "CBC_eosinophils",
+        "total_IgE",
+        "specific_IgE",
+        "food_allergen_panel"
+      ],
+      "prescriptions": {
+        "acute": [
+          {
+            "drug": "Wet wrap therapy",
+            "drug_cn": "湿包裹疗法",
+            "dose": "Mid-potency steroid + emollient, damp gauze + dry layer",
+            "duration": "2-3 days"
+          },
+          {
+            "drug": "Mometasone furoate",
+            "drug_cn": "糠酸莫米松乳膏",
+            "dose": "Apply QD",
+            "duration": "7-14 days",
+            "insurance": "Class_B",
+            "alert": "GREEN"
+          },
+          {
+            "drug": "Desonide 0.05%",
+            "drug_cn": "地奈德乳膏",
+            "dose": "Apply BID (face/folds)",
+            "duration": "5-7 days",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Cetirizine",
+            "drug_cn": "西替利嗪",
+            "dose": "10mg QD",
+            "duration": "PRN",
+            "insurance": "Class_A"
+          }
+        ],
+        "maintenance": [
+          {
+            "drug": "Tacrolimus 0.1%",
+            "drug_cn": "他克莫司软膏",
+            "dose": "Apply BID",
+            "duration": "Long-term",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Pimecrolimus 1%",
+            "drug_cn": "吡美莫司乳膏",
+            "dose": "Apply BID",
+            "duration": "Long-term",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Medical moisturizer",
+            "drug_cn": "医学保湿剂",
+            "dose": "Apply liberally multiple times daily",
+            "duration": "Continuous",
+            "insurance": "Self_Pay"
+          }
+        ],
+        "biologics": [
+          {
+            "drug": "Dupilumab",
+            "drug_cn": "度普利尤单抗",
+            "dose": "600mg SC then 300mg q2w",
+            "insurance": "Class_B (approval)",
+            "alert": "YELLOW",
+            "special": "Monitor for conjunctivitis"
+          },
+          {
+            "drug": "Cyclosporine",
+            "drug_cn": "环孢素",
+            "dose": "3-5mg/kg/day BID",
+            "duration": "3-6 months max",
+            "insurance": "Class_B",
+            "alert": "YELLOW"
+          },
+          {
+            "drug": "Methotrexate",
+            "drug_cn": "甲氨蝶呤",
+            "dose": "7.5-15mg weekly",
+            "insurance": "Class_A",
+            "alert": "RED",
+            "special": "Folic acid 5mg weekly"
+          }
+        ]
+      },
+      "follow_up": {
+        "mild": "2-3 months",
+        "moderate": "4-6 weeks",
+        "severe": "Every 4-8 weeks"
+      },
+      "education": [
+        "Lukewarm bath, emollient within 3 min",
+        "Avoid fragrances/wool",
+        "Cotton clothing",
+        "Bleach baths 2x/week if infections"
+      ]
+    },
+    "contact_dermatitis": {
+      "category": "inflammatory",
+      "name": "Contact Dermatitis",
+      "name_cn": "接触性皮炎",
+      "icd10": "L25.9",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "subtypes": [
+        "irritant",
+        "allergic"
+      ],
+      "chief_complaint": "{location} erythema/vesicles after contact with {substance} for {duration}",
+      "key_physical_findings": [
+        "well_demarcated_erythema",
+        "vesicles_or_bullae",
+        "shape_correlates_with_exposure"
+      ],
+      "latency": {
+        "irritant": "minutes-hours",
+        "allergic": "24-72 hours"
+      },
+      "differential_diagnosis": [
+        {
+          "disease": "acute_eczema",
+          "differentiator": "no clear exposure, atopic history"
+        },
+        {
+          "disease": "herpes_simplex",
+          "differentiator": "clustered vesicles, painful"
+        },
+        {
+          "disease": "tinea",
+          "differentiator": "annular, KOH+"
+        }
+      ],
+      "labs": [
+        "patch_test_2-4weeks_after_resolution",
+        "KOH",
+        "bacterial_culture"
+      ],
+      "prescriptions": {
+        "non_oozing": [
+          {
+            "drug": "Calamine lotion",
+            "drug_cn": "炉甘石洗剂",
+            "dose": "Apply TID",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Mometasone furoate",
+            "drug_cn": "糠酸莫米松",
+            "dose": "Apply QD",
+            "duration": "1-2 weeks",
+            "insurance": "Class_B",
+            "alert": "GREEN"
+          },
+          {
+            "drug": "Cetirizine",
+            "drug_cn": "西替利嗪",
+            "dose": "10mg QD",
+            "duration": "7-14 days",
+            "insurance": "Class_A"
+          }
+        ],
+        "oozing": [
+          {
+            "drug": "Boric acid 3%",
+            "drug_cn": "3%硼酸溶液",
+            "dose": "Cold wet compress 15min BID",
+            "duration": "3-5 days",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Ethacridine 0.1%",
+            "drug_cn": "0.1%依沙吖啶",
+            "dose": "Wet dressing BID",
+            "duration": "3-5 days",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Prednisone",
+            "drug_cn": "泼尼松",
+            "dose": "0.5-1mg/kg/day",
+            "duration": "5-7 days then taper",
+            "insurance": "Class_A",
+            "alert": "YELLOW"
+          }
+        ]
+      },
+      "follow_up": {
+        "acute": "1-2 weeks",
+        "patch_test": "2-4 weeks after resolution"
+      },
+      "education": [
+        "Strict allergen avoidance",
+        "Read labels",
+        "Protective gloves",
+        "Barrier creams"
+      ]
+    },
+    "herpes_simplex": {
+      "category": "infection",
+      "name": "Herpes Simplex",
+      "name_cn": "单纯疱疹",
+      "icd10": "B00.1",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "subtypes": [
+        "HSV-1_orolabial",
+        "HSV-2_genital",
+        "eczema_herpeticum"
+      ],
+      "chief_complaint": "{location} clustered vesicles with burning/pain, recurrent for {duration}",
+      "key_physical_findings": [
+        "clustered_vesicles",
+        "erythematous_base",
+        "painful_lesions",
+        "recurrent_same_site"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "herpes_zoster",
+          "differentiator": "dermatomal, unilateral, older, severe pain"
+        },
+        {
+          "disease": "impetigo",
+          "differentiator": "honey crusts, less painful"
+        },
+        {
+          "disease": "aphthous_stomatitis",
+          "differentiator": "non-vesicular, oral only"
+        }
+      ],
+      "labs": [
+        "HSV_PCR",
+        "viral_culture",
+        "Tzanck_smear",
+        "HSV_IgG_IgM"
+      ],
+      "prescriptions": {
+        "first_episode": [
+          {
+            "drug": "Acyclovir",
+            "drug_cn": "阿昔洛韦",
+            "dose": "200mg 5x daily",
+            "duration": "7-10 days",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Valacyclovir",
+            "drug_cn": "伐昔洛韦",
+            "dose": "1g BID",
+            "duration": "7-10 days",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Famciclovir",
+            "drug_cn": "泛昔洛韦",
+            "dose": "250mg TID",
+            "duration": "7-10 days",
+            "insurance": "Class_B"
+          }
+        ],
+        "suppressive": [
+          {
+            "drug": "Valacyclovir",
+            "drug_cn": "伐昔洛韦",
+            "dose": "500mg-1g QD",
+            "duration": "Continuous",
+            "insurance": "Class_B",
+            "special": "Reduces transmission ~50%"
+          }
+        ],
+        "eczema_herpeticum": [
+          {
+            "drug": "Acyclovir IV",
+            "drug_cn": "阿昔洛韦注射液",
+            "dose": "5-10mg/kg IV q8h",
+            "duration": "Until improved then PO 10-14d total",
+            "insurance": "Class_A",
+            "alert": "RED",
+            "special": "HOSPITALIZATION REQUIRED"
+          }
+        ]
+      },
+      "follow_up": {
+        "first_episode": "2 weeks",
+        "recurrent": "As needed",
+        "suppressive": "Every 6-12 months"
+      },
+      "education": [
+        "Avoid kissing/oral sex during lesions",
+        "Sunscreen on lips",
+        "Hand hygiene",
+        "Inform partners if genital"
+      ]
+    },
+    "impetigo": {
+      "category": "infection",
+      "name": "Impetigo",
+      "name_cn": "脓疱疮",
+      "icd10": "B08.0",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "subtypes": [
+        "non_bullous",
+        "bullous"
+      ],
+      "chief_complaint": "{location} honey-colored crusts, contagious, in {age_group} for {duration}",
+      "key_physical_findings": [
+        "honey_colored_crusts",
+        "superficial_erosions",
+        "erythematous_base"
+      ],
+      "contagious_period": "Until 24-48h after antibiotics",
+      "differential_diagnosis": [
+        {
+          "disease": "herpes_simplex",
+          "differentiator": "clustered vesicles, painful"
+        },
+        {
+          "disease": "varicella",
+          "differentiator": "generalized, fever, different stages"
+        },
+        {
+          "disease": "eczema_herpeticum",
+          "differentiator": "atopic patient, monomorphic erosions"
+        }
+      ],
+      "labs": [
+        "bacterial_culture",
+        "MRSA_screening"
+      ],
+      "prescriptions": {
+        "localized": [
+          {
+            "drug": "Mupirocin 2%",
+            "drug_cn": "莫匹罗星软膏",
+            "dose": "Apply TID",
+            "duration": "7-10 days",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Fusidic acid 2%",
+            "drug_cn": "夫西地酸乳膏",
+            "dose": "Apply TID",
+            "duration": "7-10 days",
+            "insurance": "Class_B"
+          }
+        ],
+        "extensive": [
+          {
+            "drug": "Cephalexin",
+            "drug_cn": "头孢氨苄",
+            "dose": "250-500mg QID",
+            "duration": "7 days",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Amoxicillin-Clavulanate",
+            "drug_cn": "阿莫西林克拉维酸钾",
+            "dose": "625mg BID",
+            "duration": "7 days",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Clindamycin",
+            "drug_cn": "克林霉素",
+            "dose": "300mg TID",
+            "duration": "7 days",
+            "insurance": "Class_B",
+            "special": "For MRSA or penicillin allergy"
+          }
+        ]
+      },
+      "follow_up": {
+        "1_week": "Assess healing",
+        "contacts": "Screen household contacts"
+      },
+      "education": [
+        "Hand washing",
+        "No sharing towels",
+        "Stay home 24h after antibiotics",
+        "Nail trimming",
+        "Treat underlying eczema"
+      ]
+    },
+    "tinea": {
+      "category": "infection",
+      "name": "Tinea",
+      "name_cn": "癣",
+      "icd10": "B35.9",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "subtypes": [
+        "tinea_corporis",
+        "tinea_capitis",
+        "tinea_pedis",
+        "tinea_unguium",
+        "tinea_cruis"
+      ],
+      "chief_complaint": "{location} annular scaly pruritic patches for {duration}",
+      "key_physical_findings": [
+        "annular_lesions_with_active_border",
+        "central_clearing",
+        "peripheral_scale",
+        "pruritus"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "eczema",
+          "differentiator": "ill-defined, no central clearing, KOH-"
+        },
+        {
+          "disease": "psoriasis",
+          "differentiator": "silvery scale, Auspitz+, KOH-"
+        },
+        {
+          "disease": "seborrheic_dermatitis",
+          "differentiator": "greasy scales, scalp/face, KOH-"
+        },
+        {
+          "disease": "pityriasis_rosea",
+          "differentiator": "herald patch, Christmas tree, KOH-"
+        }
+      ],
+      "labs": [
+        "KOH_preparation",
+        "fungal_culture",
+        "Wood_lamp"
+      ],
+      "prescriptions": {
+        "topical": [
+          {
+            "drug": "Terbinafine cream",
+            "drug_cn": "特比萘芬乳膏",
+            "dose": "Apply BID",
+            "duration": "2-4 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Ketoconazole cream",
+            "drug_cn": "酮康唑乳膏",
+            "dose": "Apply BID",
+            "duration": "2-4 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Bifonazole cream",
+            "drug_cn": "联苯苄唑乳膏",
+            "dose": "Apply QD",
+            "duration": "2-4 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Miconazole powder",
+            "drug_cn": "硝酸咪康唑散",
+            "dose": "Apply BID",
+            "duration": "2-4 weeks",
+            "insurance": "Class_B",
+            "special": "For intertriginous areas"
+          }
+        ],
+        "systemic": [
+          {
+            "drug": "Terbinafine tablets",
+            "drug_cn": "特比萘芬片",
+            "dose": "250mg QD",
+            "duration": "Fingernails 6w, Toenails 12w",
+            "insurance": "Class_B",
+            "alert": "YELLOW",
+            "monitor": "LFT",
+            "special": "Check LFT baseline"
+          },
+          {
+            "drug": "Itraconazole",
+            "drug_cn": "伊曲康唑",
+            "dose": "200mg BID 1 week/month x3-4 pulses",
+            "insurance": "Class_B",
+            "alert": "YELLOW",
+            "monitor": "LFT",
+            "special": "Drug interactions common"
+          }
+        ]
+      },
+      "follow_up": {
+        "topical": "2-4 weeks",
+        "systemic": "Monthly LFT"
+      },
+      "education": [
+        "Keep feet dry",
+        "Change socks daily",
+        "Disinfect shoes",
+        "Don't share towels",
+        "Check pets",
+        "Complete full course"
+      ]
+    },
+    "folliculitis": {
+      "category": "infection",
+      "name": "Folliculitis",
+      "name_cn": "毛囊炎",
+      "icd10": "L66.2",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "subtypes": [
+        "bacterial",
+        "malassezia",
+        "eosinophilic"
+      ],
+      "chief_complaint": "{location} follicular papules/pustules for {duration}",
+      "key_physical_findings": [
+        "follicular_centered_papules_pustules",
+        "hair_penetrating_center",
+        "erythematous_base"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "acne",
+          "differentiator": "comedones, face/chest/back, hormonal"
+        },
+        {
+          "disease": "herpes",
+          "differentiator": "clustered vesicles, painful"
+        },
+        {
+          "disease": "pseudofolliculitis",
+          "differentiator": "shaving-related, beard area"
+        }
+      ],
+      "labs": [
+        "bacterial_culture",
+        "KOH (if malassezia suspected)"
+      ],
+      "prescriptions": {
+        "bacterial": [
+          {
+            "drug": "Mupirocin",
+            "drug_cn": "莫匹罗星",
+            "dose": "Apply TID",
+            "duration": "7-10 days",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Doxycycline",
+            "drug_cn": "多西环素",
+            "dose": "100mg BID",
+            "duration": "2-4 weeks",
+            "insurance": "Class_B",
+            "alert": "GREEN"
+          }
+        ],
+        "malassezia": [
+          {
+            "drug": "Ketoconazole shampoo",
+            "drug_cn": "酮康唑洗剂",
+            "dose": "3x/week, leave 5min",
+            "duration": "2-4 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Itraconazole",
+            "drug_cn": "伊曲康唑",
+            "dose": "200mg QD",
+            "duration": "1-2 weeks",
+            "insurance": "Class_B",
+            "alert": "YELLOW"
+          }
+        ]
+      },
+      "follow_up": {
+        "1-2_weeks": "Assess response"
+      },
+      "education": [
+        "Avoid tight clothing",
+        "Don't shave over lesions",
+        "Hot tub hygiene",
+        "Shower after sweating"
+      ]
+    },
+    "acne_vulgaris": {
+      "category": "acneiform",
+      "name": "Acne Vulgaris",
+      "name_cn": "寻常痤疮",
+      "icd10": "L70.0",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe",
+        "very_severe_nodulocystic"
+      ],
+      "chief_complaint": "{location} comedones/papules/pustules/nodules for {duration}",
+      "key_physical_findings": [
+        "comedones_open_closed",
+        "inflammatory_papules_pustules",
+        "nodules_cysts",
+        "seborrhea",
+        "scarring"
+      ],
+      "grading": {
+        "mild": "comedones + few papules",
+        "moderate": "many papules/pustules",
+        "severe": "nodules/cysts",
+        "very_severe": "confluent nodules, scarring"
+      },
+      "differential_diagnosis": [
+        {
+          "disease": "rosacea",
+          "differentiator": "older, centrofacial erythema, telangiectasia, no comedones"
+        },
+        {
+          "disease": "folliculitis",
+          "differentiator": "pustular only, hair-centered, different distribution"
+        },
+        {
+          "disease": "perioral_dermatitis",
+          "differentiator": "perioral only, no comedones, topical steroid history"
+        }
+      ],
+      "labs": [
+        "hormones_female",
+        "ultrasound_pelvis",
+        "DHEAS",
+        "testosterone",
+        "LH_FSH"
+      ],
+      "prescriptions": {
+        "mild": [
+          {
+            "drug": "Adapalene 0.1% gel",
+            "drug_cn": "阿达帕林凝胶",
+            "dose": "Apply thin layer QN",
+            "duration": "8-12 weeks",
+            "insurance": "Class_B",
+            "alert": "GREEN",
+            "special": "Start 2-3x/week, increase gradually. Photosensitivity."
+          },
+          {
+            "drug": "Benzoyl peroxide 2.5%",
+            "drug_cn": "过氧化苯甲酰凝胶",
+            "dose": "Apply QD",
+            "duration": "8-12 weeks",
+            "insurance": "Class_B",
+            "special": "Bleaches fabric. Start low concentration."
+          },
+          {
+            "drug": "Tretinoin 0.025%",
+            "drug_cn": "维A酸乳膏",
+            "dose": "Apply QN",
+            "duration": "8-12 weeks",
+            "insurance": "Class_B",
+            "contra": [
+              "pregnancy"
+            ]
+          }
+        ],
+        "moderate": [
+          {
+            "drug": "Adapalene QN + Benzoyl peroxide QD",
+            "drug_cn": "阿达帕林+过氧化苯甲酰",
+            "dose": "Separate AM/PM",
+            "duration": "8-12 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Clindamycin phosphate gel",
+            "drug_cn": "克林霉素磷酸酯凝胶",
+            "dose": "Apply BID",
+            "duration": "6-8 weeks",
+            "insurance": "Class_B",
+            "special": "Combine with BP to prevent resistance"
+          },
+          {
+            "drug": "Doxycycline",
+            "drug_cn": "多西环素",
+            "dose": "100mg BID",
+            "duration": "6-8 weeks",
+            "insurance": "Class_B",
+            "alert": "GREEN",
+            "special": "Take with food, avoid lying down 30min"
+          },
+          {
+            "drug": "Minocycline",
+            "drug_cn": "米诺环素",
+            "dose": "50mg BID",
+            "duration": "6-8 weeks",
+            "insurance": "Class_B"
+          }
+        ],
+        "severe": [
+          {
+            "drug": "Isotretinoin capsules",
+            "drug_cn": "异维A酸软胶囊",
+            "dose": "0.25-0.5mg/kg/day BID with meal",
+            "duration": "16-20 weeks (cumulative 120-150mg/kg)",
+            "insurance": "Class_B",
+            "alert": "RED",
+            "contra": [
+              "pregnancy",
+              "breastfeeding"
+            ],
+            "monitor": "LFT, lipids q4w, pregnancy test monthly",
+            "special": "MANDATORY: iPLEDGE equivalent program. 2 forms contraception. Dry skin/lips expected."
+          },
+          {
+            "drug": "Spironolactone",
+            "drug_cn": "螺内酯",
+            "dose": "50-100mg/day",
+            "duration": "3-6 months",
+            "insurance": "Class_A",
+            "special": "For hormonal acne in females"
+          },
+          {
+            "drug": "Combined oral contraceptives",
+            "drug_cn": "短效口服避孕药",
+            "dose": "Daily",
+            "duration": "6+ months",
+            "insurance": "Class_A",
+            "special": "Anti-androgenic progestin preferred"
+          }
+        ]
+      },
+      "follow_up": {
+        "mild_moderate": "6-8 weeks",
+        "isotretinoin": "Monthly",
+        "post_isotretinoin": "3 months then 6 months"
+      },
+      "education": [
+        "Gentle cleanser twice daily",
+        "Non-comedogenic moisturizer",
+        "Don't pick/squeeze",
+        "Sunscreen daily",
+        "Isotretinoin: monthly pregnancy tests, no waxing/laser during treatment"
+      ]
+    },
+    "rosacea": {
+      "category": "acneiform",
+      "name": "Rosacea",
+      "name_cn": "玫瑰痤疮",
+      "icd10": "L71.9",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "subtypes": [
+        "ETR",
+        "PPR",
+        "PhR",
+        "ocular"
+      ],
+      "chief_complaint": "Centrofacial persistent erythema with {features} for {duration}",
+      "key_physical_findings": [
+        "persistent_central_facial_erythema",
+        "telangiectasia",
+        "papules_pustules_no_comedones",
+        "flushing_triggers"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "acne",
+          "differentiator": "comedones present, younger patients, different distribution"
+        },
+        {
+          "disease": "seborrheic_dermatitis",
+          "differentiator": "greasy scales, scalp involvement, less erythema"
+        },
+        {
+          "disease": "SLE",
+          "differentiator": "malar rash spares nasolabial folds, ANA+, systemic symptoms"
+        },
+        {
+          "disease": "steroid_induced_dermatitis",
+          "differentiator": "topical steroid history, perioral involvement"
+        }
+      ],
+      "labs": [
+        "skin_biopsy",
+        "ocular_exam",
+        "ANA (if SLE suspected)"
+      ],
+      "prescriptions": {
+        "ETR": [
+          {
+            "drug": "Brimonidine gel 0.5%",
+            "drug_cn": "溴莫尼定凝胶",
+            "dose": "Apply QD",
+            "duration": "Long-term",
+            "insurance": "Class_B",
+            "special": "Reduces erythema by vasoconstriction"
+          },
+          {
+            "drug": "Azelaic acid 15-20%",
+            "drug_cn": "壬二酸乳膏",
+            "dose": "Apply BID",
+            "duration": "Long-term",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Carvedilol",
+            "drug_cn": "卡维地洛",
+            "dose": "6.25mg BID",
+            "insurance": "Class_A",
+            "special": "Controls flushing"
+          },
+          {
+            "drug": "Hydroxychloroquine",
+            "drug_cn": "羟氯喹",
+            "dose": "200mg BID",
+            "duration": "3-6 months",
+            "insurance": "Class_A",
+            "special": "Baseline eye exam required"
+          }
+        ],
+        "PPR": [
+          {
+            "drug": "Ivermectin cream 1%",
+            "drug_cn": "伊维菌素乳膏",
+            "dose": "Apply QD",
+            "duration": "12+ weeks",
+            "insurance": "Class_B",
+            "special": "Anti-Demodex"
+          },
+          {
+            "drug": "Metronidazole gel 0.75%",
+            "drug_cn": "甲硝唑凝胶",
+            "dose": "Apply BID",
+            "duration": "8-12 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Doxycycline 40mg MR",
+            "drug_cn": "多西环素缓释片",
+            "dose": "40mg QD",
+            "duration": "12+ weeks",
+            "insurance": "Class_B",
+            "special": "Sub-antimicrobial dose"
+          }
+        ],
+        "PhR": [
+          {
+            "drug": "Isotretinoin low dose",
+            "drug_cn": "异维A酸小剂量",
+            "dose": "0.1-0.3mg/kg/day",
+            "insurance": "Class_B",
+            "alert": "RED",
+            "special": "Very cautious use"
+          },
+          {
+            "drug": "Surgical",
+            "drug_cn": "手术治疗",
+            "special": "CO2 laser, electrosurgery, surgical reshaping for severe rhinophyma"
+          }
+        ],
+        "ocular": [
+          {
+            "drug": "Cyclosporine eye drops",
+            "drug_cn": "环孢素滴眼液",
+            "dose": "BID",
+            "special": "Ophthalmology referral required"
+          },
+          {
+            "drug": "Artificial tears",
+            "drug_cn": "人工泪液",
+            "dose": "PRN"
+          },
+          {
+            "drug": "Doxycycline 40mg",
+            "drug_cn": "多西环素",
+            "dose": "40mg QD",
+            "special": "For ocular rosacea"
+          }
+        ]
+      },
+      "follow_up": {
+        "every_4-8_weeks": "Assess subtype response"
+      },
+      "education": [
+        "Avoid triggers: heat, alcohol, spicy food, sun",
+        "Gentle skincare",
+        "Sunscreen SPF50+",
+        "Ocular rosacea: lid hygiene, warm compresses"
+      ]
+    },
+    "rhinophyma": {
+      "category": "acneiform",
+      "name": "Rhinophyma",
+      "name_cn": "鼻赘",
+      "icd10": "L71.1",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Progressive nasal enlargement, nodularity, deformity for {duration}",
+      "key_physical_findings": [
+        "nasal_enlargement",
+        "nodular_surface",
+        "sebaceous_hyperplasia",
+        "erythema"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "sebaceous_adenoma",
+          "differentiator": "solitary, not diffuse"
+        },
+        {
+          "disease": "angiofibroma",
+          "differentiator": "youth, different histology"
+        },
+        {
+          "disease": "BCC",
+          "differentiator": "ulceration, pearly border, histology"
+        }
+      ],
+      "labs": [
+        "skin_biopsy",
+        "nasal_CT"
+      ],
+      "prescriptions": {
+        "medical": [
+          {
+            "drug": "Isotretinoin low dose",
+            "drug_cn": "异维A酸小剂量",
+            "dose": "0.1-0.3mg/kg/day",
+            "special": "May slow progression"
+          }
+        ],
+        "surgical": [
+          {
+            "drug": "CO2 laser ablation",
+            "drug_cn": "CO2激光磨削",
+            "special": "Main treatment"
+          },
+          {
+            "drug": "Electrosurgery",
+            "drug_cn": "电外科切除",
+            "special": "Sculpting"
+          },
+          {
+            "drug": "Surgical excision + reconstruction",
+            "drug_cn": "手术切除+整形",
+            "special": "Severe cases"
+          }
+        ]
+      },
+      "follow_up": {
+        "post_op": "2 weeks, 1 month, 3 months"
+      },
+      "education": [
+        "Early treatment of rosacea may prevent",
+        "Surgical results generally excellent"
+      ]
+    },
+    "melanocytic_nevus": {
+      "category": "pigmented",
+      "name": "Melanocytic Nevus",
+      "name_cn": "黑素细胞痣",
+      "icd10": "D22.9",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Pigmented lesion present for {duration}, {changes}",
+      "key_physical_findings": [
+        "symmetric",
+        "regular_border",
+        "uniform_color",
+        "diameter_less_than_6mm",
+        "stable_over_time"
+      ],
+      "types": [
+        "junctional",
+        "compound",
+        "intradermal",
+        "dysplastic",
+        "congenital"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "melanoma",
+          "differentiator": "ABCDE abnormalities, evolution"
+        },
+        {
+          "disease": "seborrheic_keratosis",
+          "differentiator": "stuck-on appearance, waxy, older patients"
+        },
+        {
+          "disease": "dermatofibroma",
+          "differentiator": "dimple sign, firm, lower extremities"
+        },
+        {
+          "disease": "blue_nevus",
+          "differentiator": "blue-black, uniform, stable"
+        }
+      ],
+      "labs": [
+        "dermoscopy",
+        "biopsy_if_atypical"
+      ],
+      "prescriptions": {
+        "benign": [
+          {
+            "special": "Observation with annual photography"
+          },
+          {
+            "special": "Complete excision if cosmetic concern or friction site"
+          },
+          {
+            "special": "NEVER laser/cryo/chemical for pigmented lesions - must send for pathology"
+          }
+        ],
+        "atypical": [
+          {
+            "special": "Excisional biopsy with 2mm margins"
+          },
+          {
+            "special": "Refer to dermatology/oncology if severe atypia"
+          }
+        ]
+      },
+      "follow_up": {
+        "annual": "Photography comparison"
+      },
+      "education": [
+        "Sun protection",
+        "Self-monitoring monthly",
+        "ABCDE warning signs",
+        "Annual skin check"
+      ]
+    },
+    "melanoma": {
+      "category": "pigmented",
+      "name": "Melanoma",
+      "name_cn": "黑色素瘤",
+      "icd10": "C43.9",
+      "severity_levels": [
+        "stage_0",
+        "stage_I",
+        "stage_II",
+        "stage_III",
+        "stage_IV"
+      ],
+      "chief_complaint": "Changing pigmented lesion: {ABCDE_changes} for {duration}",
+      "key_physical_findings": [
+        "asymmetry",
+        "irregular_border",
+        "multiple_colors",
+        "diameter_greater_than_6mm",
+        "evolution"
+      ],
+      "ugly_duckling_sign": "This lesion looks different from patient's other nevi",
+      "differential_diagnosis": [
+        {
+          "disease": "dysplastic_nevus",
+          "differentiator": "mild ABCDE changes, biopsy shows mild atypia"
+        },
+        {
+          "disease": "pigmented_BCC",
+          "differentiator": "pearly border, telangiectasia, histology"
+        },
+        {
+          "disease": "seborrheic_keratosis",
+          "differentiator": "stuck-on, waxy, keratin plugs"
+        },
+        {
+          "disease": "subungual_hematoma",
+          "differentiator": "history of trauma, grows out with nail"
+        }
+      ],
+      "staging_workup": {
+        "Breslow_thickness": "____mm (record in HIS)",
+        "Clark_level": "I-V",
+        "ulceration": "present/absent",
+        "mitotic_rate": "____/mm2",
+        "SLNB": "if >0.8mm or ulcerated",
+        "imaging": [
+          "CT_chest_abdomen_pelvis",
+          "brain_MRI",
+          "PET_CT"
+        ]
+      },
+      "labs": [
+        "LDH",
+        "CBC",
+        "LFT",
+        "genetic_BRAF_NRAS_cKIT"
+      ],
+      "prescriptions": {
+        "surgical": [
+          {
+            "special": "Wide local excision margins: in situ 0.5-1cm, <1mm 1cm, 1-2mm 1-2cm, >2mm 2cm"
+          },
+          {
+            "special": "Sentinel lymph node biopsy if indicated"
+          },
+          {
+            "special": "Lymphadenectomy if SLNB+"
+          }
+        ],
+        "adjuvant": [
+          {
+            "drug": "Pembrolizumab",
+            "drug_cn": "帕博利珠单抗",
+            "dose": "200mg IV q3w",
+            "duration": "1 year",
+            "insurance": "Class_B (approval)",
+            "special": "Stage II-III"
+          },
+          {
+            "drug": "Dabrafenib + Trametinib",
+            "drug_cn": "达拉非尼+曲美替尼",
+            "dose": "Dabrafenib 150mg BID + Trametinib 2mg QD",
+            "duration": "1 year",
+            "special": "BRAF V600E+ Stage III"
+          },
+          {
+            "drug": "Nivolumab",
+            "drug_cn": "纳武利尤单抗",
+            "dose": "480mg IV q4w",
+            "special": "Stage IIB-IV"
+          }
+        ],
+        "metastatic": [
+          {
+            "drug": "Pembrolizumab",
+            "drug_cn": "帕博利珠单抗",
+            "dose": "200mg IV q3w",
+            "special": "First-line immunotherapy"
+          },
+          {
+            "drug": "Nivolumab + Ipilimumab",
+            "drug_cn": "纳武利尤+伊匹木单抗",
+            "dose": "Nivo 1mg/kg + Ipi 3mg/kg q3w x4, then Nivo maintenance",
+            "special": "Combination immunotherapy"
+          },
+          {
+            "drug": "Dabrafenib + Trametinib",
+            "drug_cn": "达拉非尼+曲美替尼",
+            "special": "BRAF+ targeted therapy"
+          }
+        ]
+      },
+      "follow_up": {
+        "stage_0_I": "Every 6-12 months",
+        "stage_II_III": "Every 3-6 months x2y, then 6-12 months",
+        "stage_IV": "Ongoing oncology"
+      },
+      "education": [
+        "Sun protection essential",
+        "Self-skin exams monthly",
+        "Family screening",
+        "Genetic counseling if familial"
+      ]
+    },
+    "abcde_rule": {
+      "category": "diagnostic_tool",
+      "name": "ABCDE Rule",
+      "name_cn": "ABCDE法则",
+      "description": "Melanoma detection mnemonic",
+      "criteria": {
+        "A": {
+          "name": "Asymmetry",
+          "name_cn": "不对称",
+          "description": "One half unlike the other"
+        },
+        "B": {
+          "name": "Border",
+          "name_cn": "边界",
+          "description": "Irregular, scalloped, poorly defined"
+        },
+        "C": {
+          "name": "Color",
+          "name_cn": "颜色",
+          "description": "Varied: brown, black, tan, red, white, blue"
+        },
+        "D": {
+          "name": "Diameter",
+          "name_cn": "直径",
+          "description": ">6mm (pencil eraser), but can be smaller"
+        },
+        "E": {
+          "name": "Evolution",
+          "name_cn": "进展",
+          "description": "Changing in size, shape, color, symptoms"
+        }
+      },
+      "risk_interpretation": {
+        "0-1_abnormal": "Low risk - routine follow-up",
+        "2_abnormal": "Moderate risk - dermoscopy, 3-month follow-up",
+        "3+_abnormal": "High risk - biopsy recommended"
+      },
+      "ugly_duckling_sign": "One mole that looks different from all others - also warrants evaluation"
+    },
+    "ugly_duckling_sign": {
+      "category": "diagnostic_tool",
+      "name": "Ugly Duckling Sign",
+      "name_cn": "丑小鸭征",
+      "description": "A pigmented lesion that looks different from the patient's other nevi",
+      "significance": "May indicate melanoma even if individual lesion doesn't meet ABCDE criteria",
+      "action": "Biopsy or close monitoring with photography"
+    },
+    "basal_cell_carcinoma": {
+      "category": "skin_cancer",
+      "name": "Basal Cell Carcinoma",
+      "name_cn": "基底细胞癌",
+      "icd10": "C44.91",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "subtypes": [
+        "nodular",
+        "superficial",
+        "morpheaform",
+        "pigmented",
+        "ulcerated"
+      ],
+      "chief_complaint": "{location} slowly growing pearly papule/nodule/ulcer for {duration}",
+      "key_physical_findings": [
+        "pearly_papule_with_telangiectasia",
+        "rolled_border",
+        "central_ulceration_rodent_ulcer",
+        "translucency"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "melanoma_pigmented",
+          "differentiator": "ABCDE changes, rapid growth, histology"
+        },
+        {
+          "disease": "seborrheic_keratosis",
+          "differentiator": "stuck-on, waxy, no telangiectasia"
+        },
+        {
+          "disease": "Bowen_disease",
+          "differentiator": "erythematous scaly plaque, SCC in situ"
+        },
+        {
+          "disease": "scar",
+          "differentiator": "history of trauma/surgery, flat, no pearly border"
+        }
+      ],
+      "labs": [
+        "skin_biopsy",
+        "facial_CT_MRI_if_deep"
+      ],
+      "prescriptions": {
+        "surgical": [
+          {
+            "special": "Standard excision: 4-5mm margins (low-risk), Mohs surgery (high-risk: face, recurrent, morpheaform, >2cm)"
+          },
+          {
+            "special": "Curettage + electrodessication (superficial, trunk/extremities)"
+          }
+        ],
+        "non_surgical": [
+          {
+            "drug": "Imiquimod 5%",
+            "drug_cn": "咪喹莫特乳膏",
+            "dose": "Apply 5x/week x6 weeks",
+            "special": "Superficial BCC only"
+          },
+          {
+            "drug": "5-Fluorouracil 5%",
+            "drug_cn": "5-氟尿嘧啶软膏",
+            "dose": "Apply BID x3-6 weeks",
+            "special": "Superficial BCC"
+          },
+          {
+            "special": "Radiation therapy (non-surgical candidates)"
+          },
+          {
+            "special": "Photodynamic therapy (PDT)"
+          }
+        ],
+        "advanced": [
+          {
+            "drug": "Vismodegib",
+            "drug_cn": "维莫德吉",
+            "dose": "150mg QD",
+            "special": "Hedgehog inhibitor, locally advanced/metastatic (rare)",
+            "insurance": "Class_B (approval)"
+          },
+          {
+            "drug": "Sonidegib",
+            "drug_cn": "索尼德吉",
+            "dose": "200mg QD",
+            "special": "Hedgehog inhibitor"
+          }
+        ]
+      },
+      "follow_up": {
+        "every_6-12_months": "Local recurrence check, new lesions"
+      },
+      "education": [
+        "Excellent prognosis if treated early",
+        "Rarely metastasizes",
+        "Risk of local destruction if neglected",
+        "Sun protection",
+        "Self-skin exams"
+      ]
+    },
+    "squamous_cell_carcinoma": {
+      "category": "skin_cancer",
+      "name": "Squamous Cell Carcinoma",
+      "name_cn": "鳞状细胞癌",
+      "icd10": "C44.92",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "risk_factors": [
+        "chronic_sun_exposure",
+        "immunosuppression",
+        "chronic_ulcers",
+        "scars",
+        "arsenic",
+        "HPV",
+        "PUVA"
+      ],
+      "chief_complaint": "{location} rapidly growing red nodule/ulcer/scaly plaque for {duration}",
+      "key_physical_findings": [
+        "erythematous_indurated_nodule",
+        "hyperkeratotic_scale_crust",
+        "ulceration",
+        "firm_base"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "keratoacanthoma",
+          "differentiator": "rapid growth, volcano shape, may regress"
+        },
+        {
+          "disease": "actinic_keratosis",
+          "differentiator": "flat, rough, no induration"
+        },
+        {
+          "disease": "BCC",
+          "differentiator": "pearly, telangiectasia, slower growth"
+        },
+        {
+          "disease": "cutaneous_horn",
+          "differentiator": "keratin projection, underlying SCC possible"
+        }
+      ],
+      "labs": [
+        "skin_biopsy",
+        "lymph_node_ultrasound",
+        "CT_if_high_risk"
+      ],
+      "prescriptions": {
+        "surgical": [
+          {
+            "special": "Standard excision: 4-6mm margins (low-risk), Mohs (high-risk: face, recurrent, >2cm, poorly differentiated, perineural)"
+          },
+          {
+            "special": "Sentinel lymph node biopsy if high-risk"
+          }
+        ],
+        "radiation": [
+          {
+            "special": "Primary treatment or adjuvant for non-surgical candidates/high-risk"
+          }
+        ],
+        "systemic": [
+          {
+            "drug": "Cemiplimab",
+            "drug_cn": "西米普利单抗",
+            "dose": "350mg IV q3w",
+            "special": "PD-1 inhibitor, metastatic/locally advanced",
+            "insurance": "Class_B (approval)"
+          },
+          {
+            "drug": "Pembrolizumab",
+            "drug_cn": "帕博利珠单抗",
+            "dose": "200mg IV q3w",
+            "special": "Metastatic cSCC"
+          },
+          {
+            "drug": "Cetuximab + chemo",
+            "drug_cn": "西妥昔单抗+化疗",
+            "special": "EGFR inhibitor, advanced disease"
+          }
+        ]
+      },
+      "follow_up": {
+        "every_3-6_months_x2y": "Then every 6-12 months, watch for recurrence and new primaries"
+      },
+      "education": [
+        "Higher metastatic potential than BCC",
+        "Immunosuppressed patients at higher risk",
+        "Sun protection",
+        "Regular skin checks"
+      ]
+    },
+    "actinic_keratosis": {
+      "category": "skin_cancer",
+      "name": "Actinic Keratosis",
+      "name_cn": "光化性角化病",
+      "icd10": "L57.0",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "{location} rough scaly patches on sun-damaged skin for {duration}",
+      "key_physical_findings": [
+        "erythematous_papule_or_patch",
+        "adherent_scale",
+        "sandpaper_texture",
+        "sun_exposed_skin"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "seborrheic_keratosis",
+          "differentiator": "stuck-on, waxy, no roughness"
+        },
+        {
+          "disease": "Bowen_disease",
+          "differentiator": "larger, more erythematous, persistent"
+        },
+        {
+          "disease": "SCC",
+          "differentiator": "indurated, ulcerated, growing"
+        }
+      ],
+      "labs": [
+        "biopsy_if_atypical"
+      ],
+      "prescriptions": {
+        "field_therapy": [
+          {
+            "drug": "5-Fluorouracil 5%",
+            "drug_cn": "5-氟尿嘧啶乳膏",
+            "dose": "Apply BID x2-4 weeks",
+            "special": "Significant inflammation expected"
+          },
+          {
+            "drug": "Imiquimod 5%",
+            "drug_cn": "咪喹莫特乳膏",
+            "dose": "2-3x/week x12-16 weeks",
+            "special": "Immune response"
+          },
+          {
+            "drug": "Diclofenac 3% gel",
+            "drug_cn": "双氯芬酸凝胶",
+            "dose": "Apply BID x2-3 months",
+            "special": "Milder, longer course"
+          },
+          {
+            "drug": "Ingenol mebutate",
+            "drug_cn": "巨大化酶凝胶",
+            "dose": "0.015% (face) or 0.05% (trunk) QD x2-3 days",
+            "special": "Short course"
+          }
+        ],
+        "lesion_directed": [
+          {
+            "special": "Cryotherapy (liquid nitrogen) - single lesions"
+          },
+          {
+            "special": "Curettage + electrodessication"
+          },
+          {
+            "special": "Photodynamic therapy (ALA + red light)"
+          }
+        ]
+      },
+      "follow_up": {
+        "every_6-12_months": "New lesions, progression to SCC"
+      },
+      "education": [
+        "Field cancerization concept",
+        "Sun protection essential",
+        "Regular skin exams",
+        "SCC transformation risk ~0.1-10% per lesion per year"
+      ]
+    },
+    "keratoacanthoma": {
+      "category": "skin_cancer",
+      "name": "Keratoacanthoma",
+      "name_cn": "角化棘皮瘤",
+      "icd10": "L85.8",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Rapidly growing dome-shaped nodule with central keratin plug for {duration}",
+      "key_physical_findings": [
+        "dome_shaped_nodule",
+        "central_keratin_plug_crater",
+        "smooth_rolled_border",
+        "rapid_growth_weeks_to_months"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "SCC",
+          "differentiator": "histologically similar, may be variant"
+        },
+        {
+          "disease": "molluscum_contagiosum",
+          "differentiator": "umbilicated, smaller, children"
+        },
+        {
+          "disease": "BCC",
+          "differentiator": "pearly, slower growth, no keratin plug"
+        }
+      ],
+      "labs": [
+        "wedge_excision_biopsy"
+      ],
+      "prescriptions": {
+        "surgical": [
+          {
+            "special": "Excision with 5mm margins (preferred)"
+          }
+        ],
+        "intralesional": [
+          {
+            "drug": "Methotrexate",
+            "drug_cn": "甲氨蝶呤",
+            "dose": "12.5-25mg intralesional weekly x2-4",
+            "special": "For non-surgical candidates"
+          },
+          {
+            "drug": "5-Fluorouracil",
+            "drug_cn": "5-氟尿嘧啶",
+            "dose": "Intralesional",
+            "special": "Alternative"
+          },
+          {
+            "drug": "Interferon alpha-2a",
+            "drug_cn": "干扰素α-2a",
+            "dose": "Intralesional",
+            "special": "Alternative"
+          }
+        ]
+      },
+      "follow_up": {
+        "every_3_months": "Monitor for recurrence, new lesions"
+      },
+      "education": [
+        "May spontaneously regress but excision preferred",
+        "Histologically difficult to distinguish from SCC",
+        "Muir-Torre syndrome if multiple/sebaceous"
+      ]
+    },
+    "pemphigus_vulgaris": {
+      "category": "bullous",
+      "name": "Pemphigus Vulgaris",
+      "name_cn": "寻常型天疱疮",
+      "icd10": "L10.0",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Painful oral erosions and flaccid skin blisters for {duration}",
+      "key_physical_findings": [
+        "flaccid_bullae",
+        "positive_nikolsky_sign",
+        "painful_erosions",
+        "mucosal_involvement_oral_first"
+      ],
+      "nikolsky_sign": "POSITIVE - lateral pressure extends blister",
+      "differential_diagnosis": [
+        {
+          "disease": "bullous_pemphigoid",
+          "differentiator": "tense bullae, negative Nikolsky, elderly, less mucosal"
+        },
+        {
+          "disease": "SJS_TEN",
+          "differentiator": "drug-induced, epidermal necrosis, high fever"
+        },
+        {
+          "disease": "paraneoplastic_pemphigus",
+          "differentiator": "severe mucosal, associated malignancy, polymorphous rash"
+        },
+        {
+          "disease": "drug_induced_pemphigus",
+          "differentiator": "penicillamine, captopril history"
+        }
+      ],
+      "labs": [
+        "skin_biopsy_DIF",
+        "indirect_immunofluorescence",
+        "anti_Dsg1_Dsg3",
+        "chest_CT (exclude paraneoplastic)"
+      ],
+      "prescriptions": {
+        "first_line": [
+          {
+            "drug": "Prednisone",
+            "drug_cn": "泼尼松",
+            "dose": "0.5-1mg/kg/day",
+            "duration": "Until control then taper",
+            "insurance": "Class_A",
+            "alert": "YELLOW",
+            "special": "Monitor for infection, diabetes, osteoporosis"
+          }
+        ],
+        "steroid_sparing": [
+          {
+            "drug": "Azathioprine",
+            "drug_cn": "硫唑嘌呤",
+            "dose": "1-3mg/kg/day",
+            "special": "Check TPMT first",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Mycophenolate mofetil",
+            "drug_cn": "吗替麦考酚酯",
+            "dose": "2g/day",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Rituximab",
+            "drug_cn": "利妥昔单抗",
+            "dose": "1g IV day 1, 15 then every 6 months",
+            "insurance": "Class_B (approval)",
+            "alert": "RED",
+            "special": "Increasingly preferred first-line"
+          }
+        ],
+        "adjuvant": [
+          {
+            "drug": "IVIG",
+            "drug_cn": "静脉丙种球蛋白",
+            "dose": "0.4g/kg/day x5 days monthly",
+            "special": "For refractory cases"
+          },
+          {
+            "drug": "Plasmapheresis",
+            "drug_cn": "血浆置换",
+            "special": "Acute severe cases"
+          }
+        ],
+        "topical": [
+          {
+            "drug": "Ethacridine 0.1%",
+            "drug_cn": "依沙吖啶溶液",
+            "dose": "Wet dressings BID",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Topical corticosteroids",
+            "drug_cn": "外用糖皮质激素",
+            "special": "For limited skin involvement"
+          },
+          {
+            "drug": "Chlorhexidine mouthwash",
+            "drug_cn": "氯己定含漱液",
+            "special": "Oral care"
+          }
+        ]
+      },
+      "follow_up": {
+        "weekly_initially": "Until controlled",
+        "then_monthly": "Monitor antibodies, taper steroids"
+      },
+      "education": [
+        "Chronic relapsing disease",
+        "High morbidity if untreated",
+        "Infection prevention",
+        "Oral care essential",
+        "Avoid live vaccines"
+      ]
+    },
+    "bullous_pemphigoid": {
+      "category": "bullous",
+      "name": "Bullous Pemphigoid",
+      "name_cn": "大疱性类天疱疮",
+      "icd10": "L12.0",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Elderly patient with tense itchy blisters for {duration}",
+      "key_physical_findings": [
+        "tense_bullae",
+        "negative_nikolsky_sign",
+        "pruritic_urticarial_plaques",
+        "elderly_patient"
+      ],
+      "nikolsky_sign": "NEGATIVE - lateral pressure does NOT extend blister",
+      "differential_diagnosis": [
+        {
+          "disease": "pemphigus_vulgaris",
+          "differentiator": "flaccid bullae, positive Nikolsky, mucosal, younger"
+        },
+        {
+          "disease": "epidermolysis_bullosa_acquisita",
+          "differentiator": "trauma-induced, hands/feet, type VII collagen"
+        },
+        {
+          "disease": "linear_IgA_bullous_dermatosis",
+          "differentiator": "annular arrangement, children/adults, linear IgA"
+        },
+        {
+          "disease": "SJS_TEN",
+          "differentiator": "drug-induced, epidermal necrosis, positive Nikolsky"
+        }
+      ],
+      "labs": [
+        "skin_biopsy_DIF",
+        "indirect_immunofluorescence",
+        "anti_BP180_BP230",
+        "neurological_eval"
+      ],
+      "prescriptions": {
+        "first_line": [
+          {
+            "drug": "Superpotent topical corticosteroids",
+            "drug_cn": "超强效外用激素",
+            "dose": "Clobetasol propionate BID full body",
+            "special": "As effective as oral steroids, fewer side effects",
+            "insurance": "Class_B"
+          }
+        ],
+        "systemic": [
+          {
+            "drug": "Doxycycline + Niacinamide",
+            "drug_cn": "多西环素+烟酰胺",
+            "dose": "Doxy 100mg BID + Niacinamide 500mg TID",
+            "special": "Anti-inflammatory, non-immunosuppressive",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Prednisone",
+            "drug_cn": "泼尼松",
+            "dose": "0.2-0.5mg/kg/day",
+            "duration": "Lower dose than pemphigus",
+            "insurance": "Class_A",
+            "alert": "YELLOW"
+          },
+          {
+            "drug": "Methotrexate",
+            "drug_cn": "甲氨蝶呤",
+            "dose": "10-15mg weekly",
+            "insurance": "Class_A",
+            "alert": "RED",
+            "special": "Folic acid 5mg weekly"
+          }
+        ],
+        "biologics": [
+          {
+            "drug": "Rituximab",
+            "drug_cn": "利妥昔单抗",
+            "dose": "1g IV day 1, 15",
+            "insurance": "Class_B (approval)",
+            "alert": "RED"
+          },
+          {
+            "drug": "Omalizumab",
+            "drug_cn": "奥马珠单抗",
+            "dose": "300mg SC monthly",
+            "special": "For refractory cases",
+            "insurance": "Class_B (approval)"
+          }
+        ]
+      },
+      "follow_up": {
+        "every_2-4_weeks": "Until controlled, then monthly"
+      },
+      "education": [
+        "Good prognosis",
+        "May be associated with neurological disease (dementia, Parkinson)",
+        "Infection prevention",
+        "Fall prevention (elderly)"
+      ]
+    },
+    "nikolsky_sign": {
+      "category": "diagnostic_tool",
+      "name": "Nikolsky Sign",
+      "name_cn": "尼氏征",
+      "description": "Lateral pressure on skin extends blister or causes epidermal detachment",
+      "method": "Apply gentle lateral pressure with finger to blister edge or normal skin",
+      "interpretation": {
+        "POSITIVE": {
+          "meaning": "Epidermal split (intraepidermal)",
+          "diseases": [
+            "pemphigus_vulgaris",
+            "pemphigus_foliaceus",
+            "Stevens-Johnson_syndrome",
+            "TEN",
+            "familial_benign_chronic_pemphigus",
+            "epidermolysis_bullosa_simplex"
+          ]
+        },
+        "NEGATIVE": {
+          "meaning": "Subepidermal split or intact epidermis",
+          "diseases": [
+            "bullous_pemphigoid",
+            "epidermolysis_bullosa_acquisita",
+            "linear_IgA_dermatosis",
+            "dermatitis_herpetiformis"
+          ]
+        }
+      },
+      "clinical_importance": "Critical for distinguishing pemphigus (positive) from pemphigoid (negative)"
+    },
+    "morbilliform_eruption": {
+      "category": "drug_eruption",
+      "name": "Morbilliform Drug Eruption",
+      "name_cn": "麻疹样药疹",
+      "icd10": "L27.0",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Generalized erythematous maculopapular rash after starting {drug} for {duration}",
+      "key_physical_findings": [
+        "symmetric_erythematous_macules_papules",
+        "confluent_on_trunk",
+        "spares_face_or_mild",
+        "mild_pruritus"
+      ],
+      "common_drugs": [
+        "penicillins",
+        "sulfonamides",
+        "NSAIDs",
+        "antiepileptics",
+        "allopurinol",
+        "Chinese_herbal_injections"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "viral_exanthem",
+          "differentiator": "fever, respiratory symptoms, lymphadenopathy, no drug exposure"
+        },
+        {
+          "disease": "scarlet_fever",
+          "differentiator": "sandpaper rash, strawberry tongue, strep throat"
+        },
+        {
+          "disease": "secondary_syphilis",
+          "differentiator": "palms/soles, condyloma lata, serology+"
+        },
+        {
+          "disease": "SJS_TEN",
+          "differentiator": "mucosal involvement, blisters, epidermal detachment"
+        }
+      ],
+      "labs": [
+        "CBC_eosinophils",
+        "LFT",
+        "renal_function"
+      ],
+      "prescriptions": {
+        "mild": [
+          {
+            "special": "Discontinue offending drug"
+          },
+          {
+            "drug": "Cetirizine",
+            "drug_cn": "西替利嗪",
+            "dose": "10mg QD",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Calamine lotion",
+            "drug_cn": "炉甘石洗剂",
+            "dose": "Apply TID",
+            "insurance": "Class_A"
+          }
+        ],
+        "moderate": [
+          {
+            "drug": "Prednisone",
+            "drug_cn": "泼尼松",
+            "dose": "0.5mg/kg/day",
+            "duration": "5-7 days then taper",
+            "insurance": "Class_A",
+            "alert": "YELLOW"
+          }
+        ],
+        "severe": [
+          {
+            "drug": "Methylprednisolone",
+            "drug_cn": "甲泼尼龙",
+            "dose": "1-2mg/kg/day IV",
+            "special": "If progression to SJS/TEN suspected",
+            "alert": "RED"
+          }
+        ]
+      },
+      "follow_up": {
+        "1_week": "Resolution, identify culprit drug"
+      },
+      "education": [
+        "Avoid culprit drug forever",
+        "Cross-reactivity possible with similar drugs",
+        "Allergy card",
+        "Report to pharmacovigilance"
+      ]
+    },
+    "urticaria_drug": {
+      "category": "drug_eruption",
+      "name": "Urticaria (Drug-Induced)",
+      "name_cn": "荨麻疹型药疹",
+      "icd10": "L50.9",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Generalized itchy wheals after taking {drug} for {duration}",
+      "key_physical_findings": [
+        "transient_wheals",
+        "each_lesion_resolves_within_24h",
+        "new_lesions_appear_elsewhere",
+        "may_have_angioedema"
+      ],
+      "common_drugs": [
+        "penicillins",
+        "NSAIDs",
+        "ACE_inhibitors",
+        "opioids",
+        "radiocontrast"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "chronic_spontaneous_urticaria",
+          "differentiator": "no drug trigger, >6 weeks"
+        },
+        {
+          "disease": "physical_urticaria",
+          "differentiator": "triggered by cold/heat/pressure/exercise"
+        },
+        {
+          "disease": "anaphylaxis",
+          "differentiator": "respiratory compromise, hypotension, systemic"
+        }
+      ],
+      "labs": [
+        "CBC",
+        "total_IgE",
+        "tryptase (during acute episode)"
+      ],
+      "prescriptions": {
+        "acute": [
+          {
+            "special": "Discontinue offending drug"
+          },
+          {
+            "drug": "Cetirizine",
+            "drug_cn": "西替利嗪",
+            "dose": "10mg QD (can double to BID)",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Loratadine",
+            "drug_cn": "氯雷他定",
+            "dose": "10mg QD",
+            "insurance": "Class_A"
+          },
+          {
+            "drug": "Prednisone",
+            "drug_cn": "泼尼松",
+            "dose": "0.5mg/kg/day",
+            "duration": "3-5 days",
+            "insurance": "Class_A",
+            "alert": "YELLOW"
+          }
+        ],
+        "angioedema": [
+          {
+            "drug": "Epinephrine",
+            "drug_cn": "肾上腺素",
+            "dose": "0.3-0.5mg IM",
+            "special": "If airway compromise",
+            "alert": "RED"
+          },
+          {
+            "drug": "Methylprednisolone",
+            "drug_cn": "甲泼尼龙",
+            "dose": "40-80mg IV",
+            "alert": "RED"
+          }
+        ]
+      },
+      "follow_up": {
+        "1-2_weeks": "Resolution, drug avoidance education"
+      },
+      "education": [
+        "Strict drug avoidance",
+        "Cross-reactivity warning",
+        "Carry epinephrine if severe history",
+        "Medical alert bracelet"
+      ]
+    },
+    "fixed_drug_eruption": {
+      "category": "drug_eruption",
+      "name": "Fixed Drug Eruption",
+      "name_cn": "固定性药疹",
+      "icd10": "L27.1",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "chief_complaint": "Recurrent same-site erythematous/violaceous patch after taking {drug}",
+      "key_physical_findings": [
+        "well_demarcated_round_oval_patch",
+        "dusky_violaceous_color",
+        "may_have_bullae",
+        "post_inflammatory_hyperpigmentation",
+        "same_site_each_time"
+      ],
+      "common_drugs": [
+        "sulfonamides",
+        "tetracyclines",
+        "NSAIDs",
+        "barbiturates",
+        "carbamazepine",
+        "phenolphthalein"
+      ],
+      "common_sites": [
+        "lips",
+        "genitalia",
+        "hands",
+        "feet",
+        "trunk"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "herpes_simplex",
+          "differentiator": "clustered vesicles, painful, no hyperpigmentation"
+        },
+        {
+          "disease": "erythema_multiforme",
+          "differentiator": "target lesions, acral, less hyperpigmentation"
+        },
+        {
+          "disease": "contact_dermatitis",
+          "differentiator": "exposure pattern, patch test+"
+        }
+      ],
+      "labs": [
+        "biopsy_if_diagnostic_uncertainty"
+      ],
+      "prescriptions": {
+        "treatment": [
+          {
+            "special": "Discontinue offending drug"
+          },
+          {
+            "drug": "Topical corticosteroid",
+            "drug_cn": "外用糖皮质激素",
+            "dose": "Apply BID",
+            "duration": "1-2 weeks",
+            "insurance": "Class_B"
+          },
+          {
+            "drug": "Antihistamine",
+            "drug_cn": "抗组胺药",
+            "dose": "Standard dose",
+            "duration": "PRN",
+            "insurance": "Class_A"
+          }
+        ]
+      },
+      "follow_up": {
+        "as_needed": "Education on drug avoidance"
+      },
+      "education": [
+        "Same site recurrence is hallmark",
+        "Hyperpigmentation may persist months",
+        "ABSOLUTE drug avoidance",
+        "Cross-reactivity with structurally similar drugs possible",
+        "HIS permanent allergy alert"
+      ]
+    },
+    "sjs_ten": {
+      "category": "drug_eruption",
+      "name": "SJS/TEN",
+      "name_cn": "Stevens-Johnson综合征/中毒性表皮坏死松解症",
+      "icd10": "L51.1/L51.2",
+      "severity_levels": [
+        "SJS",
+        "SJS-TEN_overlap",
+        "TEN"
+      ],
+      "chief_complaint": "Fever, painful rash, mucosal erosions, skin detachment after {drug} for {duration}",
+      "key_physical_findings": [
+        "prodrome_fever_malaise",
+        "atypical_target_lesions",
+        "positive_nikolsky",
+        "epidermal_detachment",
+        "mucosal_involvement_2+sites"
+      ],
+      "classification": {
+        "SJS": "<10% BSA",
+        "SJS-TEN_overlap": "10-30% BSA",
+        "TEN": ">30% BSA"
+      },
+      "SCORTEN": {
+        "criteria": [
+          "age>40",
+          "malignancy",
+          "HR>120",
+          "BSA>10%",
+          "BUN>10",
+          "glucose>14",
+          "HCO3<20"
+        ],
+        "mortality": {
+          "0-1": "3.2%",
+          "2": "12.1%",
+          "3": "35.3%",
+          "4": "58.3%",
+          "5+": ">90%"
+        }
+      },
+      "common_drugs": [
+        "allopurinol",
+        "sulfonamides",
+        "antiepileptics",
+        "NSAIDs",
+        "nevirapine",
+        "lamotrigine"
+      ],
+      "differential_diagnosis": [
+        {
+          "disease": "SSSS",
+          "differentiator": "children, staph toxin, negative Nikolsky, no mucosal"
+        },
+        {
+          "disease": "pemphigus_vulgaris",
+          "differentiator": "chronic, no drug trigger, less systemic"
+        },
+        {
+          "disease": "bullous_pemphigoid",
+          "differentiator": "elderly, negative Nikolsky, less mucosal"
+        },
+        {
+          "disease": "acute_GVHD",
+          "differentiator": "transplant history, different timing"
+        }
+      ],
+      "labs": [
+        "skin_biopsy",
+        "CBC",
+        "LFT",
+        "renal",
+        "electrolytes",
+        "blood_culture",
+        "HLA-B*5801 (allopurinol)"
+      ],
+      "prescriptions": {
+        "emergency": [
+          {
+            "special": "HOSPITALIZATION - Burn ICU or specialized unit"
+          },
+          {
+            "special": "Discontinue ALL suspected drugs"
+          },
+          {
+            "special": "Fluid resuscitation (Parkland formula)"
+          },
+          {
+            "special": "Temperature management (heat loss)"
+          },
+          {
+            "special": "Nutritional support (high protein)"
+          },
+          {
+            "special": "Pain management (opioids)"
+          },
+          {
+            "special": "Infection surveillance (no prophylactic antibiotics)"
+          }
+        ],
+        "medical": [
+          {
+            "drug": "Cyclosporine",
+            "drug_cn": "环孢素",
+            "dose": "3mg/kg/day",
+            "special": "Some evidence of benefit",
+            "insurance": "Class_B",
+            "alert": "YELLOW"
+          },
+          {
+            "drug": "IVIG",
+            "drug_cn": "静脉丙种球蛋白",
+            "dose": "0.5-1g/kg/day x3-5 days",
+            "special": "Controversial but commonly used"
+          },
+          {
+            "drug": "Etanercept",
+            "drug_cn": "依那西普",
+            "dose": "50mg SC weekly",
+            "special": "Early use may help"
+          },
+          {
+            "drug": "Infliximab",
+            "drug_cn": "英夫利昔单抗",
+            "dose": "5mg/kg IV",
+            "special": "Single dose, early"
+          }
+        ],
+        "supportive": [
+          {
+            "special": "Ophthalmology: hourly eye care, prevent synechiae"
+          },
+          {
+            "special": "Urology/Gynecology: urethral/catheter care"
+          },
+          {
+            "special": "Dermatology: wound care, silver dressings"
+          },
+          {
+            "special": "Psychology: severe psychological impact"
+          }
+        ]
+      },
+      "follow_up": {
+        "lifelong": "Ophthalmology, dermatology, psychology"
+      },
+      "education": [
+        "Permanent drug allergy alert",
+        "HLA-B*5801 testing for allopurinol (Chinese high risk)",
+        "Avoid all suspect drugs and cross-reactants",
+        "Genetic counseling",
+        "Psychological support",
+        "Scar management"
+      ]
+    }
+  }
+}

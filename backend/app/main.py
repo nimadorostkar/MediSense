@@ -20,8 +20,9 @@ from prometheus_client import CONTENT_TYPE_LATEST, generate_latest
 
 from app.config import settings
 from app.db.base import Base
+from app.db.derm_loader import load_dermatology
 from app.db.seed import seed_episodes
-from app.db.session import SessionLocal, engine, ensure_pgvector
+from app.db.session import SessionLocal, engine, ensure_pgvector, ensure_sqlite_columns
 from app.errors import MediSenseError
 from app.observability.logging import configure_logging, correlation_id, get_logger
 from app.observability.metrics import REQUEST_LATENCY
@@ -51,12 +52,27 @@ async def lifespan(app: FastAPI):
 
     async with SessionLocal() as session:
         await ensure_pgvector(session)
+        # Patch bilingual columns into a pre-existing SQLite dev DB (no-op on a
+        # fresh DB or on Postgres, where Alembic owns the schema).
+        try:
+            added = await ensure_sqlite_columns(session)
+            if added:
+                log.info("startup_migrate", extra={"columns": added})
+        except Exception as exc:  # noqa: BLE001 - never block startup on migration
+            log.warning("migrate_failed", extra={"error": str(exc)})
         try:
             loaded = await seed_episodes(session)
             if loaded:
                 log.info("startup_seed", extra={"episodes": loaded})
         except Exception as exc:  # noqa: BLE001 - never block startup on seed
             log.warning("seed_failed", extra={"error": str(exc)})
+        # Bilingual dermatology KB from the two site-supplied core-data files.
+        try:
+            derm = await load_dermatology(session)
+            if derm:
+                log.info("startup_derm", extra={"episodes": derm})
+        except Exception as exc:  # noqa: BLE001 - never block startup on derm load
+            log.warning("derm_failed", extra={"error": str(exc)})
 
     log.info(
         "startup_complete",

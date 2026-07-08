@@ -33,9 +33,13 @@ def red_flag_conditions() -> set[str]:
     return {c for c, e in _code_maps()["conditions"].items() if e.get("redFlag")}
 
 
-def condition_label(condition: str, lang: str) -> str:
+def condition_label(condition: str, lang: str, zh_override: str | None = None) -> str:
     if lang != "zh":
         return condition
+    # A Chinese label stored on the episode (the DB) wins over the static code
+    # map, so bilingual data loaded at runtime renders without a code-map edit.
+    if zh_override:
+        return zh_override
     entry = _code_maps()["conditions"].get(condition)
     return entry.get("zh", condition) if entry else condition
 
@@ -46,7 +50,9 @@ def drug_label(drug: str, lang: str) -> str:
     return _code_maps()["drugs"].get(drug, drug)
 
 
-def test_label(test: str, lang: str) -> str:
+def test_label(test: str, lang: str, zh_override: str | None = None) -> str:
     if lang != "zh" or not test:
         return test
+    if zh_override:
+        return zh_override
     return _code_maps().get("next_best_test_zh", {}).get(test, test)

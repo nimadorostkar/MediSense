@@ -29,6 +29,10 @@ class RecommendResult:
     monitoring: str = _MONITORING
     best_outcome: float = 0.0
     n_cases: int = 0
+    # Chinese surface drawn from the same episode (DB is the source of truth).
+    condition_zh: str = ""
+    plan_zh: list[str] = field(default_factory=list)
+    medications_zh: list[dict] = field(default_factory=list)
 
 
 async def recommend_treatment(session: AsyncSession, condition: str) -> RecommendResult:
@@ -56,6 +60,9 @@ async def recommend_treatment(session: AsyncSession, condition: str) -> Recommen
     treatment = best.treatment or {}
     plan = list(treatment.get("plan", []))
     meds = [dict(m) for m in treatment.get("medications", [])]
+    treatment_zh = best.treatment_zh or {}
+    plan_zh = list(treatment_zh.get("plan", []))
+    meds_zh = [dict(m) for m in treatment_zh.get("medications", [])]
     n = len(rows)
     mean_outcome = sum(r.outcome for r in rows) / n
 
@@ -71,4 +78,7 @@ async def recommend_treatment(session: AsyncSession, condition: str) -> Recommen
         rationale=rationale,
         best_outcome=best.outcome,
         n_cases=n,
+        condition_zh=best.diagnosis_zh or "",
+        plan_zh=plan_zh,
+        medications_zh=meds_zh,
     )
