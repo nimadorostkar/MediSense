@@ -65,8 +65,10 @@ _FACETS_EN: dict[str, frozenset[str]] = {
     }),
 }
 _FACETS_ZH: dict[str, tuple[str, ...]] = {
-    "treatment": ("剂量", "用量", "处方", "治疗", "用药", "开药", "什么药", "疗程", "方案", "怎么治"),
-    "safety": ("安全", "孕", "妊娠", "哺乳", "禁忌", "副作用", "不良反应", "相互作用", "监测", "风险"),
+    "treatment": ("剂量", "用量", "处方", "治疗", "用药", "开药", "什么药", "疗程",
+                  "方案", "怎么治"),
+    "safety": ("安全", "孕", "妊娠", "哺乳", "禁忌", "副作用", "不良反应", "相互作用",
+               "监测", "风险"),
     "differential": ("为什么", "为何", "鉴别", "区别", "区分", "而不是"),
     "tests": ("检查", "化验", "活检", "确诊", "镜检"),
     "followup": ("随访", "复诊", "复查"),
@@ -74,12 +76,16 @@ _FACETS_ZH: dict[str, tuple[str, ...]] = {
     "findings": ("表现", "体征", "特征", "形态", "皮损特点"),
 }
 
-# Dose-form / filler words that never identify a drug on their own.
+# Dose-form / strength / filler words that never identify a drug on their own
+# (some KB entries are named e.g. "Isotretinoin low dose"), plus every question
+# facet word so "what dose…?" can never token-match a drug by accident.
 _DRUG_FORM_WORDS = frozenset({
     "ointment", "cream", "gel", "capsule", "capsules", "tablet", "tablets",
     "solution", "lotion", "shampoo", "wash", "spray", "foam", "injection",
     "patch", "oral", "topical", "acid", "with", "plus", "sodium", "based",
-})
+    "dose", "doses", "high", "low", "strength", "combined", "combination",
+    "weekly", "daily", "release", "extended",
+}) | frozenset().union(*_FACETS_EN.values())
 # Name tokens too generic to identify a condition even when unique in the KB.
 _NAME_TOKEN_BLACKLIST = frozenset({"ten", "rule", "sign", "drug", "induced"})
 
@@ -319,7 +325,8 @@ def _sec_treatment(c: dict, question: str, lang: str) -> list[str]:
     for p in block.get("plan", [])[:3]:
         lines.append(f"• {p}")
     if block.get("monitoring"):
-        lines.append(f"• 监测：{block['monitoring']}" if zh else f"• Monitoring: {block['monitoring']}")
+        mon = block["monitoring"]
+        lines.append(f"• 监测：{mon}" if zh else f"• Monitoring: {mon}")
     return lines if len(lines) > 1 else []
 
 
@@ -382,7 +389,8 @@ def _sec_followup(c: dict, lang: str) -> list[str]:
     follow = c["follow_zh"] if (zh and c["follow_zh"]) else c["follow_en"]
     if not follow:
         return []
-    head = f"资料文件中「{_name(c, zh)}」的随访：" if zh else f"Follow-up in the files for {_name(c, zh)}:"
+    name = _name(c, zh)
+    head = f"资料文件中「{name}」的随访：" if zh else f"Follow-up in the files for {name}:"
     return [head, *[f"• {str(k).replace('_', ' ')}: {v}" for k, v in list(follow.items())[:4]]]
 
 
