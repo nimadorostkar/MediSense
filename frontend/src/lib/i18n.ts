@@ -31,6 +31,7 @@ export interface Strings {
   // hero
   heroTitle: string;
   heroSub: string;
+  fastAnswer: string;
   inputPh: string;
   chatPh: string;
   cDifferential: string;
@@ -117,6 +118,7 @@ export const STRINGS: Record<Lang, Strings> = {
     deleteChat: "Delete conversation",
     heroTitle: "Your clinical assistant",
     heroSub: "Describe a patient and get a ranked differential — with the reasoning attached.",
+    fastAnswer: "Fast Answer...",
     inputPh: "Describe the patient — symptoms, age, history, vitals…",
     chatPh: "Add more detail, ask a follow-up, or describe the next patient…",
     cDifferential: "Differential",
@@ -195,6 +197,7 @@ export const STRINGS: Record<Lang, Strings> = {
     deleteChat: "删除对话",
     heroTitle: "您的临床智能助手",
     heroSub: "描述患者情况，即可获得带推理依据的鉴别诊断排序。",
+    fastAnswer: "快速解答...",
     inputPh: "描述患者——症状、年龄、病史、生命体征……",
     chatPh: "补充细节、继续追问，或描述下一位患者……",
     cDifferential: "鉴别诊断",
