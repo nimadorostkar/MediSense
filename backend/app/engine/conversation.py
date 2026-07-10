@@ -1,17 +1,17 @@
-"""Conversational language layer (Gemini/Zhipu) over the grounded engine.
+"""Conversational language layer (Gemini/Zhipu) — normal conversation ONLY.
 
-Two entry points, both optional and fail-safe (return None → the deterministic
-templated text stands):
+The AI is deliberately confined to *chatting*. It never recognises a condition,
+never writes or rewrites a differential, dose, or safety flag, and never
+narrates a clinical answer — those are produced entirely by the deterministic
+engine from the KB data files. This module has a single entry point:
 
-- ``narrate`` rewrites the *summary* of a diagnostic reply as a warm, natural,
-  physician-facing explanation — grounded strictly in the differential, workup,
-  and treatment the deterministic engine already computed. It may not add,
-  remove, or re-rank diagnoses, drugs, or doses; those stay owned by the KB and
-  safety layers and are rendered from the structured data untouched.
 - ``chat_reply`` answers a genuine conversational turn (a follow-up like "why is
   it ranked first?", a clarification, a greeting) using the conversation history
-  and the last grounded suggestion as context, so the assistant feels like a
-  real chat while never inventing new clinical facts.
+  and the last grounded suggestion as read-only context, so the assistant feels
+  like a real chat while never inventing or altering any clinical fact.
+
+Both are optional and fail-safe (return None → the deterministic templated text
+stands), so the product works identically with the AI layer switched off.
 """
 
 from __future__ import annotations
@@ -23,17 +23,6 @@ from app.observability.logging import get_logger
 log = get_logger("medisense.conversation")
 
 _LANG_NAME = {"en": "English", "zh": "Simplified Chinese"}
-
-_NARRATE_SYSTEM = (
-    "You are MediSense, an AI clinical decision-support assistant talking to a licensed "
-    "physician. You are given the structured result the deterministic engine already "
-    "produced for a case. Write a brief, natural, collegial explanation of it in {lang} "
-    "(2-4 sentences, no lists, no JSON, no markdown headings). Rules: use ONLY the facts "
-    "provided — never introduce a diagnosis, drug, dose, or test that is not in the data, "
-    "and never change the ranking or probabilities. Lead with the top consideration and "
-    "why, mention the key next step, and if a red flag is present state it first. Always "
-    "keep it as a suggestion the physician confirms; never sound certain or directive."
-)
 
 _CHAT_SYSTEM = (
     "You are MediSense, an AI clinical decision-support assistant for licensed physicians, "
@@ -78,28 +67,6 @@ def _facts(reply: dict) -> str:
         if tx.get("monitoring"):
             lines.append(f"  Monitoring: {tx['monitoring']}")
     return "\n".join(lines) if lines else "No specific findings were matched."
-
-
-async def narrate(reply: dict, lang: str) -> str | None:
-    """Return a natural-language summary grounded in `reply`, or None."""
-    if not settings.chat_configured:
-        return None
-    provider = get_chat_provider()
-    if provider is None:
-        return None
-    system = _NARRATE_SYSTEM.format(lang=_lang(lang))
-    user = (
-        "Structured engine result:\n"
-        f"{_facts(reply)}\n\n"
-        "Write the physician-facing explanation now."
-    )
-    try:
-        text = await provider.reason(system, user, max_tokens=min(settings.llm_max_tokens, 400))
-    except Exception as exc:  # noqa: BLE001 - degrade to templated text
-        log.warning("narrate_failed", extra={"error": str(exc)})
-        return None
-    text = (text or "").strip()
-    return text or None
 
 
 async def chat_reply(messages: list[dict], last_reply: dict | None, lang: str) -> str | None:

@@ -1,9 +1,10 @@
 """Tests for the Gemini/Zhipu conversational layer (engine/conversation.py).
 
 A fake provider stands in for the network so these run offline and deterministic.
-They assert: the layer is off unless a key is configured; when on, the natural-
-language summary is upgraded but the grounded differential/treatment/safety are
-never touched; and a non-diagnostic turn gets a real chat answer.
+They assert: the layer is off unless a key is configured; a clinical answer
+(differential/treatment) is rendered ENTIRELY from the KB and is NEVER touched by
+the AI — even when the AI layer is on; and only a genuine conversational turn
+(greeting/thanks/follow-up question) gets a real AI chat answer.
 """
 
 from __future__ import annotations
@@ -45,27 +46,15 @@ def gemini_on(monkeypatch):
     return fake
 
 
-async def test_narrate_off_without_key():
+async def test_chat_off_without_key():
     # No key configured in the base test env → layer is inert.
     assert not settings.chat_configured
-    assert await conversation.narrate({"differential": [{"condition": "X"}]}, "en") is None
     assert await conversation.chat_reply([{"role": "doctor", "text": "hi"}], None, "en") is None
 
 
-async def test_narrate_returns_grounded_prose(gemini_on):
-    reply = {
-        "redFlag": "",
-        "differential": [
-            {"condition": "Psoriasis", "icd": "L40.9", "probability": 74, "confidence": "High", "because": "silvery scales"}
-        ],
-        "nextBestTest": "CBC",
-        "treatment": {"bestDiagnosis": "Psoriasis", "medications": [{"drug": "Calcipotriol", "dose": "BID"}], "safety": []},
-    }
-    out = await conversation.narrate(reply, "en")
-    assert out == "Fake grounded narration."
-    # The fact sheet handed to the model included the grounded facts.
-    _, _system, user = gemini_on.calls[-1]
-    assert "Psoriasis" in user and "Calcipotriol" in user
+async def test_narrate_no_longer_exists():
+    # The AI must never narrate a clinical answer — the entry point is removed.
+    assert not hasattr(conversation, "narrate")
 
 
 async def test_chat_reply_uses_history(gemini_on):
@@ -76,7 +65,7 @@ async def test_chat_reply_uses_history(gemini_on):
     assert gemini_on.calls[-1][0] == "chat"
 
 
-async def test_clinical_endpoint_narrates_when_on(client, gemini_on):
+async def test_clinical_endpoint_diagnosis_is_kb_only_even_with_ai_on(client, gemini_on):
     r = await client.post(
         "/api/clinical",
         json={
@@ -88,9 +77,11 @@ async def test_clinical_endpoint_narrates_when_on(client, gemini_on):
         },
     )
     reply = json.loads(r.json()["text"])
-    # Summary is the AI narration; the grounded differential is unchanged.
-    assert reply["summary"] == "Fake grounded narration."
-    assert reply["aiChat"] is True
+    # Even with the AI layer ON, a clinical answer is rendered ENTIRELY from the
+    # KB: the summary is NOT the AI text, and the reply is not flagged aiChat.
+    assert reply["summary"] != "Fake grounded narration."
+    assert "Psoriasis".lower() in reply["summary"].lower()
+    assert not reply.get("aiChat")
     assert reply["differential"] and "psoriasis" in reply["differential"][0]["condition"].lower()
     assert reply["requiresPhysicianConfirmation"] is True
 

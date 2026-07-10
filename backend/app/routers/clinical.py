@@ -161,6 +161,9 @@ async def clinical(
     if settings.demo_mode and not settings.llm_configured:
         reply = demo_derm.diagnose(case_text, lang)
 
+    # True when the dermatology KB matcher answered this turn — its output is a
+    # clinical answer and must stand exactly as the KB produced it (never AI).
+    used_kb_derm = reply is not None
     if reply is not None:
         DIFFERENTIAL_LATENCY.observe(time.perf_counter() - start)
         treatment = reply.get("treatment")
@@ -179,35 +182,33 @@ async def clinical(
         reply = orchestrator.to_v1_reply(outcome, lang, treatment)
         SUGGESTIONS.labels(kind="differential", degraded=str(outcome.degraded_mode)).inc()
 
-    # Conversational language layer (optional). The grounded differential,
-    # treatment, and safety flags are NEVER changed here — only the natural-
-    # language narrative is upgraded, and genuine follow-up turns get a real
-    # chat answer. Falls back silently to the templated text when no key is set.
-    if settings.chat_configured:
+    # Conversational language layer (AI) — used ONLY for normal conversation:
+    # a greeting, a thank-you, or a follow-up question about a prior suggestion.
+    # Every clinical answer (differential, treatment, safety, triage, AND the
+    # narrative summary that accompanies them) is rendered verbatim from the
+    # deterministic dermatology knowledge base and is NEVER sent to, or rewritten
+    # by, the AI. This guarantees that recognition and answers are grounded
+    # entirely in the KB data files, not the language model.
+    # A turn is handed to the AI ONLY when it is normal conversation — a greeting,
+    # a thank-you, or a follow-up/clarifying question (a turn with no lesion
+    # description). A described clinical case answered by the dermatology KB is
+    # never sent to the AI; its differential, treatment, safety, and summary are
+    # rendered verbatim from the KB data files. This is the guarantee that
+    # recognition and answers are grounded entirely in the files, not the model.
+    conversational = not used_kb_derm and _is_followup(last_turn)
+    if settings.chat_configured and conversational:
         history_msgs = [
             {"role": m.role, "text": m.text or ""}
             for m in (req.messages or [])
             if (m.text or "").strip()
         ] or [{"role": "doctor", "text": case_text}]
-        # A follow-up question answers conversationally (the freshly-computed
-        # grounded reply is passed only as context, so doses/safety are accurate)
-        # and renders as a chat bubble rather than re-showing the differential.
-        followup = len(history_msgs) > 1 and _is_followup(last_turn)
         try:
-            if followup:
-                chatted = await conversation.chat_reply(history_msgs, reply, lang)
-                if chatted:
-                    reply = _chat_only_reply(chatted, reply)
-            elif reply.get("differential"):
-                narrated = await conversation.narrate(reply, lang)
-                if narrated:
-                    reply["summary"] = narrated
-                    reply["aiChat"] = True
-            else:
-                chatted = await conversation.chat_reply(history_msgs, reply, lang)
-                if chatted:
-                    reply["summary"] = chatted
-                    reply["aiChat"] = True
+            # The freshly-computed grounded reply is passed only as read-only
+            # context; the AI never alters any clinical fact. The turn renders as a
+            # chat bubble (no diagnosis card).
+            chatted = await conversation.chat_reply(history_msgs, reply, lang)
+            if chatted:
+                reply = _chat_only_reply(chatted, reply)
         except Exception as exc:  # noqa: BLE001 - conversation is best-effort
             log.warning("conversation_failed", extra={"error": str(exc)})
 
