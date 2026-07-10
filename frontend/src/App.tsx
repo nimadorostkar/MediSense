@@ -12,6 +12,7 @@ import {
 } from "./lib/api";
 import { useChats } from "./hooks/useChats";
 import { useSpeech } from "./hooks/useSpeech";
+import { useQuickLook } from "./hooks/useQuickLook";
 import Header from "./components/Header";
 import Sidebar from "./components/Sidebar";
 import Composer from "./components/Composer";
@@ -56,6 +57,8 @@ export default function App() {
 
   const { chats, activeId, setActiveId, upsert, updateMessages, remove } = useChats();
   const { recording, supported: micSupported, toggle } = useSpeech(lang, (v) => setDraft(v));
+  // Live, file-grounded reading of the case while it is typed on the hero screen.
+  const { preview, loading: previewLoading } = useQuickLook(draft, lang, !started);
 
   async function send() {
     const text = draft.trim();
@@ -173,6 +176,8 @@ export default function App() {
                   micSupported={micSupported}
                   onMic={() => toggle(draft)}
                   chips={chips}
+                  preview={preview}
+                  previewLoading={previewLoading}
                 />
               ) : (
                 <div className="mx-auto flex min-h-0 w-full max-w-[760px] flex-1 flex-col">

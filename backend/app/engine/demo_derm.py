@@ -590,6 +590,65 @@ def _band(share: float, coverage: float, distinctive: int, pinned: bool) -> str:
     return "Low"
 
 
+def preview(text: str, lang: str = "en") -> dict:
+    """Real-time, file-grounded reading of a *partial* case as it's typed.
+
+    Returns up to a few recognised clinical KEYWORDS (verbatim key-finding
+    phrases from the dermatology files that the typed words support) and up to
+    three candidate CONDITIONS from the same files. Everything is deterministic
+    and copied from the data files — no AI, no persistence, no prescription, and
+    a condition is only named once the input carries a distinctive (non-generic)
+    feature, so a bare "red itchy" never guesses a diagnosis.
+
+    Shape: ``{"keywords": [str], "diagnoses": [{"condition","icd","probability"}]}``.
+    """
+    empty: dict = {"keywords": [], "diagnoses": []}
+    if not settings.demo_mode:
+        return empty
+    if not _tokenize(text):
+        return empty
+
+    qtokens = _expand_tokens(text)
+    conditions, idf, anchors = _index()
+    if not (qtokens & anchors):
+        return empty  # nothing dermatological recognised yet
+
+    negated = _negated_tokens(text)
+    scored = [r for r in (_score(c, qtokens, negated, idf) for c in conditions) if r["score"] > 0]
+    if not scored:
+        return empty
+    scored.sort(key=lambda r: r["score"], reverse=True)
+
+    top = scored[0]
+    zh = lang == "zh"
+
+    # KEYWORDS: the leading candidate's own defining findings that the typed
+    # text supports — verbatim file phrases, readable in either language.
+    keywords = _matched_findings(top, lang)
+
+    # DIAGNOSES: name conditions only on real diagnostic signal — a distinctive
+    # (rare) term or a covered defining finding, never colour/symptom alone.
+    diagnoses: list[dict] = []
+    meaningful = any(
+        idf.get(t, 1.0) >= _MEANINGFUL_IDF and t not in _NONSPECIFIC for t in top["matched"]
+    )
+    if meaningful and top["covered_findings"]:
+        total = sum(r["score"] for r in scored[:4]) or 1.0
+        for r in scored[:3]:
+            if not (r["distinctive_hits"] or r["covered_findings"]):
+                continue
+            cond = r["cond"]
+            diagnoses.append(
+                {
+                    "condition": cond["name_zh"] if zh else cond["name_en"],
+                    "icd": cond["icd"],
+                    "probability": min(round(r["score"] / total * 100, 1), 95.0),
+                }
+            )
+
+    return {"keywords": keywords[:5], "diagnoses": diagnoses}
+
+
 def diagnose(text: str, lang: str = "en") -> dict | None:
     """Return a v1 DiagnosisReply dict for a dermatological case, else None.
 

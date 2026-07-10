@@ -32,6 +32,11 @@ export interface Strings {
   heroTitle: string;
   heroSub: string;
   fastAnswer: string;
+  liveReading: string;
+  liveRecognized: string;
+  livePossible: string;
+  liveHint: string;
+  liveListening: string;
   inputPh: string;
   chatPh: string;
   cDifferential: string;
@@ -119,6 +124,11 @@ export const STRINGS: Record<Lang, Strings> = {
     heroTitle: "Your clinical assistant",
     heroSub: "Describe a patient and get a ranked differential — with the reasoning attached.",
     fastAnswer: "Fast Answer...",
+    liveReading: "Reading as you type…",
+    liveRecognized: "Recognized",
+    livePossible: "Possible",
+    liveHint: "Live match from the uploaded files — press send for the full assessment.",
+    liveListening: "Listening for clinical features…",
     inputPh: "Describe the patient — symptoms, age, history, vitals…",
     chatPh: "Add more detail, ask a follow-up, or describe the next patient…",
     cDifferential: "Differential",
@@ -198,6 +208,11 @@ export const STRINGS: Record<Lang, Strings> = {
     heroTitle: "您的临床智能助手",
     heroSub: "描述患者情况，即可获得带推理依据的鉴别诊断排序。",
     fastAnswer: "快速解答...",
+    liveReading: "正在实时解读……",
+    liveRecognized: "已识别",
+    livePossible: "可能考虑",
+    liveHint: "基于已上传资料文件的实时匹配——点击发送获取完整评估。",
+    liveListening: "正在识别临床特征……",
     inputPh: "描述患者——症状、年龄、病史、生命体征……",
     chatPh: "补充细节、继续追问，或描述下一位患者……",
     cDifferential: "鉴别诊断",

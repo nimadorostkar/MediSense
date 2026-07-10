@@ -245,6 +245,56 @@ def test_zh_drug_question_has_no_duplicate_entries():
     assert out.count("甲氨蝶呤片（用于银屑病") <= 1
 
 
+def test_quicklook_preview_is_file_grounded():
+    # A distinctive presentation names a condition and lists file keywords.
+    out = demo_derm.preview("silvery scaly plaque on the elbow", "en")
+    assert out["diagnoses"], "a distinctive case should surface candidate conditions"
+    assert out["diagnoses"][0]["condition"] == "Psoriasis"
+    assert out["diagnoses"][0]["icd"] == "L40.9"
+    assert 0 < out["diagnoses"][0]["probability"] <= 95
+    # Keywords are verbatim key-finding phrases from the KB file.
+    assert any("scale" in k.lower() for k in out["keywords"])
+
+
+def test_quicklook_generic_input_names_no_diagnosis():
+    # Colour + symptom alone must NOT guess a condition (esp. a cancer).
+    out = demo_derm.preview("red itchy", "en")
+    assert out["diagnoses"] == []
+
+
+def test_quicklook_empty_and_nonclinical():
+    assert demo_derm.preview("", "en") == {"keywords": [], "diagnoses": []}
+    assert demo_derm.preview("hello there", "en") == {"keywords": [], "diagnoses": []}
+
+
+def test_quicklook_zh_preview():
+    out = demo_derm.preview("银白色鳞屑斑块", "zh")
+    assert out["diagnoses"] and out["diagnoses"][0]["condition"] == "银屑病"
+
+
+@pytest.mark.asyncio
+async def test_quicklook_endpoint(client):
+    r = await client.post(
+        "/api/quicklook",
+        json={"text": "comedones and pustules on the face", "lang": "en"},
+    )
+    assert r.status_code == 200
+    body = r.json()
+    assert body["diagnoses"][0]["condition"] == "Acne Vulgaris"
+    assert body["keywords"]
+
+
+@pytest.mark.asyncio
+async def test_quicklook_endpoint_never_persists_or_prescribes(client):
+    # The preview must not create a suggestion row or return a treatment plan.
+    r = await client.post(
+        "/api/quicklook", json={"text": "silvery scaly plaque", "lang": "en"}
+    )
+    body = r.json()
+    assert "treatment" not in body
+    assert set(body.keys()) == {"keywords", "diagnoses"}
+
+
 @pytest.mark.asyncio
 async def test_prescriptive_followup_keeps_safety_screened_card(client):
     r = await client.post(

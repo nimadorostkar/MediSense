@@ -99,6 +99,49 @@ export async function getHealth(): Promise<Health | null> {
   }
 }
 
+// ── Live "quick look" preview (deterministic, file-grounded) ─────────────────
+// As the physician types, the backend matches the partial text against the
+// uploaded knowledge files and returns recognised keywords + candidate
+// conditions. No AI, no persistence — a reading aid, replaced by the full
+// grounded answer on submit.
+export interface QuickLookDx {
+  condition: string;
+  icd: string;
+  probability: number; // 0–100
+}
+export interface QuickLook {
+  keywords: string[];
+  diagnoses: QuickLookDx[];
+}
+
+const QUICKLOOK_URL = `${API_BASE}/quicklook`;
+
+export async function quickLook(
+  text: string,
+  lang: Lang,
+  signal?: AbortSignal
+): Promise<QuickLook> {
+  const empty: QuickLook = { keywords: [], diagnoses: [] };
+  if (!text.trim()) return empty;
+  try {
+    const res = await fetch(QUICKLOOK_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json", ...authHeaders() },
+      body: JSON.stringify({ text, lang }),
+      signal,
+    });
+    if (!res.ok) return empty;
+    const data = (await res.json()) as QuickLook;
+    return {
+      keywords: Array.isArray(data.keywords) ? data.keywords : [],
+      diagnoses: Array.isArray(data.diagnoses) ? data.diagnoses : [],
+    };
+  } catch {
+    // Aborted (superseded keystroke) or offline → no preview, never throws.
+    return empty;
+  }
+}
+
 export function buildPrompt(history: Message[], lang: Lang): string {
   const convo = history
     .map((m) =>

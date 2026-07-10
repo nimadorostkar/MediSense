@@ -22,7 +22,13 @@ from app.engine.enrich import enrich, parse_allergies, parse_medications
 from app.models import Suggestion
 from app.observability.logging import get_logger
 from app.observability.metrics import DIFFERENTIAL_LATENCY, SUGGESTIONS
-from app.schemas import ClinicalRequest, ClinicalResponse, HealthResponse
+from app.schemas import (
+    ClinicalRequest,
+    ClinicalResponse,
+    HealthResponse,
+    QuickLookRequest,
+    QuickLookResponse,
+)
 from app.security.audit import record_event
 
 router = APIRouter(tags=["chat"])
@@ -171,6 +177,26 @@ async def health(session: SessionDep) -> HealthResponse:
         demoMode=settings.demo_mode and not settings.llm_configured,
         aiChat=settings.chat_configured,
         aiProvider=chat_provider_name(),
+    )
+
+
+@router.post("/api/quicklook", response_model=QuickLookResponse)
+async def quicklook(req: QuickLookRequest) -> QuickLookResponse:
+    """Live, file-grounded reading of the case as it is typed.
+
+    Pure and deterministic: it matches the partial text against the uploaded
+    dermatology files and returns recognised keywords + candidate conditions.
+    It never calls an AI model, never persists, and never prescribes — it is a
+    reading aid, not a decision. The full answer is produced only on submit via
+    ``/api/clinical``."""
+    try:
+        result = demo_derm.preview((req.text or "").strip(), req.lang or "en")
+    except Exception as exc:  # noqa: BLE001 - preview must never break typing
+        log.warning("quicklook_failed", extra={"error": str(exc)})
+        result = {"keywords": [], "diagnoses": []}
+    return QuickLookResponse(
+        keywords=result.get("keywords", []),
+        diagnoses=result.get("diagnoses", []),
     )
 
 

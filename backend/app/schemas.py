@@ -99,6 +99,26 @@ class DiagnosisReply(CamelModel):
     ood: bool = False
 
 
+class QuickLookRequest(BaseModel):
+    """Partial, in-progress case text for the live 'quick look' preview."""
+
+    text: str = ""
+    lang: Lang = "en"
+
+
+class QuickLookItem(CamelModel):
+    condition: str
+    icd: str = ""
+    probability: float  # 0–100
+
+
+class QuickLookResponse(CamelModel):
+    """Deterministic, file-grounded reading of what has been typed so far."""
+
+    keywords: list[str] = Field(default_factory=list)
+    diagnoses: list[QuickLookItem] = Field(default_factory=list)
+
+
 class HealthResponse(BaseModel):
     ok: bool
     episodes: int
