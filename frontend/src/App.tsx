@@ -17,6 +17,7 @@ import Sidebar from "./components/Sidebar";
 import Composer from "./components/Composer";
 import MessageList from "./components/MessageList";
 import LoginModal from "./components/LoginModal";
+import ProfileModal from "./components/ProfileModal";
 import HeroInput, { type Chip } from "./components/HeroInput";
 
 const SAMPLES = {
@@ -38,6 +39,7 @@ export default function App() {
   const [started, setStarted] = useState(false);
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [showLogin, setShowLogin] = useState(false);
+  const [showProfile, setShowProfile] = useState(false);
   const [user, setUser] = useState<AuthUser | null>(() => getUser());
   const [demoMode, setDemoMode] = useState(false);
   const [aiChat, setAiChat] = useState(false);
@@ -128,6 +130,7 @@ export default function App() {
             clearSession();
             setUser(null);
           }}
+          onProfile={() => setShowProfile(true)}
           onHome={newChat}
         />
 
@@ -198,6 +201,9 @@ export default function App() {
 
       {showLogin && (
         <LoginModal t={t} onClose={() => setShowLogin(false)} onAuthed={setUser} />
+      )}
+      {showProfile && user && (
+        <ProfileModal t={t} user={user} onClose={() => setShowProfile(false)} />
       )}
     </div>
   );

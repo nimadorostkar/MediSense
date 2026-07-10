@@ -9,6 +9,9 @@ export interface Strings {
   pricing: string;
   signIn: string;
   signOut: string;
+  profile: string;
+  logout: string;
+  menu: string;
   signingIn: string;
   errAuth: string;
   engineError: string;
@@ -59,6 +62,7 @@ export interface Strings {
   send: string;
   // login
   emailLabel: string;
+  roleLabel: string;
   passwordLabel: string;
   emailPh: string;
   loginTitleIn: string;
@@ -90,6 +94,9 @@ export const STRINGS: Record<Lang, Strings> = {
     pricing: "Pricing",
     signIn: "Sign in",
     signOut: "Sign out",
+    profile: "Profile",
+    logout: "Logout",
+    menu: "Menu",
     signingIn: "Signing in…",
     errAuth: "Sign-in failed. Check your credentials and that the backend is running.",
     engineError:
@@ -138,6 +145,7 @@ export const STRINGS: Record<Lang, Strings> = {
     micStop: "Stop recording",
     send: "Send",
     emailLabel: "Email",
+    roleLabel: "Role",
     passwordLabel: "Password",
     emailPh: "you@hospital.org",
     loginTitleIn: "Welcome back",
@@ -166,6 +174,9 @@ export const STRINGS: Record<Lang, Strings> = {
     pricing: "定价",
     signIn: "登录",
     signOut: "退出",
+    profile: "个人资料",
+    logout: "退出登录",
+    menu: "菜单",
     signingIn: "正在登录…",
     errAuth: "登录失败。请检查凭据并确认后端正在运行。",
     engineError: "无法连接 MediSense 引擎。未显示任何结果——请检查连接后重试。",
@@ -211,6 +222,7 @@ export const STRINGS: Record<Lang, Strings> = {
     micStop: "停止录音",
     send: "发送",
     emailLabel: "邮箱",
+    roleLabel: "角色",
     passwordLabel: "密码",
     emailPh: "you@hospital.org",
     loginTitleIn: "欢迎回来",
