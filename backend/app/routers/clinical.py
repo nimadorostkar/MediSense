@@ -58,15 +58,24 @@ _FOLLOWUP_ZH = ("为什么", "为何", "吗", "呢", "什么", "如何", "怎么
 
 # Small talk — the ONLY turns ever handed to the AI, and even then the AI is
 # instructed to speak strictly from file-derived context. A turn qualifies only
-# when every word is social filler (greeting/thanks/acknowledgement).
-_SMALLTALK_WORDS = frozenset({
-    "hi", "hello", "hey", "thanks", "thank", "you", "ok", "okay", "great",
-    "cool", "bye", "goodbye", "morning", "afternoon", "evening", "good",
-    "please", "much", "so", "very", "appreciate", "appreciated", "awesome",
-    "nice", "perfect", "got", "it", "yes", "sure", "welcome", "there", "doc",
+# when it is PURE social conversation: it contains no question of any kind, at
+# least one core greeting/thanks word, and nothing beyond the closed word lists
+# below. "ok doc, you sure?" or "你好，会传染吗？" are clinical questions, not
+# small talk — they are answered from the uploaded files (or told the answer is
+# not in them), never by the AI.
+_SMALLTALK_CORE = frozenset({
+    "hi", "hello", "hey", "thanks", "thank", "bye", "goodbye", "morning",
+    "afternoon", "evening", "ok", "okay", "great", "cool", "nice", "perfect",
+    "awesome", "appreciate", "appreciated", "welcome", "helpful",
 })
+_SMALLTALK_FILLER = frozenset({
+    "you", "good", "please", "much", "so", "very", "doc", "doctor", "a",
+    "lot", "all", "that", "was", "got", "it",
+})
+_SMALLTALK_WORDS = _SMALLTALK_CORE | _SMALLTALK_FILLER
 _SMALLTALK_ZH = ("你好", "您好", "谢谢", "多谢", "感谢", "再见", "好的", "哈喽", "早上好",
                  "下午好", "晚上好", "辛苦了")
+_ZH_PUNCT_RE = re.compile(r"[\s，。！!,.；;、…~～]+")
 
 _NOT_IN_FILES = {
     "en": "That information is not in the uploaded files, so I can't answer it here. "
@@ -87,10 +96,24 @@ def _is_smalltalk(text: str) -> bool:
     t = (text or "").strip()
     if not t:
         return False
-    if any(p in t for p in _SMALLTALK_ZH) and len(t) <= 10:
-        return True
+    # A question is never small talk, whatever else the turn contains.
+    if any(q in t for q in ("?", "？", "吗", "呢")):
+        return False
+    if any(p in t for p in _SMALLTALK_ZH):
+        # Chinese: the WHOLE turn must be consumed by greeting/thanks phrases
+        # and punctuation. Any residue ("你好，会传染…") is a real question that
+        # must be answered from the files, so it is not small talk.
+        rest = t
+        for p in _SMALLTALK_ZH:
+            rest = rest.replace(p, "")
+        return not _ZH_PUNCT_RE.sub("", rest).strip()
     words = re.findall(r"[a-z']+", t.lower())
-    return bool(words) and len(words) <= 8 and all(w in _SMALLTALK_WORDS for w in words)
+    return (
+        bool(words)
+        and len(words) <= 8
+        and all(w in _SMALLTALK_WORDS for w in words)
+        and any(w in _SMALLTALK_CORE for w in words)
+    )
 
 
 def _is_followup(last_turn: str) -> bool:
@@ -199,8 +222,9 @@ async def clinical(
 
     start = time.perf_counter()
 
-    # Demo mode: when the LLM reasoner is offline, a clearly-dermatological case
-    # is answered by the deterministic KB matcher (differential + first-line Rx).
+    # A clearly-dermatological case is answered by the deterministic KB matcher
+    # over the uploaded dermatology files (differential + first-line Rx). No
+    # configuration can divert it to a model (`llm_configured` is pinned False).
     # Non-skin cases return None here and fall through to the general engine.
     reply = None
     if settings.demo_mode and not settings.llm_configured:
@@ -246,7 +270,12 @@ async def clinical(
     # ``_is_followup`` is False when ≥2 morphology cues are present, so a newly
     # described case is never diverted away from its diagnosis card.
     followup = _is_followup(last_turn) and (len(history_msgs) > 1 or not used_kb_derm)
-    if followup:
+    if followup and reply.get("treatment") and orchestrator.is_prescriptive(last_turn):
+        # A prescriptive follow-up already carries the full treatment card built
+        # from the files, including its safety flags — the card always beats a
+        # prose rendering of the same data (which would drop the flags).
+        pass
+    elif followup:
         lang_key = "zh" if lang == "zh" else "en"
         grounded = None
         try:
@@ -277,16 +306,19 @@ async def clinical(
             reply = _chat_only_reply(_NOT_IN_FILES[lang_key], reply)
 
     # Persist the suggestion + audit the view (best-effort; never breaks the reply).
+    # `kind`/versions describe the FINAL reply — a follow-up turn may have
+    # replaced the treatment card computed above with a chat bubble.
+    persisted_treatment = reply.get("treatment")
     degraded = bool(reply.get("degradedMode")) if outcome is None else outcome.degraded_mode
     try:
         actor = user.name if user else "anonymous"
         role = user.role if user else None
         suggestion = Suggestion(
-            kind="treatment" if treatment else "differential",
+            kind="treatment" if persisted_treatment else "differential",
             payload=reply,
             model_version=reply.get("modelVersion", settings.model_version),
             ruleset_version=settings.ruleset_version,
-            drugref_version=settings.drugref_version if treatment else None,
+            drugref_version=settings.drugref_version if persisted_treatment else None,
             degraded=degraded,
         )
         session.add(suggestion)

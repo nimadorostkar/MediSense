@@ -3,11 +3,13 @@
 Runs the safety contract in order and never reorders it:
 
     enrich → retrieve → classify → calibrate → apply_rules (LAST) → rank/explain
-    → [optional] llm_reason  ;  treatment: recommend → safety_screen (hard veto)
+    ;  treatment: recommend → safety_screen (hard veto)
 
-Stamps every output with model/rule/drugref versions and
-`requiresPhysicianConfirmation`. Degrades gracefully: a downed classifier or
-reasoner yields a labelled, reduced answer — never a blank screen, and hard
+Every stage is deterministic over the uploaded data files — the former optional
+LLM summary-refinement step is retired so no model-generated text can ever
+appear in a clinical answer. Stamps every output with model/rule/drugref
+versions and `requiresPhysicianConfirmation`. Degrades gracefully: a downed
+classifier yields a labelled, reduced answer — never a blank screen, and hard
 safety blocks still hold (spec §7).
 """
 
@@ -25,7 +27,6 @@ from app.engine.classify import Candidate, classify
 from app.engine.embeddings import embed_text
 from app.engine.labels import condition_label, drug_label, icd_for, test_label
 from app.engine.ood import detect_ood
-from app.engine.reasoner import llm_reason
 from app.engine.recommend import recommend_treatment
 from app.engine.rules import apply_rules
 from app.engine.vector_index import Neighbor, retrieve
@@ -48,7 +49,6 @@ class DifferentialOutcome:
     ood_reason: str = ""
     degraded_mode: bool = False
     degraded_components: list[str] = field(default_factory=list)
-    refined_summary: str | None = None
     neighbors: list[Neighbor] = field(default_factory=list)
 
 
@@ -102,7 +102,6 @@ async def diagnose(
     patient: dict,
     *,
     classifier_online: bool = True,
-    enable_reasoner: bool | None = None,
 ) -> DifferentialOutcome:
     text = patient.get("text", "").strip()
     if len(text.split()) < _MIN_TOKENS:
@@ -127,7 +126,9 @@ async def diagnose(
     # ood
     ood_result = detect_ood(neighbors)
 
-    outcome = DifferentialOutcome(
+    # The former optional LLM summary refinement is retired: the summary is
+    # always the deterministic text derived from the uploaded files.
+    return DifferentialOutcome(
         candidates=rules_result.candidates,
         red_flags=rules_result.red_flags,
         banner=rules_result.banner,
@@ -137,20 +138,6 @@ async def diagnose(
         degraded_components=degraded_components,
         neighbors=neighbors,
     )
-
-    # optional grounded reasoning (re-vetoed by rules, which already ran)
-    use_reasoner = settings.llm_configured if enable_reasoner is None else enable_reasoner
-    if use_reasoner and outcome.candidates:
-        base_summary = _summary_text(outcome, patient.get("lang", "en"))
-        refined = await llm_reason(
-            base_summary, outcome.candidates, neighbors, patient.get("lang", "en")
-        )
-        outcome.refined_summary = refined
-        if refined is None and settings.llm_reasoning:
-            outcome.degraded_components.append("reasoner")
-            outcome.degraded_mode = True
-
-    return outcome
 
 
 def _summary_text(outcome: DifferentialOutcome, lang: str) -> str:
@@ -301,7 +288,7 @@ async def build_treatment(
 
 def to_v1_reply(outcome: DifferentialOutcome, lang: str, treatment: dict | None) -> dict:
     """Assemble the exact v1 chat contract (probability 0–100)."""
-    summary = outcome.refined_summary or _summary_text(outcome, lang)
+    summary = _summary_text(outcome, lang)
     items = []
     for c in outcome.candidates[:4]:
         band = band_for(c.probability, c.pinned_watch)

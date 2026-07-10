@@ -84,10 +84,31 @@ _DRUG_FORM_WORDS = frozenset({
     "solution", "lotion", "shampoo", "wash", "spray", "foam", "injection",
     "patch", "oral", "topical", "acid", "with", "plus", "sodium", "based",
     "dose", "doses", "high", "low", "strength", "combined", "combination",
-    "weekly", "daily", "release", "extended",
+    "weekly", "daily", "release", "extended", "soluble",
 }) | frozenset().union(*_FACETS_EN.values())
-# Name tokens too generic to identify a condition even when unique in the KB.
-_NAME_TOKEN_BLACKLIST = frozenset({"ten", "rule", "sign", "drug", "induced"})
+# Name tokens too generic to identify a condition even when unique in the KB
+# ("fixed"/"contact" are ordinary English words — only the full phrases
+# "fixed drug eruption" / "contact dermatitis" may name those conditions).
+_NAME_TOKEN_BLACKLIST = frozenset({
+    "ten", "rule", "sign", "drug", "induced", "fixed", "contact",
+})
+
+# Alternate / colloquial names for conditions that ARE in the uploaded files.
+# These only map a surface form to the KB slug — the answer content itself
+# still comes exclusively from the file entry for that condition.
+_SYNONYM_PHRASES: tuple[tuple[str, str], ...] = (
+    ("stevens-johnson", "sjs_ten"),
+    ("stevens johnson", "sjs_ten"),
+    ("toxic epidermal necrolysis", "sjs_ten"),
+    ("eczema", "atopic_dermatitis"),
+    ("牛皮癣", "psoriasis"),
+    ("湿疹", "atopic_dermatitis"),
+    ("痤疮", "acne_vulgaris"),
+)
+
+
+def _is_cjk(s: str) -> bool:
+    return any("一" <= ch <= "鿿" for ch in s)
 
 
 def _q_tokens(question: str) -> frozenset[str]:
@@ -130,30 +151,54 @@ def _condition_aliases() -> list[dict]:
     return out
 
 
-def _named_conditions(question: str) -> list[dict]:
-    """KB conditions explicitly named in the question, in order of appearance."""
-    q_low = question.lower()
-    toks = _q_tokens(question)
-    hits: list[tuple[int, dict]] = []
+@lru_cache
+def _condition_surfaces() -> list[tuple[str, str, bool]]:
+    """(surface, slug, is_cjk) for every name/slug/synonym, longest first."""
+    surfaces: list[tuple[str, str, bool]] = []
     for a in _condition_aliases():
-        pos: int | None = None
+        slug = a["cond"]["slug"]
         for phrase in a["phrases"]:
-            i = q_low.find(phrase)
-            if i >= 0:
-                pos = i if pos is None else min(pos, i)
+            surfaces.append((phrase, slug, False))
         for zh in a["zh_names"]:
-            i = question.find(zh)
-            if i >= 0:
-                pos = i if pos is None else min(pos, i)
-        if pos is None:
-            for t in a["tokens"]:
-                if t in toks:
-                    i = q_low.find(t)
-                    pos = i if pos is None else min(pos, i)
-        if pos is not None:
-            hits.append((pos, a["cond"]))
-    hits.sort(key=lambda h: h[0])
-    return [c for _, c in hits]
+            surfaces.append((zh, slug, True))
+    surfaces += [(p, slug, _is_cjk(p)) for p, slug in _SYNONYM_PHRASES]
+    surfaces.sort(key=lambda s: len(s[0]), reverse=True)
+    return surfaces
+
+
+def _named_conditions(question: str) -> list[dict]:
+    """KB conditions explicitly named in the question, in order of appearance.
+
+    Surfaces are matched longest first and each match is blanked out of the
+    question, so a longer name or colloquialism (牛皮癣 = psoriasis, 玫瑰痤疮,
+    "contact dermatitis") always wins over a shorter surface it contains
+    (癣 = tinea, 痤疮, "contact")."""
+    by_slug = {a["cond"]["slug"]: a["cond"] for a in _condition_aliases()}
+    q_low = question.lower()
+    hits: dict[str, int] = {}
+    for surface, slug, cjk in _condition_surfaces():
+        i = (question if cjk else q_low).find(surface)
+        if i < 0:
+            continue
+        # A synonym for a condition no longer in the files records no hit, but
+        # its span is still blanked so it cannot mismatch a shorter surface.
+        if slug in by_slug and (slug not in hits or i < hits[slug]):
+            hits[slug] = i
+        blank = " " * len(surface)
+        question = question[:i] + blank + question[i + len(surface):]
+        q_low = q_low[:i] + blank + q_low[i + len(surface):]
+    # Unique single-token fallback ("psoriasis", "sjs") on the residue.
+    toks = frozenset(_WORD_RE.findall(q_low))
+    for a in _condition_aliases():
+        slug = a["cond"]["slug"]
+        if slug in hits:
+            continue
+        for t in a["tokens"]:
+            if t in toks:
+                i = q_low.find(t)
+                if slug not in hits or i < hits[slug]:
+                    hits[slug] = i
+    return [by_slug[slug] for slug, _ in sorted(hits.items(), key=lambda kv: kv[1])]
 
 
 def _condition_from_reply(last_reply: dict | None) -> dict | None:
@@ -201,25 +246,36 @@ def _drug_index() -> tuple[dict[str, list], list[tuple[str, dict]]]:
     return by_token, zh_names
 
 
+def _entry_names(e: dict) -> frozenset[str]:
+    """Every name surface of a prescription entry — EN and CN files store the
+    same drug in parallel entries, so dedup must key on ALL of its names."""
+    return frozenset(
+        s for s in (e.get("drug"), e.get("drug_cn"), e.get("药品"), e.get("英文名")) if s
+    )
+
+
 def _named_drugs(question: str) -> list[dict]:
     """Prescription entries whose drug name appears in the question."""
     by_token, zh_names = _drug_index()
     toks = _q_tokens(question)
     matches: list[dict] = []
-    seen: set[tuple[str, str]] = set()
+    seen: set[str] = set()
+
+    def add(m: dict) -> None:
+        # Dedup the EN/CN parallel entries of one condition (same drug, same
+        # condition), but keep the same drug under DIFFERENT conditions — the
+        # dosing differs and answer() sorts the discussed condition first.
+        keys = {f"{m['cond']['slug']}:{n}" for n in _entry_names(m["entry"])}
+        if keys and not (keys & seen):
+            seen.update(keys)
+            matches.append(m)
+
     for t in toks:
         for m in by_token.get(t, []):
-            key = (m["entry"].get("drug", ""), m["entry"].get("dose", ""))
-            if key not in seen:
-                seen.add(key)
-                matches.append(m)
+            add(m)
     for zh_drug, m in zh_names:
         if zh_drug in question:
-            e = m["entry"]
-            key = (e.get("drug") or e.get("药品") or "", e.get("dose") or e.get("用法") or "")
-            if key not in seen:
-                seen.add(key)
-                matches.append(m)
+            add(m)
     return matches
 
 
@@ -237,7 +293,7 @@ def _render_drug(match: dict, zh: bool) -> list[str]:
     monitor = e.get("monitor") or e.get("监测") or ""
     special = e.get("special") or e.get("特殊说明") or ""
     contra = e.get("contra") or e.get("禁忌") or []
-    alert = (e.get("alert") or "").upper()
+    alert = demo_derm._alert_level(e)
     tier = match["tier"].replace("_", " ")
     cname = _name(c, zh)
     lines = [f"{drug}（用于{cname}，{tier}）：" if zh else f"{drug} (for {cname}, {tier}):"]
@@ -447,8 +503,15 @@ def _drugref_lines(question: str, lang: str) -> list[str]:
     zh = lang == "zh"
     lines: list[str] = []
     for key, info in (ref.get("drugs") or {}).items():
-        key_toks = {t for t in _WORD_RE.findall(key.lower()) if len(t) >= 4}
-        if not key_toks or not key_toks <= toks:
+        # Any distinctive token of the reference key may name the drug — keys
+        # like "insulin (soluble)" or "piperacillin-tazobactam" must match a
+        # question naming just "insulin" / "piperacillin". Form/salt words
+        # ("sodium", "soluble") are never distinctive on their own.
+        key_toks = {
+            t for t in _WORD_RE.findall(key.lower())
+            if len(t) >= 4 and t not in _DRUG_FORM_WORDS
+        }
+        if not key_toks or not (key_toks & toks):
             continue
         bits: list[str] = []
         classes = info.get("classes") or []

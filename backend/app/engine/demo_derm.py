@@ -357,11 +357,19 @@ def _negated_tokens(text: str) -> set[str]:
     return out
 
 
+# CJK is tokenized per character, so Chinese severity words are matched as
+# substrings of the raw text instead.
+_SEVERE_ZH = ("重度", "严重", "泛发", "全身")
+_MODERATE_ZH = ("中度",)
+
+
 def _severity(text: str) -> str:
+    if any(w in text for w in _SEVERE_ZH):
+        return "severe"
     toks = set(_tokenize(text))
     if toks & _SEVERE_WORDS:
         return "severe"
-    if toks & _MODERATE_WORDS:
+    if any(w in text for w in _MODERATE_ZH) or toks & _MODERATE_WORDS:
         return "moderate"
     return "mild"
 
@@ -427,11 +435,21 @@ def _differentiators(cond: dict, lang: str, limit: int = 2) -> list[str]:
     return out
 
 
+# The CN data file stores the alert under 警示 with Chinese colour values.
+_ALERT_ZH = {"红色": "RED", "黄色": "YELLOW", "绿色": "GREEN"}
+
+
+def _alert_level(entry: dict) -> str:
+    """Normalised RED/YELLOW/GREEN alert from an EN (`alert`) or CN (`警示`) entry."""
+    raw = (entry.get("alert") or "").upper()
+    return raw or _ALERT_ZH.get((entry.get("警示") or "").strip(), "")
+
+
 def _alert_flags(entry: dict, lang: str) -> list[dict]:
     """Map the KB's own RED/YELLOW/GREEN alert + contraindications to safety flags."""
     flags: list[dict] = []
     drug = entry.get("drug") or entry.get("药品") or entry.get("治疗") or ""
-    alert = (entry.get("alert") or "").upper()
+    alert = _alert_level(entry)
     special = entry.get("special") or entry.get("特殊说明") or ""
     contra = entry.get("contra") or entry.get("禁忌") or []
     zh = lang == "zh"

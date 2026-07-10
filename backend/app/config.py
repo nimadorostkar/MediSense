@@ -101,8 +101,14 @@ class Settings(BaseSettings):
 
     @property
     def llm_configured(self) -> bool:
-        """The GLM reasoning layer is only live when flagged on AND a key exists."""
-        return bool(self.llm_reasoning and self.zhipu_api_key)
+        """Permanently False — the GLM clinical-reasoning layer is retired.
+
+        Every clinical answer (differential, treatment, safety, summary) must be
+        created from the uploaded data files by the deterministic engine. No
+        environment flag or API key may reintroduce model-generated clinical
+        text, and nothing may disable the file-based dermatology KB. The AI is
+        confined to small talk in the router (see routers/clinical.py)."""
+        return False
 
     @property
     def chat_configured(self) -> bool:

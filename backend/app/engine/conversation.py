@@ -12,14 +12,25 @@ beyond that context. This module has a single entry point:
 - ``chat_reply`` answers a small-talk turn using the conversation history and
   the last grounded suggestion as read-only context.
 
+The prompt is not the only guard: every AI reply is screened AFTER generation
+against the closed clinical vocabulary of the uploaded files — a reply that
+names a condition or drug from the files, or states a dose, that is absent
+from the supplied context is rejected (a hallucinating or prompt-injected
+model can therefore never surface an ungrounded clinical statement).
+
 It is optional and fail-safe (return None → the deterministic templated text
 stands), so the product works identically with the AI layer switched off.
 """
 
 from __future__ import annotations
 
+import re
+from functools import lru_cache
+
 from app.ai import get_chat_provider
 from app.config import settings
+from app.engine import demo_derm
+from app.engine.kb_answer import _DRUG_FORM_WORDS
 from app.observability.logging import get_logger
 
 log = get_logger("medisense.conversation")
@@ -73,6 +84,51 @@ def _facts(reply: dict) -> str:
     return "\n".join(lines) if lines else "No specific findings were matched."
 
 
+_DOSE_RE = re.compile(r"\d+(?:\.\d+)?\s*(?:mg|mcg|µg|ml|g|%)", re.I)
+_EN_WORD_RE = re.compile(r"[a-z]+")
+
+
+@lru_cache
+def _file_vocab() -> tuple[tuple[str, ...], tuple[str, ...]]:
+    """Closed clinical vocabulary of the uploaded files (EN lowercase, ZH).
+
+    Condition names and drug names/tokens — the terms an AI small-talk reply
+    could smuggle a clinical claim through."""
+    conditions, _, _ = demo_derm._index()
+    en: set[str] = set()
+    zh: set[str] = set()
+    for c in conditions:
+        if c["name_en"]:
+            en.add(c["name_en"].lower())
+        if c["name_zh"]:
+            zh.add(c["name_zh"])
+        for rx in (c["rx_en"], c["rx_zh"]):
+            for entries in (rx or {}).values():
+                for e in entries:
+                    drug = e.get("drug") or ""
+                    if drug:
+                        en.add(drug.lower())
+                        for t in _EN_WORD_RE.findall(drug.lower()):
+                            if len(t) >= 5 and t not in _DRUG_FORM_WORDS:
+                                en.add(t)
+                    for k in ("drug_cn", "药品"):
+                        if e.get(k):
+                            zh.add(str(e[k]))
+    return tuple(en), tuple(zh)
+
+
+def _breaks_grounding(text: str, context: str) -> bool:
+    """True when the AI text states a clinical fact absent from the file context."""
+    low, ctx_low = text.lower(), context.lower()
+    for m in _DOSE_RE.finditer(text):
+        if m.group(0).lower() not in ctx_low:
+            return True
+    en, zh = _file_vocab()
+    if any(name in low and name not in ctx_low for name in en):
+        return True
+    return any(name in text and name not in context for name in zh)
+
+
 async def chat_reply(messages: list[dict], last_reply: dict | None, lang: str) -> str | None:
     """Return a conversational answer for a non-diagnostic turn, or None.
 
@@ -105,4 +161,13 @@ async def chat_reply(messages: list[dict], last_reply: dict | None, lang: str) -
         log.warning("chat_reply_failed", extra={"error": str(exc)})
         return None
     text = (text or "").strip()
-    return text or None
+    if not text:
+        return None
+    # Post-generation screen: a small-talk reply must not carry any clinical
+    # fact (file condition/drug name, or any dose) that the file-derived
+    # context does not itself contain. Rejecting → the caller's deterministic
+    # canned line stands instead.
+    if _breaks_grounding(text, context):
+        log.warning("chat_reply_screened", extra={"reason": "ungrounded_clinical_content"})
+        return None
+    return text

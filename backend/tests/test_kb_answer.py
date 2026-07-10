@@ -27,13 +27,17 @@ def test_drug_dose_comes_from_files():
 def test_drug_pregnancy_contraindication_from_files():
     out = kb_answer.answer("is tazarotene safe in pregnancy?", _PSORIASIS_REPLY, "en")
     assert out is not None
-    assert "pregnancy" in out.lower()  # contra list copied from the KB file
+    # The contra list copied verbatim from the KB entry — not a fallback line.
+    assert "Contraindicated in: pregnancy" in out
 
 
 def test_condition_safety_resolves_via_last_reply():
     out = kb_answer.answer("is that safe in pregnancy?", _PSORIASIS_REPLY, "en")
     assert out is not None
-    assert "pregnan" in out.lower() or "contracept" in out.lower()
+    # Real extracted file content (Tazarotene contra / Acitretin special), not
+    # the "files do not record pregnancy-specific guidance" fallback sentence.
+    assert "do not record" not in out
+    assert "contraindicated in pregnancy" in out.lower() or "Contraception 2 years" in out
 
 
 def test_differential_uses_kb_differentiators():
