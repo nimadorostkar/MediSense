@@ -326,7 +326,10 @@ def _sec_treatment(c: dict, question: str, lang: str) -> list[str]:
         lines.append(f"• {p}")
     if block.get("monitoring"):
         mon = block["monitoring"]
-        lines.append(f"• 监测：{mon}" if zh else f"• Monitoring: {mon}")
+        if mon.startswith(("随访", "Follow-up")):  # already labelled by the KB renderer
+            lines.append(f"• {mon}")
+        else:
+            lines.append(f"• 监测：{mon}" if zh else f"• Monitoring: {mon}")
     return lines if len(lines) > 1 else []
 
 
@@ -399,7 +402,11 @@ def _sec_education(c: dict, lang: str) -> list[str]:
     edu = c["edu_zh"] if (zh and c["edu_zh"]) else c["edu_en"]
     if not edu:
         return []
-    head = f"资料文件中「{_name(c, zh)}」的患者教育：" if zh else f"Patient education in the files for {_name(c, zh)}:"
+    name = _name(c, zh)
+    if zh:
+        head = f"资料文件中「{name}」的患者教育："
+    else:
+        head = f"Patient education in the files for {name}:"
     return [head, *[f"• {x}" for x in edu[:4]]]
 
 
@@ -408,7 +415,8 @@ def _sec_findings(c: dict, lang: str) -> list[str]:
     fs = c["findings_zh"] if (zh and c["findings_zh"]) else c["findings_en"]
     if not fs:
         return []
-    head = f"资料文件中「{_name(c, zh)}」的关键体征：" if zh else f"Key findings in the files for {_name(c, zh)}:"
+    name = _name(c, zh)
+    head = f"资料文件中「{name}」的关键体征：" if zh else f"Key findings in the files for {name}:"
     return [head, *[f"• {str(x).replace('_', ' ')}" for x in fs[:5]]]
 
 
@@ -459,7 +467,9 @@ def _drugref_lines(question: str, lang: str) -> list[str]:
         names = {key, *classes}
         for it in ref.get("interactions") or []:
             if it.get("a") in names or it.get("b") in names:
-                lines.append(f"• {it.get('a')} + {it.get('b')} [{it.get('severity')}]: {it.get('message')}")
+                lines.append(
+                    f"• {it.get('a')} + {it.get('b')} [{it.get('severity')}]: {it.get('message')}"
+                )
         bounds = (ref.get("dosing_bounds") or {}).get(key) or {}
         for note_key in ("geriatric_note", "renal_note", "hepatic_note", "pediatric_note"):
             if bounds.get(note_key):
@@ -491,6 +501,9 @@ def answer(question: str, last_reply: dict | None, lang: str) -> str | None:
     comparator = next((c for c in named[1:] if c is not base), None)
 
     sections: list[str] = []
+    # Entries for the condition under discussion come first (stable sort).
+    if base is not None:
+        drugs.sort(key=lambda m: m["cond"]["slug"] != base["slug"])
     for m in drugs[:3]:
         sections += _render_drug(m, lang == "zh")
 

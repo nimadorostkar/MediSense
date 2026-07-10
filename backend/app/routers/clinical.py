@@ -52,6 +52,10 @@ _MORPHOLOGY = {
 }
 _WORD_RE = re.compile(r"[a-z]+")
 
+# Chinese question / follow-up markers (the English regex can't see them).
+_FOLLOWUP_ZH = ("为什么", "为何", "吗", "呢", "什么", "如何", "怎么", "多少", "哪",
+                "谢谢", "你好", "您好", "再见")
+
 # Small talk — the ONLY turns ever handed to the AI, and even then the AI is
 # instructed to speak strictly from file-derived context. A turn qualifies only
 # when every word is social filler (greeting/thanks/acknowledgement).
@@ -102,7 +106,12 @@ def _is_followup(last_turn: str) -> bool:
     morphology = sum(1 for w in _WORD_RE.findall(t.lower()) if w in _MORPHOLOGY)
     if morphology >= 2:
         return False
-    return t.endswith("?") or bool(_FOLLOWUP_RE.search(t))
+    return (
+        t.endswith("?")
+        or t.endswith("？")
+        or bool(_FOLLOWUP_RE.search(t))
+        or any(z in t for z in _FOLLOWUP_ZH)
+    )
 
 
 def _chat_only_reply(text: str, base: dict) -> dict:
