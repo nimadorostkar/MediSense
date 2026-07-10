@@ -17,7 +17,7 @@ from app.ai import chat_provider_name
 from app.config import settings
 from app.db.seed import episode_count
 from app.deps import OptionalUser, SessionDep
-from app.engine import conversation, demo_derm, orchestrator
+from app.engine import conversation, demo_derm, kb_answer, orchestrator
 from app.engine.enrich import enrich, parse_allergies, parse_medications
 from app.models import Suggestion
 from app.observability.logging import get_logger
@@ -51,6 +51,42 @@ _MORPHOLOGY = {
     "nevus", "pigmented", "honey", "hyperkeratotic", "vesicular", "crusted",
 }
 _WORD_RE = re.compile(r"[a-z]+")
+
+# Small talk — the ONLY turns ever handed to the AI, and even then the AI is
+# instructed to speak strictly from file-derived context. A turn qualifies only
+# when every word is social filler (greeting/thanks/acknowledgement).
+_SMALLTALK_WORDS = frozenset({
+    "hi", "hello", "hey", "thanks", "thank", "you", "ok", "okay", "great",
+    "cool", "bye", "goodbye", "morning", "afternoon", "evening", "good",
+    "please", "much", "so", "very", "appreciate", "appreciated", "awesome",
+    "nice", "perfect", "got", "it", "yes", "sure", "welcome", "there", "doc",
+})
+_SMALLTALK_ZH = ("你好", "您好", "谢谢", "多谢", "感谢", "再见", "好的", "哈喽", "早上好",
+                 "下午好", "晚上好", "辛苦了")
+
+_NOT_IN_FILES = {
+    "en": "That information is not in the uploaded files, so I can't answer it here. "
+    "I answer strictly from the uploaded knowledge files — you can ask about the "
+    "conditions, treatments, doses, safety alerts, tests, or follow-up they contain.",
+    "zh": "上传的资料文件中没有这一信息，因此无法在此作答。我只依据已上传的资料文件回答——"
+    "您可以询问其中包含的疾病、治疗、剂量、安全警示、检查或随访内容。",
+}
+
+_GREETING = {
+    "en": "Hello! Describe the case — lesion morphology, distribution, and duration — "
+    "and I'll match it against the uploaded knowledge files.",
+    "zh": "您好！请描述病例（皮损形态、分布、病程），我将依据已上传的资料文件进行匹配。",
+}
+
+
+def _is_smalltalk(text: str) -> bool:
+    t = (text or "").strip()
+    if not t:
+        return False
+    if any(p in t for p in _SMALLTALK_ZH) and len(t) <= 10:
+        return True
+    words = re.findall(r"[a-z']+", t.lower())
+    return bool(words) and len(words) <= 8 and all(w in _SMALLTALK_WORDS for w in words)
 
 
 def _is_followup(last_turn: str) -> bool:
@@ -182,35 +218,54 @@ async def clinical(
         reply = orchestrator.to_v1_reply(outcome, lang, treatment)
         SUGGESTIONS.labels(kind="differential", degraded=str(outcome.degraded_mode)).inc()
 
-    # Conversational language layer (AI) — used ONLY for normal conversation:
-    # a greeting, a thank-you, or a follow-up question about a prior suggestion.
-    # Every clinical answer (differential, treatment, safety, triage, AND the
-    # narrative summary that accompanies them) is rendered verbatim from the
-    # deterministic dermatology knowledge base and is NEVER sent to, or rewritten
-    # by, the AI. This guarantees that recognition and answers are grounded
-    # entirely in the KB data files, not the language model.
-    # A turn is handed to the AI ONLY when it is normal conversation — a greeting,
-    # a thank-you, or a follow-up/clarifying question (a turn with no lesion
-    # description). A described clinical case answered by the dermatology KB is
-    # never sent to the AI; its differential, treatment, safety, and summary are
-    # rendered verbatim from the KB data files. This is the guarantee that
-    # recognition and answers are grounded entirely in the files, not the model.
-    conversational = not used_kb_derm and _is_followup(last_turn)
-    if settings.chat_configured and conversational:
-        history_msgs = [
-            {"role": m.role, "text": m.text or ""}
-            for m in (req.messages or [])
-            if (m.text or "").strip()
-        ] or [{"role": "doctor", "text": case_text}]
+    # ── File-grounded follow-up routing ──────────────────────────────────────
+    # EVERY answer is created from the uploaded data files, never by an AI:
+    #   • A described clinical case is answered verbatim by the deterministic
+    #     engine over the uploaded files (dermatology KB / episode file) above.
+    #   • An informational follow-up ("what dose?", "why X vs Y?", "safe in
+    #     pregnancy?") is answered by kb_answer — deterministic retrieval over
+    #     the same uploaded files. If the files don't contain the answer, we say
+    #     exactly that instead of letting a model guess.
+    #   • The AI (Gemini/Zhipu) is consulted ONLY for small talk (greeting,
+    #     thanks, goodbye) and is instructed to speak strictly from
+    #     file-derived context — it never recognises or creates an answer.
+    history_msgs = [
+        {"role": m.role, "text": m.text or ""}
+        for m in (req.messages or [])
+        if (m.text or "").strip()
+    ] or [{"role": "doctor", "text": case_text}]
+    # ``_is_followup`` is False when ≥2 morphology cues are present, so a newly
+    # described case is never diverted away from its diagnosis card.
+    followup = _is_followup(last_turn) and (len(history_msgs) > 1 or not used_kb_derm)
+    if followup:
+        lang_key = "zh" if lang == "zh" else "en"
+        grounded = None
         try:
-            # The freshly-computed grounded reply is passed only as read-only
-            # context; the AI never alters any clinical fact. The turn renders as a
-            # chat bubble (no diagnosis card).
-            chatted = await conversation.chat_reply(history_msgs, reply, lang)
-            if chatted:
-                reply = _chat_only_reply(chatted, reply)
-        except Exception as exc:  # noqa: BLE001 - conversation is best-effort
-            log.warning("conversation_failed", extra={"error": str(exc)})
+            grounded = kb_answer.answer(last_turn, reply, lang)
+        except Exception as exc:  # noqa: BLE001 - fall through to "not in files"
+            log.warning("kb_answer_failed", extra={"error": str(exc)})
+        if grounded:
+            reply = _chat_only_reply(grounded, reply)
+        elif _is_smalltalk(last_turn):
+            chatted = None
+            if settings.chat_configured:
+                try:
+                    # The grounded reply is passed only as read-only context; the
+                    # AI is prompted to never add facts beyond that context.
+                    chatted = await conversation.chat_reply(history_msgs, reply, lang)
+                except Exception as exc:  # noqa: BLE001 - conversation is best-effort
+                    log.warning("conversation_failed", extra={"error": str(exc)})
+            reply = _chat_only_reply(chatted or _GREETING[lang_key], reply)
+        elif used_kb_derm:
+            # The dermatology KB already answered this turn from the files —
+            # its card (or its own clarification ask) stands untouched.
+            pass
+        elif reply.get("differential") and not reply.get("ood"):
+            # The general engine produced a differential grounded in the
+            # uploaded episode file with adequate similarity — it stands.
+            pass
+        else:
+            reply = _chat_only_reply(_NOT_IN_FILES[lang_key], reply)
 
     # Persist the suggestion + audit the view (best-effort; never breaks the reply).
     degraded = bool(reply.get("degradedMode")) if outcome is None else outcome.degraded_mode

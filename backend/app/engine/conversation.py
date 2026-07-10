@@ -1,16 +1,18 @@
-"""Conversational language layer (Gemini/Zhipu) — normal conversation ONLY.
+"""Conversational language layer (Gemini/Zhipu) — small talk ONLY.
 
-The AI is deliberately confined to *chatting*. It never recognises a condition,
-never writes or rewrites a differential, dose, or safety flag, and never
-narrates a clinical answer — those are produced entirely by the deterministic
-engine from the KB data files. This module has a single entry point:
+The AI is deliberately confined to *social conversation* (a greeting, a
+thank-you, a goodbye). It never recognises a condition, never writes or
+rewrites a differential, dose, or safety flag, and never answers an
+informational question — those are produced entirely by the deterministic
+engine and ``kb_answer`` from the uploaded data files. The system prompt pins
+the model to the file-derived context: it must never use its own knowledge, and
+must say the information is not in the uploaded files when asked for anything
+beyond that context. This module has a single entry point:
 
-- ``chat_reply`` answers a genuine conversational turn (a follow-up like "why is
-  it ranked first?", a clarification, a greeting) using the conversation history
-  and the last grounded suggestion as read-only context, so the assistant feels
-  like a real chat while never inventing or altering any clinical fact.
+- ``chat_reply`` answers a small-talk turn using the conversation history and
+  the last grounded suggestion as read-only context.
 
-Both are optional and fail-safe (return None → the deterministic templated text
+It is optional and fail-safe (return None → the deterministic templated text
 stands), so the product works identically with the AI layer switched off.
 """
 
@@ -25,14 +27,16 @@ log = get_logger("medisense.conversation")
 _LANG_NAME = {"en": "English", "zh": "Simplified Chinese"}
 
 _CHAT_SYSTEM = (
-    "You are MediSense, an AI clinical decision-support assistant for licensed physicians, "
-    "specialised in dermatology. Reply conversationally in {lang} (concise, warm, "
-    "professional; no markdown headings or JSON). You may explain or clarify the previous "
-    "suggestion shown below, discuss general clinical reasoning, or answer follow-up "
-    "questions. Do NOT invent specific drugs, doses, or a new diagnosis that was not in the "
-    "prior suggestion — if the physician is describing a new patient and wants a differential, "
-    "briefly ask them to state the lesion morphology, distribution, and duration. Always "
-    "assist rather than replace; the physician confirms every decision. Keep replies short."
+    "You are MediSense, a clinical decision-support assistant for licensed physicians. "
+    "You are the small-talk layer only (greetings, thanks, goodbyes, politeness). "
+    "STRICT GROUNDING RULES: Answer ONLY using the document context provided below, which "
+    "comes from the physician's uploaded knowledge files. NEVER use your own knowledge. "
+    "Do not name any condition, drug, dose, test, or clinical fact unless it appears "
+    "verbatim in the context below. If the physician asks for ANY information that is not "
+    "in the context, reply that the information is not in the uploaded files and invite "
+    "them to describe the case (lesion morphology, distribution, duration) so it can be "
+    "matched against the uploaded files. Reply in {lang}; concise, warm, professional; no "
+    "markdown headings or JSON. The physician confirms every decision. Keep replies short."
 )
 
 
@@ -81,7 +85,9 @@ async def chat_reply(messages: list[dict], last_reply: dict | None, lang: str) -
         return None
 
     context = _facts(last_reply) if last_reply else "None yet."
-    system = _CHAT_SYSTEM.format(lang=_lang(lang)) + f"\n\nPrevious suggestion for context:\n{context}"
+    system = _CHAT_SYSTEM.format(lang=_lang(lang)) + (
+        f"\n\nDocument context (from the uploaded files) — the ONLY facts you may state:\n{context}"
+    )
     try:
         if hasattr(provider, "chat"):
             text = await provider.chat(messages, system=system, max_tokens=480, temperature=0.6)

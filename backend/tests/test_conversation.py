@@ -2,9 +2,10 @@
 
 A fake provider stands in for the network so these run offline and deterministic.
 They assert: the layer is off unless a key is configured; a clinical answer
-(differential/treatment) is rendered ENTIRELY from the KB and is NEVER touched by
-the AI — even when the AI layer is on; and only a genuine conversational turn
-(greeting/thanks/follow-up question) gets a real AI chat answer.
+(differential/treatment) is rendered ENTIRELY from the uploaded files and is
+NEVER touched by the AI — even when the AI layer is on; an informational
+follow-up is answered from the files (kb_answer), not the AI; and ONLY pure
+small talk (greeting/thanks) gets an AI chat answer.
 """
 
 from __future__ import annotations
@@ -86,7 +87,7 @@ async def test_clinical_endpoint_diagnosis_is_kb_only_even_with_ai_on(client, ge
     assert reply["requiresPhysicianConfirmation"] is True
 
 
-async def test_clinical_endpoint_chat_for_non_diagnostic_turn(client, gemini_on):
+async def test_clinical_endpoint_chat_for_smalltalk_turn(client, gemini_on):
     r = await client.post(
         "/api/clinical",
         json={"messages": [{"role": "doctor", "text": "thank you"}], "lang": "en"},
@@ -95,3 +96,40 @@ async def test_clinical_endpoint_chat_for_non_diagnostic_turn(client, gemini_on)
     assert reply["summary"] == "Fake grounded narration."
     assert reply["differential"] == []
     assert reply["aiChat"] is True
+
+
+async def test_clinical_followup_answered_from_files_not_ai(client, gemini_on):
+    """An informational follow-up must be answered from the uploaded files —
+    the AI is never consulted, even though it is configured and available."""
+    r = await client.post(
+        "/api/clinical",
+        json={
+            "messages": [
+                {"role": "doctor", "text": "well demarcated erythematous plaques with "
+                 "silvery scales on the extensor elbows and scalp"},
+                {"role": "ai", "text": "Leading consideration: Psoriasis."},
+                {"role": "doctor", "text": "what dose of methotrexate should I use?"},
+            ],
+            "lang": "en",
+        },
+    )
+    reply = json.loads(r.json()["text"])
+    assert reply["summary"] != "Fake grounded narration."
+    assert "weekly" in reply["summary"].lower()  # dose text from the KB file
+    assert all(call[0] != "chat" for call in gemini_on.calls)  # AI never consulted
+
+
+async def test_clinical_question_not_in_files(client, gemini_on):
+    """A question the uploaded files cannot answer gets the explicit
+    'not in the uploaded files' reply — never an AI-generated answer."""
+    r = await client.post(
+        "/api/clinical",
+        json={
+            "messages": [{"role": "doctor", "text": "who won the football world cup?"}],
+            "lang": "en",
+        },
+    )
+    reply = json.loads(r.json()["text"])
+    assert "not in the uploaded files" in reply["summary"]
+    assert reply["summary"] != "Fake grounded narration."
+    assert all(call[0] != "chat" for call in gemini_on.calls)
