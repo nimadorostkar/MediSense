@@ -1,5 +1,14 @@
-import { Pill, ShieldCheck, ShieldAlert, ClipboardList, Activity } from "lucide-react";
-import type { Treatment, Severity } from "../types";
+import {
+  Pill,
+  ShieldCheck,
+  ShieldAlert,
+  ClipboardList,
+  Activity,
+  BookOpen,
+  CalendarClock,
+  Layers,
+} from "lucide-react";
+import type { Treatment, Medication, Severity } from "../types";
 import type { Strings } from "../lib/i18n";
 
 /** Severity → colors for the drug-safety screen. */
@@ -24,6 +33,63 @@ function sevLabel(sev: Severity, t: Strings): string {
   );
 }
 
+/** KB RED/YELLOW/GREEN alert level → chip colors + localized label. */
+function alertChip(alert: string, t: Strings): { bg: string; fg: string; label: string } | null {
+  switch ((alert || "").toUpperCase()) {
+    case "RED":
+      return { bg: "#FEECEC", fg: "#B91C1C", label: t.alertRed };
+    case "YELLOW":
+      return { bg: "#FEF3E2", fg: "#B45309", label: t.alertYellow };
+    case "GREEN":
+      return { bg: "#ECFDF5", fg: "#15803D", label: t.alertGreen };
+    default:
+      return null;
+  }
+}
+
+/** One medication row: name, regimen, alert + insurance chips, contra/monitor lines. */
+function MedRow({ m, t, compact }: { m: Medication; t: Strings; compact?: boolean }) {
+  const chip = alertChip(m.alert ?? "", t);
+  return (
+    <div
+      className={`rounded-[8px] border border-[#E5EBEA] bg-white px-[11px] ${
+        compact ? "py-[5px]" : "py-[7px]"
+      } text-[13px]`}
+    >
+      <span className="font-semibold text-ink-900">{m.drug}</span>{" "}
+      <span className="text-ink-600">
+        {[m.dose, m.route, m.frequency, m.duration].filter(Boolean).join(" · ")}
+      </span>
+      {chip ? (
+        <span
+          className="ml-[7px] rounded-full px-[7px] py-[1px] text-[10.5px] font-bold uppercase tracking-[0.3px]"
+          style={{ background: chip.bg, color: chip.fg }}
+        >
+          {chip.label}
+        </span>
+      ) : null}
+      {m.insurance ? (
+        <span className="ml-[6px] rounded-full bg-[#F1F3F5] px-[7px] py-[1px] text-[10.5px] font-semibold text-[#64748B]">
+          {t.txInsurance} {m.insurance}
+        </span>
+      ) : null}
+      {m.contra && m.contra.length > 0 ? (
+        <div className="mt-[2px] text-[12px] font-medium text-[#B91C1C]">
+          {t.txContraLabel}: {m.contra.join(", ")}
+        </div>
+      ) : null}
+      {m.monitor ? (
+        <div className="mt-[2px] text-[12px] text-ink-500">
+          {t.txMonitorDrug}: {m.monitor}
+        </div>
+      ) : null}
+      {m.note && !compact ? (
+        <div className="mt-[2px] text-[12px] font-medium text-[#B91C1C]">{m.note}</div>
+      ) : null}
+    </div>
+  );
+}
+
 /**
  * The "best diagnosis → solution → prescription" block. Renders the recommended
  * plan, screened medications, and the drug-safety results beneath the differential.
@@ -32,6 +98,9 @@ export default function TreatmentCard({ tx, t }: { tx: Treatment; t: Strings }) 
   const meds = tx.medications ?? [];
   const plan = tx.plan ?? [];
   const safety = tx.safety ?? [];
+  const options = tx.options ?? [];
+  const education = tx.education ?? [];
+  const followUp = tx.followUp ?? [];
 
   return (
     <div className="mt-[14px] rounded-[12px] border border-[#E3F0EE] bg-[#F6FBFA] px-[16px] py-[14px]">
@@ -45,6 +114,11 @@ export default function TreatmentCard({ tx, t }: { tx: Treatment; t: Strings }) 
       <div className="text-[14.5px] font-semibold text-ink-900">
         {t.txBest}: {tx.bestDiagnosis}
         {tx.icd ? <span className="ml-[7px] text-[12px] font-normal text-ink-300">{tx.icd}</span> : null}
+        {tx.tier ? (
+          <span className="ml-[7px] rounded-full bg-[#E3F0EE] px-[8px] py-[1px] text-[11px] font-semibold text-[#0F766E]">
+            {tx.tier}
+          </span>
+        ) : null}
       </div>
       {tx.rationale ? (
         <p className="mt-1 text-[13px] leading-[1.5] text-ink-500">{tx.rationale}</p>
@@ -70,17 +144,28 @@ export default function TreatmentCard({ tx, t }: { tx: Treatment; t: Strings }) 
           </div>
           <div className="flex flex-col gap-[6px]">
             {meds.map((m, i) => (
-              <div
-                key={i}
-                className="rounded-[8px] border border-[#E5EBEA] bg-white px-[11px] py-[7px] text-[13px]"
-              >
-                <span className="font-semibold text-ink-900">{m.drug}</span>{" "}
-                <span className="text-ink-600">
-                  {[m.dose, m.route, m.frequency, m.duration].filter(Boolean).join(" · ")}
-                </span>
-                {m.note ? (
-                  <div className="mt-[2px] text-[12px] font-medium text-[#B91C1C]">{m.note}</div>
-                ) : null}
+              <MedRow key={i} m={m} t={t} />
+            ))}
+          </div>
+        </div>
+      )}
+
+      {options.length > 0 && (
+        <div className="mt-[12px]">
+          <div className="mb-[6px] flex items-center gap-[6px] text-[12px] font-semibold text-ink-700">
+            <Layers size={14} strokeWidth={1.9} /> {t.txOptions}
+          </div>
+          <div className="flex flex-col gap-[8px]">
+            {options.map((o, i) => (
+              <div key={i}>
+                <div className="mb-[4px] text-[11.5px] font-semibold uppercase tracking-[0.3px] text-ink-400">
+                  {o.tier}
+                </div>
+                <div className="flex flex-col gap-[5px]">
+                  {o.medications.map((m, j) => (
+                    <MedRow key={j} m={m} t={t} compact />
+                  ))}
+                </div>
               </div>
             ))}
           </div>
@@ -123,6 +208,28 @@ export default function TreatmentCard({ tx, t }: { tx: Treatment; t: Strings }) 
           </div>
         )}
       </div>
+
+      {education.length > 0 && (
+        <div className="mt-[12px]">
+          <div className="mb-1 flex items-center gap-[6px] text-[12px] font-semibold text-ink-700">
+            <BookOpen size={14} strokeWidth={1.9} /> {t.txEducation}
+          </div>
+          <ul className="ml-[6px] list-inside list-disc space-y-[2px] text-[13px] leading-[1.5] text-ink-600">
+            {education.map((e, i) => (
+              <li key={i}>{e}</li>
+            ))}
+          </ul>
+        </div>
+      )}
+
+      {followUp.length > 0 && (
+        <div className="mt-[12px] flex items-start gap-[8px]">
+          <CalendarClock size={14} strokeWidth={1.9} className="mt-px flex-none text-[#0F766E]" />
+          <span className="text-[12.5px] leading-[1.45] text-ink-600">
+            <b className="text-ink-900">{t.txFollowUp}:</b> {followUp.join(" · ")}
+          </span>
+        </div>
+      )}
 
       {tx.monitoring ? (
         <div className="mt-[12px] flex items-start gap-[8px] border-t border-[#E3F0EE] pt-[11px]">

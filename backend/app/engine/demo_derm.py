@@ -488,6 +488,37 @@ def _alert_flags(entry: dict, lang: str) -> list[dict]:
     return flags
 
 
+def _med_entry(entry: dict, zh: bool) -> dict | None:
+    """One medication row for the reply, carrying the KB entry's full detail
+    (dose, duration, alert level, insurance class, contraindications, monitoring)
+    so the chat answer shows everything the data file knows about the drug."""
+    drug = entry.get("drug") or entry.get("药品") or entry.get("治疗")
+    if not drug:
+        return None
+    dose = entry.get("dose") or entry.get("用法") or ""
+    dur = entry.get("duration") or entry.get("疗程") or ""
+    # Insurance is its own field now — the note carries only the special
+    # instruction, so the UI chip and the note never repeat each other.
+    if zh:
+        insurance = entry.get("医保") or (entry.get("insurance") or "").replace("Class_", "")
+        note = entry.get("特殊说明") or entry.get("special") or ""
+    else:
+        insurance = (entry.get("insurance") or "").replace("Class_", "Class ").replace("_", " ")
+        note = entry.get("special") or ""
+    return {
+        "drug": drug,
+        "dose": dose,
+        "route": "",
+        "frequency": "",
+        "duration": dur,
+        "note": note,
+        "alert": _alert_level(entry),
+        "insurance": insurance,
+        "contra": [str(c) for c in (entry.get("contra") or entry.get("禁忌") or [])],
+        "monitor": entry.get("monitor") or entry.get("监测") or "",
+    }
+
+
 def _tier_for_severity(keys: list[str], severity: str) -> int:
     """Pick the prescription tier (mild→first … severe→last) matching severity."""
     n = len(keys)
@@ -508,7 +539,12 @@ def _tier_for_severity(keys: list[str], severity: str) -> int:
 
 
 def _treatment_block(res: dict, lang: str, severity: str) -> dict:
-    """Severity-appropriate first-line prescription + KB safety alerts."""
+    """Severity-appropriate first-line prescription + KB safety alerts.
+
+    Beyond the selected tier, the block now carries everything the data file
+    holds for the condition: every other prescription tier (``options``), the
+    full patient-education list, and the follow-up schedule — so the chat
+    answer shows the complete prescription/medicine picture, not a slice."""
     cond = res["cond"]
     zh = lang == "zh"
     rx = cond["rx_zh"] if (zh and cond["rx_zh"]) else cond["rx_en"]
@@ -524,27 +560,23 @@ def _treatment_block(res: dict, lang: str, severity: str) -> dict:
     safety: list[dict] = []
     monitoring = ""
     for entry in entries:
-        drug = entry.get("drug") or entry.get("药品") or entry.get("治疗")
-        dose = entry.get("dose") or entry.get("用法") or ""
-        dur = entry.get("duration") or entry.get("疗程") or ""
-        if zh:
-            note_bits = [
-                entry.get("特殊说明") or entry.get("special") or "",
-                ("医保" + entry["医保"]) if entry.get("医保") else "",
-            ]
-            note = "；".join(b for b in note_bits if b)
-        else:
-            insurance = (entry.get("insurance") or "").replace("Class_", "Class ").replace("_", " ")
-            note_bits = [entry.get("special") or "", (f"Insurance: {insurance}") if insurance else ""]
-            note = "; ".join(b for b in note_bits if b)
-        if drug:
-            meds.append(
-                {"drug": drug, "dose": dose, "route": "", "frequency": "", "duration": dur, "note": note}
-            )
+        med = _med_entry(entry, zh)
+        if med:
+            meds.append(med)
         elif entry.get("special") or entry.get("特殊"):
             plan.append(entry.get("特殊") if zh else entry.get("special"))
         safety += _alert_flags(entry, lang)
         monitoring = monitoring or entry.get("monitor") or entry.get("监测") or ""
+
+    # Every OTHER tier in the file, so all prescriptions/medicines the database
+    # holds for this disease are visible (clearly labelled, not recommended).
+    options: list[dict] = []
+    for i, (t_name, t_entries) in enumerate(tiers):
+        if i == idx:
+            continue
+        t_meds = [m for m in (_med_entry(e, zh) for e in t_entries) if m]
+        if t_meds:
+            options.append({"tier": str(t_name).replace("_", " "), "medications": t_meds})
 
     labs = cond["labs_zh"] if (zh and cond["labs_zh"]) else cond["labs_en"]
     if labs:
@@ -553,11 +585,13 @@ def _treatment_block(res: dict, lang: str, severity: str) -> dict:
     edu = cond["edu_zh"] if (zh and cond["edu_zh"]) else cond["edu_en"]
     plan += [str(x) for x in edu[:2]]
 
-    if not monitoring:
-        follow = cond["follow_zh"] if (zh and cond["follow_zh"]) else cond["follow_en"]
-        if follow:
-            monitoring = (f"随访：{next(iter(follow.values()))}" if zh
-                          else f"Follow-up: {next(iter(follow.values()))}")
+    # The follow-up schedule is its own field now — monitoring stays the
+    # per-drug requirement only, so the card never repeats itself.
+    follow = cond["follow_zh"] if (zh and cond["follow_zh"]) else cond["follow_en"]
+    follow_up = [
+        (f"{k}：{v}" if zh else f"{str(k).replace('_', ' ')}: {v}")
+        for k, v in (follow or {}).items()
+    ]
 
     tier_label = tier_name.replace("_", " ")
     sev_zh = {"mild": "轻", "moderate": "中", "severe": "重"}[severity]
@@ -570,8 +604,12 @@ def _treatment_block(res: dict, lang: str, severity: str) -> dict:
         "bestDiagnosis": name,
         "icd": cond["icd"],
         "rationale": rationale,
+        "tier": tier_label,
         "plan": plan[:6],
         "medications": meds,
+        "options": options,
+        "education": [str(x) for x in edu],
+        "followUp": follow_up,
         "safety": safety,
         "monitoring": monitoring,
         "requiresPhysicianConfirmation": True,

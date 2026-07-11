@@ -268,11 +268,20 @@ async def clinical(
         outcome = await orchestrator.diagnose(session, patient)
         DIFFERENTIAL_LATENCY.observe(time.perf_counter() - start)
 
+        # The prescription/medicine card is attached to EVERY answer that has a
+        # supported diagnosis (not only when the turn asks to prescribe), so the
+        # doctor always sees the plan + screened medications from the episode
+        # file. An empty card (no matched past cases → no meds, no plan) is
+        # withheld rather than rendered blank.
+        # An OOD patient only gets a plan on an explicit prescriptive ask —
+        # mirroring the demo matcher, which withholds the plan when not confident.
         treatment = None
-        if outcome.candidates and orchestrator.is_prescriptive(last_turn):
+        if outcome.candidates and (not outcome.ood or orchestrator.is_prescriptive(last_turn)):
             best = orchestrator.select_best_diagnosis(outcome)
             if best is not None:
                 treatment = await orchestrator.build_treatment(session, best.condition, patient)
+                if not (treatment.get("medications") or treatment.get("plan")):
+                    treatment = None
 
         reply = orchestrator.to_v1_reply(outcome, lang, treatment)
         SUGGESTIONS.labels(kind="differential", degraded=str(outcome.degraded_mode)).inc()

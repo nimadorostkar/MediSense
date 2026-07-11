@@ -53,6 +53,12 @@ export interface Strings {
   txBest: string;
   txPlan: string;
   txMeds: string;
+  txOptions: string;
+  txEducation: string;
+  txFollowUp: string;
+  txInsurance: string;
+  txContraLabel: string;
+  txMonitorDrug: string;
   txSafety: string;
   txMonitor: string;
   txClear: string;
@@ -61,6 +67,9 @@ export interface Strings {
   sevMajor: string;
   sevModerate: string;
   sevMinor: string;
+  alertRed: string;
+  alertYellow: string;
+  alertGreen: string;
   // composer
   attach: string;
   micRec: string;
@@ -144,6 +153,12 @@ export const STRINGS: Record<Lang, Strings> = {
     txBest: "Best-fit diagnosis",
     txPlan: "Plan",
     txMeds: "Medications",
+    txOptions: "Other options in the knowledge base",
+    txEducation: "Patient education",
+    txFollowUp: "Follow-up schedule",
+    txInsurance: "Insurance",
+    txContraLabel: "Contraindicated in",
+    txMonitorDrug: "Monitor",
     txSafety: "Drug-safety screen",
     txMonitor: "Monitoring",
     txClear: "No interactions or allergy conflicts found.",
@@ -152,6 +167,9 @@ export const STRINGS: Record<Lang, Strings> = {
     sevMajor: "Major",
     sevModerate: "Moderate",
     sevMinor: "Minor",
+    alertRed: "High-risk",
+    alertYellow: "Pharmacist review",
+    alertGreen: "Routine",
     attach: "Attach file",
     micRec: "Record voice",
     micStop: "Stop recording",
@@ -227,6 +245,12 @@ export const STRINGS: Record<Lang, Strings> = {
     txBest: "最符合的诊断",
     txPlan: "处理方案",
     txMeds: "用药",
+    txOptions: "知识库中的其他可选方案",
+    txEducation: "患者教育",
+    txFollowUp: "随访安排",
+    txInsurance: "医保",
+    txContraLabel: "禁忌",
+    txMonitorDrug: "监测",
     txSafety: "用药安全筛查",
     txMonitor: "随访监测",
     txClear: "未发现药物相互作用或过敏冲突。",
@@ -235,6 +259,9 @@ export const STRINGS: Record<Lang, Strings> = {
     sevMajor: "严重",
     sevModerate: "中度",
     sevMinor: "轻度",
+    alertRed: "高风险",
+    alertYellow: "药师审核",
+    alertGreen: "常规",
     attach: "添加附件",
     micRec: "语音输入",
     micStop: "停止录音",

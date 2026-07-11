@@ -24,14 +24,36 @@ export interface Medication {
   frequency?: string;
   duration?: string;
   note?: string;
+  /** KB safety alert level for this drug: RED / YELLOW / GREEN. */
+  alert?: string;
+  /** Insurance class from the KB (e.g. "Class B" / "乙类"). */
+  insurance?: string;
+  /** Contraindications listed in the KB (e.g. pregnancy). */
+  contra?: string[];
+  /** Required monitoring for this drug (e.g. "LFT, lipids q4w"). */
+  monitor?: string;
+}
+
+/** A non-selected prescription tier from the KB, shown as an alternative. */
+export interface TierOption {
+  tier: string;
+  medications: Medication[];
 }
 
 export interface Treatment {
   bestDiagnosis: string;
   icd?: string;
   rationale?: string;
+  /** The prescription tier the severity selected (e.g. "topical mild"). */
+  tier?: string;
   plan?: string[];
   medications?: Medication[];
+  /** Every other prescription tier the database holds for this disease. */
+  options?: TierOption[];
+  /** Full patient-education list from the KB. */
+  education?: string[];
+  /** Follow-up schedule per severity from the KB. */
+  followUp?: string[];
   safety?: SafetyFlag[];
   monitoring?: string;
   requiresPhysicianConfirmation?: boolean;
@@ -42,7 +64,7 @@ export interface Diagnosis {
   summary: string;
   differential: DiffItem[];
   nextBestTest: string;
-  /** Treatment plan + screened prescription, present once the doctor asks to treat. */
+  /** Plan + screened prescription — attached to every supported diagnosis. */
   treatment?: Treatment | null;
 }
 
