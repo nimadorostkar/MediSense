@@ -1,0 +1,142 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology imaging records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "IMG-051",
+      "disease_id": "DER-051",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-021",
+      "disease_id": "DER-021",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-022",
+      "disease_id": "DER-022",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-098",
+      "disease_id": "DER-098",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-084",
+      "disease_id": "DER-084",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-111",
+      "disease_id": "DER-111",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-088",
+      "disease_id": "DER-088",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-134",
+      "disease_id": "DER-134",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-144",
+      "disease_id": "DER-144",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-146",
+      "disease_id": "DER-146",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-195",
+      "disease_id": "DER-195",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-213",
+      "disease_id": "DER-213",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-211",
+      "disease_id": "DER-211",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-212",
+      "disease_id": "DER-212",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-215",
+      "disease_id": "DER-215",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-216",
+      "disease_id": "DER-216",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-069",
+      "disease_id": "DER-069",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-073",
+      "disease_id": "DER-073",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-271",
+      "disease_id": "DER-271",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-272",
+      "disease_id": "DER-272",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-266",
+      "disease_id": "DER-266",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "IMG-267",
+      "disease_id": "DER-267",
+      "studies": [],
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

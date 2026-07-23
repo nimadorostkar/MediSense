@@ -1,0 +1,4528 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Canonical 300-condition dermatology MVP catalog",
+    "record_count": 300
+  },
+  "records": [
+    {
+      "id": "DER-001",
+      "slug": "vitiligo",
+      "name": "Vitiligo",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-002",
+      "slug": "melasma",
+      "name": "Melasma",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-003",
+      "slug": "post_inflammatory_hyperpigmentation",
+      "name": "Post-inflammatory hyperpigmentation",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-004",
+      "slug": "post_inflammatory_hypopigmentation",
+      "name": "Post-inflammatory hypopigmentation",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-005",
+      "slug": "oculocutaneous_albinism",
+      "name": "Oculocutaneous albinism",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-006",
+      "slug": "pityriasis_alba",
+      "name": "Pityriasis alba",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-007",
+      "slug": "nevus_depigmentosus",
+      "name": "Nevus depigmentosus",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-008",
+      "slug": "idiopathic_guttate_hypomelanosis",
+      "name": "Idiopathic guttate hypomelanosis",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-009",
+      "slug": "chemical_leukoderma",
+      "name": "Chemical leukoderma",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-010",
+      "slug": "ash_leaf_macules",
+      "name": "Ash leaf macules",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-011",
+      "slug": "lentigines",
+      "name": "Lentigines",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-012",
+      "slug": "ephelides_freckles",
+      "name": "Ephelides (freckles)",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-013",
+      "slug": "becker_nevus",
+      "name": "Becker nevus",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-014",
+      "slug": "cafe_au_lait_macules",
+      "name": "Café-au-lait macules",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-015",
+      "slug": "exogenous_ochronosis",
+      "name": "Exogenous ochronosis",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-016",
+      "slug": "nevus_of_ota",
+      "name": "Nevus of Ota",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-017",
+      "slug": "nevus_of_ito",
+      "name": "Nevus of Ito",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-018",
+      "slug": "acanthosis_nigricans",
+      "name": "Acanthosis nigricans",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-019",
+      "slug": "lichen_planus_pigmentosus",
+      "name": "Lichen planus pigmentosus",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-020",
+      "slug": "erythema_dyschromicum_perstans",
+      "name": "Erythema dyschromicum perstans",
+      "category": "pigmentary_disorders",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-021",
+      "slug": "atopic_dermatitis",
+      "name": "Atopic dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": "L20.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-022",
+      "slug": "allergic_contact_dermatitis",
+      "name": "Allergic contact dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 2,
+      "aliases": [
+        "Contact Dermatitis"
+      ],
+      "icd10": "L25.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-023",
+      "slug": "irritant_contact_dermatitis",
+      "name": "Irritant contact dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-024",
+      "slug": "seborrheic_dermatitis",
+      "name": "Seborrheic dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-025",
+      "slug": "dyshidrotic_eczema",
+      "name": "Dyshidrotic eczema",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-026",
+      "slug": "nummular_eczema",
+      "name": "Nummular eczema",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-027",
+      "slug": "stasis_dermatitis",
+      "name": "Stasis dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-028",
+      "slug": "hand_eczema",
+      "name": "Hand eczema",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-029",
+      "slug": "lichen_simplex_chronicus_neurodermatitis",
+      "name": "Lichen simplex chronicus (neurodermatitis)",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-030",
+      "slug": "asteatotic_eczema",
+      "name": "Asteatotic eczema",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-031",
+      "slug": "eyelid_dermatitis",
+      "name": "Eyelid dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-032",
+      "slug": "lip_licker_dermatitis",
+      "name": "Lip-licker dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-033",
+      "slug": "photoallergic_contact_dermatitis",
+      "name": "Photoallergic contact dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-034",
+      "slug": "phototoxic_contact_dermatitis",
+      "name": "Phototoxic contact dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-035",
+      "slug": "phytophotodermatitis",
+      "name": "Phytophotodermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-036",
+      "slug": "airborne_contact_dermatitis",
+      "name": "Airborne contact dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-037",
+      "slug": "occupational_dermatitis",
+      "name": "Occupational dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-038",
+      "slug": "juvenile_plantar_dermatosis",
+      "name": "Juvenile plantar dermatosis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-039",
+      "slug": "autoeczematization",
+      "name": "Autoeczematization",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-040",
+      "slug": "systemic_contact_dermatitis",
+      "name": "Systemic contact dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-041",
+      "slug": "protein_contact_dermatitis",
+      "name": "Protein contact dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 21,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-042",
+      "slug": "chronic_actinic_dermatitis",
+      "name": "Chronic actinic dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 22,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-043",
+      "slug": "radiation_dermatitis",
+      "name": "Radiation dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 23,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-044",
+      "slug": "intertriginous_dermatitis",
+      "name": "Intertriginous dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 24,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-045",
+      "slug": "nipple_eczema",
+      "name": "Nipple eczema",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 25,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-046",
+      "slug": "ear_canal_eczema",
+      "name": "Ear canal eczema",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 26,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-047",
+      "slug": "peristomal_dermatitis",
+      "name": "Peristomal dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 27,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-048",
+      "slug": "incontinence_associated_dermatitis",
+      "name": "Incontinence-associated dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 28,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-049",
+      "slug": "pityriasis_amiantacea",
+      "name": "Pityriasis amiantacea",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 29,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-050",
+      "slug": "exfoliative_dermatitis",
+      "name": "Exfoliative dermatitis",
+      "category": "eczema_and_dermatitis",
+      "category_ordinal": 30,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-051",
+      "slug": "plaque_psoriasis",
+      "name": "Plaque psoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 1,
+      "aliases": [
+        "Psoriasis"
+      ],
+      "icd10": "L40.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-052",
+      "slug": "guttate_psoriasis",
+      "name": "Guttate psoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-053",
+      "slug": "inverse_psoriasis",
+      "name": "Inverse psoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-054",
+      "slug": "generalized_pustular_psoriasis",
+      "name": "Generalized pustular psoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-055",
+      "slug": "erythrodermic_psoriasis",
+      "name": "Erythrodermic psoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-056",
+      "slug": "palmoplantar_psoriasis",
+      "name": "Palmoplantar psoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-057",
+      "slug": "lichen_planus",
+      "name": "Lichen planus",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-058",
+      "slug": "hypertrophic_lichen_planus",
+      "name": "Hypertrophic lichen planus",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-059",
+      "slug": "lichen_nitidus",
+      "name": "Lichen nitidus",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-060",
+      "slug": "lichen_striatus",
+      "name": "Lichen striatus",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-061",
+      "slug": "pityriasis_rosea",
+      "name": "Pityriasis rosea",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-062",
+      "slug": "pityriasis_rubra_pilaris",
+      "name": "Pityriasis rubra pilaris",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-063",
+      "slug": "small_plaque_parapsoriasis",
+      "name": "Small-plaque parapsoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-064",
+      "slug": "large_plaque_parapsoriasis",
+      "name": "Large-plaque parapsoriasis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-065",
+      "slug": "pityriasis_lichenoides_chronica",
+      "name": "Pityriasis lichenoides chronica",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-066",
+      "slug": "pityriasis_lichenoides_et_varioliformis_acuta",
+      "name": "Pityriasis lichenoides et varioliformis acuta",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-067",
+      "slug": "secondary_syphilis",
+      "name": "Secondary syphilis",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-068",
+      "slug": "reactive_arthritis_keratoderma",
+      "name": "Reactive arthritis keratoderma",
+      "category": "papulosquamous_diseases",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-069",
+      "slug": "pemphigus_vulgaris",
+      "name": "Pemphigus vulgaris",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": "L10.0",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-070",
+      "slug": "pemphigus_foliaceus",
+      "name": "Pemphigus foliaceus",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-071",
+      "slug": "paraneoplastic_pemphigus",
+      "name": "Paraneoplastic pemphigus",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-072",
+      "slug": "iga_pemphigus",
+      "name": "IgA pemphigus",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-073",
+      "slug": "bullous_pemphigoid",
+      "name": "Bullous pemphigoid",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": "L12.0",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-074",
+      "slug": "mucous_membrane_pemphigoid",
+      "name": "Mucous membrane pemphigoid",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-075",
+      "slug": "gestational_pemphigoid",
+      "name": "Gestational pemphigoid",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-076",
+      "slug": "linear_iga_bullous_dermatosis",
+      "name": "Linear IgA bullous dermatosis",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-077",
+      "slug": "dermatitis_herpetiformis",
+      "name": "Dermatitis herpetiformis",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-078",
+      "slug": "epidermolysis_bullosa_acquisita",
+      "name": "Epidermolysis bullosa acquisita",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-079",
+      "slug": "bullous_systemic_lupus_erythematosus",
+      "name": "Bullous systemic lupus erythematosus",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-080",
+      "slug": "anti_p200_pemphigoid",
+      "name": "Anti-p200 pemphigoid",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-081",
+      "slug": "lichen_planus_pemphigoides",
+      "name": "Lichen planus pemphigoides",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-082",
+      "slug": "pemphigoid_nodularis",
+      "name": "Pemphigoid nodularis",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-083",
+      "slug": "chronic_bullous_disease_of_childhood",
+      "name": "Chronic bullous disease of childhood",
+      "category": "autoimmune_bullous_diseases",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-084",
+      "slug": "impetigo",
+      "name": "Impetigo",
+      "category": "skin_infections",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": "B08.0",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-085",
+      "slug": "ecthyma",
+      "name": "Ecthyma",
+      "category": "skin_infections",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-086",
+      "slug": "cellulitis",
+      "name": "Cellulitis",
+      "category": "skin_infections",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-087",
+      "slug": "erysipelas",
+      "name": "Erysipelas",
+      "category": "skin_infections",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-088",
+      "slug": "bacterial_folliculitis",
+      "name": "Bacterial folliculitis",
+      "category": "skin_infections",
+      "category_ordinal": 5,
+      "aliases": [
+        "Folliculitis"
+      ],
+      "icd10": "L66.2",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-089",
+      "slug": "furuncle",
+      "name": "Furuncle",
+      "category": "skin_infections",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-090",
+      "slug": "carbuncle",
+      "name": "Carbuncle",
+      "category": "skin_infections",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-091",
+      "slug": "necrotizing_fasciitis",
+      "name": "Necrotizing fasciitis",
+      "category": "skin_infections",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-092",
+      "slug": "erythrasma",
+      "name": "Erythrasma",
+      "category": "skin_infections",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-093",
+      "slug": "pitted_keratolysis",
+      "name": "Pitted keratolysis",
+      "category": "skin_infections",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-094",
+      "slug": "trichomycosis_axillaris",
+      "name": "Trichomycosis axillaris",
+      "category": "skin_infections",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-095",
+      "slug": "cutaneous_anthrax",
+      "name": "Cutaneous anthrax",
+      "category": "skin_infections",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-096",
+      "slug": "atypical_mycobacterial_skin_infection",
+      "name": "Atypical mycobacterial skin infection",
+      "category": "skin_infections",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-097",
+      "slug": "cutaneous_tuberculosis",
+      "name": "Cutaneous tuberculosis",
+      "category": "skin_infections",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-098",
+      "slug": "herpes_simplex_infection",
+      "name": "Herpes simplex infection",
+      "category": "skin_infections",
+      "category_ordinal": 15,
+      "aliases": [
+        "Herpes Simplex"
+      ],
+      "icd10": "B00.1",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-099",
+      "slug": "varicella",
+      "name": "Varicella",
+      "category": "skin_infections",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-100",
+      "slug": "herpes_zoster",
+      "name": "Herpes zoster",
+      "category": "skin_infections",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-101",
+      "slug": "molluscum_contagiosum",
+      "name": "Molluscum contagiosum",
+      "category": "skin_infections",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-102",
+      "slug": "common_wart",
+      "name": "Common wart",
+      "category": "skin_infections",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-103",
+      "slug": "plantar_wart",
+      "name": "Plantar wart",
+      "category": "skin_infections",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-104",
+      "slug": "flat_wart",
+      "name": "Flat wart",
+      "category": "skin_infections",
+      "category_ordinal": 21,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-105",
+      "slug": "condyloma_acuminatum",
+      "name": "Condyloma acuminatum",
+      "category": "skin_infections",
+      "category_ordinal": 22,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-106",
+      "slug": "orf",
+      "name": "Orf",
+      "category": "skin_infections",
+      "category_ordinal": 23,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-107",
+      "slug": "milker_s_nodule",
+      "name": "Milker's nodule",
+      "category": "skin_infections",
+      "category_ordinal": 24,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-108",
+      "slug": "hand_foot_and_mouth_disease",
+      "name": "Hand-foot-and-mouth disease",
+      "category": "skin_infections",
+      "category_ordinal": 25,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-109",
+      "slug": "mpox",
+      "name": "Mpox",
+      "category": "skin_infections",
+      "category_ordinal": 26,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-110",
+      "slug": "measles",
+      "name": "Measles",
+      "category": "skin_infections",
+      "category_ordinal": 27,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-111",
+      "slug": "tinea_corporis",
+      "name": "Tinea corporis",
+      "category": "skin_infections",
+      "category_ordinal": 28,
+      "aliases": [
+        "Tinea"
+      ],
+      "icd10": "B35.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-112",
+      "slug": "tinea_cruris",
+      "name": "Tinea cruris",
+      "category": "skin_infections",
+      "category_ordinal": 29,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-113",
+      "slug": "tinea_pedis",
+      "name": "Tinea pedis",
+      "category": "skin_infections",
+      "category_ordinal": 30,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-114",
+      "slug": "tinea_capitis",
+      "name": "Tinea capitis",
+      "category": "skin_infections",
+      "category_ordinal": 31,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-115",
+      "slug": "tinea_barbae",
+      "name": "Tinea barbae",
+      "category": "skin_infections",
+      "category_ordinal": 32,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-116",
+      "slug": "tinea_faciei",
+      "name": "Tinea faciei",
+      "category": "skin_infections",
+      "category_ordinal": 33,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-117",
+      "slug": "tinea_manuum",
+      "name": "Tinea manuum",
+      "category": "skin_infections",
+      "category_ordinal": 34,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-118",
+      "slug": "onychomycosis",
+      "name": "Onychomycosis",
+      "category": "skin_infections",
+      "category_ordinal": 35,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-119",
+      "slug": "cutaneous_candidiasis",
+      "name": "Cutaneous candidiasis",
+      "category": "skin_infections",
+      "category_ordinal": 36,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-120",
+      "slug": "pityriasis_versicolor",
+      "name": "Pityriasis versicolor",
+      "category": "skin_infections",
+      "category_ordinal": 37,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-121",
+      "slug": "majocchi_granuloma",
+      "name": "Majocchi granuloma",
+      "category": "skin_infections",
+      "category_ordinal": 38,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-122",
+      "slug": "tinea_incognito",
+      "name": "Tinea incognito",
+      "category": "skin_infections",
+      "category_ordinal": 39,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-123",
+      "slug": "sporotrichosis",
+      "name": "Sporotrichosis",
+      "category": "skin_infections",
+      "category_ordinal": 40,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-124",
+      "slug": "chromoblastomycosis",
+      "name": "Chromoblastomycosis",
+      "category": "skin_infections",
+      "category_ordinal": 41,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-125",
+      "slug": "mycetoma",
+      "name": "Mycetoma",
+      "category": "skin_infections",
+      "category_ordinal": 42,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-126",
+      "slug": "scabies",
+      "name": "Scabies",
+      "category": "skin_infections",
+      "category_ordinal": 43,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-127",
+      "slug": "pediculosis_capitis",
+      "name": "Pediculosis capitis",
+      "category": "skin_infections",
+      "category_ordinal": 44,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-128",
+      "slug": "pediculosis_corporis",
+      "name": "Pediculosis corporis",
+      "category": "skin_infections",
+      "category_ordinal": 45,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-129",
+      "slug": "pediculosis_pubis",
+      "name": "Pediculosis pubis",
+      "category": "skin_infections",
+      "category_ordinal": 46,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-130",
+      "slug": "cutaneous_larva_migrans",
+      "name": "Cutaneous larva migrans",
+      "category": "skin_infections",
+      "category_ordinal": 47,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-131",
+      "slug": "cutaneous_leishmaniasis",
+      "name": "Cutaneous leishmaniasis",
+      "category": "skin_infections",
+      "category_ordinal": 48,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-132",
+      "slug": "tungiasis",
+      "name": "Tungiasis",
+      "category": "skin_infections",
+      "category_ordinal": 49,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-133",
+      "slug": "demodicosis",
+      "name": "Demodicosis",
+      "category": "skin_infections",
+      "category_ordinal": 50,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-134",
+      "slug": "acne_vulgaris",
+      "name": "Acne vulgaris",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": "L70.0",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-135",
+      "slug": "acne_conglobata",
+      "name": "Acne conglobata",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-136",
+      "slug": "acne_fulminans",
+      "name": "Acne fulminans",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-137",
+      "slug": "neonatal_acne",
+      "name": "Neonatal acne",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-138",
+      "slug": "infantile_acne",
+      "name": "Infantile acne",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-139",
+      "slug": "acne_mechanica",
+      "name": "Acne mechanica",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-140",
+      "slug": "acne_cosmetica",
+      "name": "Acne cosmetica",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-141",
+      "slug": "steroid_acne",
+      "name": "Steroid acne",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-142",
+      "slug": "drug_induced_acneiform_eruption",
+      "name": "Drug-induced acneiform eruption",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-143",
+      "slug": "chloracne",
+      "name": "Chloracne",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-144",
+      "slug": "rosacea",
+      "name": "Rosacea",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": "L71.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-145",
+      "slug": "papulopustular_rosacea",
+      "name": "Papulopustular rosacea",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-146",
+      "slug": "phymatous_rosacea_rhinophyma",
+      "name": "Phymatous rosacea (rhinophyma)",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 13,
+      "aliases": [
+        "Rhinophyma"
+      ],
+      "icd10": "L71.1",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-147",
+      "slug": "ocular_rosacea",
+      "name": "Ocular rosacea",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-148",
+      "slug": "perioral_dermatitis",
+      "name": "Perioral dermatitis",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-149",
+      "slug": "hidradenitis_suppurativa",
+      "name": "Hidradenitis suppurativa",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-150",
+      "slug": "pseudofolliculitis_barbae",
+      "name": "Pseudofolliculitis barbae",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-151",
+      "slug": "keratosis_pilaris",
+      "name": "Keratosis pilaris",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-152",
+      "slug": "gram_negative_folliculitis",
+      "name": "Gram-negative folliculitis",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-153",
+      "slug": "malassezia_folliculitis",
+      "name": "Malassezia folliculitis",
+      "category": "acne_and_follicular_disorders",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-154",
+      "slug": "alopecia_areata",
+      "name": "Alopecia areata",
+      "category": "hair_disorders",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-155",
+      "slug": "androgenetic_alopecia",
+      "name": "Androgenetic alopecia",
+      "category": "hair_disorders",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-156",
+      "slug": "telogen_effluvium",
+      "name": "Telogen effluvium",
+      "category": "hair_disorders",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-157",
+      "slug": "anagen_effluvium",
+      "name": "Anagen effluvium",
+      "category": "hair_disorders",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-158",
+      "slug": "trichotillomania",
+      "name": "Trichotillomania",
+      "category": "hair_disorders",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-159",
+      "slug": "lichen_planopilaris",
+      "name": "Lichen planopilaris",
+      "category": "hair_disorders",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-160",
+      "slug": "frontal_fibrosing_alopecia",
+      "name": "Frontal fibrosing alopecia",
+      "category": "hair_disorders",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-161",
+      "slug": "central_centrifugal_cicatricial_alopecia",
+      "name": "Central centrifugal cicatricial alopecia",
+      "category": "hair_disorders",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-162",
+      "slug": "discoid_lupus_alopecia",
+      "name": "Discoid lupus alopecia",
+      "category": "hair_disorders",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-163",
+      "slug": "folliculitis_decalvans",
+      "name": "Folliculitis decalvans",
+      "category": "hair_disorders",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-164",
+      "slug": "dissecting_cellulitis",
+      "name": "Dissecting cellulitis",
+      "category": "hair_disorders",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-165",
+      "slug": "traction_alopecia",
+      "name": "Traction alopecia",
+      "category": "hair_disorders",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-166",
+      "slug": "loose_anagen_syndrome",
+      "name": "Loose anagen syndrome",
+      "category": "hair_disorders",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-167",
+      "slug": "short_anagen_syndrome",
+      "name": "Short anagen syndrome",
+      "category": "hair_disorders",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-168",
+      "slug": "trichorrhexis_nodosa",
+      "name": "Trichorrhexis nodosa",
+      "category": "hair_disorders",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-169",
+      "slug": "monilethrix",
+      "name": "Monilethrix",
+      "category": "hair_disorders",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-170",
+      "slug": "pili_torti",
+      "name": "Pili torti",
+      "category": "hair_disorders",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-171",
+      "slug": "trichorrhexis_invaginata",
+      "name": "Trichorrhexis invaginata",
+      "category": "hair_disorders",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-172",
+      "slug": "hypertrichosis",
+      "name": "Hypertrichosis",
+      "category": "hair_disorders",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-173",
+      "slug": "hirsutism",
+      "name": "Hirsutism",
+      "category": "hair_disorders",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-174",
+      "slug": "paronychia",
+      "name": "Paronychia",
+      "category": "nail_disorders",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-175",
+      "slug": "nail_psoriasis",
+      "name": "Nail psoriasis",
+      "category": "nail_disorders",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-176",
+      "slug": "beau_lines",
+      "name": "Beau lines",
+      "category": "nail_disorders",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-177",
+      "slug": "koilonychia",
+      "name": "Koilonychia",
+      "category": "nail_disorders",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-178",
+      "slug": "onycholysis",
+      "name": "Onycholysis",
+      "category": "nail_disorders",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-179",
+      "slug": "digital_clubbing",
+      "name": "Digital clubbing",
+      "category": "nail_disorders",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-180",
+      "slug": "longitudinal_melanonychia",
+      "name": "Longitudinal melanonychia",
+      "category": "nail_disorders",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-181",
+      "slug": "onychomadesis",
+      "name": "Onychomadesis",
+      "category": "nail_disorders",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-182",
+      "slug": "onychorrhexis",
+      "name": "Onychorrhexis",
+      "category": "nail_disorders",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-183",
+      "slug": "trachyonychia",
+      "name": "Trachyonychia",
+      "category": "nail_disorders",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-184",
+      "slug": "pincer_nail",
+      "name": "Pincer nail",
+      "category": "nail_disorders",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-185",
+      "slug": "ingrown_toenail",
+      "name": "Ingrown toenail",
+      "category": "nail_disorders",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-186",
+      "slug": "green_nail_syndrome",
+      "name": "Green nail syndrome",
+      "category": "nail_disorders",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-187",
+      "slug": "median_canaliform_nail_dystrophy",
+      "name": "Median canaliform nail dystrophy",
+      "category": "nail_disorders",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-188",
+      "slug": "nail_lichen_planus",
+      "name": "Nail lichen planus",
+      "category": "nail_disorders",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-189",
+      "slug": "seborrheic_keratosis",
+      "name": "Seborrheic keratosis",
+      "category": "benign_tumors",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-190",
+      "slug": "dermatofibroma",
+      "name": "Dermatofibroma",
+      "category": "benign_tumors",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-191",
+      "slug": "epidermoid_cyst",
+      "name": "Epidermoid cyst",
+      "category": "benign_tumors",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-192",
+      "slug": "lipoma",
+      "name": "Lipoma",
+      "category": "benign_tumors",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-193",
+      "slug": "cherry_angioma",
+      "name": "Cherry angioma",
+      "category": "benign_tumors",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-194",
+      "slug": "pyogenic_granuloma",
+      "name": "Pyogenic granuloma",
+      "category": "benign_tumors",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-195",
+      "slug": "melanocytic_nevus",
+      "name": "Melanocytic nevus",
+      "category": "benign_tumors",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": "D22.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-196",
+      "slug": "acrochordon_skin_tag",
+      "name": "Acrochordon (skin tag)",
+      "category": "benign_tumors",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-197",
+      "slug": "congenital_melanocytic_nevus",
+      "name": "Congenital melanocytic nevus",
+      "category": "benign_tumors",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-198",
+      "slug": "blue_nevus",
+      "name": "Blue nevus",
+      "category": "benign_tumors",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-199",
+      "slug": "spitz_nevus",
+      "name": "Spitz nevus",
+      "category": "benign_tumors",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-200",
+      "slug": "halo_nevus",
+      "name": "Halo nevus",
+      "category": "benign_tumors",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-201",
+      "slug": "nevus_sebaceous",
+      "name": "Nevus sebaceous",
+      "category": "benign_tumors",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-202",
+      "slug": "pilomatricoma",
+      "name": "Pilomatricoma",
+      "category": "benign_tumors",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-203",
+      "slug": "trichoepithelioma",
+      "name": "Trichoepithelioma",
+      "category": "benign_tumors",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-204",
+      "slug": "syringoma",
+      "name": "Syringoma",
+      "category": "benign_tumors",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-205",
+      "slug": "sebaceous_hyperplasia",
+      "name": "Sebaceous hyperplasia",
+      "category": "benign_tumors",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-206",
+      "slug": "angiokeratoma",
+      "name": "Angiokeratoma",
+      "category": "benign_tumors",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-207",
+      "slug": "neurofibroma",
+      "name": "Neurofibroma",
+      "category": "benign_tumors",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-208",
+      "slug": "leiomyoma",
+      "name": "Leiomyoma",
+      "category": "benign_tumors",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-209",
+      "slug": "glomus_tumor",
+      "name": "Glomus tumor",
+      "category": "benign_tumors",
+      "category_ordinal": 21,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-210",
+      "slug": "keloid",
+      "name": "Keloid",
+      "category": "benign_tumors",
+      "category_ordinal": 22,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-211",
+      "slug": "basal_cell_carcinoma",
+      "name": "Basal cell carcinoma",
+      "category": "skin_cancer",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": "C44.91",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-212",
+      "slug": "cutaneous_squamous_cell_carcinoma",
+      "name": "Cutaneous squamous cell carcinoma",
+      "category": "skin_cancer",
+      "category_ordinal": 2,
+      "aliases": [
+        "Squamous Cell Carcinoma"
+      ],
+      "icd10": "C44.92",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-213",
+      "slug": "melanoma",
+      "name": "Melanoma",
+      "category": "skin_cancer",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": "C43.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-214",
+      "slug": "squamous_cell_carcinoma_in_situ_bowen_disease",
+      "name": "Squamous cell carcinoma in situ (Bowen disease)",
+      "category": "skin_cancer",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-215",
+      "slug": "actinic_keratosis",
+      "name": "Actinic keratosis",
+      "category": "skin_cancer",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": "L57.0",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-216",
+      "slug": "keratoacanthoma",
+      "name": "Keratoacanthoma",
+      "category": "skin_cancer",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": "L85.8",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-217",
+      "slug": "merkel_cell_carcinoma",
+      "name": "Merkel cell carcinoma",
+      "category": "skin_cancer",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-218",
+      "slug": "dermatofibrosarcoma_protuberans",
+      "name": "Dermatofibrosarcoma protuberans",
+      "category": "skin_cancer",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-219",
+      "slug": "kaposi_sarcoma",
+      "name": "Kaposi sarcoma",
+      "category": "skin_cancer",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-220",
+      "slug": "cutaneous_t_cell_lymphoma",
+      "name": "Cutaneous T-cell lymphoma",
+      "category": "skin_cancer",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-221",
+      "slug": "mycosis_fungoides",
+      "name": "Mycosis fungoides",
+      "category": "skin_cancer",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-222",
+      "slug": "sezary_syndrome",
+      "name": "Sézary syndrome",
+      "category": "skin_cancer",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-223",
+      "slug": "primary_cutaneous_anaplastic_large_cell_lymphoma",
+      "name": "Primary cutaneous anaplastic large-cell lymphoma",
+      "category": "skin_cancer",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-224",
+      "slug": "sebaceous_carcinoma",
+      "name": "Sebaceous carcinoma",
+      "category": "skin_cancer",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-225",
+      "slug": "microcystic_adnexal_carcinoma",
+      "name": "Microcystic adnexal carcinoma",
+      "category": "skin_cancer",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-226",
+      "slug": "extramammary_paget_disease",
+      "name": "Extramammary Paget disease",
+      "category": "skin_cancer",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-227",
+      "slug": "angiosarcoma",
+      "name": "Angiosarcoma",
+      "category": "skin_cancer",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-228",
+      "slug": "acral_lentiginous_melanoma",
+      "name": "Acral lentiginous melanoma",
+      "category": "skin_cancer",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-229",
+      "slug": "lentigo_maligna_melanoma",
+      "name": "Lentigo maligna melanoma",
+      "category": "skin_cancer",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-230",
+      "slug": "nodular_melanoma",
+      "name": "Nodular melanoma",
+      "category": "skin_cancer",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-231",
+      "slug": "infantile_hemangioma",
+      "name": "Infantile hemangioma",
+      "category": "vascular_diseases",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-232",
+      "slug": "venous_leg_ulcer",
+      "name": "Venous leg ulcer",
+      "category": "vascular_diseases",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-233",
+      "slug": "cutaneous_small_vessel_vasculitis",
+      "name": "Cutaneous small-vessel vasculitis",
+      "category": "vascular_diseases",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-234",
+      "slug": "livedo_reticularis",
+      "name": "Livedo reticularis",
+      "category": "vascular_diseases",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-235",
+      "slug": "purpura",
+      "name": "Purpura",
+      "category": "vascular_diseases",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-236",
+      "slug": "port_wine_stain",
+      "name": "Port-wine stain",
+      "category": "vascular_diseases",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-237",
+      "slug": "spider_angioma",
+      "name": "Spider angioma",
+      "category": "vascular_diseases",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-238",
+      "slug": "telangiectasia",
+      "name": "Telangiectasia",
+      "category": "vascular_diseases",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-239",
+      "slug": "venous_malformation",
+      "name": "Venous malformation",
+      "category": "vascular_diseases",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-240",
+      "slug": "lymphatic_malformation",
+      "name": "Lymphatic malformation",
+      "category": "vascular_diseases",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-241",
+      "slug": "arteriovenous_malformation",
+      "name": "Arteriovenous malformation",
+      "category": "vascular_diseases",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-242",
+      "slug": "livedoid_vasculopathy",
+      "name": "Livedoid vasculopathy",
+      "category": "vascular_diseases",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-243",
+      "slug": "stasis_ulcer",
+      "name": "Stasis ulcer",
+      "category": "vascular_diseases",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-244",
+      "slug": "calciphylaxis",
+      "name": "Calciphylaxis",
+      "category": "vascular_diseases",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-245",
+      "slug": "cholesterol_embolization_syndrome",
+      "name": "Cholesterol embolization syndrome",
+      "category": "vascular_diseases",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-246",
+      "slug": "acute_cutaneous_lupus_erythematosus",
+      "name": "Acute cutaneous lupus erythematosus",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-247",
+      "slug": "subacute_cutaneous_lupus_erythematosus",
+      "name": "Subacute cutaneous lupus erythematosus",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-248",
+      "slug": "chronic_cutaneous_lupus_erythematosus",
+      "name": "Chronic cutaneous lupus erythematosus",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-249",
+      "slug": "dermatomyositis",
+      "name": "Dermatomyositis",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-250",
+      "slug": "systemic_sclerosis",
+      "name": "Systemic sclerosis",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-251",
+      "slug": "morphea",
+      "name": "Morphea",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-252",
+      "slug": "calcinosis_cutis",
+      "name": "Calcinosis cutis",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-253",
+      "slug": "mixed_connective_tissue_disease",
+      "name": "Mixed connective tissue disease",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-254",
+      "slug": "scleredema",
+      "name": "Scleredema",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-255",
+      "slug": "scleromyxedema",
+      "name": "Scleromyxedema",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-256",
+      "slug": "eosinophilic_fasciitis",
+      "name": "Eosinophilic fasciitis",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-257",
+      "slug": "graft_versus_host_disease",
+      "name": "Graft-versus-host disease",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-258",
+      "slug": "rheumatoid_nodule",
+      "name": "Rheumatoid nodule",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-259",
+      "slug": "granuloma_annulare",
+      "name": "Granuloma annulare",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-260",
+      "slug": "necrobiosis_lipoidica",
+      "name": "Necrobiosis lipoidica",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-261",
+      "slug": "palisaded_neutrophilic_granulomatous_dermatitis",
+      "name": "Palisaded neutrophilic granulomatous dermatitis",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-262",
+      "slug": "interstitial_granulomatous_dermatitis",
+      "name": "Interstitial granulomatous dermatitis",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-263",
+      "slug": "relapsing_polychondritis",
+      "name": "Relapsing polychondritis",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-264",
+      "slug": "beh_et_disease",
+      "name": "Behçet disease",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-265",
+      "slug": "antiphospholipid_syndrome_skin_manifestations",
+      "name": "Antiphospholipid syndrome skin manifestations",
+      "category": "connective_tissue_diseases",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-266",
+      "slug": "fixed_drug_eruption",
+      "name": "Fixed drug eruption",
+      "category": "drug_reactions",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": "L27.1",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-267",
+      "slug": "stevens_johnson_syndrome",
+      "name": "Stevens-Johnson syndrome",
+      "category": "drug_reactions",
+      "category_ordinal": 2,
+      "aliases": [
+        "SJS/TEN"
+      ],
+      "icd10": "L51.1/L51.2",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-268",
+      "slug": "toxic_epidermal_necrolysis",
+      "name": "Toxic epidermal necrolysis",
+      "category": "drug_reactions",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-269",
+      "slug": "dress_syndrome",
+      "name": "DRESS syndrome",
+      "category": "drug_reactions",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-270",
+      "slug": "acute_generalized_exanthematous_pustulosis",
+      "name": "Acute generalized exanthematous pustulosis",
+      "category": "drug_reactions",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-271",
+      "slug": "morbilliform_drug_eruption",
+      "name": "Morbilliform drug eruption",
+      "category": "drug_reactions",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": "L27.0",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-272",
+      "slug": "drug_induced_urticaria",
+      "name": "Drug-induced urticaria",
+      "category": "drug_reactions",
+      "category_ordinal": 7,
+      "aliases": [
+        "Urticaria (Drug-Induced)"
+      ],
+      "icd10": "L50.9",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-273",
+      "slug": "serum_sickness_like_reaction",
+      "name": "Serum sickness-like reaction",
+      "category": "drug_reactions",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-274",
+      "slug": "drug_induced_photosensitivity",
+      "name": "Drug-induced photosensitivity",
+      "category": "drug_reactions",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-275",
+      "slug": "drug_induced_lupus_erythematosus",
+      "name": "Drug-induced lupus erythematosus",
+      "category": "drug_reactions",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-276",
+      "slug": "drug_induced_bullous_pemphigoid",
+      "name": "Drug-induced bullous pemphigoid",
+      "category": "drug_reactions",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-277",
+      "slug": "drug_induced_pemphigus",
+      "name": "Drug-induced pemphigus",
+      "category": "drug_reactions",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-278",
+      "slug": "anticoagulant_induced_skin_necrosis",
+      "name": "Anticoagulant-induced skin necrosis",
+      "category": "drug_reactions",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-279",
+      "slug": "heparin_induced_skin_necrosis",
+      "name": "Heparin-induced skin necrosis",
+      "category": "drug_reactions",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-280",
+      "slug": "lichenoid_drug_eruption",
+      "name": "Lichenoid drug eruption",
+      "category": "drug_reactions",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-281",
+      "slug": "acneiform_drug_eruption",
+      "name": "Acneiform drug eruption",
+      "category": "drug_reactions",
+      "category_ordinal": 16,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-282",
+      "slug": "drug_induced_pigmentation",
+      "name": "Drug-induced pigmentation",
+      "category": "drug_reactions",
+      "category_ordinal": 17,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-283",
+      "slug": "symmetrical_drug_related_intertriginous_and_flexural_exanthema",
+      "name": "Symmetrical drug-related intertriginous and flexural exanthema",
+      "category": "drug_reactions",
+      "category_ordinal": 18,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-284",
+      "slug": "generalized_bullous_fixed_drug_eruption",
+      "name": "Generalized bullous fixed drug eruption",
+      "category": "drug_reactions",
+      "category_ordinal": 19,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-285",
+      "slug": "erythema_multiforme",
+      "name": "Erythema multiforme",
+      "category": "drug_reactions",
+      "category_ordinal": 20,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-286",
+      "slug": "diaper_dermatitis",
+      "name": "Diaper dermatitis",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 1,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-287",
+      "slug": "erythema_toxicum_neonatorum",
+      "name": "Erythema toxicum neonatorum",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 2,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-288",
+      "slug": "milia",
+      "name": "Milia",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 3,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-289",
+      "slug": "transient_neonatal_pustular_melanosis",
+      "name": "Transient neonatal pustular melanosis",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 4,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-290",
+      "slug": "nevus_simplex",
+      "name": "Nevus simplex",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 5,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-291",
+      "slug": "miliaria",
+      "name": "Miliaria",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 6,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-292",
+      "slug": "cradle_cap",
+      "name": "Cradle cap",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 7,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-293",
+      "slug": "aplasia_cutis_congenita",
+      "name": "Aplasia cutis congenita",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 8,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-294",
+      "slug": "epidermolysis_bullosa_simplex",
+      "name": "Epidermolysis bullosa simplex",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 9,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-295",
+      "slug": "incontinentia_pigmenti",
+      "name": "Incontinentia pigmenti",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 10,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-296",
+      "slug": "ichthyosis_vulgaris",
+      "name": "Ichthyosis vulgaris",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 11,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-297",
+      "slug": "harlequin_ichthyosis",
+      "name": "Harlequin ichthyosis",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 12,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-298",
+      "slug": "staphylococcal_scalded_skin_syndrome",
+      "name": "Staphylococcal scalded skin syndrome",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 13,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-299",
+      "slug": "kawasaki_disease",
+      "name": "Kawasaki disease",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 14,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    },
+    {
+      "id": "DER-300",
+      "slug": "papular_acrodermatitis_of_childhood",
+      "name": "Papular acrodermatitis of childhood",
+      "category": "pediatric_dermatology",
+      "category_ordinal": 15,
+      "aliases": [],
+      "icd10": null,
+      "content_status": "catalog_only",
+      "clinical_review": {
+        "status": "not_reviewed",
+        "reviewer": null,
+        "reviewed_at": null
+      }
+    }
+  ]
+}

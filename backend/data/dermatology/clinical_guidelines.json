@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology clinical guidelines records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "GLN-051",
+      "disease_id": "DER-051",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-021",
+      "disease_id": "DER-021",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-022",
+      "disease_id": "DER-022",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-098",
+      "disease_id": "DER-098",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-084",
+      "disease_id": "DER-084",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-111",
+      "disease_id": "DER-111",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-088",
+      "disease_id": "DER-088",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-134",
+      "disease_id": "DER-134",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-144",
+      "disease_id": "DER-144",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-146",
+      "disease_id": "DER-146",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-195",
+      "disease_id": "DER-195",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-213",
+      "disease_id": "DER-213",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-211",
+      "disease_id": "DER-211",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-212",
+      "disease_id": "DER-212",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-215",
+      "disease_id": "DER-215",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-216",
+      "disease_id": "DER-216",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-069",
+      "disease_id": "DER-069",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-073",
+      "disease_id": "DER-073",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-271",
+      "disease_id": "DER-271",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-272",
+      "disease_id": "DER-272",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-266",
+      "disease_id": "DER-266",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "GLN-267",
+      "disease_id": "DER-267",
+      "references": [],
+      "status": "citation_required",
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

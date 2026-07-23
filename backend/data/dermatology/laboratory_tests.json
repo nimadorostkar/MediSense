@@ -1,0 +1,282 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology laboratory tests records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "LAB-051",
+      "disease_id": "DER-051",
+      "diagnostic": [],
+      "baseline": [
+        "CBC",
+        "LFT",
+        "RFT",
+        "lipids"
+      ],
+      "before_systemic_therapy": [
+        "HBsAg",
+        "anti_HBc",
+        "HCV_Ab",
+        "HIV",
+        "TB_screening",
+        "pregnancy_test"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-021",
+      "disease_id": "DER-021",
+      "diagnostic": [
+        "CBC_eosinophils",
+        "total_IgE",
+        "specific_IgE",
+        "food_allergen_panel"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-022",
+      "disease_id": "DER-022",
+      "diagnostic": [
+        "patch_test_2-4weeks_after_resolution",
+        "KOH",
+        "bacterial_culture"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-098",
+      "disease_id": "DER-098",
+      "diagnostic": [
+        "HSV_PCR",
+        "viral_culture",
+        "Tzanck_smear",
+        "HSV_IgG_IgM"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-084",
+      "disease_id": "DER-084",
+      "diagnostic": [
+        "bacterial_culture",
+        "MRSA_screening"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-111",
+      "disease_id": "DER-111",
+      "diagnostic": [
+        "KOH_preparation",
+        "fungal_culture",
+        "Wood_lamp"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-088",
+      "disease_id": "DER-088",
+      "diagnostic": [
+        "bacterial_culture",
+        "KOH (if malassezia suspected)"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-134",
+      "disease_id": "DER-134",
+      "diagnostic": [
+        "hormones_female",
+        "ultrasound_pelvis",
+        "DHEAS",
+        "testosterone",
+        "LH_FSH"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-144",
+      "disease_id": "DER-144",
+      "diagnostic": [
+        "skin_biopsy",
+        "ocular_exam",
+        "ANA (if SLE suspected)"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-146",
+      "disease_id": "DER-146",
+      "diagnostic": [
+        "skin_biopsy",
+        "nasal_CT"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-195",
+      "disease_id": "DER-195",
+      "diagnostic": [
+        "dermoscopy",
+        "biopsy_if_atypical"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-213",
+      "disease_id": "DER-213",
+      "diagnostic": [
+        "LDH",
+        "CBC",
+        "LFT",
+        "genetic_BRAF_NRAS_cKIT"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-211",
+      "disease_id": "DER-211",
+      "diagnostic": [
+        "skin_biopsy",
+        "facial_CT_MRI_if_deep"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-212",
+      "disease_id": "DER-212",
+      "diagnostic": [
+        "skin_biopsy",
+        "lymph_node_ultrasound",
+        "CT_if_high_risk"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-215",
+      "disease_id": "DER-215",
+      "diagnostic": [
+        "biopsy_if_atypical"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-216",
+      "disease_id": "DER-216",
+      "diagnostic": [
+        "wedge_excision_biopsy"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-069",
+      "disease_id": "DER-069",
+      "diagnostic": [
+        "skin_biopsy_DIF",
+        "indirect_immunofluorescence",
+        "anti_Dsg1_Dsg3",
+        "chest_CT (exclude paraneoplastic)"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-073",
+      "disease_id": "DER-073",
+      "diagnostic": [
+        "skin_biopsy_DIF",
+        "indirect_immunofluorescence",
+        "anti_BP180_BP230",
+        "neurological_eval"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-271",
+      "disease_id": "DER-271",
+      "diagnostic": [
+        "CBC_eosinophils",
+        "LFT",
+        "renal_function"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-272",
+      "disease_id": "DER-272",
+      "diagnostic": [
+        "CBC",
+        "total_IgE",
+        "tryptase (during acute episode)"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-266",
+      "disease_id": "DER-266",
+      "diagnostic": [
+        "biopsy_if_diagnostic_uncertainty"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "LAB-267",
+      "disease_id": "DER-267",
+      "diagnostic": [
+        "skin_biopsy",
+        "CBC",
+        "LFT",
+        "renal",
+        "electrolytes",
+        "blood_culture",
+        "HLA-B*5801 (allopurinol)"
+      ],
+      "baseline": [],
+      "before_systemic_therapy": [],
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

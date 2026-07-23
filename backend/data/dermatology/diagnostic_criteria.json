@@ -1,0 +1,172 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology diagnostic criteria records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "DCR-051",
+      "disease_id": "DER-051",
+      "criteria": [],
+      "scoring_systems": {
+        "PASI": "0-72",
+        "BSA": "<3% mild, 3-10% moderate, >10% severe",
+        "DLQI": "0-30"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-021",
+      "disease_id": "DER-021",
+      "criteria": [],
+      "scoring_systems": {
+        "EASI": "0-72",
+        "SCORAD": "0-103",
+        "POEM": "0-28"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-022",
+      "disease_id": "DER-022",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-098",
+      "disease_id": "DER-098",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-084",
+      "disease_id": "DER-084",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-111",
+      "disease_id": "DER-111",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-088",
+      "disease_id": "DER-088",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-134",
+      "disease_id": "DER-134",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-144",
+      "disease_id": "DER-144",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-146",
+      "disease_id": "DER-146",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-195",
+      "disease_id": "DER-195",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-213",
+      "disease_id": "DER-213",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-211",
+      "disease_id": "DER-211",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-212",
+      "disease_id": "DER-212",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-215",
+      "disease_id": "DER-215",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-216",
+      "disease_id": "DER-216",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-069",
+      "disease_id": "DER-069",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-073",
+      "disease_id": "DER-073",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-271",
+      "disease_id": "DER-271",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-272",
+      "disease_id": "DER-272",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-266",
+      "disease_id": "DER-266",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DCR-267",
+      "disease_id": "DER-267",
+      "criteria": [],
+      "scoring_systems": {},
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

@@ -1,0 +1,40 @@
+{
+  "schema_version": "2.0.0",
+  "disease_count": 300,
+  "category_counts": {
+    "pigmentary_disorders": 20,
+    "eczema_and_dermatitis": 30,
+    "papulosquamous_diseases": 18,
+    "autoimmune_bullous_diseases": 15,
+    "skin_infections": 50,
+    "acne_and_follicular_disorders": 20,
+    "hair_disorders": 20,
+    "nail_disorders": 15,
+    "benign_tumors": 22,
+    "skin_cancer": 20,
+    "vascular_diseases": 15,
+    "connective_tissue_diseases": 20,
+    "drug_reactions": 20,
+    "pediatric_dermatology": 15
+  },
+  "modules": [
+    "disease.json",
+    "symptoms.json",
+    "physical_exam.json",
+    "diagnostic_criteria.json",
+    "differential_diagnosis.json",
+    "laboratory_tests.json",
+    "imaging.json",
+    "treatment.json",
+    "drug_database.json",
+    "patient_education.json",
+    "clinical_guidelines.json",
+    "ai_rules.json"
+  ],
+  "clinical_safety": {
+    "catalog_only_records_are_not_actionable": true,
+    "legacy_curated_records_require_revalidation": true,
+    "ai_rules_default_enabled": false,
+    "physician_confirmation_required": true
+  }
+}

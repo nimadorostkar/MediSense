@@ -1,0 +1,309 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology physical exam records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "PEX-051",
+      "disease_id": "DER-051",
+      "key_findings": [
+        "well_demarcated_erythematous_plaques",
+        "silvery_white_scales",
+        "auspitz_sign_positive",
+        "film_phenomenon_positive"
+      ],
+      "distribution": [
+        "extensor_surfaces",
+        "scalp",
+        "sacral",
+        "nails",
+        "inverse_areas"
+      ],
+      "nail_findings": [
+        "pitting",
+        "onycholysis",
+        "subungual_hyperkeratosis",
+        "oil_drop_sign"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-021",
+      "disease_id": "DER-021",
+      "key_findings": [
+        "pruritus_essential",
+        "eczematous_morphology",
+        "age_specific_distribution",
+        "chronic_relapsing_course"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-022",
+      "disease_id": "DER-022",
+      "key_findings": [
+        "well_demarcated_erythema",
+        "vesicles_or_bullae",
+        "shape_correlates_with_exposure"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-098",
+      "disease_id": "DER-098",
+      "key_findings": [
+        "clustered_vesicles",
+        "erythematous_base",
+        "painful_lesions",
+        "recurrent_same_site"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-084",
+      "disease_id": "DER-084",
+      "key_findings": [
+        "honey_colored_crusts",
+        "superficial_erosions",
+        "erythematous_base"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-111",
+      "disease_id": "DER-111",
+      "key_findings": [
+        "annular_lesions_with_active_border",
+        "central_clearing",
+        "peripheral_scale",
+        "pruritus"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-088",
+      "disease_id": "DER-088",
+      "key_findings": [
+        "follicular_centered_papules_pustules",
+        "hair_penetrating_center",
+        "erythematous_base"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-134",
+      "disease_id": "DER-134",
+      "key_findings": [
+        "comedones_open_closed",
+        "inflammatory_papules_pustules",
+        "nodules_cysts",
+        "seborrhea",
+        "scarring"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-144",
+      "disease_id": "DER-144",
+      "key_findings": [
+        "persistent_central_facial_erythema",
+        "telangiectasia",
+        "papules_pustules_no_comedones",
+        "flushing_triggers"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-146",
+      "disease_id": "DER-146",
+      "key_findings": [
+        "nasal_enlargement",
+        "nodular_surface",
+        "sebaceous_hyperplasia",
+        "erythema"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-195",
+      "disease_id": "DER-195",
+      "key_findings": [
+        "symmetric",
+        "regular_border",
+        "uniform_color",
+        "diameter_less_than_6mm",
+        "stable_over_time"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-213",
+      "disease_id": "DER-213",
+      "key_findings": [
+        "asymmetry",
+        "irregular_border",
+        "multiple_colors",
+        "diameter_greater_than_6mm",
+        "evolution"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-211",
+      "disease_id": "DER-211",
+      "key_findings": [
+        "pearly_papule_with_telangiectasia",
+        "rolled_border",
+        "central_ulceration_rodent_ulcer",
+        "translucency"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-212",
+      "disease_id": "DER-212",
+      "key_findings": [
+        "erythematous_indurated_nodule",
+        "hyperkeratotic_scale_crust",
+        "ulceration",
+        "firm_base"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-215",
+      "disease_id": "DER-215",
+      "key_findings": [
+        "erythematous_papule_or_patch",
+        "adherent_scale",
+        "sandpaper_texture",
+        "sun_exposed_skin"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-216",
+      "disease_id": "DER-216",
+      "key_findings": [
+        "dome_shaped_nodule",
+        "central_keratin_plug_crater",
+        "smooth_rolled_border",
+        "rapid_growth_weeks_to_months"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-069",
+      "disease_id": "DER-069",
+      "key_findings": [
+        "flaccid_bullae",
+        "positive_nikolsky_sign",
+        "painful_erosions",
+        "mucosal_involvement_oral_first"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-073",
+      "disease_id": "DER-073",
+      "key_findings": [
+        "tense_bullae",
+        "negative_nikolsky_sign",
+        "pruritic_urticarial_plaques",
+        "elderly_patient"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-271",
+      "disease_id": "DER-271",
+      "key_findings": [
+        "symmetric_erythematous_macules_papules",
+        "confluent_on_trunk",
+        "spares_face_or_mild",
+        "mild_pruritus"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-272",
+      "disease_id": "DER-272",
+      "key_findings": [
+        "transient_wheals",
+        "each_lesion_resolves_within_24h",
+        "new_lesions_appear_elsewhere",
+        "may_have_angioedema"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-266",
+      "disease_id": "DER-266",
+      "key_findings": [
+        "well_demarcated_round_oval_patch",
+        "dusky_violaceous_color",
+        "may_have_bullae",
+        "post_inflammatory_hyperpigmentation",
+        "same_site_each_time"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "PEX-267",
+      "disease_id": "DER-267",
+      "key_findings": [
+        "prodrome_fever_malaise",
+        "atypical_target_lesions",
+        "positive_nikolsky",
+        "epidermal_detachment",
+        "mucosal_involvement_2+sites"
+      ],
+      "distribution": [],
+      "nail_findings": [],
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

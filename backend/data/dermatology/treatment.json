@@ -1,0 +1,1464 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology treatment records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "TRT-051",
+      "disease_id": "DER-051",
+      "tiers": [
+        {
+          "tier": "topical_mild",
+          "items": [
+            {
+              "drug_id": "DRUG-E453CA6CD565",
+              "dose": "Apply BID",
+              "duration": "4-8 weeks",
+              "insurance": "Class_B",
+              "max": "100g/week"
+            },
+            {
+              "drug_id": "DRUG-BE2CEA362005",
+              "dose": "Apply QD",
+              "duration": "2 weeks then taper",
+              "insurance": "Class_B",
+              "alert": "GREEN"
+            },
+            {
+              "drug_id": "DRUG-FA844AC6758E",
+              "dose": "Apply QD",
+              "duration": "4 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-9B0412DB0BE4",
+              "dose": "Apply QN",
+              "duration": "8-12 weeks",
+              "insurance": "Class_B",
+              "alert": "YELLOW",
+              "contra": [
+                "pregnancy"
+              ]
+            }
+          ]
+        },
+        {
+          "tier": "systemic_moderate",
+          "items": [
+            {
+              "drug_id": "DRUG-A5CE4BD9B0DA",
+              "dose": "25mg QD with fatty meal",
+              "duration": "16-24 weeks",
+              "insurance": "Class_B",
+              "alert": "RED",
+              "monitor": "LFT, lipids q4w",
+              "special": "Contraception 2 years post-discontinuation. Sign consent."
+            },
+            {
+              "drug_id": "DRUG-F9D7B012ED15",
+              "dose": "10-15mg once WEEKLY",
+              "duration": "Long-term",
+              "insurance": "Class_A",
+              "alert": "RED",
+              "monitor": "CBC, LFT q2w",
+              "special": "Folic acid 5mg weekly. NEVER daily dosing."
+            },
+            {
+              "drug_id": "DRUG-F10BFEE314E8",
+              "dose": "3-5mg/kg/day BID",
+              "duration": "Max 1-2 years",
+              "insurance": "Class_B",
+              "alert": "YELLOW",
+              "monitor": "BP, RFT, electrolytes"
+            }
+          ]
+        },
+        {
+          "tier": "biologics_severe",
+          "items": [
+            {
+              "drug_id": "DRUG-6F35FDC59588",
+              "dose": "300mg SC weeks 0,1,2,3,4 then q4w",
+              "insurance": "Class_B (approval)",
+              "alert": "RED",
+              "pre_tx": "TB, HBsAg, HIV",
+              "special": "Exclude active TB/HBV. No live vaccines."
+            },
+            {
+              "drug_id": "DRUG-85801F64E8D6",
+              "dose": "80mg wk0 then 40mg q2w",
+              "insurance": "Class_B (approval)",
+              "alert": "RED"
+            },
+            {
+              "drug_id": "DRUG-EBA88E1F89A6",
+              "dose": "45mg wk0,4 then q12w (<100kg)",
+              "insurance": "Class_B (approval)",
+              "alert": "RED"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "mild": "2-3 months",
+        "moderate": "4-6 weeks",
+        "severe": "Every 3 months"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-021",
+      "disease_id": "DER-021",
+      "tiers": [
+        {
+          "tier": "acute",
+          "items": [
+            {
+              "drug_id": "DRUG-C2E3D57CCDF2",
+              "dose": "Mid-potency steroid + emollient, damp gauze + dry layer",
+              "duration": "2-3 days"
+            },
+            {
+              "drug_id": "DRUG-9ADA116B41E4",
+              "dose": "Apply QD",
+              "duration": "7-14 days",
+              "insurance": "Class_B",
+              "alert": "GREEN"
+            },
+            {
+              "drug_id": "DRUG-C0899A7E22EF",
+              "dose": "Apply BID (face/folds)",
+              "duration": "5-7 days",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-FB8349206163",
+              "dose": "10mg QD",
+              "duration": "PRN",
+              "insurance": "Class_A"
+            }
+          ]
+        },
+        {
+          "tier": "maintenance",
+          "items": [
+            {
+              "drug_id": "DRUG-31BB7B452872",
+              "dose": "Apply BID",
+              "duration": "Long-term",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-91C5EB9BCEA2",
+              "dose": "Apply BID",
+              "duration": "Long-term",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-2187909F1189",
+              "dose": "Apply liberally multiple times daily",
+              "duration": "Continuous",
+              "insurance": "Self_Pay"
+            }
+          ]
+        },
+        {
+          "tier": "biologics",
+          "items": [
+            {
+              "drug_id": "DRUG-DE4DB2B1A883",
+              "dose": "600mg SC then 300mg q2w",
+              "insurance": "Class_B (approval)",
+              "alert": "YELLOW",
+              "special": "Monitor for conjunctivitis"
+            },
+            {
+              "drug_id": "DRUG-F10BFEE314E8",
+              "dose": "3-5mg/kg/day BID",
+              "duration": "3-6 months max",
+              "insurance": "Class_B",
+              "alert": "YELLOW"
+            },
+            {
+              "drug_id": "DRUG-F9D7B012ED15",
+              "dose": "7.5-15mg weekly",
+              "insurance": "Class_A",
+              "alert": "RED",
+              "special": "Folic acid 5mg weekly"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "mild": "2-3 months",
+        "moderate": "4-6 weeks",
+        "severe": "Every 4-8 weeks"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-022",
+      "disease_id": "DER-022",
+      "tiers": [
+        {
+          "tier": "non_oozing",
+          "items": [
+            {
+              "drug_id": "DRUG-465E829CF114",
+              "dose": "Apply TID",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-9ADA116B41E4",
+              "dose": "Apply QD",
+              "duration": "1-2 weeks",
+              "insurance": "Class_B",
+              "alert": "GREEN"
+            },
+            {
+              "drug_id": "DRUG-FB8349206163",
+              "dose": "10mg QD",
+              "duration": "7-14 days",
+              "insurance": "Class_A"
+            }
+          ]
+        },
+        {
+          "tier": "oozing",
+          "items": [
+            {
+              "drug_id": "DRUG-F765E7D1836E",
+              "dose": "Cold wet compress 15min BID",
+              "duration": "3-5 days",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-341852A87C63",
+              "dose": "Wet dressing BID",
+              "duration": "3-5 days",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-4995A7BA74D3",
+              "dose": "0.5-1mg/kg/day",
+              "duration": "5-7 days then taper",
+              "insurance": "Class_A",
+              "alert": "YELLOW"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "acute": "1-2 weeks",
+        "patch_test": "2-4 weeks after resolution"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-098",
+      "disease_id": "DER-098",
+      "tiers": [
+        {
+          "tier": "first_episode",
+          "items": [
+            {
+              "drug_id": "DRUG-738F79B71E1B",
+              "dose": "200mg 5x daily",
+              "duration": "7-10 days",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-898EED975CEB",
+              "dose": "1g BID",
+              "duration": "7-10 days",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-569319D3249B",
+              "dose": "250mg TID",
+              "duration": "7-10 days",
+              "insurance": "Class_B"
+            }
+          ]
+        },
+        {
+          "tier": "suppressive",
+          "items": [
+            {
+              "drug_id": "DRUG-898EED975CEB",
+              "dose": "500mg-1g QD",
+              "duration": "Continuous",
+              "insurance": "Class_B",
+              "special": "Reduces transmission ~50%"
+            }
+          ]
+        },
+        {
+          "tier": "eczema_herpeticum",
+          "items": [
+            {
+              "drug_id": "DRUG-21DAFA275E43",
+              "dose": "5-10mg/kg IV q8h",
+              "duration": "Until improved then PO 10-14d total",
+              "insurance": "Class_A",
+              "alert": "RED",
+              "special": "HOSPITALIZATION REQUIRED"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "first_episode": "2 weeks",
+        "recurrent": "As needed",
+        "suppressive": "Every 6-12 months"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-084",
+      "disease_id": "DER-084",
+      "tiers": [
+        {
+          "tier": "localized",
+          "items": [
+            {
+              "drug_id": "DRUG-63C9973EB65B",
+              "dose": "Apply TID",
+              "duration": "7-10 days",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-68B7C9EC2368",
+              "dose": "Apply TID",
+              "duration": "7-10 days",
+              "insurance": "Class_B"
+            }
+          ]
+        },
+        {
+          "tier": "extensive",
+          "items": [
+            {
+              "drug_id": "DRUG-0887401CFE6D",
+              "dose": "250-500mg QID",
+              "duration": "7 days",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-AB1E06680425",
+              "dose": "625mg BID",
+              "duration": "7 days",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-C8654DFA1E6A",
+              "dose": "300mg TID",
+              "duration": "7 days",
+              "insurance": "Class_B",
+              "special": "For MRSA or penicillin allergy"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "1_week": "Assess healing",
+        "contacts": "Screen household contacts"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-111",
+      "disease_id": "DER-111",
+      "tiers": [
+        {
+          "tier": "topical",
+          "items": [
+            {
+              "drug_id": "DRUG-125700370D24",
+              "dose": "Apply BID",
+              "duration": "2-4 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-25299DD0E2B0",
+              "dose": "Apply BID",
+              "duration": "2-4 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-1DD88F1AB4EA",
+              "dose": "Apply QD",
+              "duration": "2-4 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-D64BD1292677",
+              "dose": "Apply BID",
+              "duration": "2-4 weeks",
+              "insurance": "Class_B",
+              "special": "For intertriginous areas"
+            }
+          ]
+        },
+        {
+          "tier": "systemic",
+          "items": [
+            {
+              "drug_id": "DRUG-AA5B5C2873A9",
+              "dose": "250mg QD",
+              "duration": "Fingernails 6w, Toenails 12w",
+              "insurance": "Class_B",
+              "alert": "YELLOW",
+              "monitor": "LFT",
+              "special": "Check LFT baseline"
+            },
+            {
+              "drug_id": "DRUG-25098B221A15",
+              "dose": "200mg BID 1 week/month x3-4 pulses",
+              "insurance": "Class_B",
+              "alert": "YELLOW",
+              "monitor": "LFT",
+              "special": "Drug interactions common"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "topical": "2-4 weeks",
+        "systemic": "Monthly LFT"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-088",
+      "disease_id": "DER-088",
+      "tiers": [
+        {
+          "tier": "bacterial",
+          "items": [
+            {
+              "drug_id": "DRUG-3848D382EA89",
+              "dose": "Apply TID",
+              "duration": "7-10 days",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-FDD3E3CCC951",
+              "dose": "100mg BID",
+              "duration": "2-4 weeks",
+              "insurance": "Class_B",
+              "alert": "GREEN"
+            }
+          ]
+        },
+        {
+          "tier": "malassezia",
+          "items": [
+            {
+              "drug_id": "DRUG-14C49EE1678D",
+              "dose": "3x/week, leave 5min",
+              "duration": "2-4 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-25098B221A15",
+              "dose": "200mg QD",
+              "duration": "1-2 weeks",
+              "insurance": "Class_B",
+              "alert": "YELLOW"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "1-2_weeks": "Assess response"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-134",
+      "disease_id": "DER-134",
+      "tiers": [
+        {
+          "tier": "mild",
+          "items": [
+            {
+              "drug_id": "DRUG-0CAF986251BC",
+              "dose": "Apply thin layer QN",
+              "duration": "8-12 weeks",
+              "insurance": "Class_B",
+              "alert": "GREEN",
+              "special": "Start 2-3x/week, increase gradually. Photosensitivity."
+            },
+            {
+              "drug_id": "DRUG-051A294DB0E7",
+              "dose": "Apply QD",
+              "duration": "8-12 weeks",
+              "insurance": "Class_B",
+              "special": "Bleaches fabric. Start low concentration."
+            },
+            {
+              "drug_id": "DRUG-3B2E1BB30FEA",
+              "dose": "Apply QN",
+              "duration": "8-12 weeks",
+              "insurance": "Class_B",
+              "contra": [
+                "pregnancy"
+              ]
+            }
+          ]
+        },
+        {
+          "tier": "moderate",
+          "items": [
+            {
+              "drug_id": "DRUG-5680716BD7D2",
+              "dose": "Separate AM/PM",
+              "duration": "8-12 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-E1AD1C65C62B",
+              "dose": "Apply BID",
+              "duration": "6-8 weeks",
+              "insurance": "Class_B",
+              "special": "Combine with BP to prevent resistance"
+            },
+            {
+              "drug_id": "DRUG-FDD3E3CCC951",
+              "dose": "100mg BID",
+              "duration": "6-8 weeks",
+              "insurance": "Class_B",
+              "alert": "GREEN",
+              "special": "Take with food, avoid lying down 30min"
+            },
+            {
+              "drug_id": "DRUG-B81D00251F1A",
+              "dose": "50mg BID",
+              "duration": "6-8 weeks",
+              "insurance": "Class_B"
+            }
+          ]
+        },
+        {
+          "tier": "severe",
+          "items": [
+            {
+              "drug_id": "DRUG-01878C60C9F4",
+              "dose": "0.25-0.5mg/kg/day BID with meal",
+              "duration": "16-20 weeks (cumulative 120-150mg/kg)",
+              "insurance": "Class_B",
+              "alert": "RED",
+              "contra": [
+                "pregnancy",
+                "breastfeeding"
+              ],
+              "monitor": "LFT, lipids q4w, pregnancy test monthly",
+              "special": "MANDATORY: iPLEDGE equivalent program. 2 forms contraception. Dry skin/lips expected."
+            },
+            {
+              "drug_id": "DRUG-580D66F414C7",
+              "dose": "50-100mg/day",
+              "duration": "3-6 months",
+              "insurance": "Class_A",
+              "special": "For hormonal acne in females"
+            },
+            {
+              "drug_id": "DRUG-38D22890C6AA",
+              "dose": "Daily",
+              "duration": "6+ months",
+              "insurance": "Class_A",
+              "special": "Anti-androgenic progestin preferred"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "mild_moderate": "6-8 weeks",
+        "isotretinoin": "Monthly",
+        "post_isotretinoin": "3 months then 6 months"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-144",
+      "disease_id": "DER-144",
+      "tiers": [
+        {
+          "tier": "ETR",
+          "items": [
+            {
+              "drug_id": "DRUG-E600E86D964E",
+              "dose": "Apply QD",
+              "duration": "Long-term",
+              "insurance": "Class_B",
+              "special": "Reduces erythema by vasoconstriction"
+            },
+            {
+              "drug_id": "DRUG-060D29711970",
+              "dose": "Apply BID",
+              "duration": "Long-term",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-A3A5A34D4DB3",
+              "dose": "6.25mg BID",
+              "insurance": "Class_A",
+              "special": "Controls flushing"
+            },
+            {
+              "drug_id": "DRUG-07BCBD510992",
+              "dose": "200mg BID",
+              "duration": "3-6 months",
+              "insurance": "Class_A",
+              "special": "Baseline eye exam required"
+            }
+          ]
+        },
+        {
+          "tier": "PPR",
+          "items": [
+            {
+              "drug_id": "DRUG-794ED97B5F21",
+              "dose": "Apply QD",
+              "duration": "12+ weeks",
+              "insurance": "Class_B",
+              "special": "Anti-Demodex"
+            },
+            {
+              "drug_id": "DRUG-13D6E52AA701",
+              "dose": "Apply BID",
+              "duration": "8-12 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-CC3D740E0AE2",
+              "dose": "40mg QD",
+              "duration": "12+ weeks",
+              "insurance": "Class_B",
+              "special": "Sub-antimicrobial dose"
+            }
+          ]
+        },
+        {
+          "tier": "PhR",
+          "items": [
+            {
+              "drug_id": "DRUG-2E85E912F972",
+              "dose": "0.1-0.3mg/kg/day",
+              "insurance": "Class_B",
+              "alert": "RED",
+              "special": "Very cautious use"
+            },
+            {
+              "drug_id": "DRUG-CD8E8B81F9B5",
+              "special": "CO2 laser, electrosurgery, surgical reshaping for severe rhinophyma"
+            }
+          ]
+        },
+        {
+          "tier": "ocular",
+          "items": [
+            {
+              "drug_id": "DRUG-0294C48D1AA3",
+              "dose": "BID",
+              "special": "Ophthalmology referral required"
+            },
+            {
+              "drug_id": "DRUG-C7DF17CD5DE1",
+              "dose": "PRN"
+            },
+            {
+              "drug_id": "DRUG-7AA1E5C13301",
+              "dose": "40mg QD",
+              "special": "For ocular rosacea"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "every_4-8_weeks": "Assess subtype response"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-146",
+      "disease_id": "DER-146",
+      "tiers": [
+        {
+          "tier": "medical",
+          "items": [
+            {
+              "drug_id": "DRUG-2E85E912F972",
+              "dose": "0.1-0.3mg/kg/day",
+              "special": "May slow progression"
+            }
+          ]
+        },
+        {
+          "tier": "surgical",
+          "items": [
+            {
+              "drug_id": "DRUG-60ED5400EE8D",
+              "special": "Main treatment"
+            },
+            {
+              "drug_id": "DRUG-089DDC7804E5",
+              "special": "Sculpting"
+            },
+            {
+              "drug_id": "DRUG-7438A8DF5B44",
+              "special": "Severe cases"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "post_op": "2 weeks, 1 month, 3 months"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-195",
+      "disease_id": "DER-195",
+      "tiers": [
+        {
+          "tier": "benign",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Observation with annual photography"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Complete excision if cosmetic concern or friction site"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "NEVER laser/cryo/chemical for pigmented lesions - must send for pathology"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "atypical",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Excisional biopsy with 2mm margins"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Refer to dermatology/oncology if severe atypia"
+              }
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "annual": "Photography comparison"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-213",
+      "disease_id": "DER-213",
+      "tiers": [
+        {
+          "tier": "surgical",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Wide local excision margins: in situ 0.5-1cm, <1mm 1cm, 1-2mm 1-2cm, >2mm 2cm"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Sentinel lymph node biopsy if indicated"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Lymphadenectomy if SLNB+"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "adjuvant",
+          "items": [
+            {
+              "drug_id": "DRUG-D8ACADDE7DE9",
+              "dose": "200mg IV q3w",
+              "duration": "1 year",
+              "insurance": "Class_B (approval)",
+              "special": "Stage II-III"
+            },
+            {
+              "drug_id": "DRUG-76E7D1224BB8",
+              "dose": "Dabrafenib 150mg BID + Trametinib 2mg QD",
+              "duration": "1 year",
+              "special": "BRAF V600E+ Stage III"
+            },
+            {
+              "drug_id": "DRUG-AF64A27AA23F",
+              "dose": "480mg IV q4w",
+              "special": "Stage IIB-IV"
+            }
+          ]
+        },
+        {
+          "tier": "metastatic",
+          "items": [
+            {
+              "drug_id": "DRUG-D8ACADDE7DE9",
+              "dose": "200mg IV q3w",
+              "special": "First-line immunotherapy"
+            },
+            {
+              "drug_id": "DRUG-34D3A84B1461",
+              "dose": "Nivo 1mg/kg + Ipi 3mg/kg q3w x4, then Nivo maintenance",
+              "special": "Combination immunotherapy"
+            },
+            {
+              "drug_id": "DRUG-76E7D1224BB8",
+              "special": "BRAF+ targeted therapy"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "stage_0_I": "Every 6-12 months",
+        "stage_II_III": "Every 3-6 months x2y, then 6-12 months",
+        "stage_IV": "Ongoing oncology"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-211",
+      "disease_id": "DER-211",
+      "tiers": [
+        {
+          "tier": "surgical",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Standard excision: 4-5mm margins (low-risk), Mohs surgery (high-risk: face, recurrent, morpheaform, >2cm)"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Curettage + electrodessication (superficial, trunk/extremities)"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "non_surgical",
+          "items": [
+            {
+              "drug_id": "DRUG-30C6916664B6",
+              "dose": "Apply 5x/week x6 weeks",
+              "special": "Superficial BCC only"
+            },
+            {
+              "drug_id": "DRUG-A1F7854B77FE",
+              "dose": "Apply BID x3-6 weeks",
+              "special": "Superficial BCC"
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Radiation therapy (non-surgical candidates)"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Photodynamic therapy (PDT)"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "advanced",
+          "items": [
+            {
+              "drug_id": "DRUG-35F3C3ACB137",
+              "dose": "150mg QD",
+              "special": "Hedgehog inhibitor, locally advanced/metastatic (rare)",
+              "insurance": "Class_B (approval)"
+            },
+            {
+              "drug_id": "DRUG-9027F765368B",
+              "dose": "200mg QD",
+              "special": "Hedgehog inhibitor"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "every_6-12_months": "Local recurrence check, new lesions"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-212",
+      "disease_id": "DER-212",
+      "tiers": [
+        {
+          "tier": "surgical",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Standard excision: 4-6mm margins (low-risk), Mohs (high-risk: face, recurrent, >2cm, poorly differentiated, perineural)"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Sentinel lymph node biopsy if high-risk"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "radiation",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Primary treatment or adjuvant for non-surgical candidates/high-risk"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "systemic",
+          "items": [
+            {
+              "drug_id": "DRUG-21FB1CE50629",
+              "dose": "350mg IV q3w",
+              "special": "PD-1 inhibitor, metastatic/locally advanced",
+              "insurance": "Class_B (approval)"
+            },
+            {
+              "drug_id": "DRUG-D8ACADDE7DE9",
+              "dose": "200mg IV q3w",
+              "special": "Metastatic cSCC"
+            },
+            {
+              "drug_id": "DRUG-9AB5DE865EE2",
+              "special": "EGFR inhibitor, advanced disease"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "every_3-6_months_x2y": "Then every 6-12 months, watch for recurrence and new primaries"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-215",
+      "disease_id": "DER-215",
+      "tiers": [
+        {
+          "tier": "field_therapy",
+          "items": [
+            {
+              "drug_id": "DRUG-A1F7854B77FE",
+              "dose": "Apply BID x2-4 weeks",
+              "special": "Significant inflammation expected"
+            },
+            {
+              "drug_id": "DRUG-30C6916664B6",
+              "dose": "2-3x/week x12-16 weeks",
+              "special": "Immune response"
+            },
+            {
+              "drug_id": "DRUG-49674DB0F3AA",
+              "dose": "Apply BID x2-3 months",
+              "special": "Milder, longer course"
+            },
+            {
+              "drug_id": "DRUG-38FF3287AAEF",
+              "dose": "0.015% (face) or 0.05% (trunk) QD x2-3 days",
+              "special": "Short course"
+            }
+          ]
+        },
+        {
+          "tier": "lesion_directed",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Cryotherapy (liquid nitrogen) - single lesions"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Curettage + electrodessication"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Photodynamic therapy (ALA + red light)"
+              }
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "every_6-12_months": "New lesions, progression to SCC"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-216",
+      "disease_id": "DER-216",
+      "tiers": [
+        {
+          "tier": "surgical",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Excision with 5mm margins (preferred)"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "intralesional",
+          "items": [
+            {
+              "drug_id": "DRUG-F9D7B012ED15",
+              "dose": "12.5-25mg intralesional weekly x2-4",
+              "special": "For non-surgical candidates"
+            },
+            {
+              "drug_id": "DRUG-3A68DD654A9D",
+              "dose": "Intralesional",
+              "special": "Alternative"
+            },
+            {
+              "drug_id": "DRUG-DE27FE6883BD",
+              "dose": "Intralesional",
+              "special": "Alternative"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "every_3_months": "Monitor for recurrence, new lesions"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-069",
+      "disease_id": "DER-069",
+      "tiers": [
+        {
+          "tier": "first_line",
+          "items": [
+            {
+              "drug_id": "DRUG-4995A7BA74D3",
+              "dose": "0.5-1mg/kg/day",
+              "duration": "Until control then taper",
+              "insurance": "Class_A",
+              "alert": "YELLOW",
+              "special": "Monitor for infection, diabetes, osteoporosis"
+            }
+          ]
+        },
+        {
+          "tier": "steroid_sparing",
+          "items": [
+            {
+              "drug_id": "DRUG-39E5570A5263",
+              "dose": "1-3mg/kg/day",
+              "special": "Check TPMT first",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-4864D811F53A",
+              "dose": "2g/day",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-2E49EB3C34F7",
+              "dose": "1g IV day 1, 15 then every 6 months",
+              "insurance": "Class_B (approval)",
+              "alert": "RED",
+              "special": "Increasingly preferred first-line"
+            }
+          ]
+        },
+        {
+          "tier": "adjuvant",
+          "items": [
+            {
+              "drug_id": "DRUG-AE871AD4E825",
+              "dose": "0.4g/kg/day x5 days monthly",
+              "special": "For refractory cases"
+            },
+            {
+              "drug_id": "DRUG-A06064A5E6E8",
+              "special": "Acute severe cases"
+            }
+          ]
+        },
+        {
+          "tier": "topical",
+          "items": [
+            {
+              "drug_id": "DRUG-341852A87C63",
+              "dose": "Wet dressings BID",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-3C17FC60436C",
+              "special": "For limited skin involvement"
+            },
+            {
+              "drug_id": "DRUG-AA489161612E",
+              "special": "Oral care"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "weekly_initially": "Until controlled",
+        "then_monthly": "Monitor antibodies, taper steroids"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-073",
+      "disease_id": "DER-073",
+      "tiers": [
+        {
+          "tier": "first_line",
+          "items": [
+            {
+              "drug_id": "DRUG-8044D438698A",
+              "dose": "Clobetasol propionate BID full body",
+              "special": "As effective as oral steroids, fewer side effects",
+              "insurance": "Class_B"
+            }
+          ]
+        },
+        {
+          "tier": "systemic",
+          "items": [
+            {
+              "drug_id": "DRUG-D63883A0D377",
+              "dose": "Doxy 100mg BID + Niacinamide 500mg TID",
+              "special": "Anti-inflammatory, non-immunosuppressive",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-4995A7BA74D3",
+              "dose": "0.2-0.5mg/kg/day",
+              "duration": "Lower dose than pemphigus",
+              "insurance": "Class_A",
+              "alert": "YELLOW"
+            },
+            {
+              "drug_id": "DRUG-F9D7B012ED15",
+              "dose": "10-15mg weekly",
+              "insurance": "Class_A",
+              "alert": "RED",
+              "special": "Folic acid 5mg weekly"
+            }
+          ]
+        },
+        {
+          "tier": "biologics",
+          "items": [
+            {
+              "drug_id": "DRUG-2E49EB3C34F7",
+              "dose": "1g IV day 1, 15",
+              "insurance": "Class_B (approval)",
+              "alert": "RED"
+            },
+            {
+              "drug_id": "DRUG-7EBA2650B7A7",
+              "dose": "300mg SC monthly",
+              "special": "For refractory cases",
+              "insurance": "Class_B (approval)"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "every_2-4_weeks": "Until controlled, then monthly"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-271",
+      "disease_id": "DER-271",
+      "tiers": [
+        {
+          "tier": "mild",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Discontinue offending drug"
+              }
+            },
+            {
+              "drug_id": "DRUG-FB8349206163",
+              "dose": "10mg QD",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-465E829CF114",
+              "dose": "Apply TID",
+              "insurance": "Class_A"
+            }
+          ]
+        },
+        {
+          "tier": "moderate",
+          "items": [
+            {
+              "drug_id": "DRUG-4995A7BA74D3",
+              "dose": "0.5mg/kg/day",
+              "duration": "5-7 days then taper",
+              "insurance": "Class_A",
+              "alert": "YELLOW"
+            }
+          ]
+        },
+        {
+          "tier": "severe",
+          "items": [
+            {
+              "drug_id": "DRUG-3792703DC0B1",
+              "dose": "1-2mg/kg/day IV",
+              "special": "If progression to SJS/TEN suspected",
+              "alert": "RED"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "1_week": "Resolution, identify culprit drug"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-272",
+      "disease_id": "DER-272",
+      "tiers": [
+        {
+          "tier": "acute",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Discontinue offending drug"
+              }
+            },
+            {
+              "drug_id": "DRUG-FB8349206163",
+              "dose": "10mg QD (can double to BID)",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-36286C246E27",
+              "dose": "10mg QD",
+              "insurance": "Class_A"
+            },
+            {
+              "drug_id": "DRUG-4995A7BA74D3",
+              "dose": "0.5mg/kg/day",
+              "duration": "3-5 days",
+              "insurance": "Class_A",
+              "alert": "YELLOW"
+            }
+          ]
+        },
+        {
+          "tier": "angioedema",
+          "items": [
+            {
+              "drug_id": "DRUG-D13D73D7874A",
+              "dose": "0.3-0.5mg IM",
+              "special": "If airway compromise",
+              "alert": "RED"
+            },
+            {
+              "drug_id": "DRUG-3792703DC0B1",
+              "dose": "40-80mg IV",
+              "alert": "RED"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "1-2_weeks": "Resolution, drug avoidance education"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-266",
+      "disease_id": "DER-266",
+      "tiers": [
+        {
+          "tier": "treatment",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Discontinue offending drug"
+              }
+            },
+            {
+              "drug_id": "DRUG-D4920243C7BC",
+              "dose": "Apply BID",
+              "duration": "1-2 weeks",
+              "insurance": "Class_B"
+            },
+            {
+              "drug_id": "DRUG-48D228295E68",
+              "dose": "Standard dose",
+              "duration": "PRN",
+              "insurance": "Class_A"
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "as_needed": "Education on drug avoidance"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "TRT-267",
+      "disease_id": "DER-267",
+      "tiers": [
+        {
+          "tier": "emergency",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "HOSPITALIZATION - Burn ICU or specialized unit"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Discontinue ALL suspected drugs"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Fluid resuscitation (Parkland formula)"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Temperature management (heat loss)"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Nutritional support (high protein)"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Pain management (opioids)"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Infection surveillance (no prophylactic antibiotics)"
+              }
+            }
+          ]
+        },
+        {
+          "tier": "medical",
+          "items": [
+            {
+              "drug_id": "DRUG-F10BFEE314E8",
+              "dose": "3mg/kg/day",
+              "special": "Some evidence of benefit",
+              "insurance": "Class_B",
+              "alert": "YELLOW"
+            },
+            {
+              "drug_id": "DRUG-AE871AD4E825",
+              "dose": "0.5-1g/kg/day x3-5 days",
+              "special": "Controversial but commonly used"
+            },
+            {
+              "drug_id": "DRUG-D6E950375C9D",
+              "dose": "50mg SC weekly",
+              "special": "Early use may help"
+            },
+            {
+              "drug_id": "DRUG-5891177D540A",
+              "dose": "5mg/kg IV",
+              "special": "Single dose, early"
+            }
+          ]
+        },
+        {
+          "tier": "supportive",
+          "items": [
+            {
+              "non_drug_instruction": {
+                "special": "Ophthalmology: hourly eye care, prevent synechiae"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Urology/Gynecology: urethral/catheter care"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Dermatology: wound care, silver dressings"
+              }
+            },
+            {
+              "non_drug_instruction": {
+                "special": "Psychology: severe psychological impact"
+              }
+            }
+          ]
+        }
+      ],
+      "follow_up": {
+        "lifelong": "Ophthalmology, dermatology, psychology"
+      },
+      "requires_physician_confirmation": true,
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

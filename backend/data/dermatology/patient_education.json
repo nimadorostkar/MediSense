@@ -1,0 +1,259 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology patient education records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "EDU-051",
+      "disease_id": "DER-051",
+      "points": [
+        "Daily moisturization",
+        "Avoid smoking/alcohol/stress",
+        "Weight management",
+        "Sunscreen SPF50+",
+        "Monitor metabolic syndrome"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-021",
+      "disease_id": "DER-021",
+      "points": [
+        "Lukewarm bath, emollient within 3 min",
+        "Avoid fragrances/wool",
+        "Cotton clothing",
+        "Bleach baths 2x/week if infections"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-022",
+      "disease_id": "DER-022",
+      "points": [
+        "Strict allergen avoidance",
+        "Read labels",
+        "Protective gloves",
+        "Barrier creams"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-098",
+      "disease_id": "DER-098",
+      "points": [
+        "Avoid kissing/oral sex during lesions",
+        "Sunscreen on lips",
+        "Hand hygiene",
+        "Inform partners if genital"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-084",
+      "disease_id": "DER-084",
+      "points": [
+        "Hand washing",
+        "No sharing towels",
+        "Stay home 24h after antibiotics",
+        "Nail trimming",
+        "Treat underlying eczema"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-111",
+      "disease_id": "DER-111",
+      "points": [
+        "Keep feet dry",
+        "Change socks daily",
+        "Disinfect shoes",
+        "Don't share towels",
+        "Check pets",
+        "Complete full course"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-088",
+      "disease_id": "DER-088",
+      "points": [
+        "Avoid tight clothing",
+        "Don't shave over lesions",
+        "Hot tub hygiene",
+        "Shower after sweating"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-134",
+      "disease_id": "DER-134",
+      "points": [
+        "Gentle cleanser twice daily",
+        "Non-comedogenic moisturizer",
+        "Don't pick/squeeze",
+        "Sunscreen daily",
+        "Isotretinoin: monthly pregnancy tests, no waxing/laser during treatment"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-144",
+      "disease_id": "DER-144",
+      "points": [
+        "Avoid triggers: heat, alcohol, spicy food, sun",
+        "Gentle skincare",
+        "Sunscreen SPF50+",
+        "Ocular rosacea: lid hygiene, warm compresses"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-146",
+      "disease_id": "DER-146",
+      "points": [
+        "Early treatment of rosacea may prevent",
+        "Surgical results generally excellent"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-195",
+      "disease_id": "DER-195",
+      "points": [
+        "Sun protection",
+        "Self-monitoring monthly",
+        "ABCDE warning signs",
+        "Annual skin check"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-213",
+      "disease_id": "DER-213",
+      "points": [
+        "Sun protection essential",
+        "Self-skin exams monthly",
+        "Family screening",
+        "Genetic counseling if familial"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-211",
+      "disease_id": "DER-211",
+      "points": [
+        "Excellent prognosis if treated early",
+        "Rarely metastasizes",
+        "Risk of local destruction if neglected",
+        "Sun protection",
+        "Self-skin exams"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-212",
+      "disease_id": "DER-212",
+      "points": [
+        "Higher metastatic potential than BCC",
+        "Immunosuppressed patients at higher risk",
+        "Sun protection",
+        "Regular skin checks"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-215",
+      "disease_id": "DER-215",
+      "points": [
+        "Field cancerization concept",
+        "Sun protection essential",
+        "Regular skin exams",
+        "SCC transformation risk ~0.1-10% per lesion per year"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-216",
+      "disease_id": "DER-216",
+      "points": [
+        "May spontaneously regress but excision preferred",
+        "Histologically difficult to distinguish from SCC",
+        "Muir-Torre syndrome if multiple/sebaceous"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-069",
+      "disease_id": "DER-069",
+      "points": [
+        "Chronic relapsing disease",
+        "High morbidity if untreated",
+        "Infection prevention",
+        "Oral care essential",
+        "Avoid live vaccines"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-073",
+      "disease_id": "DER-073",
+      "points": [
+        "Good prognosis",
+        "May be associated with neurological disease (dementia, Parkinson)",
+        "Infection prevention",
+        "Fall prevention (elderly)"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-271",
+      "disease_id": "DER-271",
+      "points": [
+        "Avoid culprit drug forever",
+        "Cross-reactivity possible with similar drugs",
+        "Allergy card",
+        "Report to pharmacovigilance"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-272",
+      "disease_id": "DER-272",
+      "points": [
+        "Strict drug avoidance",
+        "Cross-reactivity warning",
+        "Carry epinephrine if severe history",
+        "Medical alert bracelet"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-266",
+      "disease_id": "DER-266",
+      "points": [
+        "Same site recurrence is hallmark",
+        "Hyperpigmentation may persist months",
+        "ABSOLUTE drug avoidance",
+        "Cross-reactivity with structurally similar drugs possible",
+        "HIS permanent allergy alert"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "EDU-267",
+      "disease_id": "DER-267",
+      "points": [
+        "Permanent drug allergy alert",
+        "HLA-B*5801 testing for allopurinol (Chinese high risk)",
+        "Avoid all suspect drugs and cross-reactants",
+        "Genetic counseling",
+        "Psychological support",
+        "Scar management"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

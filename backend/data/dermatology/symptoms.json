@@ -1,0 +1,255 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology symptoms records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "SYM-051",
+      "disease_id": "DER-051",
+      "chief_complaint_template": "{location} erythematous plaques with silvery scales for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-021",
+      "disease_id": "DER-021",
+      "chief_complaint_template": "{age_group} with {location} itchy erythematous patches, recurrent for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-022",
+      "disease_id": "DER-022",
+      "chief_complaint_template": "{location} erythema/vesicles after contact with {substance} for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-098",
+      "disease_id": "DER-098",
+      "chief_complaint_template": "{location} clustered vesicles with burning/pain, recurrent for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-084",
+      "disease_id": "DER-084",
+      "chief_complaint_template": "{location} honey-colored crusts, contagious, in {age_group} for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-111",
+      "disease_id": "DER-111",
+      "chief_complaint_template": "{location} annular scaly pruritic patches for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-088",
+      "disease_id": "DER-088",
+      "chief_complaint_template": "{location} follicular papules/pustules for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-134",
+      "disease_id": "DER-134",
+      "chief_complaint_template": "{location} comedones/papules/pustules/nodules for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe",
+        "very_severe_nodulocystic"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-144",
+      "disease_id": "DER-144",
+      "chief_complaint_template": "Centrofacial persistent erythema with {features} for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-146",
+      "disease_id": "DER-146",
+      "chief_complaint_template": "Progressive nasal enlargement, nodularity, deformity for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-195",
+      "disease_id": "DER-195",
+      "chief_complaint_template": "Pigmented lesion present for {duration}, {changes}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-213",
+      "disease_id": "DER-213",
+      "chief_complaint_template": "Changing pigmented lesion: {ABCDE_changes} for {duration}",
+      "severity_levels": [
+        "stage_0",
+        "stage_I",
+        "stage_II",
+        "stage_III",
+        "stage_IV"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-211",
+      "disease_id": "DER-211",
+      "chief_complaint_template": "{location} slowly growing pearly papule/nodule/ulcer for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-212",
+      "disease_id": "DER-212",
+      "chief_complaint_template": "{location} rapidly growing red nodule/ulcer/scaly plaque for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-215",
+      "disease_id": "DER-215",
+      "chief_complaint_template": "{location} rough scaly patches on sun-damaged skin for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-216",
+      "disease_id": "DER-216",
+      "chief_complaint_template": "Rapidly growing dome-shaped nodule with central keratin plug for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-069",
+      "disease_id": "DER-069",
+      "chief_complaint_template": "Painful oral erosions and flaccid skin blisters for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-073",
+      "disease_id": "DER-073",
+      "chief_complaint_template": "Elderly patient with tense itchy blisters for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-271",
+      "disease_id": "DER-271",
+      "chief_complaint_template": "Generalized erythematous maculopapular rash after starting {drug} for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-272",
+      "disease_id": "DER-272",
+      "chief_complaint_template": "Generalized itchy wheals after taking {drug} for {duration}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-266",
+      "disease_id": "DER-266",
+      "chief_complaint_template": "Recurrent same-site erythematous/violaceous patch after taking {drug}",
+      "severity_levels": [
+        "mild",
+        "moderate",
+        "severe"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "SYM-267",
+      "disease_id": "DER-267",
+      "chief_complaint_template": "Fever, painful rash, mucosal erosions, skin detachment after {drug} for {duration}",
+      "severity_levels": [
+        "SJS",
+        "SJS-TEN_overlap",
+        "TEN"
+      ],
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

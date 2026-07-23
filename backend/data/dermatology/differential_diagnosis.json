@@ -1,0 +1,559 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology differential diagnosis records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "DIF-051",
+      "disease_id": "DER-051",
+      "differentials": [
+        {
+          "candidate_slug": "seborrheic_dermatitis",
+          "differentiator": "greasy yellow scales, flexural, less defined",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "pityriasis_rosea",
+          "differentiator": "herald patch, Christmas tree, self-limiting",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "lichen_planus",
+          "differentiator": "violaceous, Wickham striae, mucosal",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "secondary_syphilis",
+          "differentiator": "palms/soles, systemic, serology+",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "chronic_eczema",
+          "differentiator": "ill-defined, less scale, atopic history",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-021",
+      "disease_id": "DER-021",
+      "differentials": [
+        {
+          "candidate_slug": "seborrheic_dermatitis",
+          "differentiator": "greasy scales, scalp/face, less pruritus",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "contact_dermatitis",
+          "differentiator": "clear exposure, patch test+",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "psoriasis",
+          "differentiator": "well-defined plaques, silvery scale, extensor",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "scabies",
+          "differentiator": "burrows, nocturnal, contacts affected",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-022",
+      "disease_id": "DER-022",
+      "differentials": [
+        {
+          "candidate_slug": "acute_eczema",
+          "differentiator": "no clear exposure, atopic history",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "herpes_simplex",
+          "differentiator": "clustered vesicles, painful",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "tinea",
+          "differentiator": "annular, KOH+",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-098",
+      "disease_id": "DER-098",
+      "differentials": [
+        {
+          "candidate_slug": "herpes_zoster",
+          "differentiator": "dermatomal, unilateral, older, severe pain",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "impetigo",
+          "differentiator": "honey crusts, less painful",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "aphthous_stomatitis",
+          "differentiator": "non-vesicular, oral only",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-084",
+      "disease_id": "DER-084",
+      "differentials": [
+        {
+          "candidate_slug": "herpes_simplex",
+          "differentiator": "clustered vesicles, painful",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "varicella",
+          "differentiator": "generalized, fever, different stages",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "eczema_herpeticum",
+          "differentiator": "atopic patient, monomorphic erosions",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-111",
+      "disease_id": "DER-111",
+      "differentials": [
+        {
+          "candidate_slug": "eczema",
+          "differentiator": "ill-defined, no central clearing, KOH-",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "psoriasis",
+          "differentiator": "silvery scale, Auspitz+, KOH-",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "seborrheic_dermatitis",
+          "differentiator": "greasy scales, scalp/face, KOH-",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "pityriasis_rosea",
+          "differentiator": "herald patch, Christmas tree, KOH-",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-088",
+      "disease_id": "DER-088",
+      "differentials": [
+        {
+          "candidate_slug": "acne",
+          "differentiator": "comedones, face/chest/back, hormonal",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "herpes",
+          "differentiator": "clustered vesicles, painful",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "pseudofolliculitis",
+          "differentiator": "shaving-related, beard area",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-134",
+      "disease_id": "DER-134",
+      "differentials": [
+        {
+          "candidate_slug": "rosacea",
+          "differentiator": "older, centrofacial erythema, telangiectasia, no comedones",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "folliculitis",
+          "differentiator": "pustular only, hair-centered, different distribution",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "perioral_dermatitis",
+          "differentiator": "perioral only, no comedones, topical steroid history",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-144",
+      "disease_id": "DER-144",
+      "differentials": [
+        {
+          "candidate_slug": "acne",
+          "differentiator": "comedones present, younger patients, different distribution",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "seborrheic_dermatitis",
+          "differentiator": "greasy scales, scalp involvement, less erythema",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "SLE",
+          "differentiator": "malar rash spares nasolabial folds, ANA+, systemic symptoms",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "steroid_induced_dermatitis",
+          "differentiator": "topical steroid history, perioral involvement",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-146",
+      "disease_id": "DER-146",
+      "differentials": [
+        {
+          "candidate_slug": "sebaceous_adenoma",
+          "differentiator": "solitary, not diffuse",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "angiofibroma",
+          "differentiator": "youth, different histology",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "BCC",
+          "differentiator": "ulceration, pearly border, histology",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-195",
+      "disease_id": "DER-195",
+      "differentials": [
+        {
+          "candidate_slug": "melanoma",
+          "differentiator": "ABCDE abnormalities, evolution",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "seborrheic_keratosis",
+          "differentiator": "stuck-on appearance, waxy, older patients",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "dermatofibroma",
+          "differentiator": "dimple sign, firm, lower extremities",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "blue_nevus",
+          "differentiator": "blue-black, uniform, stable",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-213",
+      "disease_id": "DER-213",
+      "differentials": [
+        {
+          "candidate_slug": "dysplastic_nevus",
+          "differentiator": "mild ABCDE changes, biopsy shows mild atypia",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "pigmented_BCC",
+          "differentiator": "pearly border, telangiectasia, histology",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "seborrheic_keratosis",
+          "differentiator": "stuck-on, waxy, keratin plugs",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "subungual_hematoma",
+          "differentiator": "history of trauma, grows out with nail",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-211",
+      "disease_id": "DER-211",
+      "differentials": [
+        {
+          "candidate_slug": "melanoma_pigmented",
+          "differentiator": "ABCDE changes, rapid growth, histology",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "seborrheic_keratosis",
+          "differentiator": "stuck-on, waxy, no telangiectasia",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "Bowen_disease",
+          "differentiator": "erythematous scaly plaque, SCC in situ",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "scar",
+          "differentiator": "history of trauma/surgery, flat, no pearly border",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-212",
+      "disease_id": "DER-212",
+      "differentials": [
+        {
+          "candidate_slug": "keratoacanthoma",
+          "differentiator": "rapid growth, volcano shape, may regress",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "actinic_keratosis",
+          "differentiator": "flat, rough, no induration",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "BCC",
+          "differentiator": "pearly, telangiectasia, slower growth",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "cutaneous_horn",
+          "differentiator": "keratin projection, underlying SCC possible",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-215",
+      "disease_id": "DER-215",
+      "differentials": [
+        {
+          "candidate_slug": "seborrheic_keratosis",
+          "differentiator": "stuck-on, waxy, no roughness",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "Bowen_disease",
+          "differentiator": "larger, more erythematous, persistent",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "SCC",
+          "differentiator": "indurated, ulcerated, growing",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-216",
+      "disease_id": "DER-216",
+      "differentials": [
+        {
+          "candidate_slug": "SCC",
+          "differentiator": "histologically similar, may be variant",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "molluscum_contagiosum",
+          "differentiator": "umbilicated, smaller, children",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "BCC",
+          "differentiator": "pearly, slower growth, no keratin plug",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-069",
+      "disease_id": "DER-069",
+      "differentials": [
+        {
+          "candidate_slug": "bullous_pemphigoid",
+          "differentiator": "tense bullae, negative Nikolsky, elderly, less mucosal",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "SJS_TEN",
+          "differentiator": "drug-induced, epidermal necrosis, high fever",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "paraneoplastic_pemphigus",
+          "differentiator": "severe mucosal, associated malignancy, polymorphous rash",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "drug_induced_pemphigus",
+          "differentiator": "penicillamine, captopril history",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-073",
+      "disease_id": "DER-073",
+      "differentials": [
+        {
+          "candidate_slug": "pemphigus_vulgaris",
+          "differentiator": "flaccid bullae, positive Nikolsky, mucosal, younger",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "epidermolysis_bullosa_acquisita",
+          "differentiator": "trauma-induced, hands/feet, type VII collagen",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "linear_IgA_bullous_dermatosis",
+          "differentiator": "annular arrangement, children/adults, linear IgA",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "SJS_TEN",
+          "differentiator": "drug-induced, epidermal necrosis, positive Nikolsky",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-271",
+      "disease_id": "DER-271",
+      "differentials": [
+        {
+          "candidate_slug": "viral_exanthem",
+          "differentiator": "fever, respiratory symptoms, lymphadenopathy, no drug exposure",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "scarlet_fever",
+          "differentiator": "sandpaper rash, strawberry tongue, strep throat",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "secondary_syphilis",
+          "differentiator": "palms/soles, condyloma lata, serology+",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "SJS_TEN",
+          "differentiator": "mucosal involvement, blisters, epidermal detachment",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-272",
+      "disease_id": "DER-272",
+      "differentials": [
+        {
+          "candidate_slug": "chronic_spontaneous_urticaria",
+          "differentiator": "no drug trigger, >6 weeks",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "physical_urticaria",
+          "differentiator": "triggered by cold/heat/pressure/exercise",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "anaphylaxis",
+          "differentiator": "respiratory compromise, hypotension, systemic",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-266",
+      "disease_id": "DER-266",
+      "differentials": [
+        {
+          "candidate_slug": "herpes_simplex",
+          "differentiator": "clustered vesicles, painful, no hyperpigmentation",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "erythema_multiforme",
+          "differentiator": "target lesions, acral, less hyperpigmentation",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "contact_dermatitis",
+          "differentiator": "exposure pattern, patch test+",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DIF-267",
+      "disease_id": "DER-267",
+      "differentials": [
+        {
+          "candidate_slug": "SSSS",
+          "differentiator": "children, staph toxin, negative Nikolsky, no mucosal",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "pemphigus_vulgaris",
+          "differentiator": "chronic, no drug trigger, less systemic",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "bullous_pemphigoid",
+          "differentiator": "elderly, negative Nikolsky, less mucosal",
+          "candidate_disease_id": null
+        },
+        {
+          "candidate_slug": "acute_GVHD",
+          "differentiator": "transplant history, different timing",
+          "candidate_disease_id": null
+        }
+      ],
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

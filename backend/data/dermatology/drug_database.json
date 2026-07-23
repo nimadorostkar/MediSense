@@ -1,0 +1,1055 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology drug database records",
+    "record_count": 95
+  },
+  "records": [
+    {
+      "id": "DRUG-E453CA6CD565",
+      "slug": "calcipotriol_ointment",
+      "name": "Calcipotriol ointment",
+      "name_zh": "卡泊三醇软膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-BE2CEA362005",
+      "slug": "betamethasone_dipropionate",
+      "name": "Betamethasone dipropionate",
+      "name_zh": "丙酸倍他米松软膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-FA844AC6758E",
+      "slug": "calcipotriol_betamethasone_gel",
+      "name": "Calcipotriol/Betamethasone gel",
+      "name_zh": "卡泊三醇倍他米松凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-9B0412DB0BE4",
+      "slug": "tazarotene_0_1",
+      "name": "Tazarotene 0.1%",
+      "name_zh": "他扎罗汀乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-A5CE4BD9B0DA",
+      "slug": "acitretin_capsules",
+      "name": "Acitretin capsules",
+      "name_zh": "阿维A胶囊",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-F9D7B012ED15",
+      "slug": "methotrexate",
+      "name": "Methotrexate",
+      "name_zh": "甲氨蝶呤片",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-F10BFEE314E8",
+      "slug": "cyclosporine",
+      "name": "Cyclosporine",
+      "name_zh": "环孢素软胶囊",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-6F35FDC59588",
+      "slug": "secukinumab",
+      "name": "Secukinumab",
+      "name_zh": "司库奇尤单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-85801F64E8D6",
+      "slug": "adalimumab",
+      "name": "Adalimumab",
+      "name_zh": "阿达木单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-EBA88E1F89A6",
+      "slug": "ustekinumab",
+      "name": "Ustekinumab",
+      "name_zh": "乌司奴单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-C2E3D57CCDF2",
+      "slug": "wet_wrap_therapy",
+      "name": "Wet wrap therapy",
+      "name_zh": "湿包裹疗法",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-9ADA116B41E4",
+      "slug": "mometasone_furoate",
+      "name": "Mometasone furoate",
+      "name_zh": "糠酸莫米松乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-C0899A7E22EF",
+      "slug": "desonide_0_05",
+      "name": "Desonide 0.05%",
+      "name_zh": "地奈德乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-FB8349206163",
+      "slug": "cetirizine",
+      "name": "Cetirizine",
+      "name_zh": "西替利嗪",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-31BB7B452872",
+      "slug": "tacrolimus_0_1",
+      "name": "Tacrolimus 0.1%",
+      "name_zh": "他克莫司软膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-91C5EB9BCEA2",
+      "slug": "pimecrolimus_1",
+      "name": "Pimecrolimus 1%",
+      "name_zh": "吡美莫司乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-2187909F1189",
+      "slug": "medical_moisturizer",
+      "name": "Medical moisturizer",
+      "name_zh": "医学保湿剂",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-DE4DB2B1A883",
+      "slug": "dupilumab",
+      "name": "Dupilumab",
+      "name_zh": "度普利尤单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-465E829CF114",
+      "slug": "calamine_lotion",
+      "name": "Calamine lotion",
+      "name_zh": "炉甘石洗剂",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-F765E7D1836E",
+      "slug": "boric_acid_3",
+      "name": "Boric acid 3%",
+      "name_zh": "3%硼酸溶液",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-341852A87C63",
+      "slug": "ethacridine_0_1",
+      "name": "Ethacridine 0.1%",
+      "name_zh": "0.1%依沙吖啶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-4995A7BA74D3",
+      "slug": "prednisone",
+      "name": "Prednisone",
+      "name_zh": "泼尼松",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-738F79B71E1B",
+      "slug": "acyclovir",
+      "name": "Acyclovir",
+      "name_zh": "阿昔洛韦",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-898EED975CEB",
+      "slug": "valacyclovir",
+      "name": "Valacyclovir",
+      "name_zh": "伐昔洛韦",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-569319D3249B",
+      "slug": "famciclovir",
+      "name": "Famciclovir",
+      "name_zh": "泛昔洛韦",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-21DAFA275E43",
+      "slug": "acyclovir_iv",
+      "name": "Acyclovir IV",
+      "name_zh": "阿昔洛韦注射液",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-63C9973EB65B",
+      "slug": "mupirocin_2",
+      "name": "Mupirocin 2%",
+      "name_zh": "莫匹罗星软膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-68B7C9EC2368",
+      "slug": "fusidic_acid_2",
+      "name": "Fusidic acid 2%",
+      "name_zh": "夫西地酸乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-0887401CFE6D",
+      "slug": "cephalexin",
+      "name": "Cephalexin",
+      "name_zh": "头孢氨苄",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-AB1E06680425",
+      "slug": "amoxicillin_clavulanate",
+      "name": "Amoxicillin-Clavulanate",
+      "name_zh": "阿莫西林克拉维酸钾",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-C8654DFA1E6A",
+      "slug": "clindamycin",
+      "name": "Clindamycin",
+      "name_zh": "克林霉素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-125700370D24",
+      "slug": "terbinafine_cream",
+      "name": "Terbinafine cream",
+      "name_zh": "特比萘芬乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-25299DD0E2B0",
+      "slug": "ketoconazole_cream",
+      "name": "Ketoconazole cream",
+      "name_zh": "酮康唑乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-1DD88F1AB4EA",
+      "slug": "bifonazole_cream",
+      "name": "Bifonazole cream",
+      "name_zh": "联苯苄唑乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-D64BD1292677",
+      "slug": "miconazole_powder",
+      "name": "Miconazole powder",
+      "name_zh": "硝酸咪康唑散",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-AA5B5C2873A9",
+      "slug": "terbinafine_tablets",
+      "name": "Terbinafine tablets",
+      "name_zh": "特比萘芬片",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-25098B221A15",
+      "slug": "itraconazole",
+      "name": "Itraconazole",
+      "name_zh": "伊曲康唑",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-3848D382EA89",
+      "slug": "mupirocin",
+      "name": "Mupirocin",
+      "name_zh": "莫匹罗星",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-FDD3E3CCC951",
+      "slug": "doxycycline",
+      "name": "Doxycycline",
+      "name_zh": "多西环素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-14C49EE1678D",
+      "slug": "ketoconazole_shampoo",
+      "name": "Ketoconazole shampoo",
+      "name_zh": "酮康唑洗剂",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-0CAF986251BC",
+      "slug": "adapalene_0_1_gel",
+      "name": "Adapalene 0.1% gel",
+      "name_zh": "阿达帕林凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-051A294DB0E7",
+      "slug": "benzoyl_peroxide_2_5",
+      "name": "Benzoyl peroxide 2.5%",
+      "name_zh": "过氧化苯甲酰凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-3B2E1BB30FEA",
+      "slug": "tretinoin_0_025",
+      "name": "Tretinoin 0.025%",
+      "name_zh": "维A酸乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-5680716BD7D2",
+      "slug": "adapalene_qn_benzoyl_peroxide_qd",
+      "name": "Adapalene QN + Benzoyl peroxide QD",
+      "name_zh": "阿达帕林+过氧化苯甲酰",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-E1AD1C65C62B",
+      "slug": "clindamycin_phosphate_gel",
+      "name": "Clindamycin phosphate gel",
+      "name_zh": "克林霉素磷酸酯凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-B81D00251F1A",
+      "slug": "minocycline",
+      "name": "Minocycline",
+      "name_zh": "米诺环素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-01878C60C9F4",
+      "slug": "isotretinoin_capsules",
+      "name": "Isotretinoin capsules",
+      "name_zh": "异维A酸软胶囊",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-580D66F414C7",
+      "slug": "spironolactone",
+      "name": "Spironolactone",
+      "name_zh": "螺内酯",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-38D22890C6AA",
+      "slug": "combined_oral_contraceptives",
+      "name": "Combined oral contraceptives",
+      "name_zh": "短效口服避孕药",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-E600E86D964E",
+      "slug": "brimonidine_gel_0_5",
+      "name": "Brimonidine gel 0.5%",
+      "name_zh": "溴莫尼定凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-060D29711970",
+      "slug": "azelaic_acid_15_20",
+      "name": "Azelaic acid 15-20%",
+      "name_zh": "壬二酸乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-A3A5A34D4DB3",
+      "slug": "carvedilol",
+      "name": "Carvedilol",
+      "name_zh": "卡维地洛",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-07BCBD510992",
+      "slug": "hydroxychloroquine",
+      "name": "Hydroxychloroquine",
+      "name_zh": "羟氯喹",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-794ED97B5F21",
+      "slug": "ivermectin_cream_1",
+      "name": "Ivermectin cream 1%",
+      "name_zh": "伊维菌素乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-13D6E52AA701",
+      "slug": "metronidazole_gel_0_75",
+      "name": "Metronidazole gel 0.75%",
+      "name_zh": "甲硝唑凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-CC3D740E0AE2",
+      "slug": "doxycycline_40mg_mr",
+      "name": "Doxycycline 40mg MR",
+      "name_zh": "多西环素缓释片",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-2E85E912F972",
+      "slug": "isotretinoin_low_dose",
+      "name": "Isotretinoin low dose",
+      "name_zh": "异维A酸小剂量",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-CD8E8B81F9B5",
+      "slug": "surgical",
+      "name": "Surgical",
+      "name_zh": "手术治疗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-0294C48D1AA3",
+      "slug": "cyclosporine_eye_drops",
+      "name": "Cyclosporine eye drops",
+      "name_zh": "环孢素滴眼液",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-C7DF17CD5DE1",
+      "slug": "artificial_tears",
+      "name": "Artificial tears",
+      "name_zh": "人工泪液",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-7AA1E5C13301",
+      "slug": "doxycycline_40mg",
+      "name": "Doxycycline 40mg",
+      "name_zh": "多西环素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-60ED5400EE8D",
+      "slug": "co2_laser_ablation",
+      "name": "CO2 laser ablation",
+      "name_zh": "CO2激光磨削",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-089DDC7804E5",
+      "slug": "electrosurgery",
+      "name": "Electrosurgery",
+      "name_zh": "电外科切除",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-7438A8DF5B44",
+      "slug": "surgical_excision_reconstruction",
+      "name": "Surgical excision + reconstruction",
+      "name_zh": "手术切除+整形",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-D8ACADDE7DE9",
+      "slug": "pembrolizumab",
+      "name": "Pembrolizumab",
+      "name_zh": "帕博利珠单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-76E7D1224BB8",
+      "slug": "dabrafenib_trametinib",
+      "name": "Dabrafenib + Trametinib",
+      "name_zh": "达拉非尼+曲美替尼",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-AF64A27AA23F",
+      "slug": "nivolumab",
+      "name": "Nivolumab",
+      "name_zh": "纳武利尤单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-34D3A84B1461",
+      "slug": "nivolumab_ipilimumab",
+      "name": "Nivolumab + Ipilimumab",
+      "name_zh": "纳武利尤+伊匹木单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-30C6916664B6",
+      "slug": "imiquimod_5",
+      "name": "Imiquimod 5%",
+      "name_zh": "咪喹莫特乳膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-A1F7854B77FE",
+      "slug": "5_fluorouracil_5",
+      "name": "5-Fluorouracil 5%",
+      "name_zh": "5-氟尿嘧啶软膏",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-35F3C3ACB137",
+      "slug": "vismodegib",
+      "name": "Vismodegib",
+      "name_zh": "维莫德吉",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-9027F765368B",
+      "slug": "sonidegib",
+      "name": "Sonidegib",
+      "name_zh": "索尼德吉",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-21FB1CE50629",
+      "slug": "cemiplimab",
+      "name": "Cemiplimab",
+      "name_zh": "西米普利单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-9AB5DE865EE2",
+      "slug": "cetuximab_chemo",
+      "name": "Cetuximab + chemo",
+      "name_zh": "西妥昔单抗+化疗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-49674DB0F3AA",
+      "slug": "diclofenac_3_gel",
+      "name": "Diclofenac 3% gel",
+      "name_zh": "双氯芬酸凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-38FF3287AAEF",
+      "slug": "ingenol_mebutate",
+      "name": "Ingenol mebutate",
+      "name_zh": "巨大化酶凝胶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-3A68DD654A9D",
+      "slug": "5_fluorouracil",
+      "name": "5-Fluorouracil",
+      "name_zh": "5-氟尿嘧啶",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-DE27FE6883BD",
+      "slug": "interferon_alpha_2a",
+      "name": "Interferon alpha-2a",
+      "name_zh": "干扰素α-2a",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-39E5570A5263",
+      "slug": "azathioprine",
+      "name": "Azathioprine",
+      "name_zh": "硫唑嘌呤",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-4864D811F53A",
+      "slug": "mycophenolate_mofetil",
+      "name": "Mycophenolate mofetil",
+      "name_zh": "吗替麦考酚酯",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-2E49EB3C34F7",
+      "slug": "rituximab",
+      "name": "Rituximab",
+      "name_zh": "利妥昔单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-AE871AD4E825",
+      "slug": "ivig",
+      "name": "IVIG",
+      "name_zh": "静脉丙种球蛋白",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-A06064A5E6E8",
+      "slug": "plasmapheresis",
+      "name": "Plasmapheresis",
+      "name_zh": "血浆置换",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-3C17FC60436C",
+      "slug": "topical_corticosteroids",
+      "name": "Topical corticosteroids",
+      "name_zh": "外用糖皮质激素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-AA489161612E",
+      "slug": "chlorhexidine_mouthwash",
+      "name": "Chlorhexidine mouthwash",
+      "name_zh": "氯己定含漱液",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-8044D438698A",
+      "slug": "superpotent_topical_corticosteroids",
+      "name": "Superpotent topical corticosteroids",
+      "name_zh": "超强效外用激素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-D63883A0D377",
+      "slug": "doxycycline_niacinamide",
+      "name": "Doxycycline + Niacinamide",
+      "name_zh": "多西环素+烟酰胺",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-7EBA2650B7A7",
+      "slug": "omalizumab",
+      "name": "Omalizumab",
+      "name_zh": "奥马珠单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-3792703DC0B1",
+      "slug": "methylprednisolone",
+      "name": "Methylprednisolone",
+      "name_zh": "甲泼尼龙",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-36286C246E27",
+      "slug": "loratadine",
+      "name": "Loratadine",
+      "name_zh": "氯雷他定",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-D13D73D7874A",
+      "slug": "epinephrine",
+      "name": "Epinephrine",
+      "name_zh": "肾上腺素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-D4920243C7BC",
+      "slug": "topical_corticosteroid",
+      "name": "Topical corticosteroid",
+      "name_zh": "外用糖皮质激素",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-48D228295E68",
+      "slug": "antihistamine",
+      "name": "Antihistamine",
+      "name_zh": "抗组胺药",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-D6E950375C9D",
+      "slug": "etanercept",
+      "name": "Etanercept",
+      "name_zh": "依那西普",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    },
+    {
+      "id": "DRUG-5891177D540A",
+      "slug": "infliximab",
+      "name": "Infliximab",
+      "name_zh": "英夫利昔单抗",
+      "content_status": "legacy_curated",
+      "clinical_review": {
+        "status": "migration_pending_revalidation"
+      },
+      "source": "dermatology_core_data_EN.json"
+    }
+  ]
+}

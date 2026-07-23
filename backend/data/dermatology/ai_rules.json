@@ -1,0 +1,164 @@
+{
+  "metadata": {
+    "schema_version": "2.0.0",
+    "generated": "2026-07-23",
+    "description": "Normalized dermatology ai rules records",
+    "record_count": 22
+  },
+  "records": [
+    {
+      "id": "AIR-051",
+      "disease_id": "DER-051",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-021",
+      "disease_id": "DER-021",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-022",
+      "disease_id": "DER-022",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-098",
+      "disease_id": "DER-098",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-084",
+      "disease_id": "DER-084",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-111",
+      "disease_id": "DER-111",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-088",
+      "disease_id": "DER-088",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-134",
+      "disease_id": "DER-134",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-144",
+      "disease_id": "DER-144",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-146",
+      "disease_id": "DER-146",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-195",
+      "disease_id": "DER-195",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-213",
+      "disease_id": "DER-213",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-211",
+      "disease_id": "DER-211",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-212",
+      "disease_id": "DER-212",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-215",
+      "disease_id": "DER-215",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-216",
+      "disease_id": "DER-216",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-069",
+      "disease_id": "DER-069",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-073",
+      "disease_id": "DER-073",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-271",
+      "disease_id": "DER-271",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-272",
+      "disease_id": "DER-272",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-266",
+      "disease_id": "DER-266",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    },
+    {
+      "id": "AIR-267",
+      "disease_id": "DER-267",
+      "enabled": false,
+      "rule_version": null,
+      "reason": "Clinical revalidation and cited guidelines required before activation"
+    }
+  ]
+}
