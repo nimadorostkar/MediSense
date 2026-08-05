@@ -1,0 +1,631 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>MediSense — Investor Pitch</title>
+<style>
+  :root{
+    --bg:#070d12;
+    --bg2:#0c161e;
+    --ink:#e9f2f7;
+    --muted:#8fa6b4;
+    --dim:#5f7484;
+    --accent:#2fd4b5;
+    --accent2:#4aa8ff;
+    --warn:#f5b544;
+    --line:rgba(255,255,255,.10);
+    --card:rgba(255,255,255,.035);
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{
+    background:var(--bg);
+    color:var(--ink);
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Helvetica,Arial,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow:hidden;
+  }
+  #stage{position:fixed;inset:0;display:flex;align-items:center;justify-content:center}
+  .slide{
+    position:absolute;inset:0;
+    display:none;
+    flex-direction:column;
+    justify-content:center;
+    padding:5.5vh 7vw 9vh;
+    opacity:0;
+    transition:opacity .28s ease, transform .28s ease;
+    transform:translateY(10px);
+    overflow:auto;
+  }
+  .slide.active{display:flex;opacity:1;transform:none}
+  .slide::-webkit-scrollbar{width:0}
+
+  /* ---------- type ---------- */
+  .kicker{
+    font-size:.72rem;letter-spacing:.20em;text-transform:uppercase;
+    color:var(--accent);font-weight:650;margin-bottom:1.5rem;
+  }
+  h1{font-size:clamp(2.6rem,6.4vw,5rem);line-height:1.02;letter-spacing:-.03em;font-weight:700}
+  h2{font-size:clamp(1.7rem,3.4vw,2.9rem);line-height:1.1;letter-spacing:-.02em;font-weight:680;margin-bottom:.6rem}
+  h3{font-size:1rem;font-weight:650;letter-spacing:-.01em;margin-bottom:.4rem}
+  .lede{font-size:clamp(1rem,1.5vw,1.32rem);color:var(--muted);line-height:1.5;max-width:62ch;margin-top:.9rem}
+  p{line-height:1.55}
+  .sub{color:var(--muted);font-size:.95rem;line-height:1.5}
+  .tiny{font-size:.76rem;color:var(--dim);line-height:1.5}
+  strong{color:#fff;font-weight:650}
+  em{color:var(--accent);font-style:normal}
+
+  /* ---------- layout helpers ---------- */
+  .grid{display:grid;gap:1rem;margin-top:2rem}
+  .g2{grid-template-columns:repeat(2,1fr)}
+  .g3{grid-template-columns:repeat(3,1fr)}
+  .g4{grid-template-columns:repeat(4,1fr)}
+  .split{display:grid;grid-template-columns:1.05fr .95fr;gap:3.5rem;align-items:center}
+  .card{
+    background:var(--card);border:1px solid var(--line);border-radius:14px;
+    padding:1.2rem 1.25rem;
+  }
+  .card.hi{border-color:rgba(47,212,181,.4);background:rgba(47,212,181,.07)}
+  .stat{font-size:clamp(1.9rem,3.6vw,2.9rem);font-weight:700;letter-spacing:-.03em;color:var(--accent);line-height:1}
+  .stat.blue{color:var(--accent2)}
+  .stat-label{margin-top:.55rem;font-size:.85rem;color:var(--muted);line-height:1.4}
+
+  ul{list-style:none}
+  ul li{position:relative;padding-left:1.15rem;margin-bottom:.62rem;color:var(--muted);line-height:1.5;font-size:.97rem}
+  ul li::before{content:"";position:absolute;left:0;top:.62em;width:5px;height:5px;border-radius:50%;background:var(--accent)}
+  ul li b{color:var(--ink);font-weight:620}
+
+  table{width:100%;border-collapse:collapse;margin-top:1.5rem;font-size:.9rem}
+  th{
+    text-align:left;padding:.6rem .8rem;font-size:.7rem;letter-spacing:.14em;
+    text-transform:uppercase;color:var(--dim);border-bottom:1px solid var(--line);font-weight:600;
+  }
+  td{padding:.7rem .8rem;border-bottom:1px solid rgba(255,255,255,.05);color:var(--muted);vertical-align:top}
+  td b{color:var(--ink);font-weight:620}
+
+  .tbd{
+    display:inline-block;background:rgba(245,181,68,.14);color:var(--warn);
+    border:1px dashed rgba(245,181,68,.5);border-radius:5px;
+    padding:.06em .48em;font-size:.85em;font-weight:600;letter-spacing:.01em;
+  }
+  .note{
+    margin-top:1.6rem;border-left:2px solid rgba(245,181,68,.55);
+    padding:.35rem 0 .35rem .9rem;font-size:.78rem;color:var(--dim);line-height:1.55;max-width:84ch;
+  }
+  .note b{color:var(--warn);font-weight:620}
+  .src{margin-top:1.4rem;font-size:.72rem;color:var(--dim);letter-spacing:.02em}
+
+  /* timeline */
+  .timeline{display:grid;grid-template-columns:repeat(6,1fr);gap:0;margin-top:2.6rem;position:relative}
+  .timeline::before{content:"";position:absolute;left:0;right:0;top:7px;height:1px;background:linear-gradient(90deg,var(--line),var(--accent),var(--accent2))}
+  .tnode{position:relative;padding:0 .7rem 0 0}
+  .tdot{width:15px;height:15px;border-radius:50%;background:var(--bg);border:2px solid var(--dim);position:relative;z-index:2}
+  .tnode.on .tdot{border-color:var(--accent);box-shadow:0 0 0 5px rgba(47,212,181,.14)}
+  .tdate{margin-top:1rem;font-size:.82rem;font-weight:650;color:var(--ink)}
+  .tnode.on .tdate{color:var(--accent)}
+  .ttext{margin-top:.35rem;font-size:.78rem;color:var(--muted);line-height:1.45}
+
+  /* flow */
+  .flow{display:flex;align-items:stretch;gap:.55rem;margin-top:2.2rem;flex-wrap:wrap}
+  .step{
+    flex:1 1 0;min-width:130px;background:var(--card);border:1px solid var(--line);
+    border-radius:12px;padding:1rem .95rem;position:relative;
+  }
+  .step .n{font-size:.68rem;color:var(--accent);font-weight:700;letter-spacing:.14em}
+  .step h3{margin-top:.5rem;font-size:.94rem}
+  .step p{font-size:.79rem;color:var(--muted);margin-top:.3rem;line-height:1.45}
+
+  .pill{
+    display:inline-block;border:1px solid var(--line);border-radius:100px;
+    padding:.28em .85em;font-size:.76rem;color:var(--muted);margin:0 .4rem .5rem 0;
+  }
+  .pill.on{border-color:var(--accent);color:var(--accent);background:rgba(47,212,181,.09)}
+
+  /* chrome */
+  #bar{position:fixed;top:0;left:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0;transition:width .3s ease;z-index:50}
+  #nav{
+    position:fixed;bottom:1.5rem;right:2rem;display:flex;align-items:center;gap:.9rem;
+    font-size:.76rem;color:var(--dim);z-index:50;
+  }
+  #nav button{
+    background:var(--card);border:1px solid var(--line);color:var(--muted);
+    width:30px;height:30px;border-radius:8px;cursor:pointer;font-size:.9rem;line-height:1;
+  }
+  #nav button:hover{border-color:var(--accent);color:var(--accent)}
+  #brand{position:fixed;bottom:1.5rem;left:2rem;font-size:.72rem;color:var(--dim);letter-spacing:.14em;text-transform:uppercase;z-index:50}
+  .conf{color:var(--dim);opacity:.75}
+
+  @media (max-width:900px){
+    .split{grid-template-columns:1fr;gap:2rem}
+    .g3,.g4{grid-template-columns:repeat(2,1fr)}
+    .timeline{grid-template-columns:repeat(3,1fr);gap:1.6rem 0}
+    .timeline::before{display:none}
+    .slide{padding:5vh 6vw 8vh}
+  }
+</style>
+</head>
+<body>
+<div id="bar"></div>
+<div id="stage">
+
+<!-- 1 TITLE -->
+<section class="slide active">
+  <div class="kicker">Confidential · Seed / Series A · August 2026</div>
+  <h1>The clinical<br>intelligence layer<br>for diagnosis.</h1>
+  <p class="lede">MediSense turns a patient presentation into a ranked, explained differential diagnosis in seconds — with the reasoning, the evidence, and the safety checks attached.</p>
+  <div style="margin-top:3rem" class="tiny">MediSense · AI Clinical Decision Support · Dermatology first, all specialties next</div>
+</section>
+
+<!-- 2 PROBLEM -->
+<section class="slide">
+  <div class="kicker">The problem</div>
+  <h2>Diagnosis is the bottleneck — and it doesn't scale with headcount.</h2>
+  <p class="lede">Specialist supply grows linearly. Demand, complexity, and documentation burden do not. The result is the same everywhere: long queues, uneven quality by geography, and diagnostic error concentrated in exactly the cases that matter most.</p>
+  <div class="grid g3">
+    <div class="card">
+      <h3>Access is unevenly distributed</h3>
+      <p class="sub">Diagnostic quality depends heavily on which hospital tier a patient reaches — a gap national health systems are now explicitly funding technology to close.</p>
+    </div>
+    <div class="card">
+      <h3>Anchoring is structural</h3>
+      <p class="sub">Under time pressure clinicians converge early on a leading hypothesis. Rare and do-not-miss conditions are the systematic casualty.</p>
+    </div>
+    <div class="card">
+      <h3>Prescribing risk is manual</h3>
+      <p class="sub">Interaction, allergy, dosing and duplicate-therapy screening still depends on individual vigilance at the point of writing.</p>
+    </div>
+  </div>
+  <div class="note"><b>Framing note:</b> this slide is deliberately qualitative. Quantified burden figures specific to dermatology should be sourced before investor diligence — see the data-integrity appendix.</div>
+</section>
+
+<!-- 3 WHY NOW -->
+<section class="slide">
+  <div class="kicker">Why now</div>
+  <h2>Clinical AI just crossed from pilot budget to paid infrastructure.</h2>
+  <p class="lede">For a decade, diagnostic AI was bought out of innovation budgets and measured in pilots. Three things changed at once — and they changed the business model, not just the technology.</p>
+  <div class="grid g3">
+    <div class="card hi">
+      <div class="stat">Reimbursed</div>
+      <div class="stat-label">A major national payer now pays for AI-assisted diagnosis as a billable clinical item — turning adoption from a cost centre into revenue for the hospital.</div>
+    </div>
+    <div class="card">
+      <div class="stat blue">Regulated</div>
+      <div class="stat-label">The US (PCCP), EU (MDR + AI Act), Japan (PACMP), Korea (MFDS) and China (NMPA) all now have defined pathways for adaptive clinical AI. The approval question has an answer.</div>
+    </div>
+    <div class="card">
+      <div class="stat blue">Governed</div>
+      <div class="stat-label">Human-in-the-loop sign-off is becoming a codified legal standard rather than a design preference — which favours explainable, auditable systems over black boxes.</div>
+    </div>
+  </div>
+  <div class="src">Sources: consolidated research report §3.1, §3.4, §7.3.</div>
+</section>
+
+<!-- 4 POLICY PROOF POINT -->
+<section class="slide">
+  <div class="kicker">Proof point · China</div>
+  <h2>The first national market to put AI diagnosis on the insurance catalog.</h2>
+  <p class="lede">China's NHSA moved AI-assisted diagnostics from unpriced novelty to a reimbursable clinical item on a fixed, published timeline. This is the clearest global signal that diagnostic AI has a payer.</p>
+  <div class="timeline">
+    <div class="tnode on"><div class="tdot"></div><div class="tdate">Nov 2024</div><div class="ttext">NHSA pricing guidelines classify AI diagnostics as billable “extension items.”</div></div>
+    <div class="tnode on"><div class="tdot"></div><div class="tdate">Dec 2024</div><div class="ttext">126 Class III AI medical device certificates approved cumulatively.</div></div>
+    <div class="tnode on"><div class="tdot"></div><div class="tdate">Mar 2026</div><div class="ttext">200+ AI medical devices hold Class III registration.</div></div>
+    <div class="tnode on"><div class="tdot"></div><div class="tdate">Mar 31, 2026</div><div class="ttext">AI diagnostic projects added to the national Category B insurance catalog.</div></div>
+    <div class="tnode on"><div class="tdot"></div><div class="tdate">Apr 1, 2026</div><div class="ttext">Nationwide execution — 837 Grade 3A hospitals implement immediately.</div></div>
+    <div class="tnode"><div class="tdot"></div><div class="tdate">2026 → 2027</div><div class="ttext">Target: all Class 2+ hospitals by end 2026; county and township centres by end 2027.</div></div>
+  </div>
+  <div class="src">Corroborated independently across three research documents (§3.1). Primary NHSA catalog citation still to be attached before diligence.</div>
+</section>
+
+<!-- 5 ITEM 10 -->
+<section class="slide">
+  <div class="kicker">Proof point · Item 10</div>
+  <div class="split">
+    <div>
+      <h2>Skin disease diagnosis is one of the twelve reimbursable categories.</h2>
+      <p class="lede">Twelve AI diagnostic items entered the catalog. Item 10 is Skin Disease Diagnosis — the category MediSense is purpose-built for. Dermatology is not adjacent to the reimbursed set; it is inside it.</p>
+      <div style="margin-top:1.6rem">
+        <span class="pill">Lung nodule CT</span><span class="pill">Diabetic retinopathy</span><span class="pill">DR chest film</span><span class="pill">Mammography</span><span class="pill">ECG analysis</span><span class="pill">Stroke imaging</span><span class="pill">Coronary CTA</span><span class="pill">Liver lesion</span><span class="pill">Fracture detection</span><span class="pill on">10 · Skin disease diagnosis</span><span class="pill">Pathology slices</span><span class="pill">Neonatal jaundice</span>
+      </div>
+    </div>
+    <div>
+      <div class="card hi">
+        <h3>Why this is the wedge</h3>
+        <ul style="margin-top:.7rem">
+          <li>Insurance covers <b>70–85%</b> of a Category B item; patient co-pay is <b>10–30%</b>.</li>
+          <li>Over <b>60%</b> of Chinese public hospital income derives from medical insurance — inclusion is the commercialization unlock.</li>
+          <li>No named competitor in any source is <b>dermatology-focused</b>. Tier 2 domestic players cluster in imaging and stroke.</li>
+        </ul>
+      </div>
+      <div class="note"><b>Open item:</b> no Item 10-specific price point appears in any source — every worked cost example is lung CT or pathology. A dermatology reimbursement price must be sourced before it is quoted. <span class="tbd">TBD</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- 6 PRODUCT -->
+<section class="slide">
+  <div class="kicker">The product</div>
+  <h2>Describe the presentation. Get a ranked differential, with its reasoning.</h2>
+  <p class="lede">MediSense cross-references symptoms, history and prescriptions against a clinical knowledge base and a database of real diagnostic episodes — and returns something a clinician can interrogate, not just accept.</p>
+  <div class="grid g4">
+    <div class="card"><h3>Ranked differential</h3><p class="sub">Calibrated probabilities across a broad hypothesis set — not a single black-box answer.</p></div>
+    <div class="card"><h3>Evidence drawer</h3><p class="sub">Supporting and contradicting signals, similar historical cases, and the next-best test for each hypothesis.</p></div>
+    <div class="card"><h3>Prescription safety</h3><p class="sub">Every proposed treatment screened live for interactions, allergies, dosing and duplicate therapy.</p></div>
+    <div class="card"><h3>Acuity triage</h3><p class="sub">Live auto-ranked patient queue with escalation alerts, scored by criticality and urgency.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:1rem">
+    <div class="card"><h3>Anti-anchoring by design</h3><p class="sub">Do-not-miss conditions are surfaced even at low probability. The system is built to widen the differential, not narrow it prematurely.</p></div>
+    <div class="card"><h3>Standards-based integration</h3><p class="sub">HL7 FHIR resources with an adapter layer for existing hospital systems; role-scoped access enforced at the API boundary.</p></div>
+  </div>
+</section>
+
+<!-- 7 LEARNING LOOP -->
+<section class="slide">
+  <div class="kicker">How it compounds</div>
+  <h2>Every closed episode is a training signal.</h2>
+  <p class="lede">MediSense learns from complete diagnostic episodes — not from labels alone. The outcome closes the loop, and every clinician override is itself supervision.</p>
+  <div class="flow">
+    <div class="step"><div class="n">01</div><h3>Presentation</h3><p>Symptoms, history and context captured in plain language at the point of care.</p></div>
+    <div class="step"><div class="n">02</div><h3>Differential</h3><p>Ranked hypotheses with calibrated probability and attached evidence.</p></div>
+    <div class="step"><div class="n">03</div><h3>Clinician decision</h3><p>Accept, adjust or override — with the reasoning visible. Sign-off is required.</p></div>
+    <div class="step"><div class="n">04</div><h3>Treatment</h3><p>Prescription proposed and screened; hard safety rules override statistics.</p></div>
+    <div class="step"><div class="n">05</div><h3>Outcome</h3><p>Recovery result labels the episode and feeds the next patient's differential.</p></div>
+  </div>
+  <div class="note"><b>Moat logic:</b> outcome-labelled, override-annotated episodes inside a deployed hospital workflow are the asset that is hard to buy and hard to copy. Model weights are not the moat; the episode corpus and the workflow position are.</div>
+</section>
+
+<!-- 8 SAFETY -->
+<section class="slide">
+  <div class="kicker">Safety &amp; governance</div>
+  <div class="split">
+    <div>
+      <h2>Assist, never replace — enforced in architecture, not in policy language.</h2>
+      <p class="lede">The binding national safety standard is the <em>Human-Machine Double Signature</em>: the machine may suggest, the licensed clinician must sign. MediSense is built around that constraint rather than retrofitted to it.</p>
+      <ul style="margin-top:1.6rem">
+        <li><b>Cannot act autonomously</b> on a patient. Human-in-the-loop is structural.</li>
+        <li><b>Hard clinical rules win.</b> Allergies and contraindications override any statistical suggestion.</li>
+        <li><b>Fail-safe defaults.</b> On low confidence or missing data the system asks rather than guesses.</li>
+        <li><b>Graceful degradation.</b> A degraded component yields a labelled, reduced answer; safety blocks always hold.</li>
+        <li><b>Tamper-evident audit trail.</b> Every view, suggestion, override and sign-off recorded immutably and traceable to a model version.</li>
+      </ul>
+    </div>
+    <div>
+      <div class="card">
+        <h3>Compliance posture</h3>
+        <ul style="margin-top:.7rem">
+          <li>Encryption in transit and at rest; data minimization; de-identification for learning; configurable data residency.</li>
+          <li>Algorithms must pass <b>national data security certification</b> before deployment.</li>
+          <li>Patient biometric data cannot be called, stored or used without authorization — the most consistently repeated rule across all sources.</li>
+          <li>Non-registered clinical research follows <b>STROBE</b> reporting with prior ethics approval.</li>
+        </ul>
+      </div>
+      <div class="note"><b>Regulatory-landscape context:</b> only 3.6% of FDA-approved AI devices historically reported racial demographic data in validation — the reason 2025/26 guidance now mandates dataset diversity. A US-context statistic, used here as landscape, not as a China-market claim.</div>
+    </div>
+  </div>
+</section>
+
+<!-- 9 WHY DERM FIRST -->
+<section class="slide">
+  <div class="kicker">Sequencing</div>
+  <h2>Dermatology first. Deliberately.</h2>
+  <p class="lede">Starting narrow is a validation strategy, not a limitation. Dermatology is a domain where visual and descriptive pattern recognition can be held to a high evidentiary standard before the engine is generalized — so breadth arrives on top of proven accuracy, not in place of it.</p>
+  <div class="grid g2">
+    <div class="card hi">
+      <h3>Phase 1 · Current</h3>
+      <p class="sub">Dermatology and skin conditions. High-precision pattern recognition for complex cutaneous presentations. Aligned directly to reimbursable Item 10.</p>
+    </div>
+    <div class="card">
+      <h3>Phase 2 · Next 4 months</h3>
+      <p class="sub">All specialties and systemic disease. The diagnostic engine generalizes; the safety, audit and integration layer is already built and validated.</p>
+    </div>
+  </div>
+  <table>
+    <tr><th>Stakeholder</th><th>What they get</th></tr>
+    <tr><td><b>Physicians</b></td><td>A second opinion in seconds with the reasoning shown — reduces burnout in high-volume outpatient clinics.</td></tr>
+    <tr><td><b>Nurses</b></td><td>Faster, more consistent triage and acuity scoring across the queue.</td></tr>
+    <tr><td><b>Pharmacists</b></td><td>Automated interaction, allergy and dosing screening on every proposed prescription.</td></tr>
+    <tr><td><b>Health systems</b></td><td>Fewer missed diagnoses, shorter time-to-decision, and an auditable trail for every clinical suggestion.</td></tr>
+  </table>
+</section>
+
+<!-- 10 EVIDENCE -->
+<section class="slide">
+  <div class="kicker">Evidence</div>
+  <h2>What the national programme has already proven — and what we still have to prove.</h2>
+  <p class="lede">The following results come from the broader national AI-screening programme, predominantly imaging and lung-nodule CT. They establish that reimbursed diagnostic AI produces measurable clinical and operational effect. They are <em>precedent, not MediSense results.</em></p>
+  <div class="grid g4">
+    <div class="card"><div class="stat">60%</div><div class="stat-label">Efficiency gain across the AI imaging-screening category</div></div>
+    <div class="card"><div class="stat">18%</div><div class="stat-label">Reduction in early-cancer misdiagnosis, imaging screening</div></div>
+    <div class="card"><div class="stat">22%</div><div class="stat-label">Increase in early lung-cancer detection, county hospital pilot</div></div>
+    <div class="card"><div class="stat">35%</div><div class="stat-label">Decrease in patient transfer rates, same pilot</div></div>
+  </div>
+  <div class="note"><b>Attribution — read before quoting:</b> every figure on this slide traces to the lung-nodule CT / imaging-screening programme. None is a MediSense-measured or dermatology-specific result. They are presented as national-programme precedent and must never be restated as our own outcomes. MediSense's own dermatology validation data: <span class="tbd">TBD — internal trial results required</span>.</div>
+</section>
+
+<!-- 11 COMPETITION -->
+<section class="slide">
+  <div class="kicker">Competitive landscape</div>
+  <h2>Crowded in imaging. Open in skin.</h2>
+  <table>
+    <tr><th>Tier</th><th>Players</th><th>Position</th></tr>
+    <tr><td><b>Tier 1 · Multinational</b></td><td>Novartis, Johnson &amp; Johnson, Eli Lilly, GE Healthcare</td><td>Established scale. GE's “Edison Magic Box” aggregates third-party AI tools into a single workstation — an aggregator threat, not a dermatology competitor.</td></tr>
+    <tr><td><b>Tier 2 · Domestic AI</b></td><td>Shukun Technology, United Imaging Intelligence, Infervision, Deepwise, Airdoc</td><td>Often 15+ Class III certificates each; Shukun cited at 17 (Feb 2025) including a stroke/aneurysm suite. Concentrated in imaging, stroke and retina.</td></tr>
+    <tr><td><b>Item 10 · Skin disease</b></td><td><em>No named dermatology-focused competitor appears in any source</em></td><td>A reimbursed category with no identified dedicated incumbent. This is either a genuine positioning advantage or a research gap — it must be confirmed before it is claimed.</td></tr>
+  </table>
+  <div class="note"><b>Diligence note:</b> the absence of a named Item 10 competitor is an absence of evidence in five sources, not verified evidence of absence. Treat as a hypothesis to confirm, not a defensible claim. <span class="tbd">Verification required</span></div>
+</section>
+
+<!-- 12 REGULATORY STRATEGY -->
+<section class="slide">
+  <div class="kicker">Regulatory strategy</div>
+  <div class="split">
+    <div>
+      <h2>Dual track: ship on Class II, build the moat on Class III.</h2>
+      <p class="lede">The classification boundary is the strategy. Class II reaches the market and starts the episode flywheel. Class III is the durable barrier — and the reason the moat cannot be crossed quickly by a well-funded fast follower.</p>
+      <div class="grid g2" style="margin-top:1.8rem">
+        <div class="card">
+          <h3>Class II</h3>
+          <p class="sub">Data processing and measurement; clinical reference only, not decision support. Faster to market, starts data accumulation.</p>
+        </div>
+        <div class="card hi">
+          <h3>Class III</h3>
+          <p class="sub">Clinical decision support — lesion identification and treatment planning. The classification that governs a true diagnostic product, and the real barrier to entry.</p>
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="card">
+        <h3>The approval window</h3>
+        <ul style="margin-top:.7rem">
+          <li>Current NMPA cycle: <b>4–8 months</b>.</li>
+          <li>Special Approval Channel cuts review time by <b>~83 days</b>.</li>
+          <li>AI diagnostic software is generally Class III (high risk).</li>
+        </ul>
+      </div>
+      <div class="card" style="margin-top:1rem">
+        <h3>MediSense's own filings</h3>
+        <p class="sub">Certificate count and Class II/III breakdown per module: <span class="tbd">TBD</span></p>
+        <p class="tiny" style="margin-top:.6rem">Investors will benchmark this directly against Shukun's 17 Class III certificates. This is the single highest-priority number to fill in before diligence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 13 GLOBAL REG -->
+<section class="slide">
+  <div class="kicker">Global regulatory map</div>
+  <h2>Five jurisdictions, five doors — all of them now open.</h2>
+  <table>
+    <tr><th>Jurisdiction</th><th>Body</th><th>Approach</th></tr>
+    <tr><td><b>United States</b></td><td>FDA</td><td>Predetermined Change Control Plan (PCCP); risk-based and flexible. 1,000+ AI/ML device authorizations by late 2024, mostly via 510(k).</td></tr>
+    <tr><td><b>European Union</b></td><td>EMA / EC</td><td>MDR plus the AI Act. Strict and safety-first; compliance cost has driven some manufacturers out of the EU market entirely.</td></tr>
+    <tr><td><b>China</b></td><td>NMPA</td><td>AI diagnostic software generally Class III. Special Approval Channel; current cycle 4–8 months.</td></tr>
+    <tr><td><b>Japan</b></td><td>PMDA</td><td>Post-Approval Change Management Protocol (PACMP) — similar in spirit to the US PCCP.</td></tr>
+    <tr><td><b>South Korea</b></td><td>MFDS</td><td>First national safety guidelines for generative AI in medical software (2025); incentives for “innovative medical devices.”</td></tr>
+  </table>
+  <p class="sub" style="margin-top:1.6rem">The strategic read: adaptive clinical AI now has a defined change-control pathway in every major market. A product architected for auditability and version traceability — as MediSense is — travels across these regimes rather than being rebuilt for each.</p>
+</section>
+
+<!-- 14 BUSINESS MODEL -->
+<section class="slide">
+  <div class="kicker">Business model</div>
+  <h2>Five payers, one product.</h2>
+  <p class="lede">Reimbursement inclusion does not create a single revenue line — it creates five, each with a different buying logic and cycle. Concentration risk falls as the payer mix broadens.</p>
+  <div class="grid g3">
+    <div class="card hi"><h3>1 · Insurance</h3><p class="sub">The foundational engine. Drives baseline diagnostic volume; 70–85% of the listed fee for a Category B item.</p></div>
+    <div class="card"><h3>2 · Hospital</h3><p class="sub">Direct procurement, justified on departmental efficiency and compliance mandate rather than on reimbursement alone.</p></div>
+    <div class="card"><h3>3 · Pharma</h3><p class="sub">Outcome-based models and clinical trial support — the real-world-evidence wedge. Highest margin, longest cycle.</p></div>
+    <div class="card"><h3>4 · Commercial insurance</h3><p class="sub">Supplemental coverage for high-end diagnostic suites beyond the state catalog.</p></div>
+    <div class="card"><h3>5 · Individual</h3><p class="sub">The residual 15–30% self-pay share of the listed price.</p></div>
+    <div class="card">
+      <h3>Worked precedent</h3>
+      <p class="sub">AI pathology is priced at 105 RMB (Class 3), 85 (Class 2), 75 (primary) — a tiered pattern Item 10 pricing is expected to follow.</p>
+    </div>
+  </div>
+  <div class="note"><b>Structural caveat worth stating out loud to investors:</b> a payer's willingness is moot without seamless physician integration. State coverage sets the financial frame; value realization happens at the ward. Our unit economics assume workflow adoption, not just billing eligibility.</div>
+</section>
+
+<!-- 15 MARKET -->
+<section class="slide">
+  <div class="kicker">Market</div>
+  <h2>A 200 billion RMB destination, with a dated on-ramp.</h2>
+  <div class="grid g3">
+    <div class="card"><div class="stat">~40B</div><div class="stat-label">RMB — China medical AI market, 2026</div></div>
+    <div class="card hi"><div class="stat">200B</div><div class="stat-label">RMB — trajectory by 2030; China positioned as the world's largest single medical-AI market</div></div>
+    <div class="card"><div class="stat blue">837</div><div class="stat-label">Grade 3A hospitals implementing reimbursement from day one, Apr 1 2026</div></div>
+  </div>
+  <div class="grid g2" style="margin-top:1rem">
+    <div class="card">
+      <h3>Immediate serviceable base</h3>
+      <p class="sub">837 Grade 3A hospitals live on the reimbursement mandate now, expanding to all Class 2+ hospitals by end 2026 and to county and township centres by end 2027 under the “digital sinking” target.</p>
+    </div>
+    <div class="card">
+      <h3>Analogous adoption curve</h3>
+      <p class="sub">Psoriasis biologics overtook chemical drugs in treatment sales value in 2020, the year after national insurance inclusion — the same inclusion-to-adoption pattern MediSense is underwriting for AI diagnostics.</p>
+    </div>
+  </div>
+  <div class="note"><b>Removed pending sourcing:</b> the $5.8B-by-2034 global AI-dermatology market figure and 22.5% China CAGR previously used in this deck appear in no research source and are omitted here until independently verified. <span class="tbd">Source required before reinstating</span></div>
+</section>
+
+<!-- 16 GTM -->
+<section class="slide">
+  <div class="kicker">Go to market</div>
+  <h2>Land on the mandate. Expand on the data.</h2>
+  <div class="flow">
+    <div class="step"><div class="n">PHASE 1</div><h3>Grade 3A pilots</h3><p>12-week dermatology CDSS pilots inside the 837 hospitals already executing the reimbursement mandate. Sold on compliance and outpatient throughput, not on novelty.</p></div>
+    <div class="step"><div class="n">PHASE 2</div><h3>Digital sinking</h3><p>Tiered expansion to Class 2 hospitals and county/township centres, riding the national 2026–2027 coverage targets. Same product, lower-resource deployment profile.</p></div>
+    <div class="step"><div class="n">PHASE 3</div><h3>Pharma RWE wedge</h3><p>The accumulated outcome-labelled episode corpus becomes real-world evidence for outcome-based pharma contracts and trial recruitment — high-margin revenue no imaging competitor can match in dermatology.</p></div>
+  </div>
+  <div class="grid g2" style="margin-top:1.6rem">
+    <div class="card"><h3>Why pilots convert</h3><p class="sub">Insurance inclusion forces hospitals to break data silos — record digitization is now a prerequisite for reimbursement. Our integration arrives when the buyer is already obligated to integrate.</p></div>
+    <div class="card"><h3>Integration partners</h3><p class="sub">HIS/EMR vendor relationships are an <b>aspirational target list</b>, not confirmed integrations. <span class="tbd">TBD — named partners to be confirmed</span></p></div>
+  </div>
+</section>
+
+<!-- 17 TRACTION -->
+<section class="slide">
+  <div class="kicker">Traction</div>
+  <h2>Where we actually are.</h2>
+  <p class="lede">This slide is intentionally unfilled. Every field below requires real MediSense data — no researched or industry proxy figure belongs here.</p>
+  <table>
+    <tr><th>Metric</th><th>Status</th></tr>
+    <tr><td><b>Live pilot hospitals</b> (of the 837 Grade 3A)</td><td><span class="tbd">TBD</span> — names, start dates, stage</td></tr>
+    <tr><td><b>NMPA certificates held</b></td><td><span class="tbd">TBD</span> — count and Class II/III breakdown per module</td></tr>
+    <tr><td><b>Internal dermatology validation</b></td><td><span class="tbd">TBD</span> — sensitivity/specificity vs. clinician baseline, with study design</td></tr>
+    <tr><td><b>Episodes processed</b></td><td><span class="tbd">TBD</span> — cumulative, and outcome-labelled share</td></tr>
+    <tr><td><b>Double-signature workflow in production</b></td><td><span class="tbd">TBD</span> — case study from a live site</td></tr>
+    <tr><td><b>IRB / ethics approval &amp; consent process</b></td><td><span class="tbd">TBD</span> — required before Phase 2 patient encounters</td></tr>
+  </table>
+  <div class="note"><b>Deliberate choice:</b> a prior version of the hospital deck carried an unqualified “≥95% sensitivity for early-stage malignancies” claim. It was removed — no source supported it. An empty traction slide survives diligence; an unsupported number does not.</div>
+</section>
+
+<!-- 18 TEAM -->
+<section class="slide">
+  <div class="kicker">Team</div>
+  <h2>Who is building this.</h2>
+  <div class="grid g2">
+    <div class="card">
+      <h3>Founding team</h3>
+      <p class="sub"><span class="tbd">TBD</span> — two-person founding team. Names, roles, and prior clinical/ML/regulatory track record.</p>
+    </div>
+    <div class="card">
+      <h3>Advisory board</h3>
+      <p class="sub"><span class="tbd">TBD</span> — no named clinical or regulatory advisors currently. Given that Class III approval and hospital Medical Affairs are the two hardest gates, a named dermatologist and an NMPA regulatory advisor are the highest-leverage additions before this deck is used.</p>
+    </div>
+  </div>
+  <div class="grid g3" style="margin-top:1rem">
+    <div class="card"><h3>Key hire · Regulatory</h3><p class="sub"><span class="tbd">TBD</span></p></div>
+    <div class="card"><h3>Key hire · Clinical affairs</h3><p class="sub"><span class="tbd">TBD</span></p></div>
+    <div class="card"><h3>Key hire · Hospital integration</h3><p class="sub"><span class="tbd">TBD</span></p></div>
+  </div>
+</section>
+
+<!-- 19 ASK -->
+<section class="slide">
+  <div class="kicker">The ask</div>
+  <h2>What we're raising, and what it buys.</h2>
+  <div class="split" style="margin-top:1.4rem">
+    <div>
+      <div class="card hi">
+        <div class="stat"><span class="tbd">TBD</span></div>
+        <div class="stat-label">Round size · instrument · pre-money valuation · current runway</div>
+      </div>
+      <div class="note" style="margin-top:1.2rem"><b>Required before use:</b> funding round status, runway, burn rate and valuation are unknown in all source material and cannot be inferred. These are founder-supplied figures.</div>
+    </div>
+    <div>
+      <h3 style="margin-bottom:1rem">Use of funds — proposed allocation</h3>
+      <table style="margin-top:0">
+        <tr><th>Area</th><th>Purpose</th><th>%</th></tr>
+        <tr><td><b>Regulatory</b></td><td>Class III filing and national data security certification</td><td><span class="tbd">—</span></td></tr>
+        <tr><td><b>Clinical validation</b></td><td>Dermatology-specific trial to replace every borrowed statistic in this deck</td><td><span class="tbd">—</span></td></tr>
+        <tr><td><b>Engineering</b></td><td>Phase 2 expansion to all specialties; HIS/EMR adapter layer</td><td><span class="tbd">—</span></td></tr>
+        <tr><td><b>Commercial</b></td><td>Grade 3A pilot conversion and hospital integration team</td><td><span class="tbd">—</span></td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- 20 CLOSING -->
+<section class="slide">
+  <div class="kicker">The vision</div>
+  <h1 style="max-width:20ch">Every clinician,<br>with the best<br>diagnostic reasoning<br>in the room.</h1>
+  <p class="lede" style="margin-top:1.8rem">A patient in a township clinic should get the same quality of differential as a patient in a tier-one teaching hospital. The policy has arrived, the payer has arrived, and the classification exists. What's left is to build the system clinicians actually trust — explainable, auditable, and always signed by a human.</p>
+  <div class="src" style="margin-top:2.6rem">MediSense · AI Clinical Decision Support · Confidential · August 2026</div>
+</section>
+
+<!-- 21 APPENDIX -->
+<section class="slide">
+  <div class="kicker">Appendix</div>
+  <h2>Data integrity — how to read this deck.</h2>
+  <p class="lede">This deck separates three kinds of claim throughout. Conflating them is the single biggest credibility risk with a sophisticated investor.</p>
+  <div class="grid g3">
+    <div class="card">
+      <h3 style="color:var(--accent)">Confirmed</h3>
+      <p class="sub">Corroborated across three independent research documents: the NHSA policy timeline, the 12-item reimbursable category list including Item 10, reimbursement mechanics (70–85% / 10–30%), NMPA Class II vs III definitions and the 4–8 month cycle, the double-signature standard, 837 Grade 3A hospitals, 200B RMB by 2030.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--accent2)">Precedent, not ours</h3>
+      <p class="sub">60% efficiency, 18% misdiagnosis reduction, 22% early detection, 35% transfer reduction, 40-second scans. All trace to the lung-nodule CT / imaging-screening programme. Always attributed as national-programme precedent — never as MediSense dermatology results.</p>
+    </div>
+    <div class="card">
+      <h3 style="color:var(--warn)">Unknown · marked TBD</h3>
+      <p class="sub">Funding, runway and valuation; NMPA certificate count; live pilot hospitals; internal trial data; advisory board; liability and indemnification terms; Item 10 price point; named EMR integrations.</p>
+    </div>
+  </div>
+  <div class="grid g2" style="margin-top:1rem">
+    <div class="card">
+      <h3>Still open before diligence</h3>
+      <ul style="margin-top:.7rem">
+        <li>Attach the primary NHSA catalog document as a citation for the “12 items / Apr 1, 2026” claim.</li>
+        <li>Independently verify or permanently drop the $5.8B-by-2034 AI-dermatology figure.</li>
+        <li>Note the 126 (Dec 2024) vs 200+ (Mar 2026) Class III certificate figures are growth over time, not a contradiction — but check dates before quoting either alone.</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Removed by design</h3>
+      <ul style="margin-top:.7rem">
+        <li>“≥95% sensitivity for early-stage malignancies” — unsupported by any source; reframed as a pilot objective.</li>
+        <li>Named EMR partners presented as confirmed — relabelled as an aspirational target list.</li>
+        <li>Lung-screening statistics used as dermatology outcomes.</li>
+      </ul>
+    </div>
+  </div>
+  <div class="src">Source: MediSense Research &amp; Data Consolidation Report §1–7, and MediSense Product Overview (Aug 2026).</div>
+</section>
+
+</div>
+
+<div id="brand">MediSense <span class="conf">· Confidential</span></div>
+<div id="nav">
+  <button id="prev" aria-label="Previous slide">‹</button>
+  <span id="count">1 / 21</span>
+  <button id="next" aria-label="Next slide">›</button>
+</div>
+
+<script>
+(function(){
+  var slides = Array.prototype.slice.call(document.querySelectorAll('.slide'));
+  var i = 0;
+  var count = document.getElementById('count');
+  var bar = document.getElementById('bar');
+
+  function show(n){
+    n = Math.max(0, Math.min(slides.length - 1, n));
+    slides[i].classList.remove('active');
+    i = n;
+    slides[i].classList.add('active');
+    slides[i].scrollTop = 0;
+    count.textContent = (i + 1) + ' / ' + slides.length;
+    bar.style.width = ((i + 1) / slides.length * 100) + '%';
+    if (location.hash !== '#' + (i + 1)) history.replaceState(null, '', '#' + (i + 1));
+  }
+
+  document.addEventListener('keydown', function(e){
+    if (e.key === 'ArrowRight' || e.key === 'PageDown' || e.key === ' ') { e.preventDefault(); show(i + 1); }
+    else if (e.key === 'ArrowLeft' || e.key === 'PageUp') { e.preventDefault(); show(i - 1); }
+    else if (e.key === 'Home') { e.preventDefault(); show(0); }
+    else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
+    else if (e.key === 'f' || e.key === 'F') {
+      if (!document.fullscreenElement) { document.documentElement.requestFullscreen(); }
+      else { document.exitFullscreen(); }
+    }
+  });
+
+  document.getElementById('next').addEventListener('click', function(){ show(i + 1); });
+  document.getElementById('prev').addEventListener('click', function(){ show(i - 1); });
+
+  var x0 = null;
+  document.addEventListener('touchstart', function(e){ x0 = e.touches[0].clientX; }, {passive:true});
+  document.addEventListener('touchend', function(e){
+    if (x0 === null) return;
+    var dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 55) show(dx < 0 ? i + 1 : i - 1);
+    x0 = null;
+  }, {passive:true});
+
+  var start = parseInt((location.hash || '').replace('#',''), 10);
+  show(isNaN(start) ? 0 : start - 1);
+})();
+</script>
+</body>
+</html>
